@@ -276,10 +276,10 @@ class MoneybirdApi
 
 		// Store debuginfo of last request
 		$this->lastRequest = array(
-			'url'		   => $curlopts[CURLOPT_URL],
-			'method'		=> $method,
+			'url'		        => $curlopts[CURLOPT_URL],
+			'method'		    => $method,
 			'http-response' => $httpresponse,
-			'xml-send'	  => isset($xml)?$xml:''
+			'xml-send'	    => isset($xml)?$xml:''
 		);
 
 		// If $error exists, an exception needs to be thrown
@@ -288,10 +288,12 @@ class MoneybirdApi
 		{
 			if ($error instanceof MoneybirdUnprocessableEntityException)
 			{
+				$this->errors = array();
 				foreach ($xmlresponse as $message)
 				{
 					$this->errors[] = $message;
 				}
+				$error = new MoneybirdUnprocessableEntityException('Entity was not created or deleted because of errors in parameters. Errors:'.PHP_EOL.implode(PHP_EOL, $this->errors));
 			}
 			throw $error;
 		}

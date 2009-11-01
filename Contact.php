@@ -43,7 +43,7 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	 * @access private
 	 * @var MoneybirdApi
 	 */
-	private $api;
+	protected $api;
 
 	/**
 	 * Set a reference to the Api
@@ -57,19 +57,6 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	}
 
 	/**
-	 * Convert object to XML
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function toXML()
-	{
-		return parent::toXML(
-			null, null, null, array('customer_id')
-		);
-	}
-
-	/**
 	 * Set all properties
 	 *
 	 * @param array $data
@@ -80,7 +67,7 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	{
 		$properties = array(
 			'name', 'contact_name', 'address1', 'address2', 'zipcode', 'city',
-			'country', 'customer_id',
+			'country', 'customer_id', 'email',
 		);
 
 		foreach ($properties as $property)
@@ -101,7 +88,7 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	{
 		$properties = array(
 			'name', 'contact_name', 'address1', 'address2', 'zipcode', 'city',
-			'country', 'customer_id',
+			'country', 'customer_id', 'email',
 		);
 
 		$return = array();
