@@ -101,6 +101,25 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	}
 
 	/**
+	 * Get invoice
+	 *
+	 * @param integer $invoiceID invoice to retreive
+	 * @return MoneybirdInvoice
+	 * @access public
+	 * @throws MoneybirdInvalidIdException
+	 * @throws MoneybirdItemNotFoundException
+	 */
+	public function getInvoice($invoiceID)
+	{
+		$invoice = $this->api->getInvoice($invoiceID);
+		if ($invoice->contact_id != $this->id)
+		{
+			throw new MoneybirdItemNotFoundException('The entity or action is not found in the API');
+		}
+		return $invoice;
+	}
+
+	/**
 	 * Get all invoices of contact
 	 *
 	 * @return array

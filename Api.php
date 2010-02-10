@@ -687,6 +687,27 @@ class MoneybirdApi
 	}
 
 	/**
+	 * Get the invoice of which a state change notification has been received
+	 *
+	 * When the invoice state changes in Moneybird, your application can be notified
+	 * Use this method to validate the request and retreive the invoice
+	 *
+	 * @return MoneybirdInvoice
+	 * @access public
+	 * @throws MoneybirdInvalidRequestException
+	 * @throws MoneybirdItemNotFoundException
+	 * @throws MoneybirdInvalidIdException
+	 */
+	public function invoiceStateChanged()
+	{
+		if (!isset($_POST['invoice_id'], $_POST['state']))
+		{
+			throw new MoneybirdInvalidRequestException('Required fields not found');
+		}
+		return $this->getInvoice($_GET['invoice_id']);
+	}
+
+	/**
 	 * Get all invoices that need a reminder
 	 *
 	 * Example:

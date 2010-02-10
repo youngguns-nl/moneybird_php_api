@@ -103,3 +103,19 @@ class MoneybirdConnectionErrorException extends MoneybirdException
 class MoneybirdUnknownInvoiceStateException extends MoneybirdException
 {
 }
+
+/**
+ * Exception Invalid type of moneybird object
+ *
+ */
+class MoneybirdUnknownTypeException extends MoneybirdException
+{
+}
+
+/**
+ * Exception Invalid request
+ *
+ */
+class MoneybirdInvalidRequestException extends MoneybirdException
+{
+}

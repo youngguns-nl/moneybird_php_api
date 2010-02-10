@@ -125,16 +125,36 @@ abstract class MoneybirdObject implements iMoneybirdObject
 	 * @param string $elmKeyClose Close tag
 	 * @param array $skipProperties Skip the properties with these names
 	 * @return string
+	 * @throws MoneybirdUnknownTypeException
 	 */
 	public function toXML(Array $arrayHandlers = null, $elmKeyOpen = null, $elmKeyClose = null, array $skipProperties = array())
 	{
+		if (is_a($this, 'iMoneybirdContact'))
+		{
+			$root = 'contact';
+		}
+		elseif (is_a($this, 'iMoneybirdInvoice'))
+		{
+			$root = 'invoice';
+		}
+		elseif (is_a($this, 'iMoneybirdRecurringTemplate'))
+		{
+			$root = 'recurringtemplate';
+		}
+		else
+		{
+			// Guess
+			$root = strtolower(substr(get_class($this), 9));
+			//throw new MoneybirdUnknownTypeException('Unknown type: '.get_class($this));
+		}
+
 		if ($elmKeyOpen == null)
 		{
-			$elmKeyOpen = '<'.strtolower(substr(get_class($this), 9)).'>';
+			$elmKeyOpen = '<'.$root.'>';
 		}
 		if ($elmKeyClose == null)
 		{
-			$elmKeyClose = '</'.strtolower(substr(get_class($this), 9)).'>';
+			$elmKeyClose = '</'.$root.'>';
 		}
 
 		$skipProperties = array_merge($skipProperties, array(
