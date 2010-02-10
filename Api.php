@@ -238,7 +238,15 @@ class MoneybirdApi
 		}
 		elseif (trim($xmlstring) != '')
 		{
-			$xmlresponse = simplexml_load_string($xmlstring);
+			try
+			{
+				libxml_use_internal_errors(true);
+				$xmlresponse = new SimpleXMLElement($xmlstring);
+			}
+			catch (Exception $e)
+			{
+				// Ignore
+			}
 		}
 
 		$httpresponse = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
@@ -251,6 +259,10 @@ class MoneybirdApi
 
 			case 401: // Authorization required	 No authorization information provided with request
 				$error = new MoneybirdAuthorizationRequiredException('No authorization information provided with request');
+			break;
+
+			case 403: // Forbidden request
+				$error = new MoneybirdForbiddenException('Forbidden request');
 			break;
 
 			case 404: // The entity or action is not found in the API
@@ -286,14 +298,24 @@ class MoneybirdApi
 		// Before throwing an exception, parse the errors from the xml
 		if (isset($error))
 		{
-			if ($error instanceof MoneybirdUnprocessableEntityException)
+			if (
+						($error instanceof MoneybirdUnprocessableEntityException) ||
+						($error instanceof MoneybirdForbiddenException))
 			{
 				$this->errors = array();
 				foreach ($xmlresponse as $message)
 				{
 					$this->errors[] = $message;
 				}
-				$error = new MoneybirdUnprocessableEntityException('Entity was not created or deleted because of errors in parameters. Errors:'.PHP_EOL.implode(PHP_EOL, $this->errors));
+
+				if ($error instanceof MoneybirdUnprocessableEntityException)
+				{
+					$error = new MoneybirdUnprocessableEntityException('Entity was not created or deleted because of errors in parameters. Errors:'.PHP_EOL.implode(PHP_EOL, $this->errors));
+				}
+				elseif ($error instanceof MoneybirdForbiddenException)
+				{
+					$error = new MoneybirdForbiddenException('Got "forbidden" response upon request. Errors:'.PHP_EOL.implode(PHP_EOL, $this->errors));
+				}
 			}
 			throw $error;
 		}

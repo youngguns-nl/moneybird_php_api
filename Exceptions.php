@@ -119,3 +119,11 @@ class MoneybirdUnknownTypeException extends MoneybirdException
 class MoneybirdInvalidRequestException extends MoneybirdException
 {
 }
+
+/**
+ * Exception Forbidden
+ *
+ */
+class MoneybirdForbiddenException extends MoneybirdException
+{
+}
