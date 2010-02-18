@@ -94,6 +94,10 @@ class MoneybirdApi
 			case 'invoice':
 				return array($type.'s', 'Moneybird'.ucfirst($type));
 			break;
+			
+			case 'contactByCustomerId':
+			    return array('contacts/customer_id', 'MoneybirdContact');
+			break;
 
 			case 'recurringTemplate':
 				return array('recurring_templates', 'MoneybirdRecurringTemplate');
@@ -468,6 +472,20 @@ class MoneybirdApi
 	public function getContact($contactID)
 	{
 		return $this->getMbObject($contactID, 'contact');
+	}
+	
+	/**
+	 * Get a contact by customer ID
+	 *
+	 * @param integer $customerID
+	 * @return MoneyBirdContact
+	 * @access public
+	 * @throws MoneybirdInvalidIdException
+	 * @throws MoneybirdItemNotFoundException
+	 */
+	public function getContactByCustomerId($customerID)
+	{
+	    return $this->getMbObject($customerID, 'contactByCustomerId');
 	}
 
 	/**
