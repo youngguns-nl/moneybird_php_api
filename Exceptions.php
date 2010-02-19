@@ -9,6 +9,13 @@ class MoneybirdException extends Exception
 }
 
 /**
+ * Exception Invalid company name
+ */
+class MoneybirdInvalidCompanyNameException extends MoneybirdException
+{
+}
+
+/**
  * Exception Authorization required (No authorization information provided with request)
  *
  */
