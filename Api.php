@@ -94,10 +94,6 @@ class MoneybirdApi
 			case 'invoice':
 				return array($type.'s', 'Moneybird'.ucfirst($type));
 			break;
-			
-			case 'contactByCustomerId':
-			    return array('contacts/customer_id', 'MoneybirdContact');
-			break;
 
 			case 'recurringTemplate':
 				return array('recurring_templates', 'MoneybirdRecurringTemplate');
@@ -328,6 +324,22 @@ class MoneybirdApi
 	}
 
 	/**
+	 * Create object from response
+	 *
+	 * @param string $class Type of object
+	 * @param SimpleXMLElement $xml The response from Moneybird
+	 * @return iMoneybirdObject
+	 * @access protected
+	 */
+	protected function createMbObjectFromResponse($class, SimpleXMLElement $xml)
+	{
+		$object = new $class;
+		$object->fromXML($xml);
+		$object->setApi($this);
+		return $object;
+	}
+
+	/**
 	 * Get single Moneybird object
 	 *
 	 * @param integer $objectID id of object to retreive
@@ -348,10 +360,7 @@ class MoneybirdApi
 
 		$response = $this->request($typegroup.'/'.$objectID);
 
-		$object = new $class;
-		$object->fromXML($response);
-		$object->setApi($this);
-		return $object;
+		return $this->createMbObjectFromResponse($class, $response);
 	}
 
 	/**
@@ -398,10 +407,7 @@ class MoneybirdApi
 		$objects = array();
 		foreach ($foundObjects as $response)
 		{
-			$object = new $class;
-			$object->fromXML($response);
-			$object->setApi($this);
-			$objects[] = $object;
+			$objects[] = $this->createMbObjectFromResponse($class, $response);
 		}
 		return $objects;
 	}
@@ -439,10 +445,7 @@ class MoneybirdApi
 				$object
 			);
 
-			$object = new $class;
-			$object->fromXML($response);
-			$object->setApi($this);
-			return $object;
+			return $this->createMbObjectFromResponse($class, $response);
 		}		
 	}
 
@@ -477,15 +480,18 @@ class MoneybirdApi
 	/**
 	 * Get a contact by customer ID
 	 *
-	 * @param integer $customerID
+	 * @param string $invoiceID
 	 * @return MoneyBirdContact
 	 * @access public
-	 * @throws MoneybirdInvalidIdException
 	 * @throws MoneybirdItemNotFoundException
 	 */
-	public function getContactByCustomerId($customerID)
+	public function getContactByCustomerId($invoiceID)
 	{
-	    return $this->getMbObject($customerID, 'contactByCustomerId');
+		list($typegroup, $class) = $this->typeInfo('contact');
+
+		$response = $this->request($typegroup.'/customer_id/'.$invoiceID);
+
+		return $this->createMbObjectFromResponse($class, $response);
 	}
 
 	/**
@@ -565,6 +571,23 @@ class MoneybirdApi
 		}
 
 		return $this->getMbObjects('invoice', $filter);
+	}
+
+	/**
+	 * Get an invoice by invoice ID
+	 *
+	 * @param string $invoiceID
+	 * @return MoneyBirdInvoice
+	 * @access public
+	 * @throws MoneybirdItemNotFoundException
+	 */
+	public function getInvoiceByInvoiceId($invoiceID)
+	{
+		list($typegroup, $class) = $this->typeInfo('invoice');
+
+		$response = $this->request($typegroup.'/invoice_id/'.$invoiceID);
+
+		return $this->createMbObjectFromResponse($class, $response);
 	}
 
 	/**
