@@ -122,11 +122,11 @@ class MoneybirdApi
 			$setopt = curl_setopt_array(
 				$this->connection,
 				array(
-					CURLOPT_USERPWD		=> $username.':'.$password,
-					CURLOPT_HTTPAUTH	   => CURLAUTH_BASIC,
+					CURLOPT_USERPWD		     => $username.':'.$password,
+					CURLOPT_HTTPAUTH	     => CURLAUTH_BASIC,
 					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_FOLLOWLOCATION => true,
-					CURLOPT_HTTPHEADER	 => array(
+					CURLOPT_HEADER         => true,
+					CURLOPT_HTTPHEADER	   => array(
 						'Content-Type: application/xml',
 						'Accept: application/xml'
 					),
@@ -230,7 +230,7 @@ class MoneybirdApi
 			throw new MoneybirdConnectionErrorException('Unable to set cURL options'.PHP_EOL.curl_error($this->connection));
 		}
 
-		$xmlstring = curl_exec($this->connection);
+		$xmlstring = $this->curl_exec();
 		$xmlresponse = null;
 		if (false === $xmlstring)
 		{
@@ -321,6 +321,54 @@ class MoneybirdApi
 		}
 
 		return $xmlresponse;
+	}
+
+	/**
+	 * Execute cURL request
+	 * Redirects via cURL option CURLOPT_FOLLOWLOCATION won't work if safe mode
+	 * or open basedir is active
+	 *
+	 * @access protected
+	 * @return string
+	 * @throws MoneybirdInternalServerErrorException
+	 */
+	protected function curl_exec()
+	{
+		static $curl_loops = 0;
+    static $curl_max_loops = 20;
+
+    if ($curl_loops++ >= $curl_max_loops)
+    {
+			$curl_loops = 0;
+			throw new MoneybirdInternalServerErrorException('Too many redirects in request');
+    }
+
+    $repsonse = curl_exec($this->connection);
+    $http_code = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
+		list($header, $data) = explode("\r\n\r\n", $repsonse, 2);
+
+    if ($http_code == 301 || $http_code == 302)
+		{
+			$matches = array();
+			preg_match('/Location:(.*?)\n/', $header, $matches);
+			$url = @parse_url(trim(array_pop($matches)));
+			if (!$url)
+			{
+				//couldn't process the url to redirect to
+				$curl_loops = 0;
+				throw new MoneybirdInternalServerErrorException('Invalid redirect');
+			}
+
+			$new_url = $url['scheme'] . '://' . $url['host'] . $url['path'] . (!empty($url['query'])?'?'.$url['query']:'');
+			curl_setopt($this->connection, CURLOPT_URL, $new_url);
+
+			return $this->curl_exec($this->connection);
+    } 
+		else
+		{
+			$curl_loops=0;
+			return $data;
+    }
 	}
 
 	/**
