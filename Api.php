@@ -68,6 +68,10 @@ class MoneybirdApi
 		$this->clientname = $clientname != null ? $clientname : 'clientname';
 		$username		 = $username   != null ? $username   : 'username';
 		$password		 = $password   != null ? $password   : 'password';
+		
+		if(preg_match('/^[a-z0-9_\-]+$/', $this->clientname) == 0){
+		    throw new MoneybirdInvalidCompanyNameException();
+		}
 
 		$this->baseUrl = '';
 		$this->errors = array();
