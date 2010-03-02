@@ -61,6 +61,7 @@ class MoneybirdApi
 	 * @param string $password password for login
 	 * @access public
 	 * @throws MoneybirdConnectionErrorException
+	 * @throws MoneybirdInvalidCompanyNameException
 	 */
 	public function __construct($clientname=null, $username=null, $password=null)
 	{
@@ -69,8 +70,9 @@ class MoneybirdApi
 		$username		 = $username   != null ? $username   : 'username';
 		$password		 = $password   != null ? $password   : 'password';
 		
-		if(preg_match('/^[a-z0-9_\-]+$/', $this->clientname) == 0){
-		    throw new MoneybirdInvalidCompanyNameException();
+		if (preg_match('/^[a-z0-9_\-]+$/', $this->clientname) == 0)
+		{
+		  throw new MoneybirdInvalidCompanyNameException('Invalid companyname/clientname');
 		}
 
 		$this->baseUrl = '';
