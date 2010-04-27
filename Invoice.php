@@ -29,12 +29,6 @@ interface iMoneybirdInvoice extends iMoneybirdObject
  */
 interface iMoneybirdInvoiceDetail extends iMoneybirdObject
 {
-	/**
-	 * Mark line for deletion
-	 *
-	 * @access public
-	 */
-	public function delete();
 }
 
 /**
