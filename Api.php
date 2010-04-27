@@ -209,12 +209,14 @@ class MoneybirdApi
 
 			case 'POST':
 				$curlopts[CURLOPT_POST] = true;
-				$xml = $mbObject->toXML();
+				$xml  = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
+				$xml .= $mbObject->toXML();
 				$curlopts[CURLOPT_POSTFIELDS] = $xml;
 			break;
-
+		
 			case 'PUT':
-				$xml = $mbObject->toXML();
+				$xml  = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
+				$xml .= $mbObject->toXML();
 
 				$fh  = fopen('php://memory', 'rw');
 				fwrite($fh, $xml);
