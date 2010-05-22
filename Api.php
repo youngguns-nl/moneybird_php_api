@@ -355,16 +355,16 @@ class MoneybirdApi
 	protected function curl_exec()
 	{
 		static $curl_loops = 0;
-    static $curl_max_loops = 20;
+		static $curl_max_loops = 20;
 
-    if ($curl_loops++ >= $curl_max_loops)
-    {
+		if ($curl_loops++ >= $curl_max_loops)
+		{
 			$curl_loops = 0;
 			throw new MoneybirdInternalServerErrorException('Too many redirects in request');
-    }
+		}
 
-    $repsonse = curl_exec($this->connection);
-    $http_code = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
+		$repsonse = curl_exec($this->connection);
+		$http_code = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
 		list($header, $data) = explode("\r\n\r\n", $repsonse, 2);
 
 		// Ignore Continue header
@@ -373,7 +373,7 @@ class MoneybirdApi
 			list($header, $data) = explode("\r\n\r\n", $data, 2);
 		}
 
-    if ($http_code == 301 || $http_code == 302)
+		if ($http_code == 301 || $http_code == 302)
 		{
 			$matches = array();
 			preg_match('/Location:(.*?)\n/', $header, $matches);
@@ -389,12 +389,12 @@ class MoneybirdApi
 			curl_setopt($this->connection, CURLOPT_URL, $new_url);
 
 			return $this->curl_exec();
-    }
+		}
 		else
 		{
 			$curl_loops=0;
 			return $data;
-    }
+		}
 	}
 
 	/**
