@@ -69,7 +69,7 @@ class MoneybirdApi
 		$this->clientname = $clientname != null ? $clientname : 'clientname';
 		$username		 = $username   != null ? $username   : 'username';
 		$password		 = $password   != null ? $password   : 'password';
-		
+
 		if (preg_match('/^[a-z0-9_\-]+$/', $this->clientname) == 0)
 		{
 		  throw new MoneybirdInvalidCompanyNameException('Invalid companyname/clientname');
@@ -213,7 +213,7 @@ class MoneybirdApi
 				$xml .= $mbObject->toXML();
 				$curlopts[CURLOPT_POSTFIELDS] = $xml;
 			break;
-		
+
 			case 'PUT':
 				$xml  = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 				$xml .= $mbObject->toXML();
@@ -276,15 +276,15 @@ class MoneybirdApi
 			case 404: // The entity or action is not found in the API
 				$error = new MoneybirdItemNotFoundException('The entity or action is not found in the API');
 			break;
-			
+
 			case 406: // Not accepted			   The action you are trying to perform is not available in the API
 				$error = new MoneybirdNotAcceptedException('The action you are trying to perform is not available in the API');
 			break;
-			
+
 			case 422: // Unprocessable entity	   Entity was not created because of errors in parameters. Errors are included in XML response.
 				$error = new MoneybirdUnprocessableEntityException('Entity was not created or deleted because of errors in parameters. Errors are included in XML response.');
 			break;
-			
+
 			case 500: // Internal server error	  Something went wrong while processing the request. MoneyBird is notified of the error.
 				$error = new MoneybirdInternalServerErrorException('Something went wrong while processing the request. MoneyBird is notified of the error.');
 			break;
@@ -355,6 +355,12 @@ class MoneybirdApi
     $http_code = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
 		list($header, $data) = explode("\r\n\r\n", $repsonse, 2);
 
+		// Ignore Continue header
+		if ($header == "HTTP/1.1 100 Continue")
+		{
+			list($header, $data) = explode("\r\n\r\n", $data, 2);
+		}
+
     if ($http_code == 301 || $http_code == 302)
 		{
 			$matches = array();
@@ -371,7 +377,7 @@ class MoneybirdApi
 			curl_setopt($this->connection, CURLOPT_URL, $new_url);
 
 			return $this->curl_exec($this->connection);
-    } 
+    }
 		else
 		{
 			$curl_loops=0;
@@ -502,7 +508,7 @@ class MoneybirdApi
 			);
 
 			return $this->createMbObjectFromResponse($class, $response);
-		}		
+		}
 	}
 
 	/**
@@ -532,7 +538,7 @@ class MoneybirdApi
 	{
 		return $this->getMbObject($contactID, 'contact');
 	}
-	
+
 	/**
 	 * Get a contact by customer ID
 	 *
@@ -745,7 +751,7 @@ class MoneybirdApi
 			$sendinfo
 		);
 	}
-	
+
 	/**
 	 * Mark invoice as send
 	 *
@@ -860,7 +866,7 @@ class MoneybirdApi
 					$reminders[] = $history->created_at;
 				}
 			}
-			
+
 			$numReminders = count($reminders);
 			$numDocumentDays = count($documentDays);
 			if ($numReminders > $numDocumentDays - 1)
