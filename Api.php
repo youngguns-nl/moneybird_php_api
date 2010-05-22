@@ -54,7 +54,7 @@ class MoneybirdApi
 	protected $lastRequest;
 
 	/**
-	 * Don't verify SSL peer and host
+	 * Don't verify SSL peer and host if true
 	 *
 	 * @static
 	 * @access public
@@ -166,6 +166,7 @@ class MoneybirdApi
 	 * @param string $url request parameters
 	 * @param string $method (GET|POST|PUT|DELETE)
 	 * @param iMoneybirdObject $mbObject object to change
+	 * @param iMoneybirdObject $parent If passed, only objects from parent will be returned
 	 * @return SimpleXMLElement
 	 * @access protected
 	 * @throws MoneybirdAuthorizationRequiredException
@@ -177,34 +178,29 @@ class MoneybirdApi
 	 * @throws MoneybirdConnectionErrorException
 	 * @throws MoneybirdXmlErrorException
 	 */
-	protected function request($url, $method='GET', iMoneybirdObject $mbObject=null)
+	protected function request($url, $method='GET', iMoneybirdObject $mbObject=null, iMoneybirdObject $parent=null)
 	{
 		$url = '/'.$url;
 
 		// If called from a contact, add contacts/:id
-		$trace = debug_backtrace();
-		$types = array('contact', 'invoice', 'recurringTemplate');
-		foreach ($trace as $traceinfo)
+		if ($parent != null)
 		{
-			if (isset($traceinfo['class']))
+			$types = array('contact', 'invoice', 'recurringTemplate');
+			foreach ($types as $type)
 			{
-				$refclass = new ReflectionClass($traceinfo['class']);
-				foreach ($types as $type)
+				$interface = 'iMoneybird'.ucfirst($type);
+				if (($parent instanceof $interface) && intval($parent->id) > 0)
 				{
-					$interface = 'iMoneybird'.ucfirst($type);
-					if ($refclass->isSubclassOf($interface) && intval($traceinfo['object']->id) > 0)
-					{
-						list($typegroup, $class) = $this->typeInfo($type);
-						$prefix = '/'.$typegroup.'/'.$traceinfo['object']->id;
+					list($typegroup, $class) = $this->typeInfo($type);
+					$prefix = '/'.$typegroup.'/'.$parent->id;
 
-						// Add $prefix to URL, but not when it's already there
-						// e.g. /invoices/:id/invoices/:id/... => /invoices/:id/...
-						if (strpos($url, $prefix) !== 0)
-						{
-							$url = $prefix.$url;
-						}
-						break 2;
+					// Add $prefix to URL, but not when it's already there
+					// e.g. /invoices/:id/invoices/:id/... => /invoices/:id/...
+					if (strpos($url, $prefix) !== 0)
+					{
+						$url = $prefix.$url;
 					}
+					break;
 				}
 			}
 		}
@@ -446,11 +442,12 @@ class MoneybirdApi
 	 *
 	 * @return array
 	 * @param string $type (contact|invoice|recurringTemplate)
-	 * @param string|iiMoneybirdFilter $filter optional, filter results
+	 * @param string|iMoneybirdFilter $filter optional, filter results
+	 * @param iMoneybirdObject $parent If passed, only objects from parent will be returned
 	 * @access protected
 	 * @throws MoneybirdInvalidIdException
 	 */
-	protected function getMbObjects($type, $filter=null)
+	protected function getMbObjects($type, $filter=null, iMoneybirdObject $parent = null)
 	{
 		list($typegroup, $class) = $this->typeInfo($type);
 
@@ -479,7 +476,8 @@ class MoneybirdApi
 		$foundObjects = $this->request(
 			$request,
 			$method,
-			$filter
+			$filter,
+			$parent
 		);
 
 		$objects = array();
@@ -625,10 +623,11 @@ class MoneybirdApi
 	 *
 	 * @return array
 	 * @param string|iMoneybirdFilter $filter optional, filter to apply
+	 * @param iMoneybirdContact $contact If passed, only invoices of contact will be returned
 	 * @access public
 	 * @throws MoneybirdUnknownFilterException
 	 */
-	public function getInvoices($filter=null)
+	public function getInvoices($filter=null, iMoneybirdContact $contact = null)
 	{
 		$filters = array(
 			'all', 'this_month', 'last_month', 'this_quarter', 'last_quarter',
@@ -648,7 +647,7 @@ class MoneybirdApi
 				$filter.'.'.PHP_EOL.'Available filters: '.implode(', ', $filters));
 		}
 
-		return $this->getMbObjects('invoice', $filter);
+		return $this->getMbObjects('invoice', $filter, $contact);
 	}
 
 	/**
@@ -708,12 +707,13 @@ class MoneybirdApi
 	/**
 	 * Get all templates for recurring invoices
 	 *
+	 * @param iMoneybirdContact $contact If passed, only invoices of contact will be returned
 	 * @return array
 	 * @access public
 	 */
-	public function getRecurringTemplates()
+	public function getRecurringTemplates(iMoneybirdContact $contact)
 	{
-		return $this->getMbObjects('recurringTemplate');
+		return $this->getMbObjects('recurringTemplate', null, $contact);
 	}
 
 	/**
@@ -863,8 +863,9 @@ class MoneybirdApi
 	 * @return array
 	 * @param array $documentDays Associative array with document titles as keys and days since last document as value
 	 * @param DateTime $now
+	 * @param iMoneybirdContact $contact If passed, only invoices of contact will be reminded
 	 */
-	public function getRemindableInvoices(array $documentDays, DateTime $now = null)
+	public function getRemindableInvoices(array $documentDays, DateTime $now = null, iMoneybirdContact $contact = null)
 	{
 		if (is_null($now))
 		{
@@ -872,7 +873,7 @@ class MoneybirdApi
 		}
 
 		$invoices = array();
-		foreach ($this->getInvoices('open') as $invoice)
+		foreach ($this->getInvoices('open', $contact) as $invoice)
 		{
 			$reminders = array();
 			foreach ($invoice->history as $history)
