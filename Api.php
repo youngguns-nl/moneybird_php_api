@@ -54,6 +54,15 @@ class MoneybirdApi
 	protected $lastRequest;
 
 	/**
+	 * Don't verify SSL peer and host
+	 *
+	 * @static
+	 * @access public
+	 * @var bool
+	 */
+	static public $sslInsecure = false;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $clientname first part of Moneybird URL (<clientname>.moneybird.nl)
@@ -67,8 +76,8 @@ class MoneybirdApi
 	{
 		// Set defaults
 		$this->clientname = $clientname != null ? $clientname : 'clientname';
-		$username		 = $username   != null ? $username   : 'username';
-		$password		 = $password   != null ? $password   : 'password';
+		$username	= $username != null ? $username : 'username';
+		$password = $password != null ? $password : 'password';
 
 		if (preg_match('/^[a-z0-9_\-]+$/', $this->clientname) == 0)
 		{
@@ -125,19 +134,25 @@ class MoneybirdApi
 		}
 		else
 		{
-			$setopt = curl_setopt_array(
-				$this->connection,
-				array(
-					CURLOPT_USERPWD		     => $username.':'.$password,
-					CURLOPT_HTTPAUTH	     => CURLAUTH_BASIC,
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_HEADER         => true,
-					CURLOPT_HTTPHEADER	   => array(
-						'Content-Type: application/xml',
-						'Accept: application/xml'
-					),
-				)
+			$options = array(
+				CURLOPT_USERPWD		     => $username.':'.$password,
+				CURLOPT_HTTPAUTH	     => CURLAUTH_BASIC,
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_HEADER         => true,
+				CURLOPT_HTTPHEADER	   => array(
+					'Content-Type: application/xml',
+					'Accept: application/xml'
+				),
 			);
+
+			if (self::$sslInsecure) {
+				$options = array_merge($options, array(
+					CURLOPT_SSL_VERIFYHOST => false,
+					CURLOPT_SSL_VERIFYPEER => false,
+				));
+			}
+
+			$setopt = curl_setopt_array($this->connection, $options);
 			if (!$setopt)
 			{
 				throw new MoneybirdConnectionErrorException('Unable to set cURL options'.PHP_EOL.curl_error($this->connection));
@@ -218,7 +233,8 @@ class MoneybirdApi
 				$xml  = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 				$xml .= $mbObject->toXML();
 
-				$fh  = fopen('php://memory', 'rw');
+				//$fh = fopen('php://memory', 'rw');
+				$fh = tmpfile();
 				fwrite($fh, $xml);
 				rewind($fh);
 
@@ -376,7 +392,7 @@ class MoneybirdApi
 			$new_url = $url['scheme'] . '://' . $url['host'] . $url['path'] . (!empty($url['query'])?'?'.$url['query']:'');
 			curl_setopt($this->connection, CURLOPT_URL, $new_url);
 
-			return $this->curl_exec($this->connection);
+			return $this->curl_exec();
     }
 		else
 		{
@@ -829,7 +845,7 @@ class MoneybirdApi
 		{
 			throw new MoneybirdInvalidRequestException('Required fields not found');
 		}
-		return $this->getInvoice($_GET['invoice_id']);
+		return $this->getInvoice($_POST['invoice_id']);
 	}
 
 	/**
