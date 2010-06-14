@@ -147,7 +147,7 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	 */
 	public function getInvoices($filter=null)
 	{
-		return $this->api->getInvoices($filter);
+		return $this->api->getInvoices($filter, $this);
 	}
 
 	/**
@@ -174,7 +174,7 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	 */
 	public function getRecurringTemplates()
 	{
-		return $this->api->getRecurringTemplates();
+		return $this->api->getRecurringTemplates($this);
 	}
 
 	/**
@@ -232,6 +232,6 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	 */
 	public function getRemindableInvoices(array $documentDays, DateTime $now = null)
 	{
-		return $this->api->getRemindableInvoices($documentDays, $now);
+		return $this->api->getRemindableInvoices($documentDays, $now, $this);
 	}
 }

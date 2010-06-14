@@ -54,6 +54,15 @@ class MoneybirdApi
 	protected $lastRequest;
 
 	/**
+	 * Don't verify SSL peer and host if true
+	 *
+	 * @static
+	 * @access public
+	 * @var bool
+	 */
+	static public $sslInsecure = false;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $clientname first part of Moneybird URL (<clientname>.moneybird.nl)
@@ -61,16 +70,18 @@ class MoneybirdApi
 	 * @param string $password password for login
 	 * @access public
 	 * @throws MoneybirdConnectionErrorException
+	 * @throws MoneybirdInvalidCompanyNameException
 	 */
 	public function __construct($clientname=null, $username=null, $password=null)
 	{
 		// Set defaults
 		$this->clientname = $clientname != null ? $clientname : 'clientname';
-		$username		 = $username   != null ? $username   : 'username';
-		$password		 = $password   != null ? $password   : 'password';
-		
-		if(preg_match('/^[a-z0-9_\-]+$/', $this->clientname) == 0){
-		    throw new MoneybirdInvalidCompanyNameException();
+		$username	= $username != null ? $username : 'username';
+		$password = $password != null ? $password : 'password';
+
+		if (preg_match('/^[a-z0-9_\-]+$/', $this->clientname) == 0)
+		{
+		  throw new MoneybirdInvalidCompanyNameException('Invalid companyname/clientname');
 		}
 
 		$this->baseUrl = '';
@@ -123,19 +134,25 @@ class MoneybirdApi
 		}
 		else
 		{
-			$setopt = curl_setopt_array(
-				$this->connection,
-				array(
-					CURLOPT_USERPWD		=> $username.':'.$password,
-					CURLOPT_HTTPAUTH	   => CURLAUTH_BASIC,
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_FOLLOWLOCATION => true,
-					CURLOPT_HTTPHEADER	 => array(
-						'Content-Type: application/xml',
-						'Accept: application/xml'
-					),
-				)
+			$options = array(
+				CURLOPT_USERPWD		     => $username.':'.$password,
+				CURLOPT_HTTPAUTH	     => CURLAUTH_BASIC,
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_HEADER         => true,
+				CURLOPT_HTTPHEADER	   => array(
+					'Content-Type: application/xml',
+					'Accept: application/xml'
+				),
 			);
+
+			if (self::$sslInsecure) {
+				$options = array_merge($options, array(
+					CURLOPT_SSL_VERIFYHOST => false,
+					CURLOPT_SSL_VERIFYPEER => false,
+				));
+			}
+
+			$setopt = curl_setopt_array($this->connection, $options);
 			if (!$setopt)
 			{
 				throw new MoneybirdConnectionErrorException('Unable to set cURL options'.PHP_EOL.curl_error($this->connection));
@@ -149,6 +166,7 @@ class MoneybirdApi
 	 * @param string $url request parameters
 	 * @param string $method (GET|POST|PUT|DELETE)
 	 * @param iMoneybirdObject $mbObject object to change
+	 * @param iMoneybirdObject $parent If passed, only objects from parent will be returned
 	 * @return SimpleXMLElement
 	 * @access protected
 	 * @throws MoneybirdAuthorizationRequiredException
@@ -160,34 +178,29 @@ class MoneybirdApi
 	 * @throws MoneybirdConnectionErrorException
 	 * @throws MoneybirdXmlErrorException
 	 */
-	protected function request($url, $method='GET', iMoneybirdObject $mbObject=null)
+	protected function request($url, $method='GET', iMoneybirdObject $mbObject=null, iMoneybirdObject $parent=null)
 	{
 		$url = '/'.$url;
 
 		// If called from a contact, add contacts/:id
-		$trace = debug_backtrace();
-		$types = array('contact', 'invoice', 'recurringTemplate');
-		foreach ($trace as $traceinfo)
+		if ($parent != null)
 		{
-			if (isset($traceinfo['class']))
+			$types = array('contact', 'invoice', 'recurringTemplate');
+			foreach ($types as $type)
 			{
-				$refclass = new ReflectionClass($traceinfo['class']);
-				foreach ($types as $type)
+				$interface = 'iMoneybird'.ucfirst($type);
+				if (($parent instanceof $interface) && intval($parent->id) > 0)
 				{
-					$interface = 'iMoneybird'.ucfirst($type);
-					if ($refclass->isSubclassOf($interface) && intval($traceinfo['object']->id) > 0)
-					{
-						list($typegroup, $class) = $this->typeInfo($type);
-						$prefix = '/'.$typegroup.'/'.$traceinfo['object']->id;
+					list($typegroup, $class) = $this->typeInfo($type);
+					$prefix = '/'.$typegroup.'/'.$parent->id;
 
-						// Add $prefix to URL, but not when it's already there
-						// e.g. /invoices/:id/invoices/:id/... => /invoices/:id/...
-						if (strpos($url, $prefix) !== 0)
-						{
-							$url = $prefix.$url;
-						}
-						break 2;
+					// Add $prefix to URL, but not when it's already there
+					// e.g. /invoices/:id/invoices/:id/... => /invoices/:id/...
+					if (strpos($url, $prefix) !== 0)
+					{
+						$url = $prefix.$url;
 					}
+					break;
 				}
 			}
 		}
@@ -207,14 +220,17 @@ class MoneybirdApi
 
 			case 'POST':
 				$curlopts[CURLOPT_POST] = true;
-				$xml = $mbObject->toXML();
+				$xml  = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
+				$xml .= $mbObject->toXML();
 				$curlopts[CURLOPT_POSTFIELDS] = $xml;
 			break;
 
 			case 'PUT':
-				$xml = $mbObject->toXML();
+				$xml  = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
+				$xml .= $mbObject->toXML();
 
-				$fh  = fopen('php://memory', 'rw');
+				//$fh = fopen('php://memory', 'rw');
+				$fh = tmpfile();
 				fwrite($fh, $xml);
 				rewind($fh);
 
@@ -234,7 +250,7 @@ class MoneybirdApi
 			throw new MoneybirdConnectionErrorException('Unable to set cURL options'.PHP_EOL.curl_error($this->connection));
 		}
 
-		$xmlstring = curl_exec($this->connection);
+		$xmlstring = $this->curl_exec();
 		$xmlresponse = null;
 		if (false === $xmlstring)
 		{
@@ -272,15 +288,15 @@ class MoneybirdApi
 			case 404: // The entity or action is not found in the API
 				$error = new MoneybirdItemNotFoundException('The entity or action is not found in the API');
 			break;
-			
+
 			case 406: // Not accepted			   The action you are trying to perform is not available in the API
 				$error = new MoneybirdNotAcceptedException('The action you are trying to perform is not available in the API');
 			break;
-			
+
 			case 422: // Unprocessable entity	   Entity was not created because of errors in parameters. Errors are included in XML response.
 				$error = new MoneybirdUnprocessableEntityException('Entity was not created or deleted because of errors in parameters. Errors are included in XML response.');
 			break;
-			
+
 			case 500: // Internal server error	  Something went wrong while processing the request. MoneyBird is notified of the error.
 				$error = new MoneybirdInternalServerErrorException('Something went wrong while processing the request. MoneyBird is notified of the error.');
 			break;
@@ -328,6 +344,60 @@ class MoneybirdApi
 	}
 
 	/**
+	 * Execute cURL request
+	 * Redirects via cURL option CURLOPT_FOLLOWLOCATION won't work if safe mode
+	 * or open basedir is active
+	 *
+	 * @access protected
+	 * @return string
+	 * @throws MoneybirdInternalServerErrorException
+	 */
+	protected function curl_exec()
+	{
+		static $curl_loops = 0;
+		static $curl_max_loops = 20;
+
+		if ($curl_loops++ >= $curl_max_loops)
+		{
+			$curl_loops = 0;
+			throw new MoneybirdInternalServerErrorException('Too many redirects in request');
+		}
+
+		$repsonse = curl_exec($this->connection);
+		$http_code = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
+		list($header, $data) = explode("\r\n\r\n", $repsonse, 2);
+
+		// Ignore Continue header
+		if ($header == "HTTP/1.1 100 Continue")
+		{
+			list($header, $data) = explode("\r\n\r\n", $data, 2);
+		}
+
+		if ($http_code == 301 || $http_code == 302)
+		{
+			$matches = array();
+			preg_match('/Location:(.*?)\n/', $header, $matches);
+			$url = @parse_url(trim(array_pop($matches)));
+			if (!$url)
+			{
+				//couldn't process the url to redirect to
+				$curl_loops = 0;
+				throw new MoneybirdInternalServerErrorException('Invalid redirect');
+			}
+
+			$new_url = $url['scheme'] . '://' . $url['host'] . $url['path'] . (!empty($url['query'])?'?'.$url['query']:'');
+			curl_setopt($this->connection, CURLOPT_URL, $new_url);
+
+			return $this->curl_exec();
+		}
+		else
+		{
+			$curl_loops=0;
+			return $data;
+		}
+	}
+
+	/**
 	 * Create object from response
 	 *
 	 * @param string $class Type of object
@@ -372,11 +442,12 @@ class MoneybirdApi
 	 *
 	 * @return array
 	 * @param string $type (contact|invoice|recurringTemplate)
-	 * @param string|iiMoneybirdFilter $filter optional, filter results
+	 * @param string|iMoneybirdFilter $filter optional, filter results
+	 * @param iMoneybirdObject $parent If passed, only objects from parent will be returned
 	 * @access protected
 	 * @throws MoneybirdInvalidIdException
 	 */
-	protected function getMbObjects($type, $filter=null)
+	protected function getMbObjects($type, $filter=null, iMoneybirdObject $parent = null)
 	{
 		list($typegroup, $class) = $this->typeInfo($type);
 
@@ -405,7 +476,8 @@ class MoneybirdApi
 		$foundObjects = $this->request(
 			$request,
 			$method,
-			$filter
+			$filter,
+			$parent
 		);
 
 		$objects = array();
@@ -450,7 +522,7 @@ class MoneybirdApi
 			);
 
 			return $this->createMbObjectFromResponse($class, $response);
-		}		
+		}
 	}
 
 	/**
@@ -480,7 +552,7 @@ class MoneybirdApi
 	{
 		return $this->getMbObject($contactID, 'contact');
 	}
-	
+
 	/**
 	 * Get a contact by customer ID
 	 *
@@ -551,10 +623,11 @@ class MoneybirdApi
 	 *
 	 * @return array
 	 * @param string|iMoneybirdFilter $filter optional, filter to apply
+	 * @param iMoneybirdContact $contact If passed, only invoices of contact will be returned
 	 * @access public
 	 * @throws MoneybirdUnknownFilterException
 	 */
-	public function getInvoices($filter=null)
+	public function getInvoices($filter=null, iMoneybirdContact $contact = null)
 	{
 		$filters = array(
 			'all', 'this_month', 'last_month', 'this_quarter', 'last_quarter',
@@ -574,7 +647,7 @@ class MoneybirdApi
 				$filter.'.'.PHP_EOL.'Available filters: '.implode(', ', $filters));
 		}
 
-		return $this->getMbObjects('invoice', $filter);
+		return $this->getMbObjects('invoice', $filter, $contact);
 	}
 
 	/**
@@ -634,12 +707,13 @@ class MoneybirdApi
 	/**
 	 * Get all templates for recurring invoices
 	 *
+	 * @param iMoneybirdContact $contact If passed, only invoices of contact will be returned
 	 * @return array
 	 * @access public
 	 */
-	public function getRecurringTemplates()
+	public function getRecurringTemplates(iMoneybirdContact $contact)
 	{
-		return $this->getMbObjects('recurringTemplate');
+		return $this->getMbObjects('recurringTemplate', null, $contact);
 	}
 
 	/**
@@ -693,7 +767,7 @@ class MoneybirdApi
 			$sendinfo
 		);
 	}
-	
+
 	/**
 	 * Mark invoice as send
 	 *
@@ -771,7 +845,7 @@ class MoneybirdApi
 		{
 			throw new MoneybirdInvalidRequestException('Required fields not found');
 		}
-		return $this->getInvoice($_GET['invoice_id']);
+		return $this->getInvoice($_POST['invoice_id']);
 	}
 
 	/**
@@ -789,8 +863,9 @@ class MoneybirdApi
 	 * @return array
 	 * @param array $documentDays Associative array with document titles as keys and days since last document as value
 	 * @param DateTime $now
+	 * @param iMoneybirdContact $contact If passed, only invoices of contact will be reminded
 	 */
-	public function getRemindableInvoices(array $documentDays, DateTime $now = null)
+	public function getRemindableInvoices(array $documentDays, DateTime $now = null, iMoneybirdContact $contact = null)
 	{
 		if (is_null($now))
 		{
@@ -798,7 +873,7 @@ class MoneybirdApi
 		}
 
 		$invoices = array();
-		foreach ($this->getInvoices('open') as $invoice)
+		foreach ($this->getInvoices('open', $contact) as $invoice)
 		{
 			$reminders = array();
 			foreach ($invoice->history as $history)
@@ -808,7 +883,7 @@ class MoneybirdApi
 					$reminders[] = $history->created_at;
 				}
 			}
-			
+
 			$numReminders = count($reminders);
 			$numDocumentDays = count($documentDays);
 			if ($numReminders > $numDocumentDays - 1)

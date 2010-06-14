@@ -21,6 +21,12 @@ interface iMoneybirdRecurringTemplate extends iMoneybirdObject
  */
 interface iMoneybirdRecurringTemplateDetail extends iMoneybirdObject
 {
+	/**
+	 * Mark line for deletion
+	 *
+	 * @access public
+	 */
+	public function delete();
 }
 
 /**
@@ -135,6 +141,24 @@ class MoneybirdRecurringTemplate extends MoneybirdObject implements iMoneybirdRe
 class MoneybirdRecurringTemplateLine extends MoneybirdObject implements iMoneybirdRecurringTemplateDetail
 {
 	/**
+	 * Line is marked for deletion
+	 * @var bool
+	 */
+	protected $deleted = false;
+
+	/**
+	 * Load object from XML
+	 *
+	 * @access public
+	 * @param SimpleXMLElement $xml
+	 */
+	public function fromXML(SimpleXMLElement $xml)
+	{
+		parent::fromXML($xml);
+		$this->amount = $this->amount_plain;
+	}
+
+	/**
 	 * Convert to XML string
 	 *
 	 * @access public
@@ -142,11 +166,32 @@ class MoneybirdRecurringTemplateLine extends MoneybirdObject implements iMoneybi
 	 */
 	public function toXML()
 	{
+		$keyOpen  = '<detail type="RecurringTemplateDetail"';
+		if ($this->deleted)
+		{
+			$keyOpen .= ' _destroy="1"';
+		}
+		$keyOpen .= '>';
+
 		return parent::toXML(
 			null,
-			'<detail type="RecurringTemplateDetail">',
+			$keyOpen,
 			'</detail>',
-			array('total_price_excl_tax', 'total_price_incl_tax',)
+			array(
+				'total_price_excl_tax',
+				'total_price_incl_tax',
+				'amount_plain',
+			)
 		);
+	}
+
+	/**
+	 * Mark line for deletion
+	 *
+	 * @access public
+	 */
+	public function delete()
+	{
+		$this->deleted = true;
 	}
 }

@@ -84,7 +84,11 @@ abstract class MoneybirdObject implements iMoneybirdObject
 
 			$key = str_replace('-', '_', $key);
 
-			if ($type == 'array')
+			if (isset($attributes['nil']) && $attributes['nil'] == 'true')
+			{
+				$this->properties[$key] = null;
+			}
+			elseif ($type == 'array')
 			{
 				$this->properties[$key] = array();
 				if (isset($arrayHandlers[$key]))
@@ -104,6 +108,10 @@ abstract class MoneybirdObject implements iMoneybirdObject
 			elseif ($type == 'float')
 			{
 				$this->properties[$key] = floatval($value);
+			}
+			elseif ($type == 'boolean')
+			{
+				$this->properties[$key] = $value == 'true';
 			}
 			elseif ($type == 'datetime' || $type == 'date')
 			{
