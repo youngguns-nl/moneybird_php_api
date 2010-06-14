@@ -66,8 +66,8 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	public function setProperties(array $data)
 	{
 		$properties = array(
-			'name', 'contact_name', 'address1', 'address2', 'zipcode', 'city',
-			'country', 'customer_id', 'email',
+			'company_name', 'firstname', 'lastname', 'attention', 'address1', 'address2', 
+			'zipcode', 'city', 'country', 'customer_id', 'email',
 		);
 
 		foreach ($properties as $property)
@@ -87,8 +87,8 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	public function getProperties()
 	{
 		$properties = array(
-			'name', 'contact_name', 'address1', 'address2', 'zipcode', 'city',
-			'country', 'customer_id', 'email',
+			'company_name', 'firstname', 'lastname', 'attention', 'address1', 'address2', 
+			'zipcode', 'city', 'country', 'customer_id', 'email',
 		);
 
 		$return = array();
