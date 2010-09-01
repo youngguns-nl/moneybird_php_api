@@ -138,6 +138,8 @@ class MoneybirdApi
 				CURLOPT_USERPWD		     => $username.':'.$password,
 				CURLOPT_HTTPAUTH	     => CURLAUTH_BASIC,
 				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_SSL_VERIFYHOST => true,
+				CURLOPT_SSL_VERIFYPEER => true,
 				CURLOPT_HEADER         => true,
 				CURLOPT_HTTPHEADER	   => array(
 					'Content-Type: application/xml',
@@ -146,10 +148,8 @@ class MoneybirdApi
 			);
 
 			if (self::$sslInsecure) {
-				$options = array_merge($options, array(
-					CURLOPT_SSL_VERIFYHOST => false,
-					CURLOPT_SSL_VERIFYPEER => false,
-				));
+				$options[CURLOPT_SSL_VERIFYHOST] = false;
+				$options[CURLOPT_SSL_VERIFYPEER] = false;
 			}
 
 			$setopt = curl_setopt_array($this->connection, $options);
@@ -363,9 +363,9 @@ class MoneybirdApi
 			throw new MoneybirdInternalServerErrorException('Too many redirects in request');
 		}
 
-		$repsonse = curl_exec($this->connection);
+		$response = curl_exec($this->connection);
 		$http_code = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
-		list($header, $data) = explode("\r\n\r\n", $repsonse, 2);
+		list($header, $data) = explode("\r\n\r\n", $response, 2);
 
 		// Ignore Continue header
 		if ($header == "HTTP/1.1 100 Continue")

@@ -137,15 +137,15 @@ abstract class MoneybirdObject implements iMoneybirdObject
 	 */
 	public function toXML(Array $arrayHandlers = null, $elmKeyOpen = null, $elmKeyClose = null, array $skipProperties = array())
 	{
-		if (is_a($this, 'iMoneybirdContact'))
+		if ($this instanceof iMoneybirdContact)
 		{
 			$root = 'contact';
 		}
-		elseif (is_a($this, 'iMoneybirdInvoice'))
+		elseif ($this instanceof iMoneybirdInvoice)
 		{
 			$root = 'invoice';
 		}
-		elseif (is_a($this, 'iMoneybirdRecurringTemplate'))
+		elseif ($this instanceof iMoneybirdRecurringTemplate)
 		{
 			$root = 'recurringtemplate';
 		}
