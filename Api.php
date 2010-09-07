@@ -14,6 +14,7 @@ require_once (dirname(__FILE__).'/Object.php');
 require_once (dirname(__FILE__).'/Contact.php');
 require_once (dirname(__FILE__).'/Invoice.php');
 require_once (dirname(__FILE__).'/RecurringTemplate.php');
+require_once (dirname(__FILE__).'/Company.php');
 
 /**
  * Communicates with Moneybird through REST API
@@ -98,10 +99,10 @@ class MoneybirdApi
 	 *
 	 * @param string $type (contact|invoice|recurringTemplate)
 	 * @throws MoneybirdUnknownTypeException
-	 * @access protected
+	 * @access public
 	 * @return array
 	 */
-	protected function typeInfo($type)
+	public function typeInfo($type)
 	{
 		switch ($type)
 		{
@@ -112,6 +113,10 @@ class MoneybirdApi
 
 			case 'recurringTemplate':
 				return array('recurring_templates', 'MoneybirdRecurringTemplate');
+			break;
+
+			case 'company':
+				return array('settings', 'MoneybirdCompany');
 			break;
 
 			default:
@@ -183,13 +188,13 @@ class MoneybirdApi
 		$url = '/'.$url;
 
 		// If called from a contact, add contacts/:id
-		if ($parent != null)
+		if ($parent != null && intval($parent->id) > 0)
 		{
 			$types = array('contact', 'invoice', 'recurringTemplate');
 			foreach ($types as $type)
 			{
 				$interface = 'iMoneybird'.ucfirst($type);
-				if (($parent instanceof $interface) && intval($parent->id) > 0)
+				if (($parent instanceof $interface))
 				{
 					list($typegroup, $class) = $this->typeInfo($type);
 					$prefix = '/'.$typegroup.'/'.$parent->id;
@@ -740,6 +745,44 @@ class MoneybirdApi
 	}
 
 	/**
+	 * Get company settings
+	 *
+	 * @return MoneybirdCompany
+	 * @access public
+	 */
+	public function getSettings()
+	{
+		list($typegroup, $class) = $this->typeInfo('company');
+
+		$response = $this->request($typegroup);
+
+		return $this->createMbObjectFromResponse($class, $response);
+	}
+
+	/**
+	 * Save settings
+	 *
+	 * @return MoneybirdCompany
+	 * @access protected
+	 * @param iMoneybirdCompany $company company object to save
+	 */
+	public function saveSettings(iMoneybirdCompany $company)
+	{
+		throw new MoneybirdException('Not yet implemented');
+		
+		list($typegroup, $class) = $this->typeInfo('company');
+
+		// Update object
+		$this->request(
+			$typegroup,
+			'PUT',
+			$company
+		);
+
+		return $this->getSettings();
+	}
+
+	/**
 	 * Send an invoice
 	 *
 	 * @access public
@@ -825,6 +868,104 @@ class MoneybirdApi
 			'POST',
 			$payment
 		);
+	}
+	
+	/**
+	 * Get raw PDF content
+	 *
+	 * @access public
+	 * @param iMoneybirdInvoice $invoice invoice to register payment for
+	 * @return string
+	 */
+	public function getInvoicePdf(iMoneybirdInvoice $invoice)
+	{
+		$curlopts = array(
+			CURLOPT_URL            => 'https://'.$this->clientname.'.moneybird.nl/invoices/'.$invoice->id.'.pdf',
+			CURLOPT_HTTPGET        => true,
+		);
+
+		$this->errors = array();
+
+		$setopt = curl_setopt_array($this->connection, $curlopts);
+		if (!$setopt)
+		{
+			throw new MoneybirdConnectionErrorException('Unable to set cURL options'.PHP_EOL.curl_error($this->connection));
+		}
+
+		$response = $this->curl_exec();
+
+		$httpresponse = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
+		switch ($httpresponse)
+		{
+			case 100: // Continue
+			case 200: // OK		 Request was successful
+			case 201: // Created 	Entity was created successful
+			break;
+
+			case 401: // Authorization required	 No authorization information provided with request
+				$error = new MoneybirdAuthorizationRequiredException('No authorization information provided with request');
+			break;
+
+			case 403: // Forbidden request
+				$error = new MoneybirdForbiddenException('Forbidden request');
+			break;
+
+			case 404: // The entity or action is not found in the API
+				$error = new MoneybirdItemNotFoundException('The entity or action is not found in the API');
+			break;
+
+			case 406: // Not accepted			   The action you are trying to perform is not available in the API
+				$error = new MoneybirdNotAcceptedException('The action you are trying to perform is not available in the API');
+			break;
+
+			case 422: // Unprocessable entity	   Entity was not created because of errors in parameters. Errors are included in XML response.
+				$error = new MoneybirdUnprocessableEntityException('Entity was not created or deleted because of errors in parameters. Errors are included in XML response.');
+			break;
+
+			case 500: // Internal server error	  Something went wrong while processing the request. MoneyBird is notified of the error.
+				$error = new MoneybirdInternalServerErrorException('Something went wrong while processing the request. MoneyBird is notified of the error.');
+			break;
+
+			default:
+				$error = new MoneybirdUnknownResponseException('Unknown response from Moneybird: '.$httpresponse);
+			break;
+		}
+
+		// Store debuginfo of last request
+		$this->lastRequest = array(
+			'url'		        => $curlopts[CURLOPT_URL],
+			'method'		    => 'GET',
+			'http-response' => $httpresponse,
+			'xml-send'	    => ''
+		);
+
+		// If $error exists, an exception needs to be thrown
+		// Before throwing an exception, parse the errors from the xml
+		if (isset($error))
+		{
+			if (
+						($error instanceof MoneybirdUnprocessableEntityException) ||
+						($error instanceof MoneybirdForbiddenException))
+			{
+				$this->errors = array();
+				foreach ($xmlresponse as $message)
+				{
+					$this->errors[] = $message;
+				}
+
+				if ($error instanceof MoneybirdUnprocessableEntityException)
+				{
+					$error = new MoneybirdUnprocessableEntityException('Entity was not created or deleted because of errors in parameters. Errors:'.PHP_EOL.implode(PHP_EOL, $this->errors));
+				}
+				elseif ($error instanceof MoneybirdForbiddenException)
+				{
+					$error = new MoneybirdForbiddenException('Got "forbidden" response upon request. Errors:'.PHP_EOL.implode(PHP_EOL, $this->errors));
+				}
+			}
+			throw $error;
+		}
+
+		return $response;
 	}
 
 	/**

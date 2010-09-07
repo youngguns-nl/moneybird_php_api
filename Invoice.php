@@ -176,6 +176,16 @@ class MoneybirdInvoice extends MoneybirdObject implements iMoneybirdInvoice
 	{
 		$this->api->registerInvoicePayment($this, $payment);
 	}
+
+	/**
+	 * Get invoice as PDF
+	 *
+	 * @access public
+	 */
+	public function getPdf()
+	{
+		return $this->api->getInvoicePdf($this);
+	}
 }
 
 /**

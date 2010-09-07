@@ -151,6 +151,21 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	}
 
 	/**
+	 * Create a new invoice
+	 *
+	 * @return MoneybirdInvoice
+	 * @access public
+	 */
+	public function createInvoice()
+	{
+		list($typegroup, $class) = $this->api->typeInfo('invoice');
+		$invoice = new $class;
+		$invoice->setApi($this->api);
+		$invoice->setContact($this);
+		return $invoice;
+	}
+
+	/**
 	 * Save invoice
 	 *
 	 * @return MoneybirdInvoice
