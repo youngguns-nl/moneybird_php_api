@@ -329,11 +329,11 @@ class MoneybirdInvoiceSendInformation extends MoneybirdInvoiceDetail
 	{
 		$xml  = '<invoice>'.PHP_EOL;
 		$xml .= '   <send-method>'.$this->properties['sendMethod'].'</send-method>'.PHP_EOL;
-		if ($this->properties['email'] != null)
+		if (!empty($this->properties['email']))
 		{
 			$xml .= '   <email>'.htmlspecialchars($this->properties['email']).'</email>'.PHP_EOL;
 		}
-		if ($this->properties['message'] != null)
+		if (!empty($this->properties['message']))
 		{
 			$xml .= '   <invoice-email>'.htmlspecialchars($this->properties['message']).'</invoice-email>'.PHP_EOL;
 		}
