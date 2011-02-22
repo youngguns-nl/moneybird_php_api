@@ -23,6 +23,11 @@ require_once (dirname(__FILE__).'/Company.php');
 class MoneybirdApi
 {
 	/**
+	 * Version number of api
+	 */
+	const API_VERSION = '1.0';
+
+	/**
 	 * Client name at Moneybird (<clientname>.moneybird.nl)
 	 *
 	 * @access protected
@@ -211,7 +216,7 @@ class MoneybirdApi
 		}
 
 		$curlopts = array(
-			CURLOPT_URL => 'https://'.$this->clientname.'.moneybird.nl'.$url.'.xml',
+			CURLOPT_URL => 'https://'.$this->clientname.'.moneybird.nl/api/v'.self::API_VERSION.$url.'.xml',
 		);
 
 		$this->errors = array();
