@@ -721,7 +721,7 @@ class MoneybirdApi
 	 * @return array
 	 * @access public
 	 */
-	public function getRecurringTemplates(iMoneybirdContact $contact)
+	public function getRecurringTemplates(iMoneybirdContact $contact = null)
 	{
 		return $this->getMbObjects('recurringTemplate', null, $contact);
 	}
