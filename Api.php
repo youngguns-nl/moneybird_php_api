@@ -13,6 +13,7 @@ require_once (dirname(__FILE__).'/Exceptions.php');
 require_once (dirname(__FILE__).'/Object.php');
 require_once (dirname(__FILE__).'/Contact.php');
 require_once (dirname(__FILE__).'/Invoice.php');
+require_once (dirname(__FILE__).'/Estimate.php');
 require_once (dirname(__FILE__).'/RecurringTemplate.php');
 require_once (dirname(__FILE__).'/Company.php');
 
@@ -102,7 +103,7 @@ class MoneybirdApi
 	 * 0 => url-part for request
 	 * 1 => classname to use
 	 *
-	 * @param string $type (contact|invoice|recurringTemplate)
+	 * @param string $type (contact|invoice|estimate|recurringTemplate)
 	 * @throws MoneybirdUnknownTypeException
 	 * @access public
 	 * @return array
@@ -113,6 +114,7 @@ class MoneybirdApi
 		{
 			case 'contact':
 			case 'invoice':
+			case 'estimate':
 				return array($type.'s', 'Moneybird'.ucfirst($type));
 			break;
 
@@ -195,7 +197,7 @@ class MoneybirdApi
 		// If called from a contact, add contacts/:id
 		if ($parent != null && intval($parent->id) > 0)
 		{
-			$types = array('contact', 'invoice', 'recurringTemplate');
+			$types = array('contact', 'invoice', 'estimate', 'recurringTemplate');
 			foreach ($types as $type)
 			{
 				$interface = 'iMoneybird'.ucfirst($type);
@@ -427,7 +429,7 @@ class MoneybirdApi
 	 * Get single Moneybird object
 	 *
 	 * @param integer $objectID id of object to retreive
-	 * @param string $type (contact|invoice|recurringTemplate)
+	 * @param string $type (contact|invoice|estimate|recurringTemplate)
 	 * @return iMoneybirdObject
 	 * @access protected
 	 * @throws MoneybirdUnknownTypeException
@@ -451,7 +453,7 @@ class MoneybirdApi
 	 * Get all objects
 	 *
 	 * @return array
-	 * @param string $type (contact|invoice|recurringTemplate)
+	 * @param string $type (contact|invoice|estimate|recurringTemplate)
 	 * @param string|iMoneybirdFilter $filter optional, filter results
 	 * @param iMoneybirdObject $parent If passed, only objects from parent will be returned
 	 * @access protected
@@ -505,7 +507,7 @@ class MoneybirdApi
 	 * @access protected
 	 * @throws MoneybirdInvalidIdException
 	 * @param iMoneybirdObject $object object to save
-	 * @param string $type (contact|invoice|recurringTemplate)
+	 * @param string $type (contact|invoice|estimate|recurringTemplate)
 	 */
 	protected function saveMbObject(iMoneybirdObject $object, $type)
 	{
@@ -541,7 +543,7 @@ class MoneybirdApi
 	 * @access protected
 	 * @throws MoneybirdInvalidIdException
 	 * @param iMoneybirdObject $object object to delete
-	 * @param string $type (contact|invoice|recurringTemplate)
+	 * @param string $type (contact|invoice|estimate|recurringTemplate)
 	 */
 	protected function deleteMbObject(iMoneybirdObject $object, $type)
 	{
@@ -566,16 +568,16 @@ class MoneybirdApi
 	/**
 	 * Get a contact by customer ID
 	 *
-	 * @param string $invoiceID
+	 * @param string $contactID
 	 * @return MoneyBirdContact
 	 * @access public
 	 * @throws MoneybirdItemNotFoundException
 	 */
-	public function getContactByCustomerId($invoiceID)
+	public function getContactByCustomerId($contactID)
 	{
 		list($typegroup, $class) = $this->typeInfo('contact');
 
-		$response = $this->request($typegroup.'/customer_id/'.$invoiceID);
+		$response = $this->request($typegroup.'/customer_id/'.$contactID);
 
 		return $this->createMbObjectFromResponse($class, $response);
 	}
@@ -701,6 +703,92 @@ class MoneybirdApi
 	}
 
 	/**
+	 * Get estimate
+	 *
+	 * @param integer $estimateID estimate to retreive
+	 * @return MoneybirdEstimate
+	 * @access public
+	 * @throws MoneybirdInvalidIdException
+	 * @throws MoneybirdItemNotFoundException
+	 */
+	public function getEstimate($estimateID)
+	{
+		return $this->getMbObject($estimateID, 'estimate');
+	}
+
+	/**
+	 * Get all estimates
+	 *
+	 * @return array
+	 * @param string|iMoneybirdFilter $filter optional, filter to apply
+	 * @param iMoneybirdContact $contact If passed, only estimates of contact will be returned
+	 * @access public
+	 * @throws MoneybirdUnknownFilterException
+	 */
+	public function getEstimates($filter=null, iMoneybirdContact $contact = null)
+	{
+		$filters = array(
+			'all', 'this_month', 'last_month', 'this_quarter', 'last_quarter',
+			'active', 'draft', 'sent', 'open', 'accepted', 'billed', 'archived',
+		);
+
+		$isFilterObject = false;
+		if (is_object($filter))
+		{
+			$refclass = new ReflectionClass($filter);
+			$isFilterObject = $refclass->isSubclassOf('iMoneybirdFilter');
+		}
+		if ($filter != null && !$isFilterObject &&
+			!in_array($filter, $filters))
+		{
+			throw new MoneybirdUnknownFilterException('Unknown filter for estimates: '.
+				$filter.'.'.PHP_EOL.'Available filters: '.implode(', ', $filters));
+		}
+
+		return $this->getMbObjects('estimate', $filter, $contact);
+	}
+
+	/**
+	 * Get an estimate by estimate ID
+	 *
+	 * @param string $estimateID
+	 * @return MoneyBirdEstimate
+	 * @access public
+	 * @throws MoneybirdItemNotFoundException
+	 */
+	public function getEstimateByEstimateId($estimateID)
+	{
+		list($typegroup, $class) = $this->typeInfo('estimate');
+
+		$response = $this->request($typegroup.'/estimate_id/'.$estimateID);
+
+		return $this->createMbObjectFromResponse($class, $response);
+	}
+
+	/**
+	 * Save estimate
+	 *
+	 * @return MoneybirdEstimate
+	 * @param iMoneybirdEstimate $estimate estimate to save
+	 * @access public
+	 */
+	public function saveEstimate(iMoneybirdEstimate $estimate)
+	{
+		return $this->saveMbObject($estimate, 'estimate');
+	}
+
+	/**
+	 * Delete estimate
+	 *
+	 * @param iMoneybirdEstimate $estimate estimate to delete
+	 * @access public
+	 */
+	public function deleteEstimate(iMoneybirdEstimate $estimate)
+	{
+		$this->deleteMbObject($estimate, 'estimate');
+	}
+
+	/**
 	 * Get template for recurring invoices
 	 *
 	 * @param integer $templateID template to retreive
@@ -721,7 +809,7 @@ class MoneybirdApi
 	 * @return array
 	 * @access public
 	 */
-	public function getRecurringTemplates(iMoneybirdContact $contact)
+	public function getRecurringTemplates(iMoneybirdContact $contact = null)
 	{
 		return $this->getMbObjects('recurringTemplate', null, $contact);
 	}
@@ -817,6 +905,35 @@ class MoneybirdApi
 	}
 
 	/**
+	 * Send an estimate
+	 *
+	 * @access public
+	 * @param iMoneybirdEstimate $estimate estimate to send
+	 * @param MoneybirdEstimateSendInformation $sendinfo optional information to send estimate
+	 */
+	public function sendEstimate(iMoneybirdEstimate $estimate, MoneybirdEstimateSendInformation $sendinfo = null)
+	{
+		if (is_null($sendinfo))
+		{
+			$sendinfo = new MoneybirdEstimateSendInformation;
+		}
+
+		if (intval($estimate->id) == 0)
+		{
+			// Save estimate first
+			$estimate = $this->saveEstimate($estimate);
+		}
+		$sendinfo->estimate_id = $estimate->id;
+
+		// Send
+		$this->request(
+			'estimates/'.$estimate->id.'/send_estimate',
+			'PUT',
+			$sendinfo
+		);
+	}
+
+	/**
 	 * Mark invoice as send
 	 *
 	 * @access public
@@ -825,6 +942,17 @@ class MoneybirdApi
 	public function markInvoiceAsSent(iMoneybirdInvoice $invoice)
 	{
 		$this->sendInvoice($invoice, new MoneybirdInvoiceSendInformation('hand'));
+	}
+
+	/**
+	 * Mark estimate as send
+	 *
+	 * @access public
+	 * @param iMoneybirdEstimate $estimate subjected estimate
+	 */
+	public function markEstimateAsSent(iMoneybirdEstimate $estimate)
+	{
+		$this->sendEstimate($estimate, new MoneybirdEstimateSendInformation('hand'));
 	}
 
 	/**
@@ -874,18 +1002,58 @@ class MoneybirdApi
 			$payment
 		);
 	}
+
+	/**
+	 * Get raw PDF content
+	 *
+	 * @access public
+	 * @param iMoneybirdInvoice $invoice invoice to fetch PDF for
+	 * @return string
+	 */
+	public function getInvoicePdf(iMoneybirdInvoice $invoice)
+	{
+		return $this->getPdf($invoice);
+	}
+
+	/**
+	 * Get raw PDF content
+	 *
+	 * @access public
+	 * @param iMoneybirdEstimate $estimate estimate to fetch PDF for
+	 * @return string
+	 */
+	public function getEstimatePdf(iMoneybirdEstimate $estimate)
+	{
+		return $this->getPdf($estimate);
+	}
 	
 	/**
 	 * Get raw PDF content
 	 *
 	 * @access public
-	 * @param iMoneybirdInvoice $invoice invoice to register payment for
+	 * @param iMoneybirdObject $object object to get PDF for
 	 * @return string
+	 * @throws MoneybirdUnknownTypeException
 	 */
-	public function getInvoicePdf(iMoneybirdInvoice $invoice)
+	protected function getPdf(iMoneybirdObject $object)
 	{
+		if ($object instanceof iMoneybirdInvoice)
+		{
+			$type = 'invoice';
+		}
+		elseif ($object instanceof iMoneybirdEstimate)
+		{
+			$type = 'estimate';
+		}
+		else
+		{
+			throw new MoneybirdUnknownTypeException('Cannot get PDF for this type of object');
+		}
+
+		list($typegroup, $class) = $this->typeInfo($type);
+
 		$curlopts = array(
-			CURLOPT_URL            => 'https://'.$this->clientname.'.moneybird.nl/invoices/'.$invoice->id.'.pdf',
+			CURLOPT_URL            => 'https://'.$this->clientname.'.moneybird.nl/api/v'.self::API_VERSION.'/'.$typegroup.'/'.$object->id.'.pdf',
 			CURLOPT_HTTPGET        => true,
 		);
 

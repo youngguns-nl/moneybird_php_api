@@ -249,4 +249,71 @@ class MoneybirdContact extends MoneybirdObject implements iMoneybirdContact
 	{
 		return $this->api->getRemindableInvoices($documentDays, $now, $this);
 	}
+
+        /**
+         * Get estimate
+         *
+         * @param integer $estimateID estimate to retreive
+         * @return MoneybirdEstimate
+         * @access public
+         * @throws MoneybirdInvalidIdException
+         * @throws MoneybirdItemNotFoundException
+         */
+        public function getEstimate($estimateID)
+        {
+                $estimate = $this->api->getEstimate($estimateID);
+                if ($estimate->contact_id != $this->id)
+                {
+                        throw new MoneybirdItemNotFoundException('The entity or action is not found in the API');
+                }
+                return $estimate;
+        }
+
+        /**
+         * Get an estimate by estimate ID
+         *
+         * @param string $estimateID
+         * @return MoneyBirdEstimate
+
+         * @access public
+         * @throws MoneybirdItemNotFoundException
+         */
+        public function getEstimateByEstimateId($estimateID)
+        {
+                $estimate = $this->api->getEstimateByEstimateId($estimateID);
+                if ($estimate->contact_id != $this->id)
+                {
+                        throw new MoneybirdItemNotFoundException('The entity or action is not found in the API');
+                }
+                return $estimate;
+        }
+
+        /**
+         * Get all estimates of contact
+         *
+         * @return array
+         * @param string|iMoneybirdFilter $filter optional, filter to apply
+         * @access public
+         * @throws MoneybirdUnknownFilterException
+         */
+        public function getEstimates($filter=null)
+        {
+                return $this->api->getEstimates($filter, $this);
+        }
+
+        /**
+         * Create a new estimate
+         *
+         * @return MoneybirdEstimate
+         * @access public
+         */
+        public function createEstimate()
+        {
+                list($typegroup, $class) = $this->api->typeInfo('estimate');
+                $estimate = new $class;
+                $estimate->setApi($this->api);
+                $estimate->setContact($this);
+                return $estimate;
+        }
+
 }
