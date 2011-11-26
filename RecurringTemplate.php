@@ -4,37 +4,47 @@
  * Interface for MoneybirdRecurringTemplate
  *
  */
-interface iMoneybirdRecurringTemplate extends iMoneybirdObject
-{
+interface iMoneybirdRecurringTemplate extends iMoneybirdObject {
+
 	/**
-	 * Set a reference to the Api
+	 * Save template
 	 *
-	 * @param MoneybirdApi $api
+	 * @return MoneybirdRecurringTemplate
 	 * @access public
 	 */
-	public function setApi(MoneybirdApi $api);
+	public function save();
+
+	/**
+	 * Delete template
+	 *
+	 * @access public
+	 */
+	public function delete();
+
+	/**
+	 * Get all invoices created by template
+	 *
+	 * @return array
+	 * @param string|iMoneybirdFilter $filter optional, filter to apply
+	 * @access public
+	 * @throws MoneybirdUnknownFilterException
+	 */
+	public function getInvoices($filter=null);
 }
 
 /**
  * Interface for MoneybirdRecurringTemplateDetail
  *
  */
-interface iMoneybirdRecurringTemplateDetail extends iMoneybirdObject
-{
-	/**
-	 * Mark line for deletion
-	 *
-	 * @access public
-	 */
-	public function delete();
+interface iMoneybirdRecurringTemplateDetail extends iMoneybirdObject {
+	
 }
 
 /**
  * RecurringTemplate in Moneybird
  *
  */
-class MoneybirdRecurringTemplate extends MoneybirdObject implements iMoneybirdRecurringTemplate
-{
+class MoneybirdRecurringTemplate extends MoneybirdObject implements iMoneybirdRecurringTemplate {
 	/**
 	 * Send frequency
 	 *
@@ -64,34 +74,14 @@ class MoneybirdRecurringTemplate extends MoneybirdObject implements iMoneybirdRe
 	const FREQUENCY_YEAR = 5;
 
 	/**
-	 * Api object
-	 *
-	 * @access private
-	 * @var MoneybirdApi
-	 */
-	private $api;
-
-	/**
-	 * Set a reference to the Api
-	 *
-	 * @param MoneybirdApi $api
-	 * @access public
-	 */
-	public function setApi(MoneybirdApi $api)
-	{
-		$this->api = $api;
-	}
-
-	/**
 	 * Load object from XML
 	 *
 	 * @access public
 	 * @param SimpleXMLElement $xml
 	 */
-	public function fromXML(SimpleXMLElement $xml)
-	{
+	public function fromXML(SimpleXMLElement $xml) {
 		parent::fromXML($xml, array(
-			'details'  => 'MoneybirdRecurringTemplateLine',
+			'details' => 'MoneybirdRecurringTemplateLine',
 		));
 	}
 
@@ -101,14 +91,11 @@ class MoneybirdRecurringTemplate extends MoneybirdObject implements iMoneybirdRe
 	 * @access public
 	 * @return string
 	 */
-	public function toXML()
-	{
+	public function toXML() {
 		return parent::toXML(
-			array(
+				array(
 				'details' => 'details_attributes',
-			),
-			'<recurring-template>',
-			'</recurring-template>'
+				), '<recurring-template>', '</recurring-template>'
 		);
 	}
 
@@ -118,8 +105,7 @@ class MoneybirdRecurringTemplate extends MoneybirdObject implements iMoneybirdRe
 	 * @return MoneybirdRecurringTemplate
 	 * @access public
 	 */
-	public function save()
-	{
+	public function save() {
 		return $this->api->saveRecurringTemplate($this);
 	}
 
@@ -128,18 +114,30 @@ class MoneybirdRecurringTemplate extends MoneybirdObject implements iMoneybirdRe
 	 *
 	 * @access public
 	 */
-	public function delete()
-	{
+	public function delete() {
 		$this->api->deleteRecurringTemplate($this);
 	}
+
+	/**
+	 * Get all invoices created by template
+	 *
+	 * @return array
+	 * @param string|iMoneybirdFilter $filter optional, filter to apply
+	 * @access public
+	 * @throws MoneybirdUnknownFilterException
+	 */
+	public function getInvoices($filter=null) {
+		return $this->api->getInvoices($filter, $this);
+	}
+
 }
 
 /**
  * RecurringTemplateLine in Moneybird
  *
  */
-class MoneybirdRecurringTemplateLine extends MoneybirdObject implements iMoneybirdRecurringTemplateDetail
-{
+class MoneybirdRecurringTemplateLine extends MoneybirdObject implements iMoneybirdRecurringTemplateDetail {
+
 	/**
 	 * Line is marked for deletion
 	 * @var bool
@@ -152,8 +150,7 @@ class MoneybirdRecurringTemplateLine extends MoneybirdObject implements iMoneybi
 	 * @access public
 	 * @param SimpleXMLElement $xml
 	 */
-	public function fromXML(SimpleXMLElement $xml)
-	{
+	public function fromXML(SimpleXMLElement $xml) {
 		parent::fromXML($xml);
 		$this->amount = $this->amount_plain;
 	}
@@ -164,24 +161,19 @@ class MoneybirdRecurringTemplateLine extends MoneybirdObject implements iMoneybi
 	 * @access public
 	 * @return string
 	 */
-	public function toXML()
-	{
-		$keyOpen  = '<detail type="RecurringTemplateDetail"';
-		if ($this->deleted)
-		{
+	public function toXML() {
+		$keyOpen = '<detail type="RecurringTemplateDetail"';
+		if ($this->deleted) {
 			$keyOpen .= ' _destroy="1"';
 		}
 		$keyOpen .= '>';
 
 		return parent::toXML(
-			null,
-			$keyOpen,
-			'</detail>',
-			array(
+				null, $keyOpen, '</detail>', array(
 				'total_price_excl_tax',
 				'total_price_incl_tax',
 				'amount_plain',
-			)
+				)
 		);
 	}
 
@@ -190,8 +182,8 @@ class MoneybirdRecurringTemplateLine extends MoneybirdObject implements iMoneybi
 	 *
 	 * @access public
 	 */
-	public function delete()
-	{
+	public function delete() {
 		$this->deleted = true;
 	}
+
 }

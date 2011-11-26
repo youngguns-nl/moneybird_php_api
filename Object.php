@@ -4,8 +4,16 @@
  * Interface for MoneybirdObject
  *
  */
-interface iMoneybirdObject
-{
+interface iMoneybirdObject {
+
+	/**
+	 * Set a reference to the Api
+	 *
+	 * @param MoneybirdApi $api
+	 * @access public
+	 */
+	public function setApi(MoneybirdApi $api);
+
 	/**
 	 * Fill with XML
 	 *
@@ -28,8 +36,16 @@ interface iMoneybirdObject
  *
  * @abstract
  */
-abstract class MoneybirdObject implements iMoneybirdObject
-{
+abstract class MoneybirdObject implements iMoneybirdObject {
+
+	/**
+	 * Api object
+	 *
+	 * @access protected
+	 * @var MoneybirdApi
+	 */
+	protected $api;
+
 	/**
 	 * Properties
 	 *
@@ -39,6 +55,16 @@ abstract class MoneybirdObject implements iMoneybirdObject
 	protected $properties;
 
 	/**
+	 * Set a reference to the Api
+	 *
+	 * @param MoneybirdApi $api
+	 * @access public
+	 */
+	public function setApi(MoneybirdApi $api) {
+		$this->api = $api;
+	}
+
+	/**
 	 * Set property
 	 *
 	 * @access public
@@ -46,8 +72,7 @@ abstract class MoneybirdObject implements iMoneybirdObject
 	 * @param mixed $value
 	 * @throws Exception
 	 */
-	public function __set($property, $value)
-	{
+	public function __set($property, $value) {
 		$this->properties[$property] = $value;
 	}
 
@@ -59,10 +84,8 @@ abstract class MoneybirdObject implements iMoneybirdObject
 	 * @return mixed
 	 * @throws Exception
 	 */
-	public function __get($property)
-	{
-		if (!isset($this->properties[$property]))
-		{
+	public function __get($property) {
+		if (!isset($this->properties[$property])) {
 			return null;
 		}
 		return $this->properties[$property];
@@ -75,50 +98,33 @@ abstract class MoneybirdObject implements iMoneybirdObject
 	 * @param SimpleXMLElement $xml XML to load
 	 * @param array $arrayHandlers Mapping for converting array elements to objects
 	 */
-	public function fromXML(SimpleXMLElement $xml, Array $arrayHandlers = null)
-	{
-		foreach ($xml as $key => $value)
-		{
+	public function fromXML(SimpleXMLElement $xml, Array $arrayHandlers = null) {
+		foreach ($xml as $key => $value) {
 			$attributes = $value->attributes();
 			$type = isset($attributes['type']) ? $attributes['type'] : 'string';
 
 			$key = str_replace('-', '_', $key);
 
-			if (isset($attributes['nil']) && $attributes['nil'] == 'true')
-			{
+			if (isset($attributes['nil']) && $attributes['nil'] == 'true') {
 				$this->properties[$key] = null;
-			}
-			elseif ($type == 'array')
-			{
+			} elseif ($type == 'array') {
 				$this->properties[$key] = array();
-				if (isset($arrayHandlers[$key]))
-				{
-					foreach ($value as $subxml)
-					{
+				if (isset($arrayHandlers[$key])) {
+					foreach ($value as $subxml) {
 						$object = new $arrayHandlers[$key]($this);
 						$object->fromXML($subxml);
 						$this->properties[$key][] = $object;
 					}
 				}
-			}
-			elseif ($type == 'integer')
-			{
+			} elseif ($type == 'integer') {
 				$this->properties[$key] = intval($value);
-			}
-			elseif ($type == 'float')
-			{
+			} elseif ($type == 'float') {
 				$this->properties[$key] = floatval($value);
-			}
-			elseif ($type == 'boolean')
-			{
+			} elseif ($type == 'boolean') {
 				$this->properties[$key] = $value == 'true';
-			}
-			elseif ($type == 'datetime' || $type == 'date')
-			{
+			} elseif ($type == 'datetime' || $type == 'date') {
 				$this->properties[$key] = new DateTime(strval($value));
-			}
-			else
-			{
+			} else {
 				$this->properties[$key] = strval($value);
 			}
 		}
@@ -135,91 +141,130 @@ abstract class MoneybirdObject implements iMoneybirdObject
 	 * @return string
 	 * @throws MoneybirdUnknownTypeException
 	 */
-	public function toXML(Array $arrayHandlers = null, $elmKeyOpen = null, $elmKeyClose = null, array $skipProperties = array())
-	{
-		if ($this instanceof iMoneybirdContact)
-		{
+	public function toXML(Array $arrayHandlers = null, $elmKeyOpen = null, $elmKeyClose = null, array $skipProperties = array()) {
+		if ($this instanceof iMoneybirdContact) {
 			$root = 'contact';
-		}
-		elseif ($this instanceof iMoneybirdInvoice)
-		{
+		} elseif ($this instanceof iMoneybirdInvoice) {
 			$root = 'invoice';
-		}
-		elseif ($this instanceof iMoneybirdRecurringTemplate)
-		{
+		} elseif ($this instanceof iMoneybirdEstimate) {
+			$root = 'extimate';
+		} elseif ($this instanceof iMoneybirdRecurringTemplate) {
 			$root = 'recurringtemplate';
-		}
-		else
-		{
+		} else {
 			// Guess
 			$root = strtolower(substr(get_class($this), 9));
 			//throw new MoneybirdUnknownTypeException('Unknown type: '.get_class($this));
 		}
 
-		if ($elmKeyOpen == null)
-		{
-			$elmKeyOpen = '<'.$root.'>';
+		if ($elmKeyOpen == null) {
+			$elmKeyOpen = '<' . $root . '>';
 		}
-		if ($elmKeyClose == null)
-		{
-			$elmKeyClose = '</'.$root.'>';
+		if ($elmKeyClose == null) {
+			$elmKeyClose = '</' . $root . '>';
 		}
 
 		$skipProperties = array_merge($skipProperties, array(
 			'updated_at', 'created_at',
-		));
+			));
 
-		$xml = $elmKeyOpen.PHP_EOL;
-		foreach ($this->properties as $key => $value)
-		{
-			if (in_array($key, $skipProperties))
-			{
+		$xml = $elmKeyOpen . PHP_EOL;
+		foreach ($this->properties as $key => $value) {
+			if (in_array($key, $skipProperties)) {
 				continue;
 			}
 
 			$key = str_replace('_', '-', $key);
 
-			$keyOpen  = '<'.$key.'>';
-			$keyClose = '</'.$key.'>';
+			$keyOpen = '<' . $key . '>';
+			$keyClose = '</' . $key . '>';
 
-			if (is_object($value) && $value instanceof DateTime)
-			{
+			if (is_object($value) && $value instanceof DateTime) {
 				$value = $value->format('c');
-			}
-			elseif (is_array($value))
-			{
-				if (isset($arrayHandlers[$key]))
-				{
-					$keyOpen  = '<'.$arrayHandlers[$key].' type="array">'.PHP_EOL;
-					$keyClose = '</'.$arrayHandlers[$key].'>';
+			} elseif (is_array($value)) {
+				if (isset($arrayHandlers[$key])) {
+					$keyOpen = '<' . $arrayHandlers[$key] . ' type="array">' . PHP_EOL;
+					$keyClose = '</' . $arrayHandlers[$key] . '>';
 					$newvalue = '';
-					foreach ($value as $object)
-					{
+					foreach ($value as $object) {
 						$newvalue .= $object->toXML();
 					}
 					$value = $newvalue;
-				}
-				else
-				{
-					foreach ($value as $arrayValue)
-					{
-						$xml .= '   '.$keyOpen.htmlspecialchars($arrayValue).$keyClose.PHP_EOL;
+				} else {
+					foreach ($value as $arrayValue) {
+						$xml .= '   ' . $keyOpen . htmlspecialchars($arrayValue) . $keyClose . PHP_EOL;
 					}
 					continue;
 				}
-			}
-			elseif (is_null($value))
-			{
-				$keyOpen = substr($keyOpen, 0, -1).' nil="true">';
-			}
-			else
-			{
+			} elseif (is_null($value)) {
+				$keyOpen = substr($keyOpen, 0, -1) . ' nil="true">';
+			} else {
 				$value = htmlspecialchars($value);
 			}
-			$xml .= '   '.$keyOpen.$value.$keyClose.PHP_EOL;
+			$xml .= '   ' . $keyOpen . $value . $keyClose . PHP_EOL;
 		}
-		$xml .= $elmKeyClose.PHP_EOL;
+		$xml .= $elmKeyClose . PHP_EOL;
 
 		return $xml;
 	}
+
+}
+
+/**
+ * Sync class
+ *
+ */
+class MoneybirdSync extends MoneybirdObject {
+
+	/**
+	 * Type of sync object
+	 * @var string
+	 */
+	protected $type;
+
+	/**
+	 * Array of id's
+	 * @var array
+	 */
+	protected $ids;
+
+	/**
+	 * Create the sync object
+	 *
+	 * @access public
+	 * @param string $type (contact|invoice|estimate|recurringTemplate)
+	 * @param array $ids Array of ids
+	 */
+	public function __construct($type, array $ids) {
+		$this->type = $type;
+		$this->ids = $ids;
+	}
+
+	/**
+	 * Load object from XML
+	 *
+	 * @access public
+	 * @param SimpleXMLElement $xml
+	 * @throws MoneybirdNotAcceptedException
+	 */
+	public function fromXML(SimpleXMLElement $xml) {
+		throw new MoneybirdNotAcceptedException('Not implemented');
+	}
+
+	/**
+	 * Convert object to XML
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function toXML() {
+		$xml = '<' . $this->type . '>' . PHP_EOL;
+		$xml .= '  <ids>' . PHP_EOL;
+		foreach ($this->ids as $id) {
+			$xml .= '    <id>' . $id . '</id>' . PHP_EOL;
+		}
+		$xml .= '  </ids>' . PHP_EOL;
+		$xml .= '</' . $this->type . '>' . PHP_EOL;
+		return $xml;
+	}
+
 }
