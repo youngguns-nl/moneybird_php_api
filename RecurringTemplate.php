@@ -45,6 +45,14 @@ interface iMoneybirdRecurringTemplateDetail extends iMoneybirdObject {
  *
  */
 class MoneybirdRecurringTemplate extends MoneybirdObject implements iMoneybirdRecurringTemplate {
+	
+	/**
+	 * Send frequency
+	 *
+	 * @const FREQUENCY_WEEKLY Send every week
+	 */
+	const FREQUENCY_WEEKLY = 1;
+	
 	/**
 	 * Send frequency
 	 *
