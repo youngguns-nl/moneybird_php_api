@@ -197,6 +197,8 @@ abstract class MoneybirdObject implements iMoneybirdObject {
 				}
 			} elseif (is_null($value)) {
 				$keyOpen = substr($keyOpen, 0, -1) . ' nil="true">';
+			} elseif (is_bool($value)) {
+				$value = $value === true ? 'true' : 'false';
 			} else {
 				$value = htmlspecialchars($value);
 			}
@@ -247,7 +249,7 @@ class MoneybirdSync extends MoneybirdObject {
 	 * @throws MoneybirdNotAcceptedException
 	 */
 	public function fromXML(SimpleXMLElement $xml) {
-		throw new MoneybirdNotAcceptedException('Not implemented');
+		throw new Exception(__CLASS__ . ' cannot be loaded from XML');
 	}
 
 	/**
