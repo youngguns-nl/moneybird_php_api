@@ -147,7 +147,7 @@ abstract class MoneybirdObject implements iMoneybirdObject {
 		} elseif ($this instanceof iMoneybirdInvoice) {
 			$root = 'invoice';
 		} elseif ($this instanceof iMoneybirdEstimate) {
-			$root = 'extimate';
+			$root = 'estimate';
 		} elseif ($this instanceof iMoneybirdRecurringTemplate) {
 			$root = 'recurringtemplate';
 		} else {
