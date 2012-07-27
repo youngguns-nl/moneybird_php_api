@@ -1,407 +1,317 @@
 <?php
 
-/**
- * Interface for MoneybirdInvoice
- *
+/*
+ * Invoice class file
  */
-interface iMoneybirdInvoice extends iMoneybirdObject {
 
+namespace Moneybird;
+
+/**
+ * Invoice
+ */
+class Invoice 
+	extends 
+		Domainmodel_Abstract 
+	implements 
+		Mapper_Mapable, 
+		Storable, 
+		Sendable, 
+		PdfDocument, 
+		Payable {
+	
+	protected $address1; 
+	protected $address2; 
+	protected $attention; 
+	protected $city; 
+	protected $companyName; 
+	protected $conceptId;
+	protected $contactId;
+	protected $contactName; 
+	protected $country; 
+	protected $createdAt;
+	protected $currency;
+	protected $customerId; 
+	protected $daysOpen;
+	protected $description;
+	protected $discount;
+	protected $dueDateInterval;
+	protected $email; 
+	protected $firstname; 
+	protected $id; 
+	protected $invoiceDate;
+	protected $invoiceEmail;
+	protected $invoiceEmailReminder;
+	protected $invoiceHash;
+	protected $invoiceId;
+	protected $invoiceProfileId;
+	protected $invoiceProfileVersionId;
+	protected $language;
+	protected $lastname; 
+	protected $name; 
+	protected $originalEstimateId;
+	protected $originalInvoiceId;
+	protected $payUrl;
+	protected $poNumber;
+	protected $recurringTemplateId;
+	protected $revision; 
+	protected $sendMethod; 
+	protected $showCustomerId;
+	protected $showTax;
+	protected $showTaxNumber;
+	protected $state;
+	protected $taxNumber; 
+	protected $totalPaid;
+	protected $totalPriceExclTax;
+	protected $totalPriceInclTax;
+	protected $totalTax;
+	protected $totalUnpaid;
+	protected $updatedAt; 
+	protected $url;
+	protected $zipcode;
+	protected $details;
+	protected $history;
+	protected $payments;
+	
+	protected $pdfUrl;
+	
+	protected $_readonlyAttr = array(
+		'conceptId',
+		'contactName', 
+		'createdAt',
+		'daysOpen',
+		'email', 
+		'id', 
+		'invoiceEmail',
+		'invoiceEmailReminder',
+		'invoiceHash',
+		'invoiceProfileVersionId',
+		'name', 
+		'originalEstimateId',
+		'originalInvoiceId',
+		'payUrl',
+		'recurringTemplateId',
+		'revision', 
+		'sendMethod', 
+		'state',
+		'totalPaid',
+		'totalPriceExclTax',
+		'totalPriceInclTax',
+		'totalTax',
+		'totalUnpaid',
+		'updatedAt', 
+		'url',
+		'history',
+		'payments',
+		
+		'pdfUrl',
+	);
+	
+	protected $_requiredAttr = array(
+		array('contactId', 'companyName', 'firstname', 'lastname'),
+	);
+	
+	/**
+	 * Construct a new invoice
+	 *
+	 * @param array $data
+	 * @param Contact $contact
+	 */
+	public function __construct(array $data = array(), Contact $contact = null) {
+		if (!is_null($contact)) {
+			$this->setContact($contact);
+		}
+		parent::__construct($data);
+	}
+	
+	/**
+	 * Set Id
+	 * @param int $value
+	 * @throws InvalidIdException
+	 */
+	protected function setIdAttr($value) {
+		if (!is_null($value) && !preg_match('/^[0-9]+$/D', $value)) {
+			throw new InvalidIdException('Invalid id: ' . $value);
+		}
+
+		$this->id = $value;
+	}
+	
+	/**
+	 * Set url
+	 * @param string $value 
+	 */
+	protected function setUrlAttr($value = null) {
+		if (!is_null($value)) {
+			$this->url = $value;
+			$this->pdfUrl = $value.'.pdf';
+		}
+	}
+	
+	/**
+	 * Set details
+	 * @param Invoice_Detail_Array $value 
+	 */
+	protected function setDetailsAttr(Invoice_Detail_Array $value = null) {
+		if (!is_null($value)) {
+			$this->details->merge($value);
+		}
+	}
+	
+	/**
+	 * Set payments
+	 * @param Invoice_Payment_Array $value 
+	 */
+	protected function setPaymentsAttr(Invoice_Payment_Array $value = null) {
+		if (!is_null($value)) {
+			$this->payments->merge($value);
+		}
+	}
+	
+	/**
+	 * Set history
+	 * @param Invoice_History_Array $value 
+	 */
+	protected function setHistoryAttr(Invoice_History_Array $value = null) {
+		if (!is_null($value)) {
+			$this->history->merge($value);
+		}
+	}
+	
+	/**
+	 * Initialize vars 
+	 */
+	protected function _initVars() {
+		$this->details = new Invoice_Detail_Array();
+		$this->history = new Invoice_History_Array();
+		$this->payments = new Invoice_Payment_Array();
+	}
+	
+	/**
+	 * Send the invoice
+	 * @param Service $service
+	 * @param string $method Send method (email|hand|post); default: email
+	 * @param type $email Address to send to; default: contact e-mail
+	 * @param type $message
+	 * @return self 
+	 */
+	public function send(Service $service, $method='email', $email=null, $message=null) {
+		return $this->reload(
+			$service->send($this, $method, $email, $message)
+		);
+	}
+	
+	/**
+	 * Mark the invoice as sent
+	 * @param Invoice_Service $service
+	 * @return self 
+	 */
+	public function markAsSent(Invoice_Service $service) {
+		return $this->send($service, 'hand');
+	}
+	
+	/**
+	 * Send a reminder for the invoice
+	 * @param Invoice_Service $service
+	 * @param string $method Send method (email|hand|post); default: email
+	 * @param type $email Address to send to; default: contact e-mail
+	 * @param type $message
+	 * @return self 
+	 * @throws InvalidStateException
+	 */
+	public function remind(Invoice_Service $service, $method='email', $email=null, $message=null) {
+		if ($this->state == 'draft') {
+			throw new InvalidStateException('Send invoice before reminding');
+		}
+		return $this->reload(
+			$service->remind($this, $method, $email, $message)
+		);
+	}
+	
+	/**
+	 * Register a payment for the invoice
+	 * @param Service $service
+	 * @param Payment_Abstract $payment	 
+	 * @return self
+	 * @throws InvalidStateException
+	 */
+	public function registerPayment(Service $service, Payment_Abstract $payment) {
+		if ($this->state == 'draft') {
+			throw new InvalidStateException('Send invoice before register payments');
+		}
+		return $this->reload(
+			$service->registerPayment($this, $payment)
+		);		
+	}
+	
+	/**
+	 * Get the raw PDF content
+	 * @param Service $service
+	 * @return string
+	 * @throws InvalidStateException
+	 */
+	public function getPdf(Service $service) {
+		if ($this->state == 'draft') {
+			throw new InvalidStateException('Send invoice before requesting PDF document');
+		}
+		return $service->getPdf($this);
+	}
+	
 	/**
 	 * Copy info from contact to invoice
 	 *
 	 * @access public
-	 * @param iMoneybirdContact $contact
+	 * @param Contact $contact
+	 * @return self
 	 */
-	public function setContact(iMoneybirdContact $contact);
-
-	/**
-	 * Save invoice
-	 *
-	 * @return MoneybirdInvoice
-	 * @access public
-	 */
-	public function save();
-
-	/**
-	 * Delete invoice
-	 *
-	 * @access public
-	 */
-	public function delete();
-
-	/**
-	 * Send an invoice
-	 *
-	 * @access public
-	 * @param MoneybirdInvoiceSendInformation optional $sendinfo information to send invoice
-	 */
-	public function send(MoneybirdInvoiceSendInformation $sendinfo = null);
-
-	/**
-	 * Send a reminder
-	 *
-	 * @access public
-	 * @param MoneybirdInvoiceSendInformation optional $sendinfo information to send reminder
-	 */
-	public function remind(MoneybirdInvoiceSendInformation $sendinfo = null);
-
-	/**
-	 * Mark invoice as send
-	 *
-	 * @access public
-	 */
-	public function markAsSent();
-
-	/**
-	 * Register invoice payment
-	 *
-	 * @access public
-	 * @param MoneybirdInvoicePayment $payment payment to register
-	 */
-	public function registerPayment(MoneybirdInvoicePayment $payment);
-
-	/**
-	 * Get invoice as PDF
-	 *
-	 * @access public
-	 */
-	public function getPdf();
-}
-
-/**
- * Interface for MoneybirdInvoiceDetail
- *
- */
-interface iMoneybirdInvoiceDetail extends iMoneybirdObject {
-	
-}
-
-/**
- * Interface for MoneybirdFilter
- *
- */
-interface iMoneybirdFilter extends iMoneybirdObject {
-	
-}
-
-/**
- * Invoice in Moneybird
- *
- */
-class MoneybirdInvoice extends MoneybirdObject implements iMoneybirdInvoice {
-
-	/**
-	 * Load object from XML
-	 *
-	 * @access public
-	 * @param SimpleXMLElement $xml
-	 */
-	public function fromXML(SimpleXMLElement $xml) {
-		parent::fromXML($xml, array(
-			'history' => 'MoneybirdInvoiceHistoryItem',
-			'payments' => 'MoneybirdInvoicePayment',
-			'details' => 'MoneybirdInvoiceLine',
-		));
-		$this->pdf = $this->url . '.pdf';
+	public function setContact(Contact $contact) {
+		$this->contactId = $contact->id;
+		$properties = array(
+			'address1', 
+			'address2', 
+			'attention', 
+			'city', 
+			'companyName', 
+			'country', 
+			'customerId', 
+			'firstname', 
+			'lastname', 
+			'zipcode',
+		);
+		foreach ($properties as $property) {
+			$this->$property = $contact->$property;
+		}
+		return $this;
 	}
-
+	
 	/**
-	 * Convert object to XML
-	 *
-	 * @access public
-	 * @return string
+	 * Deletes an invoice
+	 * @param Service $service
 	 */
-	public function toXML() {
-		return parent::toXML(
-				array(
-				'details' => 'details_attributes',
-				), null, null, array('pdf', 'history', 'payments')
+	public function delete(Service $service) {
+		$service->delete($this);
+	}
+	
+	/**
+	 * Updates or inserts an invoice
+	 * @param Service $service
+	 * @return self
+	 * @throws NotValidException
+	 */
+	public function save(Service $service) {
+		if (!$this->validate()){
+			throw new NotValidException('Unable to validate invoice');
+		}
+		
+		return $this->reload(
+			$service->save($this)
 		);
 	}
-
-	/**
-	 * Copy info from contact to invoice
-	 *
-	 * @access public
-	 * @param iMoneybirdContact $contact
-	 */
-	public function setContact(iMoneybirdContact $contact) {
-		$this->contact_id = $contact->id;
-		foreach ($contact->getProperties() as $property => $value) {
-			$this->$property = $value;
-		}
-	}
-
-	/**
-	 * Save invoice
-	 *
-	 * @return MoneybirdInvoice
-	 * @access public
-	 */
-	public function save() {
-		return $this->api->saveInvoice($this);
-	}
-
-	/**
-	 * Delete invoice
-	 *
-	 * @access public
-	 */
-	public function delete() {
-		$this->api->deleteInvoice($this);
-	}
-
-	/**
-	 * Send an invoice
-	 *
-	 * @access public
-	 * @param MoneybirdInvoiceSendInformation optional $sendinfo information to send invoice
-	 */
-	public function send(MoneybirdInvoiceSendInformation $sendinfo = null) {
-		$this->api->sendInvoice($this, $sendinfo);
-	}
-
-	/**
-	 * Send a reminder
-	 *
-	 * @access public
-	 * @param MoneybirdInvoiceSendInformation optional $sendinfo information to send reminder
-	 */
-	public function remind(MoneybirdInvoiceSendInformation $sendinfo = null) {
-		$this->api->sendInvoiceReminder($this, $sendinfo);
-	}
-
-	/**
-	 * Mark invoice as send
-	 *
-	 * @access public
-	 */
-	public function markAsSent() {
-		$this->send(new MoneybirdInvoiceSendInformation('hand'));
-	}
-
-	/**
-	 * Register invoice payment
-	 *
-	 * @access public
-	 * @param MoneybirdInvoicePayment $payment payment to register
-	 */
-	public function registerPayment(MoneybirdInvoicePayment $payment) {
-		$this->api->registerInvoicePayment($this, $payment);
-	}
-
-	/**
-	 * Get invoice as PDF
-	 *
-	 * @access public
-	 */
-	public function getPdf() {
-		return $this->api->getInvoicePdf($this);
-	}
-
-}
-
-/**
- * InvoiceDetail in Moneybird
- *
- */
-class MoneybirdInvoiceDetail extends MoneybirdObject implements iMoneybirdInvoiceDetail {
 	
-}
-
-/**
- * InvoicePayment in Moneybird
- *
- */
-class MoneybirdInvoicePayment extends MoneybirdInvoiceDetail {
-
 	/**
-	 * Convert to XML string
-	 *
-	 * @access public
-	 * @return string
+	 * Validate object
+	 * @return bool
 	 */
-	public function toXML() {
-		return parent::toXML(
-				null, '<invoice_payment>', '</invoice_payment>', array('invoice_id')
-		);
+	protected function validate() {
+		return count($this->details) > 0 && parent::validate();
 	}
-
-}
-
-/**
- * InvoiceLine in Moneybird
- *
- */
-class MoneybirdInvoiceLine extends MoneybirdInvoiceDetail {
-
-	/**
-	 * Line is marked for deletion
-	 * @var bool
-	 */
-	protected $deleted = false;
-
-	/**
-	 * Load object from XML
-	 *
-	 * @access public
-	 * @param SimpleXMLElement $xml
-	 */
-	public function fromXML(SimpleXMLElement $xml) {
-		parent::fromXML($xml);
-		$this->amount = $this->amount_plain;
-	}
-
-	/**
-	 * Convert to XML string
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function toXML() {
-		$keyOpen = '<detail type="InvoiceDetail"';
-		if ($this->deleted) {
-			$keyOpen .= ' _destroy="1"';
-		}
-		$keyOpen .= '>';
-
-		return parent::toXML(
-				null, $keyOpen, '</detail>', array(
-				'total_price_excl_tax',
-				'total_price_incl_tax',
-				'amount_plain',
-				)
-		);
-	}
-
-	/**
-	 * Mark line for deletion
-	 *
-	 * @access public
-	 */
-	public function delete() {
-		$this->deleted = true;
-	}
-
-}
-
-/**
- * InvoiceHistoryItem in Moneybird
- *
- */
-class MoneybirdInvoiceHistoryItem extends MoneybirdInvoiceDetail {
-	
-}
-
-/**
- * InvoiceSendInformation for Moneybird
- *
- */
-class MoneybirdInvoiceSendInformation extends MoneybirdInvoiceDetail {
-
-	/**
-	 * Constructor
-	 *
-	 * @access public
-	 * @param string $sendMethod (email|post|hand)
-	 * @param string $email Address to send to
-	 * @param string $message Message in mail body
-	 * @throws MoneybirdUnknownSendMethodException
-	 */
-	public function __construct($sendMethod='email', $email=null, $message=null) {
-		if (!in_array($sendMethod, array('hand', 'email', 'post'))) {
-			throw new MoneybirdUnknownSendMethodException('Unknown send method: ' . $sendMethod);
-		}
-		$this->properties['sendMethod'] = $sendMethod;
-
-		if ($sendMethod == 'email') {
-			$this->properties['email'] = $email;
-			$this->properties['message'] = $message;
-		}
-	}
-
-	/**
-	 * Convert to XML string
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function toXML() {
-		$xml = '<invoice>' . PHP_EOL;
-		$xml .= '   <send-method>' . $this->properties['sendMethod'] . '</send-method>' . PHP_EOL;
-		if (!empty($this->properties['email'])) {
-			$xml .= '   <email>' . htmlspecialchars($this->properties['email']) . '</email>' . PHP_EOL;
-		}
-		if (!empty($this->properties['message'])) {
-			$xml .= '   <invoice-email>' . htmlspecialchars($this->properties['message']) . '</invoice-email>' . PHP_EOL;
-		}
-		$xml .= '</invoice>' . PHP_EOL;
-
-		return $xml;
-	}
-
-	/**
-	 * Load object from XML
-	 *
-	 * @access public
-	 * @param SimpleXMLElement $xml
-	 */
-	public function fromXML(SimpleXMLElement $xml) {
-		throw new Exception(__CLASS__ . ' cannot be loaded from XML');
-	}
-
-}
-
-/**
- * Advanced filter for finding invoices
- *
- */
-class MoneybirdAdvancedInvoiceFilter extends MoneybirdObject implements iMoneybirdFilter {
-
-	/**
-	 * Constructor
-	 *
-	 * @access public
-	 * @param DateTime $fromDate Start date
-	 * @param DateTime $fromDate End date
-	 * @param string|array $states States to search (draft|open|late|paid)
-	 * @throws MoneybirdUnknownInvoiceStateException
-	 */
-	public function __construct(DateTime $fromDate, DateTime $toDate, $states) {
-		$statesAvailable = array('draft', 'open', 'late', 'paid');
-
-		$this->properties['from_date'] = $fromDate;
-		$this->properties['to_date'] = $toDate;
-
-		$this->properties['states'] = array();
-		foreach ((array) $states as $state) {
-			if (!in_array($state, $statesAvailable)) {
-				throw new MoneybirdUnknownInvoiceStateException('Unknown state for invoices: ' . $state);
-			}
-			$this->properties['states'][] = $state;
-		}
-	}
-
-	/**
-	 * Load object from XML
-	 *
-	 * @access public
-	 * @param SimpleXMLElement $xml
-	 */
-	public function fromXML(SimpleXMLElement $xml) {
-		throw new Exception(__CLASS__ . ' cannot be loaded from XML');
-	}
-
-	/**
-	 * Convert to XML string
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function toXML() {
-		return parent::toXML(
-				null, '<filter>', '</filter>'
-		);
-	}
-
 }

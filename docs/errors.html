@@ -1,0 +1,3075 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="css/template.css" rel="stylesheet" media="all">
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="js/bootstrap.js" type="text/javascript"></script><script src="js/template.js" type="text/javascript"></script><script src="js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="img/favicon.ico">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">339</span></a></li>
+<li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4"><ul class="side-nav nav nav-list">
+<li class="nav-header">Filter type</li>
+<li><div class="btn-group type-filter" data-toggle="buttons-checkbox">
+<button class="btn critical">Critical</button><button class="btn error">Error</button><button class="btn notice">Notice</button>
+</div></li>
+<li class="nav-header">Navigation</li>
+<li><a href="#Invoice/Subject.php"><i class="icon-file"></i>Invoice/Subject.php</a></li>
+<li><a href="#Invoice/Sync/Array.php"><i class="icon-file"></i>Invoice/Sync/Array.php</a></li>
+<li><a href="#Invoice/Detail/Array.php"><i class="icon-file"></i>Invoice/Detail/Array.php</a></li>
+<li><a href="#Invoice/History/Array.php"><i class="icon-file"></i>Invoice/History/Array.php</a></li>
+<li><a href="#Invoice/Payment/Array.php"><i class="icon-file"></i>Invoice/Payment/Array.php</a></li>
+<li><a href="#Invoice/Sync.php"><i class="icon-file"></i>Invoice/Sync.php</a></li>
+<li><a href="#Invoice/History.php"><i class="icon-file"></i>Invoice/History.php</a></li>
+<li><a href="#Invoice/Detail.php"><i class="icon-file"></i>Invoice/Detail.php</a></li>
+<li><a href="#Invoice/Array.php"><i class="icon-file"></i>Invoice/Array.php</a></li>
+<li><a href="#Invoice/Envelope.php"><i class="icon-file"></i>Invoice/Envelope.php</a></li>
+<li><a href="#Invoice/Service.php"><i class="icon-file"></i>Invoice/Service.php</a></li>
+<li><a href="#Invoice/Payment.php"><i class="icon-file"></i>Invoice/Payment.php</a></li>
+<li><a href="#Contact/Sync/Array.php"><i class="icon-file"></i>Contact/Sync/Array.php</a></li>
+<li><a href="#Contact/Sync.php"><i class="icon-file"></i>Contact/Sync.php</a></li>
+<li><a href="#Contact/Array.php"><i class="icon-file"></i>Contact/Array.php</a></li>
+<li><a href="#Contact/Service.php"><i class="icon-file"></i>Contact/Service.php</a></li>
+<li><a href="#XmlMapper/Exception.php"><i class="icon-file"></i>XmlMapper/Exception.php</a></li>
+<li><a href="#XmlMapper/InvalidXmlException.php"><i class="icon-file"></i>XmlMapper/InvalidXmlException.php</a></li>
+<li><a href="#Domainmodel/Exception.php"><i class="icon-file"></i>Domainmodel/Exception.php</a></li>
+<li><a href="#Domainmodel/Abstract.php"><i class="icon-file"></i>Domainmodel/Abstract.php</a></li>
+<li><a href="#Exception.php"><i class="icon-file"></i>Exception.php</a></li>
+<li><a href="#SimpleXMLElement.php"><i class="icon-file"></i>SimpleXMLElement.php</a></li>
+<li><a href="#ArrayObject.php"><i class="icon-file"></i>ArrayObject.php</a></li>
+<li><a href="#Disclosure.php"><i class="icon-file"></i>Disclosure.php</a></li>
+<li><a href="#SyncArray.php"><i class="icon-file"></i>SyncArray.php</a></li>
+<li><a href="#InvoiceProfile/Array.php"><i class="icon-file"></i>InvoiceProfile/Array.php</a></li>
+<li><a href="#InvoiceProfile/Service.php"><i class="icon-file"></i>InvoiceProfile/Service.php</a></li>
+<li><a href="#RecurringTemplate.php"><i class="icon-file"></i>RecurringTemplate.php</a></li>
+<li><a href="#IncomingInvoice/Detail/Array.php"><i class="icon-file"></i>IncomingInvoice/Detail/Array.php</a></li>
+<li><a href="#IncomingInvoice/History/Array.php"><i class="icon-file"></i>IncomingInvoice/History/Array.php</a></li>
+<li><a href="#IncomingInvoice/Payment/Array.php"><i class="icon-file"></i>IncomingInvoice/Payment/Array.php</a></li>
+<li><a href="#IncomingInvoice/Sync/Array.php"><i class="icon-file"></i>IncomingInvoice/Sync/Array.php</a></li>
+<li><a href="#IncomingInvoice/Array.php"><i class="icon-file"></i>IncomingInvoice/Array.php</a></li>
+<li><a href="#IncomingInvoice/Detail.php"><i class="icon-file"></i>IncomingInvoice/Detail.php</a></li>
+<li><a href="#IncomingInvoice/History.php"><i class="icon-file"></i>IncomingInvoice/History.php</a></li>
+<li><a href="#IncomingInvoice/Payment.php"><i class="icon-file"></i>IncomingInvoice/Payment.php</a></li>
+<li><a href="#IncomingInvoice/Service.php"><i class="icon-file"></i>IncomingInvoice/Service.php</a></li>
+<li><a href="#IncomingInvoice/Subject.php"><i class="icon-file"></i>IncomingInvoice/Subject.php</a></li>
+<li><a href="#IncomingInvoice/Sync.php"><i class="icon-file"></i>IncomingInvoice/Sync.php</a></li>
+<li><a href="#RecurringTemplate/Array.php"><i class="icon-file"></i>RecurringTemplate/Array.php</a></li>
+<li><a href="#RecurringTemplate/Detail/Array.php"><i class="icon-file"></i>RecurringTemplate/Detail/Array.php</a></li>
+<li><a href="#RecurringTemplate/Detail.php"><i class="icon-file"></i>RecurringTemplate/Detail.php</a></li>
+<li><a href="#RecurringTemplate/Service.php"><i class="icon-file"></i>RecurringTemplate/Service.php</a></li>
+<li><a href="#RecurringTemplate/Subject.php"><i class="icon-file"></i>RecurringTemplate/Subject.php</a></li>
+<li><a href="#InvoiceProfile.php"><i class="icon-file"></i>InvoiceProfile.php</a></li>
+<li><a href="#XmlMapper.php"><i class="icon-file"></i>XmlMapper.php</a></li>
+<li><a href="#Contact.php"><i class="icon-file"></i>Contact.php</a></li>
+<li><a href="#Sendable.php"><i class="icon-file"></i>Sendable.php</a></li>
+<li><a href="#PdfDocument.php"><i class="icon-file"></i>PdfDocument.php</a></li>
+<li><a href="#Payable.php"><i class="icon-file"></i>Payable.php</a></li>
+<li><a href="#InvalidRequestException.php"><i class="icon-file"></i>InvalidRequestException.php</a></li>
+<li><a href="#Invoice.php"><i class="icon-file"></i>Invoice.php</a></li>
+<li><a href="#InvalidFilterException.php"><i class="icon-file"></i>InvalidFilterException.php</a></li>
+<li><a href="#Storable.php"><i class="icon-file"></i>Storable.php</a></li>
+<li><a href="#NotValidException.php"><i class="icon-file"></i>NotValidException.php</a></li>
+<li><a href="#InvalidIdException.php"><i class="icon-file"></i>InvalidIdException.php</a></li>
+<li><a href="#SyncObject.php"><i class="icon-file"></i>SyncObject.php</a></li>
+<li><a href="#Payment/Abstract.php"><i class="icon-file"></i>Payment/Abstract.php</a></li>
+<li><a href="#Payment/InvalidMethodException.php"><i class="icon-file"></i>Payment/InvalidMethodException.php</a></li>
+<li><a href="#DeleteBySaving.php"><i class="icon-file"></i>DeleteBySaving.php</a></li>
+<li><a href="#Detail/Abstract.php"><i class="icon-file"></i>Detail/Abstract.php</a></li>
+<li><a href="#ForbiddenException.php"><i class="icon-file"></i>ForbiddenException.php</a></li>
+<li><a href="#Envelope/Abstract.php"><i class="icon-file"></i>Envelope/Abstract.php</a></li>
+<li><a href="#Envelope/InvalidMethodException.php"><i class="icon-file"></i>Envelope/InvalidMethodException.php</a></li>
+<li><a href="#Estimate/Envelope.php"><i class="icon-file"></i>Estimate/Envelope.php</a></li>
+<li><a href="#Estimate/Detail/Array.php"><i class="icon-file"></i>Estimate/Detail/Array.php</a></li>
+<li><a href="#Estimate/Detail.php"><i class="icon-file"></i>Estimate/Detail.php</a></li>
+<li><a href="#Estimate/History/Array.php"><i class="icon-file"></i>Estimate/History/Array.php</a></li>
+<li><a href="#Estimate/History.php"><i class="icon-file"></i>Estimate/History.php</a></li>
+<li><a href="#Estimate/Array.php"><i class="icon-file"></i>Estimate/Array.php</a></li>
+<li><a href="#Estimate/Subject.php"><i class="icon-file"></i>Estimate/Subject.php</a></li>
+<li><a href="#Estimate/Service.php"><i class="icon-file"></i>Estimate/Service.php</a></li>
+<li><a href="#Estimate.php"><i class="icon-file"></i>Estimate.php</a></li>
+<li><a href="#IncomingInvoice.php"><i class="icon-file"></i>IncomingInvoice.php</a></li>
+<li><a href="#InvalidStateException.php"><i class="icon-file"></i>InvalidStateException.php</a></li>
+<li><a href="#InvalidServiceTypeException.php"><i class="icon-file"></i>InvalidServiceTypeException.php</a></li>
+<li><a href="#ArrayObject/UndefinedMethodException.php"><i class="icon-file"></i>ArrayObject/UndefinedMethodException.php</a></li>
+<li><a href="#ArrayObject/TypeMismatchException.php"><i class="icon-file"></i>ArrayObject/TypeMismatchException.php</a></li>
+<li><a href="#ApiConnector.php"><i class="icon-file"></i>ApiConnector.php</a></li>
+<li><a href="#Service.php"><i class="icon-file"></i>Service.php</a></li>
+<li><a href="#CurrentSession.php"><i class="icon-file"></i>CurrentSession.php</a></li>
+<li><a href="#NotFoundException.php"><i class="icon-file"></i>NotFoundException.php</a></li>
+<li><a href="#NotLoggedInException.php"><i class="icon-file"></i>NotLoggedInException.php</a></li>
+<li><a href="#ServerErrorException.php"><i class="icon-file"></i>ServerErrorException.php</a></li>
+<li><a href="#Error/Array.php"><i class="icon-file"></i>Error/Array.php</a></li>
+<li><a href="#Error.php"><i class="icon-file"></i>Error.php</a></li>
+<li><a href="#HttpClient.php"><i class="icon-file"></i>HttpClient.php</a></li>
+<li><a href="#Transport.php"><i class="icon-file"></i>Transport.php</a></li>
+<li><a href="#Mapper.php"><i class="icon-file"></i>Mapper.php</a></li>
+<li><a href="#Mapper/Exception.php"><i class="icon-file"></i>Mapper/Exception.php</a></li>
+<li><a href="#Mapper/Mapable.php"><i class="icon-file"></i>Mapper/Mapable.php</a></li>
+<li><a href="#HttpClient/Exception.php"><i class="icon-file"></i>HttpClient/Exception.php</a></li>
+<li><a href="#HttpClient/ConnectionErrorException.php"><i class="icon-file"></i>HttpClient/ConnectionErrorException.php</a></li>
+<li><a href="#HttpClient/HttpStatusException.php"><i class="icon-file"></i>HttpClient/HttpStatusException.php</a></li>
+<li><a href="#HttpClient/UnknownHttpStatusException.php"><i class="icon-file"></i>HttpClient/UnknownHttpStatusException.php</a></li>
+<li><a href="#HttpClient/Oauth.php"><i class="icon-file"></i>HttpClient/Oauth.php</a></li>
+</ul></div>
+<div class="span8">
+<ul class="breadcrumb">
+<li>
+<a href=""><i class="icon-remove-sign"></i></a><span class="divider">\</span>
+</li>
+<li>Compilation Errors</li>
+</ul>
+<div class="package-contents">
+<a name="Invoice/Subject.php" id="Invoice/Subject.php"></a><h3>
+<i class="icon-file"></i>Invoice/Subject.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Subject.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Sync/Array.php" id="Invoice/Sync/Array.php"></a><h3>
+<i class="icon-file"></i>Invoice/Sync/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Sync/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Detail/Array.php" id="Invoice/Detail/Array.php"></a><h3>
+<i class="icon-file"></i>Invoice/Detail/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Detail/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/History/Array.php" id="Invoice/History/Array.php"></a><h3>
+<i class="icon-file"></i>Invoice/History/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/History/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Payment/Array.php" id="Invoice/Payment/Array.php"></a><h3>
+<i class="icon-file"></i>Invoice/Payment/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Payment/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Sync.php" id="Invoice/Sync.php"></a><h3>
+<i class="icon-file"></i>Invoice/Sync.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Sync.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/History.php" id="Invoice/History.php"></a><h3>
+<i class="icon-file"></i>Invoice/History.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/History.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $action</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $description</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $invoiceId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $userId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Detail.php" id="Invoice/Detail.php"></a><h3>
+<i class="icon-file"></i>Invoice/Detail.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Detail.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $invoiceId</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Array.php" id="Invoice/Array.php"></a><h3>
+<i class="icon-file"></i>Invoice/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Envelope.php" id="Invoice/Envelope.php"></a><h3>
+<i class="icon-file"></i>Invoice/Envelope.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Envelope.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $invoiceEmail</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Service.php" id="Invoice/Service.php"></a><h3>
+<i class="icon-file"></i>Invoice/Service.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Service.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $ids in getByIds()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice/Payment.php" id="Invoice/Payment.php"></a><h3>
+<i class="icon-file"></i>Invoice/Payment.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice/Payment.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $creditInvoiceId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $invoiceId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $sendEmail</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Contact/Sync/Array.php" id="Contact/Sync/Array.php"></a><h3>
+<i class="icon-file"></i>Contact/Sync/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Contact/Sync/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Contact/Sync.php" id="Contact/Sync.php"></a><h3>
+<i class="icon-file"></i>Contact/Sync.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Contact/Sync.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Contact/Array.php" id="Contact/Array.php"></a><h3>
+<i class="icon-file"></i>Contact/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Contact/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Contact/Service.php" id="Contact/Service.php"></a><h3>
+<i class="icon-file"></i>Contact/Service.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Contact/Service.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="XmlMapper/Exception.php" id="XmlMapper/Exception.php"></a><h3>
+<i class="icon-file"></i>XmlMapper/Exception.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file XmlMapper/Exception.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="XmlMapper/InvalidXmlException.php" id="XmlMapper/InvalidXmlException.php"></a><h3>
+<i class="icon-file"></i>XmlMapper/InvalidXmlException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file XmlMapper/InvalidXmlException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Domainmodel/Exception.php" id="Domainmodel/Exception.php"></a><h3>
+<i class="icon-file"></i>Domainmodel/Exception.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Domainmodel/Exception.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Domainmodel/Abstract.php" id="Domainmodel/Abstract.php"></a><h3>
+<i class="icon-file"></i>Domainmodel/Abstract.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Domainmodel/Abstract.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>161</td>
+<td>Argument $filter is missing from the Docblock of selfToArray()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>178</td>
+<td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $values in extract()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Exception.php" id="Exception.php"></a><h3>
+<i class="icon-file"></i>Exception.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Exception.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="SimpleXMLElement.php" id="SimpleXMLElement.php"></a><h3>
+<i class="icon-file"></i>SimpleXMLElement.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file SimpleXMLElement.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="ArrayObject.php" id="ArrayObject.php"></a><h3>
+<i class="icon-file"></i>ArrayObject.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file ArrayObject.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Disclosure.php" id="Disclosure.php"></a><h3>
+<i class="icon-file"></i>Disclosure.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Disclosure.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $values</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method toArray()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for method __get()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for method __set()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No DocBlock was found for method __isset()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="SyncArray.php" id="SyncArray.php"></a><h3>
+<i class="icon-file"></i>SyncArray.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file SyncArray.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="InvoiceProfile/Array.php" id="InvoiceProfile/Array.php"></a><h3>
+<i class="icon-file"></i>InvoiceProfile/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file InvoiceProfile/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="InvoiceProfile/Service.php" id="InvoiceProfile/Service.php"></a><h3>
+<i class="icon-file"></i>InvoiceProfile/Service.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file InvoiceProfile/Service.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for method getAll()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="RecurringTemplate.php" id="RecurringTemplate.php"></a><h3>
+<i class="icon-file"></i>RecurringTemplate.php<small style="float: right;padding-right: 10px;">23</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file RecurringTemplate.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No DocBlock was found for property $active</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>64</td>
+<td>No DocBlock was found for property $contactId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>66</td>
+<td>No DocBlock was found for property $currency</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>67</td>
+<td>No DocBlock was found for property $discount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>68</td>
+<td>No DocBlock was found for property $frequency</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>69</td>
+<td>No DocBlock was found for property $frequencyType</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>70</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>No DocBlock was found for property $invoiceProfileId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>72</td>
+<td>No DocBlock was found for property $lastDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>73</td>
+<td>No DocBlock was found for property $nextDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>74</td>
+<td>No DocBlock was found for property $numberOfOccurences</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>75</td>
+<td>No DocBlock was found for property $occurences</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>76</td>
+<td>No DocBlock was found for property $sendInvoice</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>77</td>
+<td>No DocBlock was found for property $startDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No DocBlock was found for property $templateId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>79</td>
+<td>No DocBlock was found for property $totalPriceExclTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>80</td>
+<td>No DocBlock was found for property $totalPriceInclTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>81</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>82</td>
+<td>No DocBlock was found for property $details</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>84</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>96</td>
+<td>No DocBlock was found for property $_requiredAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Detail/Array.php" id="IncomingInvoice/Detail/Array.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Detail/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Detail/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/History/Array.php" id="IncomingInvoice/History/Array.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/History/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/History/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Payment/Array.php" id="IncomingInvoice/Payment/Array.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Payment/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Payment/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Sync/Array.php" id="IncomingInvoice/Sync/Array.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Sync/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Sync/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Array.php" id="IncomingInvoice/Array.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Detail.php" id="IncomingInvoice/Detail.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Detail.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Detail.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/History.php" id="IncomingInvoice/History.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/History.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/History.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $action</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $description</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $incomingInvoiceId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $userId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Payment.php" id="IncomingInvoice/Payment.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Payment.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Payment.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $incomingInvoiceId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $sendEmail</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Service.php" id="IncomingInvoice/Service.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Service.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Service.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $ids in getByIds()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Subject.php" id="IncomingInvoice/Subject.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Subject.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Subject.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice/Sync.php" id="IncomingInvoice/Sync.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice/Sync.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice/Sync.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="RecurringTemplate/Array.php" id="RecurringTemplate/Array.php"></a><h3>
+<i class="icon-file"></i>RecurringTemplate/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file RecurringTemplate/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="RecurringTemplate/Detail/Array.php" id="RecurringTemplate/Detail/Array.php"></a><h3>
+<i class="icon-file"></i>RecurringTemplate/Detail/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file RecurringTemplate/Detail/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="RecurringTemplate/Detail.php" id="RecurringTemplate/Detail.php"></a><h3>
+<i class="icon-file"></i>RecurringTemplate/Detail.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file RecurringTemplate/Detail.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="RecurringTemplate/Service.php" id="RecurringTemplate/Service.php"></a><h3>
+<i class="icon-file"></i>RecurringTemplate/Service.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file RecurringTemplate/Service.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="RecurringTemplate/Subject.php" id="RecurringTemplate/Subject.php"></a><h3>
+<i class="icon-file"></i>RecurringTemplate/Subject.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file RecurringTemplate/Subject.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="InvoiceProfile.php" id="InvoiceProfile.php"></a><h3>
+<i class="icon-file"></i>InvoiceProfile.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file InvoiceProfile.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $name</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for method save()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method delete()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="XmlMapper.php" id="XmlMapper.php"></a><h3>
+<i class="icon-file"></i>XmlMapper.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file XmlMapper.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Contact.php" id="Contact.php"></a><h3>
+<i class="icon-file"></i>Contact.php<small style="float: right;padding-right: 10px;">26</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Contact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $address1</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $address2</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $attention</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $bankAccount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for property $chamberOfCommerce</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for property $city</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for property $companyName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $contactHash</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for property $contactName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for property $country</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $customerId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for property $email</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for property $firstname</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for property $lastname</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>No DocBlock was found for property $name</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No DocBlock was found for property $phone</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No DocBlock was found for property $revision</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No DocBlock was found for property $sendMethod</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No DocBlock was found for property $taxNumber</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for property $zipcode</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>57</td>
+<td>No DocBlock was found for property $_requiredAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Sendable.php" id="Sendable.php"></a><h3>
+<i class="icon-file"></i>Sendable.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Sendable.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="PdfDocument.php" id="PdfDocument.php"></a><h3>
+<i class="icon-file"></i>PdfDocument.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file PdfDocument.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Payable.php" id="Payable.php"></a><h3>
+<i class="icon-file"></i>Payable.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Payable.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="InvalidRequestException.php" id="InvalidRequestException.php"></a><h3>
+<i class="icon-file"></i>InvalidRequestException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file InvalidRequestException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Invoice.php" id="Invoice.php"></a><h3>
+<i class="icon-file"></i>Invoice.php<small style="float: right;padding-right: 10px;">56</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Invoice.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $address1</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $address2</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $attention</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $city</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $companyName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for property $conceptId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for property $contactId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for property $contactName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $country</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for property $currency</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for property $customerId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $daysOpen</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for property $description</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for property $discount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for property $dueDateInterval</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for property $email</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>No DocBlock was found for property $firstname</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No DocBlock was found for property $invoiceDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No DocBlock was found for property $invoiceEmail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No DocBlock was found for property $invoiceEmailReminder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No DocBlock was found for property $invoiceHash</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for property $invoiceId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No DocBlock was found for property $invoiceProfileId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for property $invoiceProfileVersionId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No DocBlock was found for property $language</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>49</td>
+<td>No DocBlock was found for property $lastname</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>50</td>
+<td>No DocBlock was found for property $name</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No DocBlock was found for property $originalEstimateId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>52</td>
+<td>No DocBlock was found for property $originalInvoiceId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>No DocBlock was found for property $payUrl</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No DocBlock was found for property $poNumber</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No DocBlock was found for property $recurringTemplateId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No DocBlock was found for property $revision</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>57</td>
+<td>No DocBlock was found for property $sendMethod</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>58</td>
+<td>No DocBlock was found for property $showCustomerId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No DocBlock was found for property $showTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>60</td>
+<td>No DocBlock was found for property $showTaxNumber</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>No DocBlock was found for property $state</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>62</td>
+<td>No DocBlock was found for property $taxNumber</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No DocBlock was found for property $totalPaid</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>64</td>
+<td>No DocBlock was found for property $totalPriceExclTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>No DocBlock was found for property $totalPriceInclTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>66</td>
+<td>No DocBlock was found for property $totalTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>67</td>
+<td>No DocBlock was found for property $totalUnpaid</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>68</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>69</td>
+<td>No DocBlock was found for property $url</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>70</td>
+<td>No DocBlock was found for property $zipcode</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>No DocBlock was found for property $details</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>72</td>
+<td>No DocBlock was found for property $history</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>73</td>
+<td>No DocBlock was found for property $payments</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>75</td>
+<td>No DocBlock was found for property $pdfUrl</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>77</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>109</td>
+<td>No DocBlock was found for property $_requiredAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="InvalidFilterException.php" id="InvalidFilterException.php"></a><h3>
+<i class="icon-file"></i>InvalidFilterException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file InvalidFilterException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Storable.php" id="Storable.php"></a><h3>
+<i class="icon-file"></i>Storable.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Storable.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="NotValidException.php" id="NotValidException.php"></a><h3>
+<i class="icon-file"></i>NotValidException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file NotValidException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="InvalidIdException.php" id="InvalidIdException.php"></a><h3>
+<i class="icon-file"></i>InvalidIdException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file InvalidIdException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="SyncObject.php" id="SyncObject.php"></a><h3>
+<i class="icon-file"></i>SyncObject.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file SyncObject.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Payment/Abstract.php" id="Payment/Abstract.php"></a><h3>
+<i class="icon-file"></i>Payment/Abstract.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Payment/Abstract.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $paymentDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $paymentMethod</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $price</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Payment/InvalidMethodException.php" id="Payment/InvalidMethodException.php"></a><h3>
+<i class="icon-file"></i>Payment/InvalidMethodException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Payment/InvalidMethodException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="DeleteBySaving.php" id="DeleteBySaving.php"></a><h3>
+<i class="icon-file"></i>DeleteBySaving.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file DeleteBySaving.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Detail/Abstract.php" id="Detail/Abstract.php"></a><h3>
+<i class="icon-file"></i>Detail/Abstract.php<small style="float: right;padding-right: 10px;">14</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Detail/Abstract.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $amount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $description</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $ledgerAccountId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $price</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $rowOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for property $tax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for property $totalPriceExclTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for property $totalPriceInclTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for property $_deleted</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="ForbiddenException.php" id="ForbiddenException.php"></a><h3>
+<i class="icon-file"></i>ForbiddenException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file ForbiddenException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Envelope/Abstract.php" id="Envelope/Abstract.php"></a><h3>
+<i class="icon-file"></i>Envelope/Abstract.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Envelope/Abstract.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $email</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $sendMethod</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Envelope/InvalidMethodException.php" id="Envelope/InvalidMethodException.php"></a><h3>
+<i class="icon-file"></i>Envelope/InvalidMethodException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Envelope/InvalidMethodException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate/Envelope.php" id="Estimate/Envelope.php"></a><h3>
+<i class="icon-file"></i>Estimate/Envelope.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate/Envelope.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $estimateEmail</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate/Detail/Array.php" id="Estimate/Detail/Array.php"></a><h3>
+<i class="icon-file"></i>Estimate/Detail/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate/Detail/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate/Detail.php" id="Estimate/Detail.php"></a><h3>
+<i class="icon-file"></i>Estimate/Detail.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate/Detail.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $estimateId</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate/History/Array.php" id="Estimate/History/Array.php"></a><h3>
+<i class="icon-file"></i>Estimate/History/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate/History/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate/History.php" id="Estimate/History.php"></a><h3>
+<i class="icon-file"></i>Estimate/History.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate/History.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $action</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $description</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $userId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate/Array.php" id="Estimate/Array.php"></a><h3>
+<i class="icon-file"></i>Estimate/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate/Subject.php" id="Estimate/Subject.php"></a><h3>
+<i class="icon-file"></i>Estimate/Subject.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate/Subject.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate/Service.php" id="Estimate/Service.php"></a><h3>
+<i class="icon-file"></i>Estimate/Service.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate/Service.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Estimate.php" id="Estimate.php"></a><h3>
+<i class="icon-file"></i>Estimate.php<small style="float: right;padding-right: 10px;">37</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Estimate.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $address1</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $address2</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $attention</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $city</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $companyName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $contactId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for property $country</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for property $currency</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $customerId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for property $discount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for property $dueDateInterval</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for property $estimateDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $estimateHash</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for property $estimateId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for property $firstname</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for property $invoiceProfileId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>No DocBlock was found for property $invoiceProfileVersionId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No DocBlock was found for property $language</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No DocBlock was found for property $lastname</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No DocBlock was found for property $preText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No DocBlock was found for property $postText</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No DocBlock was found for property $sendMethod</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for property $showCustomerId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No DocBlock was found for property $showTax</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for property $signOnline</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No DocBlock was found for property $state</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>49</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>50</td>
+<td>No DocBlock was found for property $url</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No DocBlock was found for property $zipcode</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>52</td>
+<td>No DocBlock was found for property $details</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>No DocBlock was found for property $history</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No DocBlock was found for property $pdfUrl</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>57</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>72</td>
+<td>No DocBlock was found for property $_requiredAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="IncomingInvoice.php" id="IncomingInvoice.php"></a><h3>
+<i class="icon-file"></i>IncomingInvoice.php<small style="float: right;padding-right: 10px;">19</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file IncomingInvoice.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $conceptId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $contactId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $createdAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $currency</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $dueDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $invoiceDate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for property $invoiceId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for property $revision</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for property $state</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $totalPaid</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for property $totalUnpaid</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for property $updatedAt</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for property $details</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $history</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for property $payments</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>50</td>
+<td>No DocBlock was found for property $_requiredAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="InvalidStateException.php" id="InvalidStateException.php"></a><h3>
+<i class="icon-file"></i>InvalidStateException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file InvalidStateException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="InvalidServiceTypeException.php" id="InvalidServiceTypeException.php"></a><h3>
+<i class="icon-file"></i>InvalidServiceTypeException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file InvalidServiceTypeException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="ArrayObject/UndefinedMethodException.php" id="ArrayObject/UndefinedMethodException.php"></a><h3>
+<i class="icon-file"></i>ArrayObject/UndefinedMethodException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file ArrayObject/UndefinedMethodException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="ArrayObject/TypeMismatchException.php" id="ArrayObject/TypeMismatchException.php"></a><h3>
+<i class="icon-file"></i>ArrayObject/TypeMismatchException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file ArrayObject/TypeMismatchException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="ApiConnector.php" id="ApiConnector.php"></a><h3>
+<i class="icon-file"></i>ApiConnector.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file ApiConnector.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>47</td>
+<td>No short description for property $currentSession</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>438</td>
+<td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $ids in getByIds()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Service.php" id="Service.php"></a><h3>
+<i class="icon-file"></i>Service.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Service.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="CurrentSession.php" id="CurrentSession.php"></a><h3>
+<i class="icon-file"></i>CurrentSession.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file CurrentSession.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $email</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $language</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $name</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $timeZone</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $_readonlyAttr</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="NotFoundException.php" id="NotFoundException.php"></a><h3>
+<i class="icon-file"></i>NotFoundException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file NotFoundException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="NotLoggedInException.php" id="NotLoggedInException.php"></a><h3>
+<i class="icon-file"></i>NotLoggedInException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file NotLoggedInException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="ServerErrorException.php" id="ServerErrorException.php"></a><h3>
+<i class="icon-file"></i>ServerErrorException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file ServerErrorException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error/Array.php" id="Error/Array.php"></a><h3>
+<i class="icon-file"></i>Error/Array.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Error/Array.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Error.php" id="Error.php"></a><h3>
+<i class="icon-file"></i>Error.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Error.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $attribute</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $message</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="HttpClient.php" id="HttpClient.php"></a><h3>
+<i class="icon-file"></i>HttpClient.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file HttpClient.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>182</td>
+<td>Argument $data is missing from the Docblock of prePostRequest()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>195</td>
+<td>Argument $data is missing from the Docblock of prePutRequest()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Transport.php" id="Transport.php"></a><h3>
+<i class="icon-file"></i>Transport.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Transport.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Mapper.php" id="Mapper.php"></a><h3>
+<i class="icon-file"></i>Mapper.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Mapper.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Mapper/Exception.php" id="Mapper/Exception.php"></a><h3>
+<i class="icon-file"></i>Mapper/Exception.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Mapper/Exception.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Mapper/Mapable.php" id="Mapper/Mapable.php"></a><h3>
+<i class="icon-file"></i>Mapper/Mapable.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Mapper/Mapable.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="HttpClient/Exception.php" id="HttpClient/Exception.php"></a><h3>
+<i class="icon-file"></i>HttpClient/Exception.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file HttpClient/Exception.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="HttpClient/ConnectionErrorException.php" id="HttpClient/ConnectionErrorException.php"></a><h3>
+<i class="icon-file"></i>HttpClient/ConnectionErrorException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file HttpClient/ConnectionErrorException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="HttpClient/HttpStatusException.php" id="HttpClient/HttpStatusException.php"></a><h3>
+<i class="icon-file"></i>HttpClient/HttpStatusException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file HttpClient/HttpStatusException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="HttpClient/UnknownHttpStatusException.php" id="HttpClient/UnknownHttpStatusException.php"></a><h3>
+<i class="icon-file"></i>HttpClient/UnknownHttpStatusException.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file HttpClient/UnknownHttpStatusException.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="HttpClient/Oauth.php" id="HttpClient/Oauth.php"></a><h3>
+<i class="icon-file"></i>HttpClient/Oauth.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file HttpClient/Oauth.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $consumer</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $token</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2012-07-27T07:47:29+02:00.<br></footer></div>
+</div>
+</body>
+</html>

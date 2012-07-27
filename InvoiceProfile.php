@@ -1,17 +1,29 @@
 <?php
 
-/**
- * Interface for MoneybirdInvoiceProfile
- *
+/*
+ * InvoiceProfile class file
  */
-interface iMoneybirdInvoiceProfile extends iMoneybirdObject {
-	
-}
+
+namespace Moneybird;
 
 /**
- * Invoice in Moneybird
- *
+ * InvoiceProfile
  */
-class MoneybirdInvoiceProfile extends MoneybirdObject implements iMoneybirdInvoiceProfile {
+class InvoiceProfile extends Domainmodel_Abstract implements Mapper_Mapable {
 	
+	protected $id;
+	protected $name;
+	
+	protected $_readonlyAttr = array(
+		'id',
+		'name',
+	);
+	
+	public function save(ApiConnector $service) {
+		throw new Exception('Cannot save InvoiceProfile');
+	}
+	
+	public function delete(ApiConnector $service) {
+		throw new Exception('Cannot delete InvoiceProfile');
+	}
 }

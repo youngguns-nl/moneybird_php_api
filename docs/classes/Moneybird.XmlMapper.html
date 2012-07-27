@@ -1,0 +1,404 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Moneybird\XmlMapper</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">339</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Create XML mapper"><span class="description">Create XML mapper</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#fromXml" title="fromXml :: Create object from xml"><span class="description">Create object from xml</span><pre>fromXml()</pre></a></li>
+<li class="method public "><a href="#fromXmlString" title="fromXmlString :: Create object from xml string"><span class="description">Create object from xml string</span><pre>fromXmlString()</pre></a></li>
+<li class="method public "><a href="#mapFromStorage" title="mapFromStorage :: Create object from string"><span class="description">Create object from string</span><pre>mapFromStorage()</pre></a></li>
+<li class="method public "><a href="#mapToStorage" title="mapToStorage :: Map object"><span class="description">Map object</span><pre>mapToStorage()</pre></a></li>
+<li class="method public "><a href="#toXML" title="toXML :: Convert to XML"><span class="description">Convert to XML</span><pre>toXML()</pre></a></li>
+<li class="method public "><a href="#toXMLString" title="toXMLString :: Convert to XML string"><span class="description">Convert to XML string</span><pre>toXMLString()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#castValue" title="castValue :: Cast value based on type"><span class="description">Cast value based on type</span><pre>castValue()</pre></a></li>
+<li class="method protected "><a href="#mapObjectToElementName" title="mapObjectToElementName :: Maps object to XML element-name"><span class="description">Maps object to XML element-name</span><pre>mapObjectToElementName()</pre></a></li>
+<li class="method protected "><a href="#propertyToXmlkey" title="propertyToXmlkey :: Write property as xml key"><span class="description">Write property as xml key</span><pre>propertyToXmlkey()</pre></a></li>
+<li class="method protected "><a href="#propertyToXmlkeyCallback" title="propertyToXmlkeyCallback :: Callback to rewrite property to xml key"><span class="description">Callback to rewrite property to xml key</span><pre>propertyToXmlkeyCallback()</pre></a></li>
+<li class="method protected "><a href="#sortKeyLength" title="sortKeyLength :: Compare length of $a with length of $b"><span class="description">Compare length of $a with length of $b</span><pre>sortKeyLength()</pre></a></li>
+<li class="method protected "><a href="#strEndsWith" title="strEndsWith :: Test if $str ends with $end"><span class="description">Test if $str ends with $end</span><pre>strEndsWith()</pre></a></li>
+<li class="method protected "><a href="#xmlElementToClassname" title="xmlElementToClassname :: Map XMLelement to classname"><span class="description">Map XMLelement to classname</span><pre>xmlElementToClassname()</pre></a></li>
+<li class="method protected "><a href="#xmlkeyToProperty" title="xmlkeyToProperty :: Write xml key as property"><span class="description">Write xml key as property</span><pre>xmlkeyToProperty()</pre></a></li>
+<li class="method protected "><a href="#xmlkeyToPropertyCallback" title="xmlkeyToPropertyCallback :: Callback to rewrite xml key to property"><span class="description">Callback to rewrite xml key to property</span><pre>xmlkeyToPropertyCallback()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24objectMapper" title="$objectMapper :: Mapper for xml element names to class names"><span class="description">Mapper for xml element names to class names</span><pre>$objectMapper</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CMoneybird%5CXmlMapper" id="\Moneybird\XmlMapper"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Moneybird.html">Moneybird</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Moneybird.XmlMapper.html">XmlMapper</a>
+</li>
+</ul>
+<div href="../classes/Moneybird.XmlMapper.html" class="element class">
+<p class="short_description">Translates XML into objects and objects into XML</p>
+<div class="details">
+<p class="long_description"></p>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Create XML mapper</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="fromXml" id="fromXml"></a><div class="element clickable method public fromXml" data-toggle="collapse" data-target=".fromXml .collapse">
+<h2>Create object from xml</h2>
+<pre>fromXml(\Moneybird\SimpleXMLElement $xmlElement) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$xmlElement</h4>
+<code><a href="../classes/Moneybird.SimpleXMLElement.html">\Moneybird\SimpleXMLElement</a></code>
+</div>
+</div></div>
+</div>
+<a name="fromXmlString" id="fromXmlString"></a><div class="element clickable method public fromXmlString" data-toggle="collapse" data-target=".fromXmlString .collapse">
+<h2>Create object from xml string</h2>
+<pre>fromXmlString(string $xmlstring) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$xmlstring</h4>
+<code>string</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Moneybird.XmlMapper_InvalidXmlException.html">\Moneybird\XmlMapper_InvalidXmlException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="mapFromStorage" id="mapFromStorage"></a><div class="element clickable method public mapFromStorage" data-toggle="collapse" data-target=".mapFromStorage .collapse">
+<h2>Create object from string</h2>
+<pre>mapFromStorage(string $string) : <a href="../classes/Moneybird.Mapper_Mapable.html">\Moneybird\Mapper_Mapable</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$string</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Mapper_Mapable.html">\Moneybird\Mapper_Mapable</a></code></div>
+</div></div>
+</div>
+<a name="mapToStorage" id="mapToStorage"></a><div class="element clickable method public mapToStorage" data-toggle="collapse" data-target=".mapToStorage .collapse">
+<h2>Map object</h2>
+<pre>mapToStorage(\Moneybird\Mapper_Mapable $subject) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$subject</h4>
+<code><a href="../classes/Moneybird.Mapper_Mapable.html">\Moneybird\Mapper_Mapable</a></code><p>Object to map</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="toXML" id="toXML"></a><div class="element clickable method public toXML" data-toggle="collapse" data-target=".toXML .collapse">
+<h2>Convert to XML</h2>
+<pre>toXML(\Moneybird\Mapper_Mapable $subject) : <a href="../classes/Moneybird.SimpleXMLElement.html">\Moneybird\SimpleXMLElement</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$subject</h4>
+<code><a href="../classes/Moneybird.Mapper_Mapable.html">\Moneybird\Mapper_Mapable</a></code><p>Object to map to XML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.SimpleXMLElement.html">\Moneybird\SimpleXMLElement</a></code></div>
+</div></div>
+</div>
+<a name="toXMLString" id="toXMLString"></a><div class="element clickable method public toXMLString" data-toggle="collapse" data-target=".toXMLString .collapse">
+<h2>Convert to XML string</h2>
+<pre>toXMLString(\Moneybird\Mapper_Mapable $subject) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$subject</h4>
+<code><a href="../classes/Moneybird.Mapper_Mapable.html">\Moneybird\Mapper_Mapable</a></code><p>Object to map to XML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="castValue" id="castValue"></a><div class="element clickable method protected castValue" data-toggle="collapse" data-target=".castValue .collapse">
+<h2>Cast value based on type</h2>
+<pre>castValue(\Moneybird\SimpleXMLElement $xmlElement) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$xmlElement</h4>
+<code><a href="../classes/Moneybird.SimpleXMLElement.html">\Moneybird\SimpleXMLElement</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="mapObjectToElementName" id="mapObjectToElementName"></a><div class="element clickable method protected mapObjectToElementName" data-toggle="collapse" data-target=".mapObjectToElementName .collapse">
+<h2>Maps object to XML element-name</h2>
+<pre>mapObjectToElementName(\Moneybird\Mapper_Mapable $subject) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$subject</h4>
+<code><a href="../classes/Moneybird.Mapper_Mapable.html">\Moneybird\Mapper_Mapable</a></code><p>Object to map to XML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="propertyToXmlkey" id="propertyToXmlkey"></a><div class="element clickable method protected propertyToXmlkey" data-toggle="collapse" data-target=".propertyToXmlkey .collapse">
+<h2>Write property as xml key</h2>
+<pre>propertyToXmlkey(string $key) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="propertyToXmlkeyCallback" id="propertyToXmlkeyCallback"></a><div class="element clickable method protected propertyToXmlkeyCallback" data-toggle="collapse" data-target=".propertyToXmlkeyCallback .collapse">
+<h2>Callback to rewrite property to xml key</h2>
+<pre>propertyToXmlkeyCallback(Array $match) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$match</h4>
+<code>Array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="sortKeyLength" id="sortKeyLength"></a><div class="element clickable method protected sortKeyLength" data-toggle="collapse" data-target=".sortKeyLength .collapse">
+<h2>Compare length of $a with length of $b</h2>
+<pre>sortKeyLength(string $a, string $b) : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$a</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$b</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="strEndsWith" id="strEndsWith"></a><div class="element clickable method protected strEndsWith" data-toggle="collapse" data-target=".strEndsWith .collapse">
+<h2>Test if $str ends with $end</h2>
+<pre>strEndsWith(string $str, string $end) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$str</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$end</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="xmlElementToClassname" id="xmlElementToClassname"></a><div class="element clickable method protected xmlElementToClassname" data-toggle="collapse" data-target=".xmlElementToClassname .collapse">
+<h2>Map XMLelement to classname</h2>
+<pre>xmlElementToClassname(\Moneybird\SimpleXMLElement $xmlElement) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$xmlElement</h4>
+<code><a href="../classes/Moneybird.SimpleXMLElement.html">\Moneybird\SimpleXMLElement</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="xmlkeyToProperty" id="xmlkeyToProperty"></a><div class="element clickable method protected xmlkeyToProperty" data-toggle="collapse" data-target=".xmlkeyToProperty .collapse">
+<h2>Write xml key as property</h2>
+<pre>xmlkeyToProperty(string $key) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="xmlkeyToPropertyCallback" id="xmlkeyToPropertyCallback"></a><div class="element clickable method protected xmlkeyToPropertyCallback" data-toggle="collapse" data-target=".xmlkeyToPropertyCallback .collapse">
+<h2>Callback to rewrite xml key to property</h2>
+<pre>xmlkeyToPropertyCallback(Array $match) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$match</h4>
+<code>Array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24objectMapper" id="$objectMapper"> </a><div class="element clickable property protected $objectMapper" data-toggle="collapse" data-target=".$objectMapper .collapse">
+<h2>Mapper for xml element names to class names</h2>
+<pre>$objectMapper : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2012-07-27T07:47:28+02:00.<br></footer></div>
+</div>
+</body>
+</html>

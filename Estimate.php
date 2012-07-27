@@ -1,341 +1,237 @@
 <?php
 
-/**
- * Interface for MoneybirdEstimate
- *
+/*
+ * Estimate class file
  */
-interface iMoneybirdEstimate extends iMoneybirdObject {
 
+namespace Moneybird;
+
+/**
+ * Estimate
+ */
+class Estimate 
+	extends 
+		Domainmodel_Abstract 
+	implements 
+		Mapper_Mapable, 
+		Storable, 
+		Sendable, 
+		PdfDocument {
+	
+	protected $address1; 
+	protected $address2; 
+	protected $attention; 
+	protected $city; 
+	protected $companyName; 
+	protected $contactId;
+	protected $country; 
+	protected $createdAt;
+	protected $currency;
+	protected $customerId; 
+	protected $discount;
+	protected $dueDateInterval;
+	protected $estimateDate;
+	protected $estimateHash;
+	protected $estimateId;
+	protected $firstname; 
+	protected $id; 
+	protected $invoiceProfileId;
+	protected $invoiceProfileVersionId;
+	protected $language;
+	protected $lastname; 
+	protected $preText; 
+	protected $postText; 
+	protected $sendMethod; 
+	protected $showCustomerId;
+	protected $showTax;
+	protected $signOnline;
+	protected $state;
+	protected $updatedAt; 
+	protected $url;
+	protected $zipcode;
+	protected $details;
+	protected $history;
+	
+	protected $pdfUrl;
+	
+	protected $_readonlyAttr = array(
+		'createdAt',
+		'estimateHash',
+		'id', 
+		'invoiceProfileVersionId',
+		'sendMethod', 
+		'signOnline',
+		'state',
+		'updatedAt', 
+		'url',
+		'history',
+		
+		'pdfUrl',
+	);
+	
+	protected $_requiredAttr = array(
+		array('contactId', 'companyName', 'firstname', 'lastname'),
+		'estimateDate',
+	);
+	
+	/**
+	 * Construct a new estimate
+	 *
+	 * @param array $data
+	 * @param Contact $contact
+	 */
+	public function __construct(array $data = array(), Contact $contact = null) {
+		if (!is_null($contact)) {
+			$this->setContact($contact);
+		}
+		parent::__construct($data);
+	}
+	
+	/**
+	 * Set Id
+	 * @param int $value
+	 * @throws InvalidIdException
+	 */
+	protected function setIdAttr($value) {
+		if (!is_null($value) && !preg_match('/^[0-9]+$/D', $value)) {
+			throw new InvalidIdException('Invalid id: ' . $value);
+		}
+
+		$this->id = $value;
+	}
+	
+	/**
+	 * Set url
+	 * @param string $value 
+	 */
+	protected function setUrlAttr($value = null) {
+		if (!is_null($value)) {
+			$this->url = $value;
+			$this->pdfUrl = $value.'.pdf';
+		}
+	}
+	
+	/**
+	 * Set details
+	 * @param Estimate_Detail_Array $value 
+	 */
+	protected function setDetailsAttr(Estimate_Detail_Array $value = null) {
+		if (!is_null($value)) {
+			$this->details->merge($value);
+		}
+	}
+	
+	/**
+	 * Set history
+	 * @param Estimate_History_Array $value 
+	 */
+	protected function setHistoryAttr(Estimate_History_Array $value = null) {
+		if (!is_null($value)) {
+			$this->history->merge($value);
+		}
+	}
+	
+	/**
+	 * Initialize vars 
+	 */
+	protected function _initVars() {
+		$this->details = new Estimate_Detail_Array();
+		$this->history = new Estimate_History_Array();
+		$this->estimateDate = new \DateTime();
+	}
+	
+	/**
+	 * Send the estimate
+	 * @param Service $service
+	 * @param string $method Send method (email|hand|post); default: email
+	 * @param type $email Address to send to; default: contact e-mail
+	 * @param type $message
+	 * @return self 
+	 */
+	public function send(Service $service, $method='email', $email=null, $message=null) {
+		return $this->reload(
+			$service->send($this, $method, $email, $message)
+		);
+	}
+	
+	/**
+	 * Mark the estimate as sent
+	 * @param Estimate_Service $service
+	 * @return self 
+	 */
+	public function markAsSent(Estimate_Service $service) {
+		return $this->send($service, 'hand');
+	}
+	
+	/**
+	 * Get the raw PDF content
+	 * @param Service $service
+	 * @return string
+	 * @throws InvalidStateException
+	 */
+	public function getPdf(Service $service) {
+		if ($this->state == 'draft') {
+			throw new InvalidStateException('Send estimate before requesting PDF document');
+		}
+		return $service->getPdf($this);
+	}
+	
 	/**
 	 * Copy info from contact to estimate
 	 *
 	 * @access public
-	 * @param iMoneybirdContact $contact
+	 * @param Contact $contact
+	 * @return self
 	 */
-	public function setContact(iMoneybirdContact $contact);
-
-	/**
-	 * Save estimate
-	 *
-	 * @return MoneybirdEstimate
-	 * @access public
-	 */
-	public function save();
-
-	/**
-	 * Delete estimate
-	 *
-	 * @access public
-	 */
-	public function delete();
-
-	/**
-	 * Send an estimate
-	 *
-	 * @access public
-	 * @param MoneybirdEstimateSendInformation optional $sendinfo information to send estimate
-	 */
-	public function send(MoneybirdEstimateSendInformation $sendinfo = null);
-
-	/**
-	 * Mark estimate as send
-	 *
-	 * @access public
-	 */
-	public function markAsSent();
-
-	/**
-	 * Get estimate as PDF
-	 *
-	 * @access public
-	 */
-	public function getPdf();
-}
-
-/**
- * Interface for MoneybirdEstimateDetail
- *
- */
-interface iMoneybirdEstimateDetail extends iMoneybirdObject {
-	
-}
-
-/**
- * Estimate in Moneybird
- *
- */
-class MoneybirdEstimate extends MoneybirdObject implements iMoneybirdEstimate {
-
-	/**
-	 * Load object from XML
-	 *
-	 * @access public
-	 * @param SimpleXMLElement $xml
-	 */
-	public function fromXML(SimpleXMLElement $xml) {
-		parent::fromXML($xml, array(
-			'history' => 'MoneybirdEstimateHistoryItem',
-			'details' => 'MoneybirdEstimateLine',
-		));
+	public function setContact(Contact $contact) {
+		$this->contactId = $contact->id;
+		$properties = array(
+			'address1', 
+			'address2', 
+			'attention', 
+			'city', 
+			'companyName', 
+			'country', 
+			'customerId', 
+			'firstname', 
+			'lastname', 
+			'zipcode',
+		);
+		foreach ($properties as $property) {
+			$this->$property = $contact->$property;
+		}
+		return $this;
 	}
-
+	
 	/**
-	 * Convert object to XML
-	 *
-	 * @access public
-	 * @return string
+	 * Deletes an estimate
+	 * @param Service $service
 	 */
-	public function toXML() {
-		return parent::toXML(
-				array(
-				'details' => 'details_attributes',
-				), null, null, array('history',)
+	public function delete(Service $service) {
+		$service->delete($this);
+	}
+	
+	/**
+	 * Updates or inserts an estimate
+	 * @param Service $service
+	 * @return self
+	 * @throws NotValidException
+	 */
+	public function save(Service $service) {
+		if (!$this->validate()){
+			throw new NotValidException('Unable to validate estimate');
+		}
+		
+		return $this->reload(
+			$service->save($this)
 		);
 	}
-
-	/**
-	 * Copy info from contact to estimate
-	 *
-	 * @access public
-	 * @param iMoneybirdContact $contact
-	 */
-	public function setContact(iMoneybirdContact $contact) {
-		$this->contact_id = $contact->id;
-		foreach ($contact->getProperties() as $property => $value) {
-			$this->$property = $value;
-		}
-	}
-
-	/**
-	 * Save estimate
-	 *
-	 * @return MoneybirdEstimate
-	 * @access public
-	 */
-	public function save() {
-		return $this->api->saveEstimate($this);
-	}
-
-	/**
-	 * Delete estimate
-	 *
-	 * @access public
-	 */
-	public function delete() {
-		$this->api->deleteEstimate($this);
-	}
-
-	/**
-	 * Send an estimate
-	 *
-	 * @access public
-	 * @param MoneybirdEstimateSendInformation optional $sendinfo information to send estimate
-	 */
-	public function send(MoneybirdEstimateSendInformation $sendinfo = null) {
-		$this->api->sendEstimate($this, $sendinfo);
-	}
-
-	/**
-	 * Mark estimate as send
-	 *
-	 * @access public
-	 */
-	public function markAsSent() {
-		$this->send(new MoneybirdEstimateSendInformation('hand'));
-	}
-
-	/**
-	 * Get estimate as PDF
-	 *
-	 * @access public
-	 */
-	public function getPdf() {
-		return $this->api->getEstimatePdf($this);
-	}
-
-}
-
-/**
- * EstimateDetail in Moneybird
- *
- */
-class MoneybirdEstimateDetail extends MoneybirdObject implements iMoneybirdEstimateDetail {
 	
-}
-
-/**
- * EstimateLine in Moneybird
- *
- */
-class MoneybirdEstimateLine extends MoneybirdEstimateDetail {
-
 	/**
-	 * Line is marked for deletion
-	 * @var bool
+	 * Validate object
+	 * @return bool
 	 */
-	protected $deleted = false;
-
-	/**
-	 * Load object from XML
-	 *
-	 * @access public
-	 * @param SimpleXMLElement $xml
-	 */
-	public function fromXML(SimpleXMLElement $xml) {
-		parent::fromXML($xml);
-		$this->amount = $this->amount_plain;
+	protected function validate() {
+		return count($this->details) > 0 && parent::validate();
 	}
-
-	/**
-	 * Convert to XML string
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function toXML() {
-		$keyOpen = '<detail type="EstimateDetail"';
-		if ($this->deleted) {
-			$keyOpen .= ' _destroy="1"';
-		}
-		$keyOpen .= '>';
-
-		return parent::toXML(
-				null, $keyOpen, '</detail>', array(
-				'total_price_excl_tax',
-				'total_price_incl_tax',
-				'amount_plain',
-				)
-		);
-	}
-
-	/**
-	 * Mark line for deletion
-	 *
-	 * @access public
-	 */
-	public function delete() {
-		$this->deleted = true;
-	}
-
-}
-
-/**
- * EstimateHistoryItem in Moneybird
- *
- */
-class MoneybirdEstimateHistoryItem extends MoneybirdEstimateDetail {
-	
-}
-
-/**
- * EstimateSendInformation for Moneybird
- *
- */
-class MoneybirdEstimateSendInformation extends MoneybirdEstimateDetail {
-
-	/**
-	 * Constructor
-	 *
-	 * @access public
-	 * @param string $sendMethod (email|post|hand)
-	 * @param string $email Address to send to
-	 * @param string $message Message in mail body
-	 * @throws MoneybirdUnknownSendMethodException
-	 */
-	public function __construct($sendMethod='email', $email=null, $message=null) {
-		if (!in_array($sendMethod, array('hand', 'email', 'post'))) {
-			throw new MoneybirdUnknownSendMethodException('Unknown send method: ' . $sendMethod);
-		}
-		$this->properties['sendMethod'] = $sendMethod;
-
-		if ($sendMethod == 'email') {
-			$this->properties['email'] = $email;
-			$this->properties['message'] = $message;
-		}
-	}
-
-	/**
-	 * Convert to XML string
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function toXML() {
-		$xml = '<estimate>' . PHP_EOL;
-		$xml .= '   <send-method>' . $this->properties['sendMethod'] . '</send-method>' . PHP_EOL;
-		if (!empty($this->properties['email'])) {
-			$xml .= '   <email>' . htmlspecialchars($this->properties['email']) . '</email>' . PHP_EOL;
-		}
-		if (!empty($this->properties['message'])) {
-			$xml .= '   <estimate-email>' . htmlspecialchars($this->properties['message']) . '</estimate-email>' . PHP_EOL;
-		}
-		$xml .= '</estimate>' . PHP_EOL;
-
-		return $xml;
-	}
-
-	/**
-	 * Load object from XML
-	 *
-	 * @access public
-	 * @param SimpleXMLElement $xml
-	 */
-	public function fromXML(SimpleXMLElement $xml) {
-		throw new Exception(__CLASS__ . ' cannot be loaded from XML');
-	}
-
-}
-
-/**
- * Advanced filter for finding estimates
- *
- */
-class MoneybirdAdvancedEstimateFilter extends MoneybirdObject implements iMoneybirdFilter {
-
-	/**
-	 * Constructor
-	 *
-	 * @access public
-	 * @param DateTime $fromDate Start date
-	 * @param DateTime $fromDate End date
-	 * @param string|array $states States to search (draft|open|late|paid)
-	 * @throws MoneybirdUnknownEstimateStateException
-	 */
-	public function __construct(DateTime $fromDate, DateTime $toDate, $states) {
-		$statesAvailable = array('draft', 'open', 'accepted', 'rejected', 'billed', 'deleted');
-
-		$this->properties['from_date'] = $fromDate;
-		$this->properties['to_date'] = $toDate;
-
-		$this->properties['states'] = array();
-		foreach ((array) $states as $state) {
-			if (!in_array($state, $statesAvailable)) {
-				throw new MoneybirdUnknownEstimateStateException('Unknown state for estimates: ' . $state);
-			}
-			$this->properties['states'][] = $state;
-		}
-	}
-
-	/**
-	 * Load object from XML
-	 *
-	 * @access public
-	 * @param SimpleXMLElement $xml
-	 */
-	public function fromXML(SimpleXMLElement $xml) {
-		throw new Exception(__CLASS__ . ' cannot be loaded from XML');
-	}
-
-	/**
-	 * Convert to XML string
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function toXML() {
-		return parent::toXML(
-				null, '<filter>', '</filter>'
-		);
-	}
-
 }

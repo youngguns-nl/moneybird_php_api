@@ -1,0 +1,823 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Moneybird\Estimate</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">339</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Construct a new estimate"><span class="description">Construct a new estimate</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#__get" title="__get :: Proxy to disclose method"><span class="description">Proxy to disclose method</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#__set" title="__set :: Magic set method
+Do not allow set"><span class="description">Magic set method
+Do not allow set</span><pre>__set()</pre></a></li>
+<li class="method public "><a href="#delete" title="delete :: Deletes an estimate"><span class="description">Deletes an estimate</span><pre>delete()</pre></a></li>
+<li class="method public inherited"><a href="#disclose" title="disclose :: Discloses all values of the object that should be visible in the view layer."><span class="description">Discloses all values of the object that should be visible in the view layer.</span><pre>disclose()</pre></a></li>
+<li class="method public inherited"><a href="#getId" title="getId :: Return the objects id or null"><span class="description">Return the objects id or null</span><pre>getId()</pre></a></li>
+<li class="method public "><a href="#getPdf" title="getPdf :: Get the raw PDF content"><span class="description">Get the raw PDF content</span><pre>getPdf()</pre></a></li>
+<li class="method public "><a href="#markAsSent" title="markAsSent :: Mark the estimate as sent"><span class="description">Mark the estimate as sent</span><pre>markAsSent()</pre></a></li>
+<li class="method public "><a href="#save" title="save :: Updates or inserts an estimate"><span class="description">Updates or inserts an estimate</span><pre>save()</pre></a></li>
+<li class="method public "><a href="#send" title="send :: Send the estimate"><span class="description">Send the estimate</span><pre>send()</pre></a></li>
+<li class="method public "><a href="#setContact" title="setContact :: Copy info from contact to estimate"><span class="description">Copy info from contact to estimate</span><pre>setContact()</pre></a></li>
+<li class="method public inherited"><a href="#setData" title="setData :: Sets data"><span class="description">Sets data</span><pre>setData()</pre></a></li>
+<li class="method public inherited"><a href="#toArray" title="toArray :: Get array representation of Subject"><span class="description">Get array representation of Subject</span><pre>toArray()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#_initDisclosedAttributes" title="_initDisclosedAttributes :: Create disclosedAttributes array"><span class="description">Create disclosedAttributes array</span><pre>_initDisclosedAttributes()</pre></a></li>
+<li class="method protected "><a href="#_initVars" title="_initVars :: Initialize vars"><span class="description">Initialize vars</span><pre>_initVars()</pre></a></li>
+<li class="method protected inherited"><a href="#extract" title="extract :: Extract will take an array and try to automatically map the array values
+to properties in this object"><span class="description">Extract will take an array and try to automatically map the array values
+to properties in this object</span><pre>extract()</pre></a></li>
+<li class="method protected inherited"><a href="#init" title="init :: Initialize"><span class="description">Initialize</span><pre>init()</pre></a></li>
+<li class="method protected inherited"><a href="#reload" title="reload :: Adopt the data from $self"><span class="description">Adopt the data from $self</span><pre>reload()</pre></a></li>
+<li class="method protected inherited"><a href="#selfToArray" title="selfToArray :: Returns an array representation of this object"><span class="description">Returns an array representation of this object</span><pre>selfToArray()</pre></a></li>
+<li class="method protected "><a href="#setDetailsAttr" title="setDetailsAttr :: Set details"><span class="description">Set details</span><pre>setDetailsAttr()</pre></a></li>
+<li class="method protected "><a href="#setHistoryAttr" title="setHistoryAttr :: Set history"><span class="description">Set history</span><pre>setHistoryAttr()</pre></a></li>
+<li class="method protected "><a href="#setIdAttr" title="setIdAttr :: Set Id"><span class="description">Set Id</span><pre>setIdAttr()</pre></a></li>
+<li class="method protected "><a href="#setUrlAttr" title="setUrlAttr :: Set url"><span class="description">Set url</span><pre>setUrlAttr()</pre></a></li>
+<li class="method protected "><a href="#validate" title="validate :: Validate object"><span class="description">Validate object</span><pre>validate()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24_discloseAttr" title="$_discloseAttr :: Array containing attributes to disclose"><span class="description">Array containing attributes to disclose</span><pre>$_discloseAttr</pre></a></li>
+<li class="property protected inherited"><a href="#%24_disclosure" title="$_disclosure :: Disclosure"><span class="description">Disclosure</span><pre>$_disclosure</pre></a></li>
+<li class="property protected "><a href="#%24_readonlyAttr" title="$_readonlyAttr :: Array of attributes that can't be modified"><span class="description">Array of attributes that can't be modified</span><pre>$_readonlyAttr</pre></a></li>
+<li class="property protected "><a href="#%24_requiredAttr" title="$_requiredAttr :: Array of attributes that are required"><span class="description">Array of attributes that are required</span><pre>$_requiredAttr</pre></a></li>
+<li class="property protected "><a href="#%24address1" title="$address1 :: "><span class="description">$address1</span><pre>$address1</pre></a></li>
+<li class="property protected "><a href="#%24address2" title="$address2 :: "><span class="description">$address2</span><pre>$address2</pre></a></li>
+<li class="property protected "><a href="#%24attention" title="$attention :: "><span class="description">$attention</span><pre>$attention</pre></a></li>
+<li class="property protected "><a href="#%24city" title="$city :: "><span class="description">$city</span><pre>$city</pre></a></li>
+<li class="property protected "><a href="#%24companyName" title="$companyName :: "><span class="description">$companyName</span><pre>$companyName</pre></a></li>
+<li class="property protected "><a href="#%24contactId" title="$contactId :: "><span class="description">$contactId</span><pre>$contactId</pre></a></li>
+<li class="property protected "><a href="#%24country" title="$country :: "><span class="description">$country</span><pre>$country</pre></a></li>
+<li class="property protected "><a href="#%24createdAt" title="$createdAt :: "><span class="description">$createdAt</span><pre>$createdAt</pre></a></li>
+<li class="property protected "><a href="#%24currency" title="$currency :: "><span class="description">$currency</span><pre>$currency</pre></a></li>
+<li class="property protected "><a href="#%24customerId" title="$customerId :: "><span class="description">$customerId</span><pre>$customerId</pre></a></li>
+<li class="property protected "><a href="#%24details" title="$details :: "><span class="description">$details</span><pre>$details</pre></a></li>
+<li class="property protected "><a href="#%24discount" title="$discount :: "><span class="description">$discount</span><pre>$discount</pre></a></li>
+<li class="property protected "><a href="#%24dueDateInterval" title="$dueDateInterval :: "><span class="description">$dueDateInterval</span><pre>$dueDateInterval</pre></a></li>
+<li class="property protected "><a href="#%24estimateDate" title="$estimateDate :: "><span class="description">$estimateDate</span><pre>$estimateDate</pre></a></li>
+<li class="property protected "><a href="#%24estimateHash" title="$estimateHash :: "><span class="description">$estimateHash</span><pre>$estimateHash</pre></a></li>
+<li class="property protected "><a href="#%24estimateId" title="$estimateId :: "><span class="description">$estimateId</span><pre>$estimateId</pre></a></li>
+<li class="property protected "><a href="#%24firstname" title="$firstname :: "><span class="description">$firstname</span><pre>$firstname</pre></a></li>
+<li class="property protected "><a href="#%24history" title="$history :: "><span class="description">$history</span><pre>$history</pre></a></li>
+<li class="property protected "><a href="#%24id" title="$id :: "><span class="description">$id</span><pre>$id</pre></a></li>
+<li class="property protected "><a href="#%24invoiceProfileId" title="$invoiceProfileId :: "><span class="description">$invoiceProfileId</span><pre>$invoiceProfileId</pre></a></li>
+<li class="property protected "><a href="#%24invoiceProfileVersionId" title="$invoiceProfileVersionId :: "><span class="description">$invoiceProfileVersionId</span><pre>$invoiceProfileVersionId</pre></a></li>
+<li class="property protected "><a href="#%24language" title="$language :: "><span class="description">$language</span><pre>$language</pre></a></li>
+<li class="property protected "><a href="#%24lastname" title="$lastname :: "><span class="description">$lastname</span><pre>$lastname</pre></a></li>
+<li class="property protected "><a href="#%24pdfUrl" title="$pdfUrl :: "><span class="description">$pdfUrl</span><pre>$pdfUrl</pre></a></li>
+<li class="property protected "><a href="#%24postText" title="$postText :: "><span class="description">$postText</span><pre>$postText</pre></a></li>
+<li class="property protected "><a href="#%24preText" title="$preText :: "><span class="description">$preText</span><pre>$preText</pre></a></li>
+<li class="property protected "><a href="#%24sendMethod" title="$sendMethod :: "><span class="description">$sendMethod</span><pre>$sendMethod</pre></a></li>
+<li class="property protected "><a href="#%24showCustomerId" title="$showCustomerId :: "><span class="description">$showCustomerId</span><pre>$showCustomerId</pre></a></li>
+<li class="property protected "><a href="#%24showTax" title="$showTax :: "><span class="description">$showTax</span><pre>$showTax</pre></a></li>
+<li class="property protected "><a href="#%24signOnline" title="$signOnline :: "><span class="description">$signOnline</span><pre>$signOnline</pre></a></li>
+<li class="property protected "><a href="#%24state" title="$state :: "><span class="description">$state</span><pre>$state</pre></a></li>
+<li class="property protected "><a href="#%24updatedAt" title="$updatedAt :: "><span class="description">$updatedAt</span><pre>$updatedAt</pre></a></li>
+<li class="property protected "><a href="#%24url" title="$url :: "><span class="description">$url</span><pre>$url</pre></a></li>
+<li class="property protected "><a href="#%24zipcode" title="$zipcode :: "><span class="description">$zipcode</span><pre>$zipcode</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CMoneybird%5CEstimate" id="\Moneybird\Estimate"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Moneybird.html">Moneybird</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Moneybird.Estimate.html">Estimate</a>
+</li>
+</ul>
+<div href="../classes/Moneybird.Estimate.html" class="element class">
+<p class="short_description">Estimate</p>
+<div class="details">
+<p class="long_description"></p>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Construct a new estimate</h2>
+<pre>__construct(array $data, \Moneybird\Contact $contact) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code>
+</div>
+<div class="subelement argument">
+<h4>$contact</h4>
+<code><a href="../classes/Moneybird.Contact.html">\Moneybird\Contact</a></code>
+</div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Proxy to disclose method</h2>
+<pre>__get(String $key) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::__get()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>String</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__set" id="__set"></a><div class="element clickable method public __set" data-toggle="collapse" data-target=".__set .collapse">
+<h2>Magic set method
+Do not allow set</h2>
+<pre>__set(string $name, mixed $value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::__set()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Moneybird.Domainmodel_Exception.html">\Moneybird\Domainmodel_Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>Deletes an estimate</h2>
+<pre>delete(\Moneybird\Service $service) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$service</h4>
+<code><a href="../classes/Moneybird.Service.html">\Moneybird\Service</a></code>
+</div>
+</div></div>
+</div>
+<a name="disclose" id="disclose"></a><div class="element clickable method public disclose" data-toggle="collapse" data-target=".disclose .collapse">
+<h2>Discloses all values of the object that should be visible in the view layer.</h2>
+<pre>disclose(mixed $key) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::disclose()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>mixed</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
+<h2>Return the objects id or null</h2>
+<pre>getId() : int</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Sendable::getId()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="getPdf" id="getPdf"></a><div class="element clickable method public getPdf" data-toggle="collapse" data-target=".getPdf .collapse">
+<h2>Get the raw PDF content</h2>
+<pre>getPdf(\Moneybird\Service $service) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$service</h4>
+<code><a href="../classes/Moneybird.Service.html">\Moneybird\Service</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Moneybird.InvalidStateException.html">\Moneybird\InvalidStateException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="markAsSent" id="markAsSent"></a><div class="element clickable method public markAsSent" data-toggle="collapse" data-target=".markAsSent .collapse">
+<h2>Mark the estimate as sent</h2>
+<pre>markAsSent(\Moneybird\Estimate_Service $service) : \Moneybird\self</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$service</h4>
+<code><a href="../classes/Moneybird.Estimate_Service.html">\Moneybird\Estimate_Service</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\self</code></div>
+</div></div>
+</div>
+<a name="save" id="save"></a><div class="element clickable method public save" data-toggle="collapse" data-target=".save .collapse">
+<h2>Updates or inserts an estimate</h2>
+<pre>save(\Moneybird\Service $service) : \Moneybird\self</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$service</h4>
+<code><a href="../classes/Moneybird.Service.html">\Moneybird\Service</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Moneybird.NotValidException.html">\Moneybird\NotValidException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\self</code></div>
+</div></div>
+</div>
+<a name="send" id="send"></a><div class="element clickable method public send" data-toggle="collapse" data-target=".send .collapse">
+<h2>Send the estimate</h2>
+<pre>send(\Moneybird\Service $service, string $method, \Moneybird\type $email, \Moneybird\type $message) : \Moneybird\self</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$service</h4>
+<code><a href="../classes/Moneybird.Service.html">\Moneybird\Service</a></code>
+</div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>Send method (email|hand|post); default: email</p>
+</div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\Moneybird\type</code><p>Address to send to; default: contact e-mail</p>
+</div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>\Moneybird\type</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\self</code></div>
+</div></div>
+</div>
+<a name="setContact" id="setContact"></a><div class="element clickable method public setContact" data-toggle="collapse" data-target=".setContact .collapse">
+<h2>Copy info from contact to estimate</h2>
+<pre>setContact(\Moneybird\Contact $contact) : \Moneybird\self</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$contact</h4>
+<code><a href="../classes/Moneybird.Contact.html">\Moneybird\Contact</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\self</code></div>
+</div></div>
+</div>
+<a name="setData" id="setData"></a><div class="element clickable method public setData" data-toggle="collapse" data-target=".setData .collapse">
+<h2>Sets data</h2>
+<pre>setData(array $data) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::setData()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a name="toArray" id="toArray"></a><div class="element clickable method public toArray" data-toggle="collapse" data-target=".toArray .collapse">
+<h2>Get array representation of Subject</h2>
+<pre>toArray() : Array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Mapper_Mapable::toArray()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>Array</code></div>
+</div></div>
+</div>
+<a name="_initDisclosedAttributes" id="_initDisclosedAttributes"></a><div class="element clickable method protected _initDisclosedAttributes" data-toggle="collapse" data-target="._initDisclosedAttributes .collapse">
+<h2>Create disclosedAttributes array</h2>
+<pre>_initDisclosedAttributes() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::_initDisclosedAttributes()</td>
+</tr></table>
+</div></div>
+</div>
+<a name="_initVars" id="_initVars"></a><div class="element clickable method protected _initVars" data-toggle="collapse" data-target="._initVars .collapse">
+<h2>Initialize vars</h2>
+<pre>_initVars() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="extract" id="extract"></a><div class="element clickable method protected extract" data-toggle="collapse" data-target=".extract .collapse">
+<h2>Extract will take an array and try to automatically map the array values
+to properties in this object</h2>
+<pre>extract(array $values, Array $filter) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>protected</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::extract()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$values</h4>
+<code>Array</code>
+</div>
+<div class="subelement argument">
+<h4>$filter</h4>
+<code>Array</code>
+</div>
+</div></div>
+</div>
+<a name="init" id="init"></a><div class="element clickable method protected init" data-toggle="collapse" data-target=".init .collapse">
+<h2>Initialize</h2>
+<pre>init() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::init()</td>
+</tr></table>
+</div></div>
+</div>
+<a name="reload" id="reload"></a><div class="element clickable method protected reload" data-toggle="collapse" data-target=".reload .collapse">
+<h2>Adopt the data from $self</h2>
+<pre>reload(\Moneybird\Domainmodel_Abstract $self) : \Moneybird\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::reload()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$self</h4>
+<code><a href="../classes/Moneybird.Domainmodel_Abstract.html">\Moneybird\Domainmodel_Abstract</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\self</code></div>
+</div></div>
+</div>
+<a name="selfToArray" id="selfToArray"></a><div class="element clickable method protected selfToArray" data-toggle="collapse" data-target=".selfToArray .collapse">
+<h2>Returns an array representation of this object</h2>
+<pre>selfToArray(array $filter) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>protected</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::selfToArray()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter</h4>
+<code></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="setDetailsAttr" id="setDetailsAttr"></a><div class="element clickable method protected setDetailsAttr" data-toggle="collapse" data-target=".setDetailsAttr .collapse">
+<h2>Set details</h2>
+<pre>setDetailsAttr(\Moneybird\Estimate_Detail_Array $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code><a href="../classes/Moneybird.Estimate_Detail_Array.html">\Moneybird\Estimate_Detail_Array</a></code>
+</div>
+</div></div>
+</div>
+<a name="setHistoryAttr" id="setHistoryAttr"></a><div class="element clickable method protected setHistoryAttr" data-toggle="collapse" data-target=".setHistoryAttr .collapse">
+<h2>Set history</h2>
+<pre>setHistoryAttr(\Moneybird\Estimate_History_Array $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code><a href="../classes/Moneybird.Estimate_History_Array.html">\Moneybird\Estimate_History_Array</a></code>
+</div>
+</div></div>
+</div>
+<a name="setIdAttr" id="setIdAttr"></a><div class="element clickable method protected setIdAttr" data-toggle="collapse" data-target=".setIdAttr .collapse">
+<h2>Set Id</h2>
+<pre>setIdAttr(int $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>int</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Moneybird.InvalidIdException.html">\Moneybird\InvalidIdException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="setUrlAttr" id="setUrlAttr"></a><div class="element clickable method protected setUrlAttr" data-toggle="collapse" data-target=".setUrlAttr .collapse">
+<h2>Set url</h2>
+<pre>setUrlAttr(string $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a name="validate" id="validate"></a><div class="element clickable method protected validate" data-toggle="collapse" data-target=".validate .collapse">
+<h2>Validate object</h2>
+<pre>validate() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24_discloseAttr" id="$_discloseAttr"> </a><div class="element clickable property protected $_discloseAttr" data-toggle="collapse" data-target=".$_discloseAttr .collapse">
+<h2>Array containing attributes to disclose</h2>
+<pre>$_discloseAttr : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>protected</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::$$_discloseAttr</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_disclosure" id="$_disclosure"> </a><div class="element clickable property protected $_disclosure" data-toggle="collapse" data-target=".$_disclosure .collapse">
+<h2>Disclosure</h2>
+<pre>$_disclosure : <a href="../classes/Moneybird.Disclosure.html">\Moneybird\Disclosure</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>protected</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel_Abstract::$$_disclosure</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_readonlyAttr" id="$_readonlyAttr"> </a><div class="element clickable property protected $_readonlyAttr" data-toggle="collapse" data-target=".$_readonlyAttr .collapse">
+<h2>Array of attributes that can't be modified</h2>
+<pre>$_readonlyAttr : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24_requiredAttr" id="$_requiredAttr"> </a><div class="element clickable property protected $_requiredAttr" data-toggle="collapse" data-target=".$_requiredAttr .collapse">
+<h2>Array of attributes that are required</h2>
+<pre>$_requiredAttr : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24address1" id="$address1"> </a><div class="element clickable property protected $address1" data-toggle="collapse" data-target=".$address1 .collapse">
+<h2>$address1</h2>
+<pre>$address1 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24address2" id="$address2"> </a><div class="element clickable property protected $address2" data-toggle="collapse" data-target=".$address2 .collapse">
+<h2>$address2</h2>
+<pre>$address2 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24attention" id="$attention"> </a><div class="element clickable property protected $attention" data-toggle="collapse" data-target=".$attention .collapse">
+<h2>$attention</h2>
+<pre>$attention </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24city" id="$city"> </a><div class="element clickable property protected $city" data-toggle="collapse" data-target=".$city .collapse">
+<h2>$city</h2>
+<pre>$city </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24companyName" id="$companyName"> </a><div class="element clickable property protected $companyName" data-toggle="collapse" data-target=".$companyName .collapse">
+<h2>$companyName</h2>
+<pre>$companyName </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24contactId" id="$contactId"> </a><div class="element clickable property protected $contactId" data-toggle="collapse" data-target=".$contactId .collapse">
+<h2>$contactId</h2>
+<pre>$contactId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24country" id="$country"> </a><div class="element clickable property protected $country" data-toggle="collapse" data-target=".$country .collapse">
+<h2>$country</h2>
+<pre>$country </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24createdAt" id="$createdAt"> </a><div class="element clickable property protected $createdAt" data-toggle="collapse" data-target=".$createdAt .collapse">
+<h2>$createdAt</h2>
+<pre>$createdAt </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24currency" id="$currency"> </a><div class="element clickable property protected $currency" data-toggle="collapse" data-target=".$currency .collapse">
+<h2>$currency</h2>
+<pre>$currency </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24customerId" id="$customerId"> </a><div class="element clickable property protected $customerId" data-toggle="collapse" data-target=".$customerId .collapse">
+<h2>$customerId</h2>
+<pre>$customerId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24details" id="$details"> </a><div class="element clickable property protected $details" data-toggle="collapse" data-target=".$details .collapse">
+<h2>$details</h2>
+<pre>$details </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24discount" id="$discount"> </a><div class="element clickable property protected $discount" data-toggle="collapse" data-target=".$discount .collapse">
+<h2>$discount</h2>
+<pre>$discount </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24dueDateInterval" id="$dueDateInterval"> </a><div class="element clickable property protected $dueDateInterval" data-toggle="collapse" data-target=".$dueDateInterval .collapse">
+<h2>$dueDateInterval</h2>
+<pre>$dueDateInterval </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24estimateDate" id="$estimateDate"> </a><div class="element clickable property protected $estimateDate" data-toggle="collapse" data-target=".$estimateDate .collapse">
+<h2>$estimateDate</h2>
+<pre>$estimateDate </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24estimateHash" id="$estimateHash"> </a><div class="element clickable property protected $estimateHash" data-toggle="collapse" data-target=".$estimateHash .collapse">
+<h2>$estimateHash</h2>
+<pre>$estimateHash </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24estimateId" id="$estimateId"> </a><div class="element clickable property protected $estimateId" data-toggle="collapse" data-target=".$estimateId .collapse">
+<h2>$estimateId</h2>
+<pre>$estimateId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24firstname" id="$firstname"> </a><div class="element clickable property protected $firstname" data-toggle="collapse" data-target=".$firstname .collapse">
+<h2>$firstname</h2>
+<pre>$firstname </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24history" id="$history"> </a><div class="element clickable property protected $history" data-toggle="collapse" data-target=".$history .collapse">
+<h2>$history</h2>
+<pre>$history </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24id" id="$id"> </a><div class="element clickable property protected $id" data-toggle="collapse" data-target=".$id .collapse">
+<h2>$id</h2>
+<pre>$id </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24invoiceProfileId" id="$invoiceProfileId"> </a><div class="element clickable property protected $invoiceProfileId" data-toggle="collapse" data-target=".$invoiceProfileId .collapse">
+<h2>$invoiceProfileId</h2>
+<pre>$invoiceProfileId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24invoiceProfileVersionId" id="$invoiceProfileVersionId"> </a><div class="element clickable property protected $invoiceProfileVersionId" data-toggle="collapse" data-target=".$invoiceProfileVersionId .collapse">
+<h2>$invoiceProfileVersionId</h2>
+<pre>$invoiceProfileVersionId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24language" id="$language"> </a><div class="element clickable property protected $language" data-toggle="collapse" data-target=".$language .collapse">
+<h2>$language</h2>
+<pre>$language </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24lastname" id="$lastname"> </a><div class="element clickable property protected $lastname" data-toggle="collapse" data-target=".$lastname .collapse">
+<h2>$lastname</h2>
+<pre>$lastname </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24pdfUrl" id="$pdfUrl"> </a><div class="element clickable property protected $pdfUrl" data-toggle="collapse" data-target=".$pdfUrl .collapse">
+<h2>$pdfUrl</h2>
+<pre>$pdfUrl </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24postText" id="$postText"> </a><div class="element clickable property protected $postText" data-toggle="collapse" data-target=".$postText .collapse">
+<h2>$postText</h2>
+<pre>$postText </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24preText" id="$preText"> </a><div class="element clickable property protected $preText" data-toggle="collapse" data-target=".$preText .collapse">
+<h2>$preText</h2>
+<pre>$preText </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24sendMethod" id="$sendMethod"> </a><div class="element clickable property protected $sendMethod" data-toggle="collapse" data-target=".$sendMethod .collapse">
+<h2>$sendMethod</h2>
+<pre>$sendMethod </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24showCustomerId" id="$showCustomerId"> </a><div class="element clickable property protected $showCustomerId" data-toggle="collapse" data-target=".$showCustomerId .collapse">
+<h2>$showCustomerId</h2>
+<pre>$showCustomerId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24showTax" id="$showTax"> </a><div class="element clickable property protected $showTax" data-toggle="collapse" data-target=".$showTax .collapse">
+<h2>$showTax</h2>
+<pre>$showTax </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24signOnline" id="$signOnline"> </a><div class="element clickable property protected $signOnline" data-toggle="collapse" data-target=".$signOnline .collapse">
+<h2>$signOnline</h2>
+<pre>$signOnline </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24state" id="$state"> </a><div class="element clickable property protected $state" data-toggle="collapse" data-target=".$state .collapse">
+<h2>$state</h2>
+<pre>$state </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24updatedAt" id="$updatedAt"> </a><div class="element clickable property protected $updatedAt" data-toggle="collapse" data-target=".$updatedAt .collapse">
+<h2>$updatedAt</h2>
+<pre>$updatedAt </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24url" id="$url"> </a><div class="element clickable property protected $url" data-toggle="collapse" data-target=".$url .collapse">
+<h2>$url</h2>
+<pre>$url </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24zipcode" id="$zipcode"> </a><div class="element clickable property protected $zipcode" data-toggle="collapse" data-target=".$zipcode .collapse">
+<h2>$zipcode</h2>
+<pre>$zipcode </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2012-07-27T07:47:28+02:00.<br></footer></div>
+</div>
+</body>
+</html>
