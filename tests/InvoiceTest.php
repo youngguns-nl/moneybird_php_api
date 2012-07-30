@@ -221,7 +221,7 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers Moneybird\Invoice::send
-	 */
+	 *
 	public function testSend() {
 		$this->object->send($this->service, 'email', 'sjors@desjors.nl');
 	}	

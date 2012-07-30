@@ -265,13 +265,13 @@ class ApiConnector {
 			$model->save($this->getService($classname));
 		}
 
-		$this->request(
+		$response = $this->request(
 			$this->buildUrl($model, null, '/send_' . strtolower($classname)), 
 			'PUT', 
 			$this->mapper->mapToStorage($envelope)
 		);
 		
-		return $this->getById($classname, $model->getId());
+		return $this->mapper->mapFromStorage($response);
 	}
 	
 	/**
@@ -293,13 +293,13 @@ class ApiConnector {
 			$idProperty => $invoice->getId()
 		));
 		
-		$this->request(
+		$response = $this->request(
 			$this->buildUrl($invoice, null, '/payments'), 
 			'POST', 
 			$this->mapper->mapToStorage($payment)
 		);
 		
-		return $this->getById($classname, $invoice->getId());
+		return $this->mapper->mapFromStorage($response);
 	}
 	
 	/**
@@ -314,13 +314,13 @@ class ApiConnector {
 			'invoiceId' => $invoice->getId()
 		));
 
-		$this->request(
+		$response = $this->request(
 			$this->buildUrl($invoice, null, '/send_reminder'), 
 			'PUT', 
 			$this->mapper->mapToStorage($envelope)
 		);
 		
-		return $this->getById('Invoice', $invoice->getId());
+		return $this->mapper->mapFromStorage($response);
 	}
 	
 	/**
