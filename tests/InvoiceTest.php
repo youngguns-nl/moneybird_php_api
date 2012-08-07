@@ -29,6 +29,8 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 	
 	protected static $contact;
 	
+	protected static $taxRateId;
+	
 	/**
 	 * @var Contact_Service
 	 */
@@ -46,14 +48,13 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 		self::$invoiceId = null;
 		
 		self::$config = $config;
-		$transport = new HttpClient();
-		$transport->setAuth(
-			$config['username'], 
-			$config['password']
-		);
+		$transport = getTransport($config);	
 		$mapper = new XmlMapper();
 		$connector = new ApiConnector($config['clientname'], $transport, $mapper);
 		self::$contact = $connector->getService('Contact')->getById($config['testcontact']);
+		
+		$rates = $connector->getService('TaxRate')->getAll('sales');
+		self::$taxRateId = current($rates)->id;
     }
 
 	/**
@@ -63,11 +64,7 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		include ('config.php');
 		
-		$transport = new HttpClient();
-		$transport->setAuth(
-			$config['username'], 
-			$config['password']
-		);
+		$transport = getTransport($config);	
 		$mapper = new XmlMapper();
 		$this->apiConnector = new ApiConnector($config['clientname'], $transport, $mapper);
 		$this->service = $this->apiConnector->getService('Invoice');
@@ -107,13 +104,13 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 			'amount' => 5, 
 			'description' => 'My invoice line',
 			'price' => 20,
-			'tax' => 0.19,
+			'taxRateId' => self::$taxRateId,
 		)));
 		$details->append(new Invoice_Detail(array(
 			'amount' => 1, 
 			'description' => 'My second invoice line',
 			'price' => 12,
-			'tax' => 0.19,
+			'taxRateId' => self::$taxRateId,
 		)));
 		
 		$invoice = new Invoice(array(

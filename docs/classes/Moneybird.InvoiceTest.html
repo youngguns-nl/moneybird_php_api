@@ -32,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">526</span></a></li>
+                <span class="label label-info">562</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -82,8 +82,6 @@
         </span><pre>testRemind()</pre></a></li>
 <li class="method public "><a href="#testSave" title="testSave :: "><span class="description">testSave()
         </span><pre>testSave()</pre></a></li>
-<li class="method public "><a href="#testSend" title="testSend :: "><span class="description">testSend()
-        </span><pre>testSend()</pre></a></li>
 <li class="method public "><a href="#testSetContact" title="testSetContact :: "><span class="description">testSetContact()
         </span><pre>testSetContact()</pre></a></li>
 <li class="nav-header protected">» Protected</li>
@@ -99,6 +97,7 @@
 <li class="property protected "><a href="#%24invoiceNumber" title="$invoiceNumber :: "><span class="description">$invoiceNumber</span><pre>$invoiceNumber</pre></a></li>
 <li class="property protected "><a href="#%24object" title="$object :: "><span class="description">$object</span><pre>$object</pre></a></li>
 <li class="property protected "><a href="#%24service" title="$service :: "><span class="description">$service</span><pre>$service</pre></a></li>
+<li class="property protected "><a href="#%24taxRateId" title="$taxRateId :: "><span class="description">$taxRateId</span><pre>$taxRateId</pre></a></li>
 </ul>
 </div>
 <div class="span8">
@@ -183,10 +182,16 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
+<th>covers</th>
+<td>\Moneybird\Invoice::send</td>
+</tr>
+<tr>
 <th>covers</th>
 <td>\Moneybird\Invoice_Service::getByInvoiceId</td>
-</tr></table>
+</tr>
+</table>
 </div></div>
 </div>
 <a name="testGetByPushMessage" id="testGetByPushMessage"></a><div class="element clickable method public testGetByPushMessage" data-toggle="collapse" data-target=".testGetByPushMessage .collapse">
@@ -280,19 +285,6 @@
 </tr></table>
 </div></div>
 </div>
-<a name="testSend" id="testSend"></a><div class="element clickable method public testSend" data-toggle="collapse" data-target=".testSend .collapse">
-<h2>testSend()
-        </h2>
-<pre>testSend() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>covers</th>
-<td>\Moneybird\Invoice::send</td>
-</tr></table>
-</div></div>
-</div>
 <a name="testSetContact" id="testSetContact"></a><div class="element clickable method public testSetContact" data-toggle="collapse" data-target=".testSetContact .collapse">
 <h2>testSetContact()
         </h2>
@@ -362,6 +354,12 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
+<a name="%24taxRateId" id="$taxRateId"> </a><div class="element clickable property protected $taxRateId" data-toggle="collapse" data-target=".$taxRateId .collapse">
+<h2>$taxRateId</h2>
+<pre>$taxRateId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
 </div>
 </div>
 </div>
@@ -369,7 +367,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2012-07-27T06:33:28+02:00.<br></footer></div>
+            generated on 2012-08-07T21:19:24+02:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -18,7 +18,11 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Moneybird.html"><i class="icon-th"></i> Moneybird</a></li>
+<li><a href="../namespaces/global.html"><i class="icon-th"></i> global</a></li>
+</ul>
 </li>
 <li class="dropdown" id="charts-menu">
 <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
@@ -28,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">339</span></a></li>
+                <span class="label label-info">562</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -56,105 +60,142 @@
 <a href="../packages/Default.html" title="Default"><i class="icon-folder-open"></i>Default</a><ul class="nav nav-list nav-packages"></ul>
 </li>
 <li class="nav-header">
+<i class="icon-custom icon-function"></i> Functions</li>
+<li class="function  "><a href="#getTransport" title="getTransport :: "><span class="description">getTransport()
+        </span><pre>getTransport</pre></a></li>
+<li class="nav-header">
 <i class="icon-custom icon-interface"></i> Interfaces</li>
-<li><a href="#Invoice_Subject" title="Invoice subject is an object that has invoices (contact or estimate)">Invoice_Subject</a></li>
-<li><a href="#SyncArray" title="Sync array for syncing objects">SyncArray</a></li>
-<li><a href="#IncomingInvoice_Subject" title="IncomingInvoice subject is an object that has invoices (contact or estimate)">IncomingInvoice_Subject</a></li>
+<li><a href="#Transport" title="Transport interface">Transport</a></li>
 <li><a href="#RecurringTemplate_Subject" title="RecurringTemplate subject is an object that has invoices (contact or estimate)">RecurringTemplate_Subject</a></li>
-<li><a href="#Sendable" title="Sendable">Sendable</a></li>
-<li><a href="#PdfDocument" title="PdfDocument">PdfDocument</a></li>
+<li><a href="#Service" title="Domainmodel Service">Service</a></li>
+<li><a href="#Mapper" title="Mapper interface">Mapper</a></li>
+<li><a href="#Invoice_Subject" title="Invoice subject is an object that has invoices (contact or estimate)">Invoice_Subject</a></li>
 <li><a href="#Payable" title="Payable">Payable</a></li>
 <li><a href="#Storable" title="Storable">Storable</a></li>
+<li><a href="#SyncArray" title="Sync array for syncing objects">SyncArray</a></li>
+<li><a href="#PdfDocument" title="PdfDocument">PdfDocument</a></li>
 <li><a href="#SyncObject" title="SyncObject">SyncObject</a></li>
+<li><a href="#Mapper_Mapable" title="Mapper Mapables can be mapped">Mapper_Mapable</a></li>
 <li><a href="#DeleteBySaving" title="DeleteBySaving">DeleteBySaving</a></li>
 <li><a href="#Estimate_Subject" title="Estimate subject is an object that has invoices (contact or estimate)">Estimate_Subject</a></li>
-<li><a href="#Service" title="Domainmodel Service">Service</a></li>
-<li><a href="#Transport" title="Transport interface">Transport</a></li>
-<li><a href="#Mapper" title="Mapper interface">Mapper</a></li>
-<li><a href="#Mapper_Mapable" title="Mapper Mapables can be mapped">Mapper_Mapable</a></li>
+<li><a href="#Sendable" title="Sendable">Sendable</a></li>
+<li><a href="#IncomingInvoice_Subject" title="IncomingInvoice subject is an object that has invoices (contact or estimate)">IncomingInvoice_Subject</a></li>
 <li class="nav-header">
 <i class="icon-custom icon-class"></i> Classes</li>
-<li><a href="#Invoice_Sync_Array" title="Invoice sync array">Invoice_Sync_Array</a></li>
-<li><a href="#Invoice_Detail_Array" title="Invoice_Detail array">Invoice_Detail_Array</a></li>
-<li><a href="#Invoice_History_Array" title="Invoice_History array">Invoice_History_Array</a></li>
-<li><a href="#Invoice_Payment_Array" title="Invoice_Payment array">Invoice_Payment_Array</a></li>
-<li><a href="#Invoice_Sync" title="Invoice sync">Invoice_Sync</a></li>
-<li><a href="#Invoice_History" title="Invoice_History">Invoice_History</a></li>
-<li><a href="#Invoice_Detail" title="Invoice_Detail">Invoice_Detail</a></li>
-<li><a href="#Invoice_Array" title="Invoice array">Invoice_Array</a></li>
-<li><a href="#Invoice_Envelope" title="Invoice_Envelope">Invoice_Envelope</a></li>
-<li><a href="#Invoice_Service" title="Invoice service">Invoice_Service</a></li>
-<li><a href="#Invoice_Payment" title="Payment">Invoice_Payment</a></li>
-<li><a href="#Contact_Sync_Array" title="Contact array">Contact_Sync_Array</a></li>
-<li><a href="#Contact_Sync" title="Contact">Contact_Sync</a></li>
-<li><a href="#Contact_Array" title="Contact array">Contact_Array</a></li>
-<li><a href="#Contact_Service" title="Contact service">Contact_Service</a></li>
-<li><a href="#XmlMapper_Exception" title="General exception">XmlMapper_Exception</a></li>
-<li><a href="#XmlMapper_InvalidXmlException" title="Exception for invalid xml">XmlMapper_InvalidXmlException</a></li>
-<li><a href="#Domainmodel_Exception" title="General exception">Domainmodel_Exception</a></li>
-<li><a href="#Domainmodel_Abstract" title="Base class for domain models">Domainmodel_Abstract</a></li>
-<li><a href="#Exception" title="General exception">Exception</a></li>
-<li><a href="#SimpleXMLElement" title="Extension for SimpleXMLElement">SimpleXMLElement</a></li>
-<li><a href="#ArrayObject" title="Abstract class for array objects">ArrayObject</a></li>
-<li><a href="#Disclosure" title="Disclosure">Disclosure</a></li>
-<li><a href="#InvoiceProfile_Array" title="InvoiceProfile array">InvoiceProfile_Array</a></li>
 <li><a href="#InvoiceProfile_Service" title="InvoiceProfile service">InvoiceProfile_Service</a></li>
-<li><a href="#RecurringTemplate" title="RecurringTemplate">RecurringTemplate</a></li>
-<li><a href="#IncomingInvoice_Detail_Array" title="IncomingInvoice_Detail array">IncomingInvoice_Detail_Array</a></li>
-<li><a href="#IncomingInvoice_History_Array" title="IncomingInvoice_History array">IncomingInvoice_History_Array</a></li>
-<li><a href="#IncomingInvoice_Payment_Array" title="IncomingInvoice_Payment array">IncomingInvoice_Payment_Array</a></li>
-<li><a href="#IncomingInvoice_Sync_Array" title="IncomingInvoice sync array">IncomingInvoice_Sync_Array</a></li>
-<li><a href="#IncomingInvoice_Array" title="IncomingInvoice array">IncomingInvoice_Array</a></li>
-<li><a href="#IncomingInvoice_Detail" title="IncomingInvoice_Detail">IncomingInvoice_Detail</a></li>
-<li><a href="#IncomingInvoice_History" title="IncomingInvoice_History">IncomingInvoice_History</a></li>
-<li><a href="#IncomingInvoice_Payment" title="Payment">IncomingInvoice_Payment</a></li>
-<li><a href="#IncomingInvoice_Service" title="IncomingInvoice service">IncomingInvoice_Service</a></li>
-<li><a href="#IncomingInvoice_Sync" title="IncomingInvoice sync">IncomingInvoice_Sync</a></li>
-<li><a href="#RecurringTemplate_Array" title="RecurringTemplate array">RecurringTemplate_Array</a></li>
-<li><a href="#RecurringTemplate_Detail_Array" title="RecurringTemplate_Detail array">RecurringTemplate_Detail_Array</a></li>
+<li><a href="#InvoiceProfile_Array" title="InvoiceProfile array">InvoiceProfile_Array</a></li>
+<li><a href="#NotLoggedInException" title="Exception thrown when the user is not logged in or has false credentials">NotLoggedInException</a></li>
 <li><a href="#RecurringTemplate_Detail" title="RecurringTemplate_Detail">RecurringTemplate_Detail</a></li>
 <li><a href="#RecurringTemplate_Service" title="RecurringTemplate service">RecurringTemplate_Service</a></li>
+<li><a href="#RecurringTemplate_Detail_Array" title="RecurringTemplate_Detail array">RecurringTemplate_Detail_Array</a></li>
+<li><a href="#RecurringTemplate_Array" title="RecurringTemplate array">RecurringTemplate_Array</a></li>
+<li><a href="#RecurringTemplate" title="RecurringTemplate">RecurringTemplate</a></li>
 <li><a href="#InvoiceProfile" title="InvoiceProfile">InvoiceProfile</a></li>
-<li><a href="#XmlMapper" title="Translates XML into objects and objects into XML">XmlMapper</a></li>
-<li><a href="#Contact" title="Contact">Contact</a></li>
-<li><a href="#InvalidRequestException" title="InvalidRequestException exception">InvalidRequestException</a></li>
-<li><a href="#Invoice" title="Invoice">Invoice</a></li>
-<li><a href="#InvalidFilterException" title="InvalidFilterException exception">InvalidFilterException</a></li>
-<li><a href="#NotValidException" title="NotValidException exception">NotValidException</a></li>
-<li><a href="#InvalidIdException" title="Exception for invalid ids">InvalidIdException</a></li>
-<li><a href="#Payment_Abstract" title="Payment_Abstract">Payment_Abstract</a></li>
-<li><a href="#Payment_InvalidMethodException" title="Exception for invalid send methods">Payment_InvalidMethodException</a></li>
-<li><a href="#Detail_Abstract" title="Detail_Abstract">Detail_Abstract</a></li>
-<li><a href="#ForbiddenException" title="Exception thrown when a forbidden action takes place">ForbiddenException</a></li>
-<li><a href="#Envelope_Abstract" title="Envelope">Envelope_Abstract</a></li>
-<li><a href="#Envelope_InvalidMethodException" title="Exception for invalid send methods">Envelope_InvalidMethodException</a></li>
-<li><a href="#Estimate_Envelope" title="Estimate_Envelope">Estimate_Envelope</a></li>
-<li><a href="#Estimate_Detail_Array" title="Estimate_Detail array">Estimate_Detail_Array</a></li>
-<li><a href="#Estimate_Detail" title="Estimate_Detail">Estimate_Detail</a></li>
-<li><a href="#Estimate_History_Array" title="Estimate_History array">Estimate_History_Array</a></li>
-<li><a href="#Estimate_History" title="Estimate_History">Estimate_History</a></li>
-<li><a href="#Estimate_Array" title="Estimate array">Estimate_Array</a></li>
-<li><a href="#Estimate_Service" title="Estimate service">Estimate_Service</a></li>
-<li><a href="#Estimate" title="Estimate">Estimate</a></li>
-<li><a href="#IncomingInvoice" title="IncomingInvoice">IncomingInvoice</a></li>
-<li><a href="#InvalidStateException" title="InvalidStateException exception">InvalidStateException</a></li>
 <li><a href="#InvalidServiceTypeException" title="Exception for invalid service types">InvalidServiceTypeException</a></li>
+<li><a href="#TaxRate" title="TaxRate">TaxRate</a></li>
+<li><a href="#Envelope_InvalidMethodException" title="Exception for invalid send methods">Envelope_InvalidMethodException</a></li>
+<li><a href="#Envelope_Abstract" title="Envelope">Envelope_Abstract</a></li>
+<li><a href="#Estimate" title="Estimate">Estimate</a></li>
+<li><a href="#Exception" title="General exception">Exception</a></li>
+<li><a href="#XmlMapper" title="Translates XML into objects and objects into XML">XmlMapper</a></li>
+<li><a href="#Error" title="Error">Error</a></li>
+<li><a href="#Invoice_Detail" title="Invoice_Detail">Invoice_Detail</a></li>
+<li><a href="#Invoice_Payment" title="Payment">Invoice_Payment</a></li>
+<li><a href="#Invoice_Service" title="Invoice service">Invoice_Service</a></li>
+<li><a href="#Invoice_History_Array" title="Invoice_History array">Invoice_History_Array</a></li>
+<li><a href="#Invoice_Envelope" title="Invoice_Envelope">Invoice_Envelope</a></li>
+<li><a href="#Invoice_Detail_Array" title="Invoice_Detail array">Invoice_Detail_Array</a></li>
+<li><a href="#Invoice_History" title="Invoice_History">Invoice_History</a></li>
+<li><a href="#Invoice_Sync" title="Invoice sync">Invoice_Sync</a></li>
+<li><a href="#Invoice_Payment_Array" title="Invoice_Payment array">Invoice_Payment_Array</a></li>
+<li><a href="#Invoice_Array" title="Invoice array">Invoice_Array</a></li>
+<li><a href="#Invoice_Sync_Array" title="Invoice sync array">Invoice_Sync_Array</a></li>
+<li><a href="#Contact_Service" title="Contact service">Contact_Service</a></li>
+<li><a href="#Contact_Sync" title="Contact">Contact_Sync</a></li>
+<li><a href="#Contact_Array" title="Contact array">Contact_Array</a></li>
+<li><a href="#Contact_Sync_Array" title="Contact array">Contact_Sync_Array</a></li>
+<li><a href="#Invoice" title="Invoice">Invoice</a></li>
+<li><a href="#Detail_Abstract" title="Detail_Abstract">Detail_Abstract</a></li>
 <li><a href="#ArrayObject_UndefinedMethodException" title="Undefined method">ArrayObject_UndefinedMethodException</a></li>
 <li><a href="#ArrayObject_TypeMismatchException" title="Object does not fit into ArrayObject">ArrayObject_TypeMismatchException</a></li>
-<li><a href="#ApiConnector" title="Service for connecting with Moneybird">ApiConnector</a></li>
-<li><a href="#CurrentSession" title="CurrentSession">CurrentSession</a></li>
+<li><a href="#Domainmodel_Exception" title="General exception">Domainmodel_Exception</a></li>
+<li><a href="#Domainmodel_Abstract" title="Base class for domain models">Domainmodel_Abstract</a></li>
 <li><a href="#NotFoundException" title="Exception thrown when an entity or action cannot be found">NotFoundException</a></li>
-<li><a href="#NotLoggedInException" title="Exception thrown when the user is not logged in or has false credentials">NotLoggedInException</a></li>
-<li><a href="#ServerErrorException" title="Exception thrown when the server errors">ServerErrorException</a></li>
+<li><a href="#InvoiceProfile_ServiceTest" title="Test class for InvoiceProfile_Service.">InvoiceProfile_ServiceTest</a></li>
+<li><a href="#ContactTest" title="Test class for Contact.">ContactTest</a></li>
+<li><a href="#TaxRate_ServiceTest" title="Test class for TaxRate_Service.">TaxRate_ServiceTest</a></li>
+<li><a href="#EstimateTest" title="Test class for Estimate.">EstimateTest</a></li>
+<li><a href="#IncomingInvoiceTest" title="Test class for IncomingInvoice.">IncomingInvoiceTest</a></li>
+<li><a href="#Product_ServiceTest" title="Test class for Product_Service.">Product_ServiceTest</a></li>
+<li><a href="#InvoiceTest" title="Test class for Invoice.">InvoiceTest</a></li>
+<li><a href="#ApiConnectorTest" title="Test class for ApiConnector.">ApiConnectorTest</a></li>
+<li><a href="#RecurringTemplateTest" title="Test class for RecurringTemplate.">RecurringTemplateTest</a></li>
+<li><a href="#ForbiddenException" title="Exception thrown when a forbidden action takes place">ForbiddenException</a></li>
+<li><a href="#XmlMapper_Exception" title="General exception">XmlMapper_Exception</a></li>
+<li><a href="#XmlMapper_InvalidXmlException" title="Exception for invalid xml">XmlMapper_InvalidXmlException</a></li>
+<li><a href="#TaxRate_Service" title="TaxRate service">TaxRate_Service</a></li>
+<li><a href="#TaxRate_Array" title="TaxRate array">TaxRate_Array</a></li>
 <li><a href="#Error_Array" title="Error array">Error_Array</a></li>
-<li><a href="#Error" title="Error">Error</a></li>
-<li><a href="#HttpClient" title="Wrapper for curl to create http requests">HttpClient</a></li>
-<li><a href="#Mapper_Exception" title="General exception">Mapper_Exception</a></li>
+<li><a href="#ApiConnector" title="Service for connecting with Moneybird">ApiConnector</a></li>
+<li><a href="#NotValidException" title="NotValidException exception">NotValidException</a></li>
+<li><a href="#SimpleXMLElement" title="Extension for SimpleXMLElement">SimpleXMLElement</a></li>
+<li><a href="#IncomingInvoice" title="IncomingInvoice">IncomingInvoice</a></li>
+<li><a href="#Contact" title="Contact">Contact</a></li>
+<li><a href="#HttpClient_HttpStatusException" title="Exception http status errors, $code contains the http status code">HttpClient_HttpStatusException</a></li>
 <li><a href="#HttpClient_Exception" title="General exception">HttpClient_Exception</a></li>
 <li><a href="#HttpClient_ConnectionErrorException" title="Exception for connection errors">HttpClient_ConnectionErrorException</a></li>
-<li><a href="#HttpClient_HttpStatusException" title="Exception http status errors, $code contains the http status code">HttpClient_HttpStatusException</a></li>
 <li><a href="#HttpClient_UnknownHttpStatusException" title="Exception for unknown http status">HttpClient_UnknownHttpStatusException</a></li>
 <li><a href="#HttpClient_Oauth" title="Wrapper for curl to create http requests">HttpClient_Oauth</a></li>
+<li><a href="#InvalidFilterException" title="InvalidFilterException exception">InvalidFilterException</a></li>
+<li><a href="#HttpClient" title="Wrapper for curl to create http requests">HttpClient</a></li>
+<li><a href="#ServerErrorException" title="Exception thrown when the server errors">ServerErrorException</a></li>
+<li><a href="#Product" title="Product">Product</a></li>
+<li><a href="#Payment_InvalidMethodException" title="Exception for invalid send methods">Payment_InvalidMethodException</a></li>
+<li><a href="#Payment_Abstract" title="Payment_Abstract">Payment_Abstract</a></li>
+<li><a href="#ArrayObject" title="Abstract class for array objects">ArrayObject</a></li>
+<li><a href="#InvalidIdException" title="Exception for invalid ids">InvalidIdException</a></li>
+<li><a href="#OAuthException" title="">OAuthException</a></li>
+<li><a href="#OAuthConsumer" title="">OAuthConsumer</a></li>
+<li><a href="#OAuthToken" title="">OAuthToken</a></li>
+<li><a href="#OAuthSignatureMethod" title='A class for implementing a Signature Method
+See section 9 ("Signing Requests") in the spec'>OAuthSignatureMethod</a></li>
+<li><a href="#OAuthSignatureMethod_HMAC_SHA1" title="The HMAC-SHA1 signature method uses the HMAC-SHA1 signature algorithm as defined in [RFC2104]
+where the Signature Base String is the text and the key is the concatenated values (each first
+encoded per Parameter Encoding) of the Consumer Secret and Token Secret, separated by an '&amp;'
+character (ASCII code 38) even if empty.">OAuthSignatureMethod_HMAC_SHA1</a></li>
+<li><a href="#OAuthSignatureMethod_PLAINTEXT" title="The PLAINTEXT method does not provide any security protection and SHOULD only be used
+over a secure channel such as HTTPS.">OAuthSignatureMethod_PLAINTEXT</a></li>
+<li><a href="#OAuthSignatureMethod_RSA_SHA1" title="The RSA-SHA1 signature method uses the RSASSA-PKCS1-v1_5 signature algorithm as defined in
+[RFC3447] section 8.2 (more simply known as PKCS#1), using SHA-1 as the hash function for
+EMSA-PKCS1-v1_5.">OAuthSignatureMethod_RSA_SHA1</a></li>
+<li><a href="#OAuthRequest" title="">OAuthRequest</a></li>
+<li><a href="#OAuthServer" title="">OAuthServer</a></li>
+<li><a href="#OAuthDataStore" title="">OAuthDataStore</a></li>
+<li><a href="#OAuthUtil" title="">OAuthUtil</a></li>
+<li><a href="#Product_Service" title="Product service">Product_Service</a></li>
+<li><a href="#Product_Array" title="Product array">Product_Array</a></li>
+<li><a href="#InvalidStateException" title="InvalidStateException exception">InvalidStateException</a></li>
+<li><a href="#Mapper_Exception" title="General exception">Mapper_Exception</a></li>
+<li><a href="#Estimate_Detail" title="Estimate_Detail">Estimate_Detail</a></li>
+<li><a href="#Estimate_Service" title="Estimate service">Estimate_Service</a></li>
+<li><a href="#Estimate_History_Array" title="Estimate_History array">Estimate_History_Array</a></li>
+<li><a href="#Estimate_Envelope" title="Estimate_Envelope">Estimate_Envelope</a></li>
+<li><a href="#Estimate_Detail_Array" title="Estimate_Detail array">Estimate_Detail_Array</a></li>
+<li><a href="#Estimate_History" title="Estimate_History">Estimate_History</a></li>
+<li><a href="#Estimate_Array" title="Estimate array">Estimate_Array</a></li>
+<li><a href="#Disclosure" title="Disclosure">Disclosure</a></li>
+<li><a href="#IncomingInvoice_Detail" title="IncomingInvoice_Detail">IncomingInvoice_Detail</a></li>
+<li><a href="#IncomingInvoice_Payment" title="Payment">IncomingInvoice_Payment</a></li>
+<li><a href="#IncomingInvoice_Service" title="IncomingInvoice service">IncomingInvoice_Service</a></li>
+<li><a href="#IncomingInvoice_History_Array" title="IncomingInvoice_History array">IncomingInvoice_History_Array</a></li>
+<li><a href="#IncomingInvoice_Detail_Array" title="IncomingInvoice_Detail array">IncomingInvoice_Detail_Array</a></li>
+<li><a href="#IncomingInvoice_History" title="IncomingInvoice_History">IncomingInvoice_History</a></li>
+<li><a href="#IncomingInvoice_Sync" title="IncomingInvoice sync">IncomingInvoice_Sync</a></li>
+<li><a href="#IncomingInvoice_Payment_Array" title="IncomingInvoice_Payment array">IncomingInvoice_Payment_Array</a></li>
+<li><a href="#IncomingInvoice_Array" title="IncomingInvoice array">IncomingInvoice_Array</a></li>
+<li><a href="#IncomingInvoice_Sync_Array" title="IncomingInvoice sync array">IncomingInvoice_Sync_Array</a></li>
+<li><a href="#CurrentSession" title="CurrentSession">CurrentSession</a></li>
+<li><a href="#InvalidRequestException" title="InvalidRequestException exception">InvalidRequestException</a></li>
 </ul>
 </div>
 <div class="span8 package-contents">
@@ -165,6 +206,22 @@
 <li class="active"><a href="../packages/Default.html">Default</a></li>
 </ul>
 <div class="package-indent">
+<h3>
+<i class="icon-custom icon-function"></i> Functions</h3>
+<a name="getTransport" id="getTransport"></a><div class="element clickable function  getTransport" data-toggle="collapse" data-target=".getTransport .collapse">
+<h2>getTransport()
+        </h2>
+<pre>getTransport($config) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$config</h4>
+<code></code>
+</div>
+</div></div>
+</div>
 <h3>
 <i class="icon-custom icon-class"></i> Classes and interfaces</h3>
 <a name="DeleteBySaving" id="DeleteBySaving"></a><div class="element ajax clickable interface" href="../classes/Moneybird.DeleteBySaving.html">
@@ -279,6 +336,13 @@
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.ApiConnector.html" class="more">« More »</a>
 </div>
+<a name="ApiConnectorTest" id="ApiConnectorTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.ApiConnectorTest.html">
+<h1>ApiConnectorTest<a href="../classes/Moneybird.ApiConnectorTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for ApiConnector.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.ApiConnectorTest.html" class="more">« More »</a>
+</div>
 <a name="ArrayObject" id="ArrayObject"></a><div class="element ajax clickable class" href="../classes/Moneybird.ArrayObject.html">
 <h1>ArrayObject<a href="../classes/Moneybird.ArrayObject.html">¶</a>
 </h1>
@@ -306,6 +370,13 @@
 <p class="short_description">Contact</p>
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.Contact.html" class="more">« More »</a>
+</div>
+<a name="ContactTest" id="ContactTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.ContactTest.html">
+<h1>ContactTest<a href="../classes/Moneybird.ContactTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for Contact.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.ContactTest.html" class="more">« More »</a>
 </div>
 <a name="Contact_Array" id="Contact_Array"></a><div class="element ajax clickable class" href="../classes/Moneybird.Contact_Array.html">
 <h1>Contact_Array<a href="../classes/Moneybird.Contact_Array.html">¶</a>
@@ -404,6 +475,13 @@
 <p class="short_description">Estimate</p>
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.Estimate.html" class="more">« More »</a>
+</div>
+<a name="EstimateTest" id="EstimateTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.EstimateTest.html">
+<h1>EstimateTest<a href="../classes/Moneybird.EstimateTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for Estimate.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.EstimateTest.html" class="more">« More »</a>
 </div>
 <a name="Estimate_Array" id="Estimate_Array"></a><div class="element ajax clickable class" href="../classes/Moneybird.Estimate_Array.html">
 <h1>Estimate_Array<a href="../classes/Moneybird.Estimate_Array.html">¶</a>
@@ -516,6 +594,13 @@
 <p class="short_description">IncomingInvoice</p>
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.IncomingInvoice.html" class="more">« More »</a>
+</div>
+<a name="IncomingInvoiceTest" id="IncomingInvoiceTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.IncomingInvoiceTest.html">
+<h1>IncomingInvoiceTest<a href="../classes/Moneybird.IncomingInvoiceTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for IncomingInvoice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.IncomingInvoiceTest.html" class="more">« More »</a>
 </div>
 <a name="IncomingInvoice_Array" id="IncomingInvoice_Array"></a><div class="element ajax clickable class" href="../classes/Moneybird.IncomingInvoice_Array.html">
 <h1>IncomingInvoice_Array<a href="../classes/Moneybird.IncomingInvoice_Array.html">¶</a>
@@ -650,6 +735,20 @@
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.InvoiceProfile_Service.html" class="more">« More »</a>
 </div>
+<a name="InvoiceProfile_ServiceTest" id="InvoiceProfile_ServiceTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.InvoiceProfile_ServiceTest.html">
+<h1>InvoiceProfile_ServiceTest<a href="../classes/Moneybird.InvoiceProfile_ServiceTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for InvoiceProfile_Service.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.InvoiceProfile_ServiceTest.html" class="more">« More »</a>
+</div>
+<a name="InvoiceTest" id="InvoiceTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.InvoiceTest.html">
+<h1>InvoiceTest<a href="../classes/Moneybird.InvoiceTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for Invoice.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.InvoiceTest.html" class="more">« More »</a>
+</div>
 <a name="Invoice_Array" id="Invoice_Array"></a><div class="element ajax clickable class" href="../classes/Moneybird.Invoice_Array.html">
 <h1>Invoice_Array<a href="../classes/Moneybird.Invoice_Array.html">¶</a>
 </h1>
@@ -727,6 +826,90 @@
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.Invoice_Sync_Array.html" class="more">« More »</a>
 </div>
+<a name="OAuthConsumer" id="OAuthConsumer"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthConsumer.html">
+<h1>OAuthConsumer<a href="../classes/Moneybird.Lib.OAuthConsumer.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthConsumer.html" class="more">« More »</a>
+</div>
+<a name="OAuthDataStore" id="OAuthDataStore"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthDataStore.html">
+<h1>OAuthDataStore<a href="../classes/Moneybird.Lib.OAuthDataStore.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthDataStore.html" class="more">« More »</a>
+</div>
+<a name="OAuthException" id="OAuthException"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthException.html">
+<h1>OAuthException<a href="../classes/Moneybird.Lib.OAuthException.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthException.html" class="more">« More »</a>
+</div>
+<a name="OAuthRequest" id="OAuthRequest"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthRequest.html">
+<h1>OAuthRequest<a href="../classes/Moneybird.Lib.OAuthRequest.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthRequest.html" class="more">« More »</a>
+</div>
+<a name="OAuthServer" id="OAuthServer"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthServer.html">
+<h1>OAuthServer<a href="../classes/Moneybird.Lib.OAuthServer.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthServer.html" class="more">« More »</a>
+</div>
+<a name="OAuthSignatureMethod" id="OAuthSignatureMethod"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthSignatureMethod.html">
+<h1>OAuthSignatureMethod<a href="../classes/Moneybird.Lib.OAuthSignatureMethod.html">¶</a>
+</h1>
+<p class="short_description">A class for implementing a Signature Method
+See section 9 ("Signing Requests") in the spec</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthSignatureMethod.html" class="more">« More »</a>
+</div>
+<a name="OAuthSignatureMethod_HMAC_SHA1" id="OAuthSignatureMethod_HMAC_SHA1"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthSignatureMethod_HMAC_SHA1.html">
+<h1>OAuthSignatureMethod_HMAC_SHA1<a href="../classes/Moneybird.Lib.OAuthSignatureMethod_HMAC_SHA1.html">¶</a>
+</h1>
+<p class="short_description">The HMAC-SHA1 signature method uses the HMAC-SHA1 signature algorithm as defined in [RFC2104]
+where the Signature Base String is the text and the key is the concatenated values (each first
+encoded per Parameter Encoding) of the Consumer Secret and Token Secret, separated by an '&'
+character (ASCII code 38) even if empty.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthSignatureMethod_HMAC_SHA1.html" class="more">« More »</a>
+</div>
+<a name="OAuthSignatureMethod_PLAINTEXT" id="OAuthSignatureMethod_PLAINTEXT"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthSignatureMethod_PLAINTEXT.html">
+<h1>OAuthSignatureMethod_PLAINTEXT<a href="../classes/Moneybird.Lib.OAuthSignatureMethod_PLAINTEXT.html">¶</a>
+</h1>
+<p class="short_description">The PLAINTEXT method does not provide any security protection and SHOULD only be used
+over a secure channel such as HTTPS.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthSignatureMethod_PLAINTEXT.html" class="more">« More »</a>
+</div>
+<a name="OAuthSignatureMethod_RSA_SHA1" id="OAuthSignatureMethod_RSA_SHA1"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthSignatureMethod_RSA_SHA1.html">
+<h1>OAuthSignatureMethod_RSA_SHA1<a href="../classes/Moneybird.Lib.OAuthSignatureMethod_RSA_SHA1.html">¶</a>
+</h1>
+<p class="short_description">The RSA-SHA1 signature method uses the RSASSA-PKCS1-v1_5 signature algorithm as defined in
+[RFC3447] section 8.2 (more simply known as PKCS#1), using SHA-1 as the hash function for
+EMSA-PKCS1-v1_5.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthSignatureMethod_RSA_SHA1.html" class="more">« More »</a>
+</div>
+<a name="OAuthToken" id="OAuthToken"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthToken.html">
+<h1>OAuthToken<a href="../classes/Moneybird.Lib.OAuthToken.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthToken.html" class="more">« More »</a>
+</div>
+<a name="OAuthUtil" id="OAuthUtil"></a><div class="element ajax clickable class" href="../classes/Moneybird.Lib.OAuthUtil.html">
+<h1>OAuthUtil<a href="../classes/Moneybird.Lib.OAuthUtil.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Lib.OAuthUtil.html" class="more">« More »</a>
+</div>
 <a name="Mapper_Exception" id="Mapper_Exception"></a><div class="element ajax clickable class" href="../classes/Moneybird.Mapper_Exception.html">
 <h1>Mapper_Exception<a href="../classes/Moneybird.Mapper_Exception.html">¶</a>
 </h1>
@@ -769,12 +952,47 @@
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.Payment_InvalidMethodException.html" class="more">« More »</a>
 </div>
+<a name="Product" id="Product"></a><div class="element ajax clickable class" href="../classes/Moneybird.Product.html">
+<h1>Product<a href="../classes/Moneybird.Product.html">¶</a>
+</h1>
+<p class="short_description">Product</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Product.html" class="more">« More »</a>
+</div>
+<a name="Product_Array" id="Product_Array"></a><div class="element ajax clickable class" href="../classes/Moneybird.Product_Array.html">
+<h1>Product_Array<a href="../classes/Moneybird.Product_Array.html">¶</a>
+</h1>
+<p class="short_description">Product array</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Product_Array.html" class="more">« More »</a>
+</div>
+<a name="Product_Service" id="Product_Service"></a><div class="element ajax clickable class" href="../classes/Moneybird.Product_Service.html">
+<h1>Product_Service<a href="../classes/Moneybird.Product_Service.html">¶</a>
+</h1>
+<p class="short_description">Product service</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Product_Service.html" class="more">« More »</a>
+</div>
+<a name="Product_ServiceTest" id="Product_ServiceTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.Product_ServiceTest.html">
+<h1>Product_ServiceTest<a href="../classes/Moneybird.Product_ServiceTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for Product_Service.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.Product_ServiceTest.html" class="more">« More »</a>
+</div>
 <a name="RecurringTemplate" id="RecurringTemplate"></a><div class="element ajax clickable class" href="../classes/Moneybird.RecurringTemplate.html">
 <h1>RecurringTemplate<a href="../classes/Moneybird.RecurringTemplate.html">¶</a>
 </h1>
 <p class="short_description">RecurringTemplate</p>
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.RecurringTemplate.html" class="more">« More »</a>
+</div>
+<a name="RecurringTemplateTest" id="RecurringTemplateTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.RecurringTemplateTest.html">
+<h1>RecurringTemplateTest<a href="../classes/Moneybird.RecurringTemplateTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for RecurringTemplate.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.RecurringTemplateTest.html" class="more">« More »</a>
 </div>
 <a name="RecurringTemplate_Array" id="RecurringTemplate_Array"></a><div class="element ajax clickable class" href="../classes/Moneybird.RecurringTemplate_Array.html">
 <h1>RecurringTemplate_Array<a href="../classes/Moneybird.RecurringTemplate_Array.html">¶</a>
@@ -818,6 +1036,34 @@
 <div class="details collapse"></div>
 <a href="../classes/Moneybird.SimpleXMLElement.html" class="more">« More »</a>
 </div>
+<a name="TaxRate" id="TaxRate"></a><div class="element ajax clickable class" href="../classes/Moneybird.TaxRate.html">
+<h1>TaxRate<a href="../classes/Moneybird.TaxRate.html">¶</a>
+</h1>
+<p class="short_description">TaxRate</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.TaxRate.html" class="more">« More »</a>
+</div>
+<a name="TaxRate_Array" id="TaxRate_Array"></a><div class="element ajax clickable class" href="../classes/Moneybird.TaxRate_Array.html">
+<h1>TaxRate_Array<a href="../classes/Moneybird.TaxRate_Array.html">¶</a>
+</h1>
+<p class="short_description">TaxRate array</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.TaxRate_Array.html" class="more">« More »</a>
+</div>
+<a name="TaxRate_Service" id="TaxRate_Service"></a><div class="element ajax clickable class" href="../classes/Moneybird.TaxRate_Service.html">
+<h1>TaxRate_Service<a href="../classes/Moneybird.TaxRate_Service.html">¶</a>
+</h1>
+<p class="short_description">TaxRate service</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.TaxRate_Service.html" class="more">« More »</a>
+</div>
+<a name="TaxRate_ServiceTest" id="TaxRate_ServiceTest"></a><div class="element ajax clickable class" href="../classes/Moneybird.TaxRate_ServiceTest.html">
+<h1>TaxRate_ServiceTest<a href="../classes/Moneybird.TaxRate_ServiceTest.html">¶</a>
+</h1>
+<p class="short_description">Test class for TaxRate_Service.</p>
+<div class="details collapse"></div>
+<a href="../classes/Moneybird.TaxRate_ServiceTest.html" class="more">« More »</a>
+</div>
 <a name="XmlMapper" id="XmlMapper"></a><div class="element ajax clickable class" href="../classes/Moneybird.XmlMapper.html">
 <h1>XmlMapper<a href="../classes/Moneybird.XmlMapper.html">¶</a>
 </h1>
@@ -845,7 +1091,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2012-07-27T07:47:28+02:00.<br></footer></div>
+            generated on 2012-08-07T21:19:24+02:00.<br></footer></div>
 </div>
 </body>
 </html>

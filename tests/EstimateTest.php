@@ -29,6 +29,8 @@ class EstimateTest extends \PHPUnit_Framework_TestCase {
 	
 	protected static $contact;
 	
+	protected static $taxRateId;
+	
 	/**
 	 * @var Contact_Service
 	 */
@@ -46,14 +48,13 @@ class EstimateTest extends \PHPUnit_Framework_TestCase {
 		self::$estimateId = null;
 		
 		self::$config = $config;
-		$transport = new HttpClient();
-		$transport->setAuth(
-			$config['username'], 
-			$config['password']
-		);
+		$transport = getTransport($config);	
 		$mapper = new XmlMapper();
 		$connector = new ApiConnector($config['clientname'], $transport, $mapper);
 		self::$contact = $connector->getService('Contact')->getById($config['testcontact']);
+		
+		$rates = $connector->getService('TaxRate')->getAll('sales');
+		self::$taxRateId = current($rates)->id;
     }
 
 	/**
@@ -103,13 +104,13 @@ class EstimateTest extends \PHPUnit_Framework_TestCase {
 			'amount' => 5, 
 			'description' => 'My estimate line',
 			'price' => 20,
-			'tax' => 0.19,
+			'taxRateId' => self::$taxRateId,
 		)));
 		$details->append(new Estimate_Detail(array(
 			'amount' => 1, 
 			'description' => 'My second estimate line',
 			'price' => 12,
-			'tax' => 0.19,
+			'taxRateId' => self::$taxRateId,
 		)));
 		
 		$estimate = new Estimate(array(

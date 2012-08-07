@@ -29,6 +29,8 @@ class IncomingInvoiceTest extends \PHPUnit_Framework_TestCase {
 	
 	protected static $contact;
 	
+	protected static $taxRateId;
+	
 	/**
 	 * @var Contact_Service
 	 */
@@ -50,6 +52,9 @@ class IncomingInvoiceTest extends \PHPUnit_Framework_TestCase {
 		$mapper = new XmlMapper();
 		$connector = new ApiConnector($config['clientname'], $transport, $mapper);
 		self::$contact = $connector->getService('Contact')->getById($config['testcontact']);
+		
+		$rates = $connector->getService('TaxRate')->getAll('purchase');
+		self::$taxRateId = current($rates)->id;
     }
 
 	/**
@@ -99,13 +104,13 @@ class IncomingInvoiceTest extends \PHPUnit_Framework_TestCase {
 			'amount' => 5, 
 			'description' => 'My invoice line',
 			'price' => 20,
-			'tax' => 0.19,
+			'taxRateId' => self::$taxRateId,
 		)));
 		$details->append(new IncomingInvoice_Detail(array(
 			'amount' => 1, 
 			'description' => 'My second invoice line',
 			'price' => 12,
-			'tax' => 0.19,
+			'taxRateId' => self::$taxRateId,
 		)));
 		
 		$invoice = new IncomingInvoice(array(

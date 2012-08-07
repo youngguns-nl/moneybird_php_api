@@ -560,6 +560,8 @@ class ApiConnector {
 			'IncomingInvoice',
 			'RecurringTemplate',
 			'CurrentSession',
+			'TaxRate',
+			'Product',
 		);
 		foreach ($types as $type) {
 			if ($model instanceof $type) {

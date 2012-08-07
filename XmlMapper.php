@@ -56,10 +56,16 @@ class XmlMapper implements Mapper {
 			'invoice-profiles' => __NAMESPACE__.'\\InvoiceProfile_Array',
 			'invoice-profile'  => __NAMESPACE__.'\\InvoiceProfile',
 			
+			'products' => __NAMESPACE__.'\\Product_Array',
+			'product'  => __NAMESPACE__.'\\Product',
+			
 			'recurring-templates'               => __NAMESPACE__.'\\RecurringTemplate_Array',
 			'recurring-template'                => __NAMESPACE__.'\\RecurringTemplate',
 			'recurring-template/details'        => __NAMESPACE__.'\\RecurringTemplate_Detail_Array',
 			'recurring-template/details/detail' => __NAMESPACE__.'\\RecurringTemplate_Detail',
+			
+			'tax-rates' => __NAMESPACE__.'\\TaxRate_Array',
+			'tax-rate'  => __NAMESPACE__.'\\TaxRate',
 			
 			'errors' => __NAMESPACE__.'\\Error_Array',
 			'error'  => __NAMESPACE__.'\\Error',

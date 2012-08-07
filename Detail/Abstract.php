@@ -25,6 +25,7 @@ abstract class Detail_Abstract
 	protected $price;
 	protected $rowOrder;
 	protected $tax;
+	protected $taxRateId;
 	protected $totalPriceExclTax;
 	protected $totalPriceInclTax;
 	protected $updatedAt;

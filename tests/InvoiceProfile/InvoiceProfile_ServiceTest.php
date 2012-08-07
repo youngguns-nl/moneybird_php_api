@@ -22,11 +22,7 @@ class InvoiceProfile_ServiceTest extends \PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		include ('../config.php');
 		
-		$transport = new HttpClient();
-		$transport->setAuth(
-			$config['username'], 
-			$config['password']
-		);
+		$transport = getTransport($config);	
 		$mapper = new XmlMapper();
 		$connector = new ApiConnector($config['clientname'], $transport, $mapper);
 		$this->object = $connector->getService('InvoiceProfile');

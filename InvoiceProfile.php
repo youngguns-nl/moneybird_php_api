@@ -18,12 +18,4 @@ class InvoiceProfile extends Domainmodel_Abstract implements Mapper_Mapable {
 		'id',
 		'name',
 	);
-	
-	public function save(ApiConnector $service) {
-		throw new Exception('Cannot save InvoiceProfile');
-	}
-	
-	public function delete(ApiConnector $service) {
-		throw new Exception('Cannot delete InvoiceProfile');
-	}
 }
