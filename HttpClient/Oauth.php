@@ -19,9 +19,12 @@ class HttpClient_Oauth extends HttpClient {
 	/**
 	 * Not needed using Oauth
 	 *
+	 * @param string $username Username
+	 * @param string $password Password
+	 * @access public
 	 * @return HttpClient
 	 */
-	public function setAuth() {
+	public function setAuth($username, $password) {
 		return $this;
 	}
 	
