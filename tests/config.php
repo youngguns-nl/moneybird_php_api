@@ -11,9 +11,14 @@ $config = array(
 		'token' => '',
 		'tokenSecret' => '',
 	),
+	'testcontact' => '',
 );
 
+require_once dirname(__FILE__) . '/../ApiConnector.php';
+
 spl_autoload_register('Moneybird\ApiConnector::autoload');
+
+Moneybird\ApiConnector::$debug = true;
 
 if (file_exists(dirname(__FILE__).'/my-config.php')) {
 	include(dirname(__FILE__).'/my-config.php');

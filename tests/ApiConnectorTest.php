@@ -74,8 +74,10 @@ class ApiConnectorTest extends \PHPUnit_Framework_TestCase {
 		include ('./config.php');
 		$transport = getTransport($config);	
 		$mapper = new XmlMapper();
-		$this->object = new ApiConnector($config['clientname'], $transport, $mapper);
-		
+		try {
+			$this->object = new ApiConnector($config['clientname'], $transport, $mapper);
+		} catch (ForBiddenException $e) {
+		}
 		$this->assertGreaterThan(0, $this->object->requestsLeft());
 	}
 

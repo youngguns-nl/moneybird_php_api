@@ -20,7 +20,11 @@ class Product_ServiceTest extends \PHPUnit_Framework_TestCase {
 	 * This method is called before a test is executed.
 	 */
 	protected function setUp() {
-		include ('../config.php');
+		if (file_exists('../config.php')) {
+			include ('../config.php');
+		} else {
+			include ('config.php');
+		}
 		
 		$transport = getTransport($config);	
 		$mapper = new XmlMapper();

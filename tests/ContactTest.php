@@ -12,6 +12,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	
 	protected static $customerId;
 	protected static $contactId;
+	protected $testContactId;
 
 	/**
 	 * @var Contact
@@ -47,6 +48,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 		if (!is_null(self::$contactId)) {
 			$this->object = $this->service->getById(self::$contactId);
 		}
+		$this->testContactId = $config['testcontact'];
 	}
 
 	/**
@@ -125,9 +127,9 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\Contact_Service::getByIds
 	 */
 	public function testGetByIds() {
-		$contacts = $this->service->getByIds(array(self::$contactId));
+		$contacts = $this->service->getByIds(array(self::$contactId, $this->testContactId));
 		$this->assertInstanceOf('Moneybird\Contact_Array', $contacts);
-		$this->assertCount(1, $contacts);
+		$this->assertCount(2, $contacts);
 	}
 
 	/**

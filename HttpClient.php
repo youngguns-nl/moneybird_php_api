@@ -366,6 +366,16 @@ class HttpClient implements Transport {
 	}
 	
 	/**
+	 * Get last response
+	 * 
+	 * @return string
+	 * @access public
+	 */
+	public function getLastResponse() {
+		return $this->response;
+	}
+	
+	/**
 	 * Get headers
 	 * 
 	 * @return array

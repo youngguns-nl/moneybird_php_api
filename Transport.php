@@ -34,6 +34,14 @@ interface Transport {
 	public function requestsLeft();
 	
 	/**
+	 * Get last response
+	 * 
+	 * @return string
+	 * @access public
+	 */
+	public function getLastResponse();
+	
+	/**
 	 * Set useragent
 	 * @param string $userAgent
 	 * @access public

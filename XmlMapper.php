@@ -335,6 +335,10 @@ class XmlMapper implements Mapper {
 				$xmlRoot->addChild($key)->addAttribute('nil', 'true');
 			} elseif (is_bool($value)) {
 				$xmlRoot->addChild($key, $value === true ? 'true' : 'false');
+			} elseif (is_array($value)) {
+				foreach ($value as $v) {
+					$xmlRoot->addChild($key, $v);
+				}
 			} elseif (!is_object($value) && !is_array($value)) {
 				$xmlRoot->addChild($key, $value);
 			} elseif (is_object($value) && $value instanceof Mapper_Mapable) {

@@ -101,6 +101,13 @@ class ApiConnector {
 	);
 	
 	/**
+	 * Show debug information
+	 * @var bool
+	 * @static
+	 */
+	public static $debug = false;
+	
+	/**
 	 * Autoloader
 	 * @static
 	 * @param string $classname 
@@ -182,12 +189,21 @@ class ApiConnector {
 		} catch (HttpClient_HttpStatusException $e) {
 			$message = $e->getMessage();
 			if ($e->getCode() == 403 || $e->getCode() == 422) {
-				$this->errors = $this->mapper->mapFromStorage($response);
+				$this->errors = $this->mapper->mapFromStorage($this->transport->getLastResponse());
 				if ($this->errors instanceof Error_Array && count($this->errors) > 0) {
 					$message .= PHP_EOL . 'Errors:' . PHP_EOL . $this->errors;
 				}
 			}
-			$response = '';
+			
+			if (self::$debug) {
+				printf(
+					'Url: %s'.PHP_EOL.'Method: %s'.PHP_EOL.'Data: %s',
+					$url,
+					$method,
+					$data
+				);
+			}
+			
 			switch ($e->getCode()) {
 				case 401:
 					throw new NotLoggedInException($message, 0, $e);
@@ -202,6 +218,8 @@ class ApiConnector {
 				case 422:
 					throw new NotValidException($message, 0, $e);
 				break;
+				default:
+					$message = 'Unknown error';
 				case 500:
 				case 501:
 					throw new ServerErrorException($message, 0, $e);
@@ -445,10 +463,8 @@ class ApiConnector {
 		$classname = __NAMESPACE__.'\\'.$classname.'_Sync';
 		$classnameArray = $classname.'_Array';
 		$objects = new $classnameArray();
-		foreach ($ids as $id) {
-			$objects->append(new $classname(array('id' => $id)));
-		}
-		
+		$objects->append(new $classname(array('id' => $ids)));
+
 		$response = $this->request(
 			$this->buildUrl(new $classname(), null, '/sync_fetch_ids'),
 			'POST', 
