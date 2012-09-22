@@ -33,11 +33,12 @@ abstract class Payment_Abstract extends Domainmodel_Abstract implements Mapper_M
 	 * @var Array
 	 */
 	protected $_paymentMethods = array(
-		'bank_transfer', 
-		'creditcard', 
-		'direct_debit', 
-		'ideal', 
-		'paypal', 
+		'bank_transfer',
+		'creditcard',
+		'credit_invoice',
+		'direct_debit',
+		'ideal',
+		'paypal',
 		'pin',
 	);
 	
