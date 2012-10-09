@@ -140,7 +140,6 @@ class ApiConnector {
 		}
 		
 		$this->baseUri = 'https://' . $clientName . '.moneybird.nl/api/v'.self::API_VERSION;
-		$this->login();
 	}
 	
 	/**
@@ -149,11 +148,15 @@ class ApiConnector {
 	 * @throws NotLoggedInException
 	 * @access protected
 	 */
-	protected function login() {
-		try {
-			$this->getCurrentSession();
-		} catch (NotFoundException $e) {
-			throw new NotLoggedInException('Invalid companyname/clientname');
+	protected function testLogin() {
+		static $loginTested = false;
+		if (!$loginTested) {
+			$loginTested = true;
+			try {
+				$this->getCurrentSession();
+			} catch (NotFoundException $e) {
+				throw new NotLoggedInException('Invalid companyname/clientname');
+			}
 		}
 		return $this;
 	}
@@ -176,6 +179,7 @@ class ApiConnector {
 	 * @param string $data
 	 */
 	protected function request($url, $method, $data = null) {
+		$this->testLogin();
 		try {
 			$response = $this->transport->send(
 				$url,
