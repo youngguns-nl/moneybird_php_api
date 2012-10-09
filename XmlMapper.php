@@ -261,18 +261,27 @@ class XmlMapper implements Mapper {
 	 * @return string
 	 */
 	protected function mapObjectToElementName(Mapper_Mapable $subject) {
-		$name = $this->propertyToXmlkey(
-			substr(get_class($subject), strlen(__NAMESPACE__) + 1)
-		);
-		
+		// Pick a default value based on the subject class
+		$name = substr(get_class($subject), strlen(__NAMESPACE__) + 1);
+
+		// See if the objectMapper array contains the (super)class
+		foreach ($this->objectMapper as $key => $class) {
+			if ($subject instanceof $class) {
+				$name = $key;
+			}
+		}
+
+		// Map the name to a proper XML key
+		$name = $this->propertyToXmlkey($name);
+
+		// Get rid of the unnecessary type specs (i.e. invoice_detail => detail)
 		$simplified = array(
 			'payment', 'history', 'detail',
 		);
 		foreach ($simplified as $simplify) {
-			$name = preg_replace('/^[a-z\-]+_('.$simplify.')/', '\\1', $name);
+			$name = preg_replace('/^[a-z\-\/]+[_\/]('.preg_quote($simplify).')/', '\\1', $name);
 		}
-		
-		$array = $subject instanceof ArrayObject;
+
 		if ($subject instanceof SyncObject) {
 			$name = 'ids';
 		}
@@ -280,14 +289,11 @@ class XmlMapper implements Mapper {
 		if ($pos !== false) {
 			$name = substr($name, 0, $pos);
 		}
-		if ($array) {
-			$name .= 's';
-		}
-		
+
 		// Exceptions
 		$name = str_replace(
 			array(
-				'historys', 
+				'historys',
 				'details',
 				'incoming-invoice',
 			),

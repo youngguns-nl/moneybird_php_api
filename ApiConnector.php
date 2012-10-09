@@ -580,7 +580,8 @@ class ApiConnector {
 			'Product',
 		);
 		foreach ($types as $type) {
-			if ($model instanceof $type) {
+			$classname = __NAMESPACE__ . '\\' . $type;
+			if ($model instanceof $classname) {
 				return $type;
 			}
 		}
