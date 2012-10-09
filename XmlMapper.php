@@ -268,6 +268,7 @@ class XmlMapper implements Mapper {
 		foreach ($this->objectMapper as $key => $class) {
 			if ($subject instanceof $class) {
 				$name = $key;
+				break;
 			}
 		}
 
@@ -285,9 +286,13 @@ class XmlMapper implements Mapper {
 		if ($subject instanceof SyncObject) {
 			$name = 'ids';
 		}
+		
 		$pos = ($subject instanceof SyncArray) ? strpos($name, '_') : strrpos($name, '_');
 		if ($pos !== false) {
 			$name = substr($name, 0, $pos);
+		}
+		if ($subject instanceof ArrayObject && substr($name, -1) != 's') {
+			$name .= 's';
 		}
 
 		// Exceptions
