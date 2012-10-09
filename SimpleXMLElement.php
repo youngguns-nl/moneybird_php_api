@@ -31,6 +31,17 @@ class SimpleXMLElement extends \SimpleXMLElement {
 		$child = $this->addChild($name);
 		$child->addCData($cdata_text);
 	}
+	
+	/**
+	 * Adds a child element to the XML node
+	 * @param string $name The name of the child element to add.
+	 * @param string $value [optional] If specified, the value of the child element.
+	 * @param string $namespace [optional] If specified, the namespace to which the child element belongs.
+	 * @return SimpleXMLElement The addChild method returns a SimpleXMLElement object representing the child added to the XML node.
+	 */
+	public function addChild ($key, $value = null, $namespace = null) {
+		return parent::addChild($key, str_replace('&', '&amp;', $value), $namespace);
+    } 
 
 	/**
 	 * Add SimpleXMLElement code into a SimpleXMLElement

@@ -70,7 +70,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 			'bankAccount' => 'Bank account', 
 			'chamberOfCommerce' => '1234567', 
 			'city' => 'City name', 
-			'companyName' => 'My Test company', 
+			'companyName' => 'My Test & company', 
 			'contactName' => 'Contact name', 
 			'country' => 'Country name', 
 			'customerId' => self::$customerId, 
@@ -87,6 +87,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 		self::$contactId = $contact->id;
 		$this->assertNotNull(self::$contactId);
 		$this->assertGreaterThan(0, self::$contactId);
+		$this->assertEquals($contact->companyName, 'My Test & company');
 	}
 	
 	/**

@@ -128,7 +128,6 @@ class ApiConnector {
 	 * @param Transport $transport
 	 * @param Mapper $mapper
 	 * @access public
-	 * @throws MoneybirdConnectionErrorException
 	 * @throws NotLoggedInException
 	 */
 	public function __construct($clientName, Transport $transport, Mapper $mapper) {
@@ -220,6 +219,7 @@ class ApiConnector {
 				break;
 				default:
 					$message = 'Unknown error';
+				// no break
 				case 500:
 				case 501:
 					throw new ServerErrorException($message, 0, $e);
