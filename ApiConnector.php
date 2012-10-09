@@ -133,7 +133,7 @@ class ApiConnector {
 	public function __construct($clientName, Transport $transport, Mapper $mapper) {
 		$this->transport = $transport;
 		$this->mapper = $mapper;
-		$this->transport->setUserAgent('MoneybirdPhpApi/2.0');
+		$this->transport->setUserAgent('MoneybirdPhpApi/2.1');
 		
 		if (!preg_match('/^[a-z0-9_\-]+$/', $clientName)) {
 			throw new InvalidConfigException('Invalid companyname/clientname');
