@@ -187,7 +187,7 @@ class ApiConnector {
 				$method,
 				$data,
 				array(
-					'Content-Type: application/xml',
+					'Content-Type: '.$this->mapper->getContentType(),
 				)				
 			);
 		} catch (HttpClient_HttpStatusException $e) {
@@ -363,10 +363,14 @@ class ApiConnector {
 	 * @param Domainmodel_Abstract $subject
 	 * @param Domainmodel_Abstract $parent
 	 * @param string $appendUrl Filter url
-	 * @param string $docType (pdf|xml)
+	 * @param string $docType (pdf|xml|json)
 	 * @return string
 	 */
-	protected function buildUrl(Domainmodel_Abstract $subject, Domainmodel_Abstract $parent = null, $appendUrl = null, $docType = 'xml') {
+	protected function buildUrl(Domainmodel_Abstract $subject, Domainmodel_Abstract $parent = null, $appendUrl = null, $docType = null) {
+		if (is_null($docType)) {
+			$docType = substr($this->mapper->getContentType(), strpos($this->mapper->getContentType(), '/') + 1);
+		}
+		
 		$url = $this->baseUri;
 		if (!is_null($parent) && intval($parent->getId()) > 0) {
 			$url .= '/'.$this->mapTypeName($parent).'/'.$parent->getId();

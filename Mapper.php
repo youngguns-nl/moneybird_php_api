@@ -26,4 +26,11 @@ interface Mapper {
 	 * @return string
 	 */
 	public function mapToStorage(Mapper_Mapable $subject);
+	
+	/**
+	 * Returns the content type of mapped objects
+	 * 
+	 * @return string
+	 */
+	public function getContentType();
 }

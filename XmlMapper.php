@@ -88,6 +88,15 @@ class XmlMapper implements Mapper {
 	}
 	
 	/**
+	 * Returns the content type of mapped objects
+	 * 
+	 * @return string
+	 */
+	public function getContentType() {
+		return 'application/xml';
+	}
+	
+	/**
 	 * Create object from string
 	 * @param string $string 
 	 * @return Mapper_Mapable
