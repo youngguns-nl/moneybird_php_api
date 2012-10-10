@@ -166,6 +166,7 @@ class ApiConnector {
 	 * @return int
 	 */
 	public function requestsLeft() {
+		$this->testLogin();
 		return $this->transport->requestsLeft();
 	}
 	
