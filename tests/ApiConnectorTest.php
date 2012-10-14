@@ -62,6 +62,7 @@ class ApiConnectorTest extends \PHPUnit_Framework_TestCase {
 		$transport = getTransport($config);	
 		
 		$mapper = new XmlMapper();
+		$mapper = new JsonMapper();
 		$this->object = new ApiConnector($config['clientname'], $transport, $mapper);
 		
 		$this->assertInstanceOf('Moneybird\CurrentSession', $this->object->getCurrentSession());
@@ -74,6 +75,7 @@ class ApiConnectorTest extends \PHPUnit_Framework_TestCase {
 		include ('./config.php');
 		$transport = getTransport($config);	
 		$mapper = new XmlMapper();
+		$mapper = new JsonMapper();
 		try {
 			$this->object = new ApiConnector($config['clientname'], $transport, $mapper);
 			$this->assertGreaterThan(0, $this->object->requestsLeft());
