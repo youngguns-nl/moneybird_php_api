@@ -19,11 +19,4 @@ interface Sendable {
 	 * @return self 
 	 */
 	public function send(Service $service, $method='email', $email=null, $message=null);
-	
-	/**
-	 * Return the objects id or null
-	 *
-	 * @return int
-	 */
-	public function getId();
 }

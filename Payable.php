@@ -17,11 +17,4 @@ interface Payable {
 	 * @return self
 	 */
 	public function registerPayment(Service $service, Payment_Abstract $payment);
-	
-	/**
-	 * Return the objects id or null
-	 *
-	 * @return int
-	 */
-	public function getId();
 }
