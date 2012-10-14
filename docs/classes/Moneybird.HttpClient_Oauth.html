@@ -32,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">562</span></a></li>
+                <span class="label label-info">599</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -59,6 +59,7 @@
 <li class="method public inherited"><a href="#__construct" title="__construct :: Creates connector object"><span class="description">Creates connector object</span><pre>__construct()</pre></a></li>
 <li class="method public inherited"><a href="#__destruct" title="__destruct :: Clean up"><span class="description">Clean up</span><pre>__destruct()</pre></a></li>
 <li class="method public inherited"><a href="#getHeaders" title="getHeaders :: Get headers"><span class="description">Get headers</span><pre>getHeaders()</pre></a></li>
+<li class="method public inherited"><a href="#getLastResponse" title="getLastResponse :: Get last response"><span class="description">Get last response</span><pre>getLastResponse()</pre></a></li>
 <li class="method public inherited"><a href="#requestsLeft" title="requestsLeft :: Number of requests left"><span class="description">Number of requests left</span><pre>requestsLeft()</pre></a></li>
 <li class="method public "><a href="#send" title="send :: Perform the request"><span class="description">Perform the request</span><pre>send()</pre></a></li>
 <li class="method public "><a href="#setAuth" title="setAuth :: Not needed using Oauth"><span class="description">Not needed using Oauth</span><pre>setAuth()</pre></a></li>
@@ -164,6 +165,26 @@ or open basedir is active</span><pre>exec()</pre></a></li>
 <div class="subelement response"><code>array</code></div>
 </div></div>
 </div>
+<a name="getLastResponse" id="getLastResponse"></a><div class="element clickable method public getLastResponse" data-toggle="collapse" data-target=".getLastResponse .collapse">
+<h2>Get last response</h2>
+<pre>getLastResponse() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\HttpClient::getLastResponse()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
 <a name="requestsLeft" id="requestsLeft"></a><div class="element clickable method public requestsLeft" data-toggle="collapse" data-target=".requestsLeft .collapse">
 <h2>Number of requests left</h2>
 <pre>requestsLeft() : int</pre>
@@ -228,10 +249,21 @@ or open basedir is active</span><pre>exec()</pre></a></li>
 </div>
 <a name="setAuth" id="setAuth"></a><div class="element clickable method public setAuth" data-toggle="collapse" data-target=".setAuth .collapse">
 <h2>Not needed using Oauth</h2>
-<pre>setAuth() : <a href="../classes/Moneybird.HttpClient.html">\Moneybird\HttpClient</a></pre>
+<pre>setAuth(string $username, string $password) : <a href="../classes/Moneybird.HttpClient.html">\Moneybird\HttpClient</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><p>Username</p></div>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>string</code><p>Password</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code><a href="../classes/Moneybird.HttpClient.html">\Moneybird\HttpClient</a></code></div>
 </div></div>
@@ -662,7 +694,7 @@ or open basedir is active</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2012-08-07T21:19:25+02:00.<br></footer></div>
+            generated on 2012-10-14T10:48:42+02:00.<br></footer></div>
 </div>
 </body>
 </html>

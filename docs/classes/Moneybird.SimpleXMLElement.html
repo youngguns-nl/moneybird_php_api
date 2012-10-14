@@ -32,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">562</span></a></li>
+                <span class="label label-info">599</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -62,8 +62,7 @@
         </span><pre>__toString()</pre></a></li>
 <li class="method public "><a href="#addAttribute" title="addAttribute :: "><span class="description">addAttribute()
         </span><pre>addAttribute()</pre></a></li>
-<li class="method public "><a href="#addChild" title="addChild :: "><span class="description">addChild()
-        </span><pre>addChild()</pre></a></li>
+<li class="method public "><a href="#addChild" title="addChild :: Adds a child element to the XML node"><span class="description">Adds a child element to the XML node</span><pre>addChild()</pre></a></li>
 <li class="method public "><a href="#addChildCData" title="addChildCData :: Create a child with CDATA value"><span class="description">Create a child with CDATA value</span><pre>addChildCData()</pre></a></li>
 <li class="method public "><a href="#appendXML" title="appendXML :: Add SimpleXMLElement code into a SimpleXMLElement"><span class="description">Add SimpleXMLElement code into a SimpleXMLElement</span><pre>appendXML()</pre></a></li>
 <li class="method public "><a href="#asXML" title="asXML :: "><span class="description">asXML()
@@ -150,16 +149,27 @@
 </div></div>
 </div>
 <a name="addChild" id="addChild"></a><div class="element clickable method public addChild" data-toggle="collapse" data-target=".addChild .collapse">
-<h2>addChild()
-        </h2>
-<pre>addChild() </pre>
+<h2>Adds a child element to the XML node</h2>
+<pre>addChild($key, string $value, string $namespace) : <a href="../classes/Moneybird.SimpleXMLElement.html">\Moneybird\SimpleXMLElement</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>SimpleXMLElement::addChild()</td>
-</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>[optional] If specified, the value of the child element.</p>
+</div>
+<div class="subelement argument">
+<h4>$namespace</h4>
+<code>string</code><p>[optional] If specified, the namespace to which the child element belongs.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Moneybird.SimpleXMLElement.html">\Moneybird\SimpleXMLElement</a></code>The addChild method returns a SimpleXMLElement object representing the child added to the XML node.</div>
 </div></div>
 </div>
 <a name="addChildCData" id="addChildCData"></a><div class="element clickable method public addChildCData" data-toggle="collapse" data-target=".addChildCData .collapse">
@@ -339,7 +349,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2012-08-07T21:19:24+02:00.<br></footer></div>
+            generated on 2012-10-14T10:48:42+02:00.<br></footer></div>
 </div>
 </body>
 </html>
