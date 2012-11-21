@@ -57,6 +57,19 @@ class ApiConnectorTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @covers Moneybird\ApiConnector::getCurrentSession
 	 */
+	public function testConfig() {
+		include ('./config.php');
+		$transport = getTransport($config);	
+		
+		$mapper = new XmlMapper();
+		$mapper = new JsonMapper();
+		$this->setExpectedException('Moneybird\InvalidConfigException');
+		$this->object = new ApiConnector('invalid.client.name', $transport, $mapper);
+	}
+	
+	/**
+	 * @covers Moneybird\ApiConnector::getCurrentSession
+	 */
 	public function testGetCurrentSession() {
 		include ('./config.php');
 		$transport = getTransport($config);	
