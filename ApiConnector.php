@@ -129,6 +129,7 @@ class ApiConnector {
 	 * @param Mapper $mapper
 	 * @access public
 	 * @throws NotLoggedInException
+	 * @throws InvalidConfigException
 	 */
 	public function __construct($clientName, Transport $transport, Mapper $mapper) {
 		$this->transport = $transport;
@@ -239,11 +240,12 @@ class ApiConnector {
 	 * Save object
 	 * 
 	 * @param Storable $model
+     * @param Domainmodel_Abstract $parent
 	 * @return Storable
 	 */
-	public function save(Storable $model) {
+	public function save(Storable $model, Domainmodel_Abstract $parent = null) {
 		$response = $this->request(
-			$this->buildUrl($model),
+			$this->buildUrl($model, $parent),
 			$model->getId() > 0 ? 'PUT' : 'POST',
 			$this->mapper->mapToStorage($model)
 		);
@@ -409,7 +411,15 @@ class ApiConnector {
 			$mapped = 'current_session';
 		} else {
 			$classname = $this->getType($model);
-			$mapped = lcfirst($classname);
+            $mapped = str_replace(
+                array(
+                    'invoice_History',
+                ),
+                array(
+                    'historie',
+                ),
+                lcfirst($classname)
+            );
 			if (false !== ($pos = strpos($mapped, '_'))) {
 				$mapped = substr($mapped, 0, $pos);
 			}
@@ -587,6 +597,7 @@ class ApiConnector {
 			'CurrentSession',
 			'TaxRate',
 			'Product',
+            'Invoice_History',
 		);
 		foreach ($types as $type) {
 			$classname = __NAMESPACE__ . '\\' . $type;

@@ -52,6 +52,7 @@ class XmlMapper implements Mapper {
 			'invoice/payments/payment' => __NAMESPACE__.'\\Invoice_Payment',
 			'invoice/history'          => __NAMESPACE__.'\\Invoice_History_Array',
 			'invoice/history/history'  => __NAMESPACE__.'\\Invoice_History',
+            'history'                  => __NAMESPACE__.'\\Invoice_History',
 			
 			'invoice-profiles' => __NAMESPACE__.'\\InvoiceProfile_Array',
 			'invoice-profile'  => __NAMESPACE__.'\\InvoiceProfile',

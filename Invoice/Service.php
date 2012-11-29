@@ -168,4 +168,14 @@ class Invoice_Service implements Service {
 		}
 		return $this->getById($_POST['invoice_id']);
 	}
+
+    /**
+	 * Inserts history note
+     * @param Invoice_History $history
+	 * @param Invoice $invoice
+	 * @return Invoice_History
+	 */
+	public function saveHistory(Invoice_History $history, Invoice $invoice) {
+		return $this->connector->save($history, $invoice);
+	}
 }
