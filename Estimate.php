@@ -117,7 +117,7 @@ class Estimate
 	 */
 	protected function setDetailsAttr(Estimate_Detail_Array $value = null) {
 		if (!is_null($value)) {
-			$this->details->merge($value);
+			$this->details = $value;
 		}
 	}
 	
@@ -127,7 +127,7 @@ class Estimate
 	 */
 	protected function setHistoryAttr(Estimate_History_Array $value = null) {
 		if (!is_null($value)) {
-			$this->history->merge($value);
+			$this->history = $value;
 		}
 	}
 	

@@ -144,7 +144,7 @@ class RecurringTemplate
 	 */
 	protected function setDetailsAttr(RecurringTemplate_Detail_Array $value = null) {
 		if (!is_null($value)) {
-			$this->details->merge($value);
+			$this->details = $value;
 		}
 	}
 	

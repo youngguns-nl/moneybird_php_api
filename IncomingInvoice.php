@@ -85,7 +85,7 @@ class IncomingInvoice
 	 */
 	protected function setDetailsAttr(IncomingInvoice_Detail_Array $value = null) {
 		if (!is_null($value)) {
-			$this->details->merge($value);
+			$this->details = $value;
 		}
 	}
 	
@@ -95,7 +95,7 @@ class IncomingInvoice
 	 */
 	protected function setPaymentsAttr(IncomingInvoice_Payment_Array $value = null) {
 		if (!is_null($value)) {
-			$this->payments->merge($value);
+			$this->payments = $value;
 		}
 	}
 	
@@ -105,7 +105,7 @@ class IncomingInvoice
 	 */
 	protected function setHistoryAttr(IncomingInvoice_History_Array $value = null) {
 		if (!is_null($value)) {
-			$this->history->merge($value);
+			$this->history = $value;
 		}
 	}
 	
