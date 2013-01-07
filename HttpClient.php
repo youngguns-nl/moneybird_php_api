@@ -75,7 +75,7 @@ class HttpClient implements Transport {
 	public function __construct() {
 		$this->connectionOptions = array(
 			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_SSL_VERIFYHOST => self::$verifyHostAndPeer,
+			CURLOPT_SSL_VERIFYHOST => self::$verifyHostAndPeer ? 2 : 0,
 			CURLOPT_SSL_VERIFYPEER => self::$verifyHostAndPeer,
 			CURLOPT_HEADER => true,
 		);
