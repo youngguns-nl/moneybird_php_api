@@ -224,7 +224,7 @@ class ApiConnector {
 					throw new NotValidException($message, 0, $e);
 				break;
 				default:
-					$message = 'Unknown error';
+					$message = 'Unknown error; check https://github.com/bluetools/moneybird_php_api/wiki/Common-errors';
 				// no break
 				case 500:
 				case 501:
