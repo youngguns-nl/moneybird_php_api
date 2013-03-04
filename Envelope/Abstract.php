@@ -41,14 +41,16 @@ abstract class Envelope_Abstract extends Domainmodel_Abstract implements Mapper_
 	/**
 	 * Set send method
 	 * @param string $value
+	 * @param bool $isDirty new value is dirty, defaults to true
 	 * @throws Envelope_InvalidMethodException
 	 */
-	protected function setSendMethodAttr($value) {
+	protected function setSendMethodAttr($value, $isDirty = true) {
 		if (!in_array($value, array('hand', 'email', 'post'))) {
 			throw new Envelope_InvalidMethodException('Invalid send method: ' . $value);
 		}
 
 		$this->sendMethod = $value;
+		$this->setDirtyState($isDirty, 'sendMethod');
 	}	
 
 }
