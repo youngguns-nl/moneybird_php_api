@@ -11,7 +11,7 @@ namespace Moneybird;
  *
  * @abstract
  */
-abstract class Domainmodel_Abstract {
+abstract class Domainmodel_Abstract implements DirtyAware {
 
 	/**
 	 * Disclosure
@@ -43,21 +43,29 @@ abstract class Domainmodel_Abstract {
 	 */
 	protected $_requiredAttr = array();
 
+	/**
+	 * Array of attributes that are dirty
+	 * @var Array
+	 */
+	protected $_dirtyAttr = array();
+
 	
 	/**
 	 * Construct a new object and extract data
 	 *
 	 * @param array $data
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 */
-	public function __construct(array $data = array()) {
+	public function __construct(array $data = array(), $isDirty = true) {
 		$this->init();
-		$this->extract($data);
+		$this->extract($data, array(), $isDirty);
 	}
 	
 	/**
 	 * Initialize vars 
 	 */
 	protected function _initVars() {
+		$this->_dirtyAttr = array();
 	}
 
 	/**
@@ -88,14 +96,16 @@ abstract class Domainmodel_Abstract {
 	/**
 	 * Sets data
 	 * @param array $data
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 */
-	public function setData(array $data = array()) {
+	public function setData(array $data = array(), $isDirty = true) {
 		$this->extract(
 			$data, 
 			array_merge(
 				array('id'),
 				$this->_readonlyAttr
-			)
+			),
+			$isDirty
 		);
 	}
 	
@@ -157,6 +167,53 @@ abstract class Domainmodel_Abstract {
 	public function toArray() {
 		return $this->disclose()->toArray();
 	}
+
+	/**
+	 * Returns true if the object contains any dirty attributes
+	 * @return bool
+	 * @access public
+	 */
+	public function isDirty() {
+		if (
+			!empty($this->_dirtyAttr) ||
+			(($this instanceof DeleteBySaving) && $this->isDeleted())
+		) {
+			return true;
+		}
+		
+		foreach (array_keys(get_object_vars($this)) as $key) {
+			foreach ((array) $this->$key as $sub) {
+				if (($sub instanceof DirtyAware) && $sub->isDirty()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Returns an array representation of this object's dirty attributes
+	 * @return array
+	 * @access public
+	 */
+	public function getDirtyAttributes() {
+		$values = array();
+		foreach (array_keys(get_object_vars($this)) as $key) {
+			if (in_array($key, $this->_dirtyAttr)) {
+				$values[$key] = $this->$key;
+			} elseif ($this->$key instanceof ArrayObject) {
+				foreach ($this->$key as $sub) {
+					if (($sub instanceof DirtyAware) && $sub->isDirty()) {
+						if (!array_key_exists($key, $values)) {
+							$values[$key] = new $this->$key;
+						}
+						$values[$key]->append($sub);
+					}
+				}
+			}
+		}
+		return $values;
+	}
 	
 	/**
 	 * Returns an array representation of this object
@@ -181,12 +238,17 @@ abstract class Domainmodel_Abstract {
 	 *
 	 * @param Array $values
 	 * @param Array $filter
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 * @access protected
 	 */
-	protected function extract(Array $values, $filter=array()) {
+	protected function extract(Array $values, $filter=array(), $isDirty = true) {
 		$this->_disclosure = null;
 		foreach (array_keys(get_object_vars($this)) as $key) {
-			if (isset($filter[$key]) || !array_key_exists($key, $values)) {
+			if (
+				isset($filter[$key]) ||
+				!array_key_exists($key, $values) ||
+				substr($key, 0, 1) == '_'
+			) {
 				continue;
 			}
 			/**
@@ -199,12 +261,61 @@ abstract class Domainmodel_Abstract {
 				 * assign the value to the attribute if a value exists
 				 */
 				if (method_exists($this, $method)) {
-					$this->$method((isset($values[$key]) ? $values[$key] : null));
-				} elseif (isset($values[$key])) {
+					$this->$method($values[$key], $isDirty);
+				} else {
 					$this->$key = $values[$key];
+					$this->setDirtyState($isDirty, $key);
 				}
 			}
 		}
+	}
+
+	/**
+	 * Set dirty state to clean
+	 * @param string $attr Name of attribute, if null (default) set all attribures clean
+	 * @return self
+	 */
+	protected function setClean($attr = null) {
+		if ($attr === null) {
+			$this->_dirtyAttr = array();
+		} else {
+			foreach (array_keys($this->_dirtyAttr, $attr) as $key) {
+				unset($this->_dirtyAttr[$key]);
+			}
+		}
+		return $this;
+	}
+
+	/**
+	 * Set dirty state to dirty
+	 * @param string $attr Name of attribute, if null (default) set all attribures dirty
+	 * @return self
+	 */
+	protected function setDirty($attr = null) {
+		if ($attr === null) {
+			$this->setClean();
+			foreach (array_keys(get_object_vars($this)) as $key) {
+				$this->setDirty($key);
+			}
+		} elseif (
+			!in_array($attr, $this->_dirtyAttr) &&
+			!in_array($attr, $this->_readonlyAttr) && 
+			substr($attr, 0, 1) != '_' &&
+			$attr != 'id'
+		) {
+			$this->_dirtyAttr[] = $attr;
+		}
+		return $this;
+	}
+
+	/**
+	 * Set dirty state based on bool
+	 * @param bool $isDirty
+	 * @param string $attr Name of attribute, if null (default) change state of all attribures
+	 * @return self
+	 */
+	protected function setDirtyState($isDirty, $attr = null) {
+		return $isDirty ? $this->setDirty($attr) : $this->setClean($attr);
 	}
 		
 	/**
@@ -214,7 +325,7 @@ abstract class Domainmodel_Abstract {
 	 */
 	protected function reload(Domainmodel_Abstract $self) {
 		$this->_initVars();
-		$this->extract($self->toArray());
+		$this->extract($self->toArray(), false);
 		return $this;
 	}
 

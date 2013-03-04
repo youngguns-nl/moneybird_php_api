@@ -115,12 +115,14 @@ class Invoice
 	 *
 	 * @param array $data
 	 * @param Contact $contact
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 */
-	public function __construct(array $data = array(), Contact $contact = null) {
-		if (!is_null($contact)) {
-			$this->setContact($contact);
+	public function __construct(array $data = array(), Contact $contact = null, $isDirty = true) {
+		parent::__construct();
+		if ($contact !== null) {
+			$this->setContact($contact, $isDirty);
 		}
-		parent::__construct($data);
+		$this->setData($data, $isDirty);
 	}
 	
 	/**
@@ -149,31 +151,38 @@ class Invoice
 	
 	/**
 	 * Set details
-	 * @param Invoice_Detail_Array $value 
+	 * @param Invoice_Detail_Array $value
+	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setDetailsAttr(Invoice_Detail_Array $value = null) {
+	protected function setDetailsAttr(Invoice_Detail_Array $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->details = $value;
+			$this->setDirtyState($isDirty, 'details');
+
 		}
 	}
 	
 	/**
 	 * Set payments
-	 * @param Invoice_Payment_Array $value 
+	 * @param Invoice_Payment_Array $value
+	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setPaymentsAttr(Invoice_Payment_Array $value = null) {
+	protected function setPaymentsAttr(Invoice_Payment_Array $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->payments = $value;
+			$this->setDirtyState($isDirty, 'payments');
 		}
 	}
 	
 	/**
 	 * Set history
-	 * @param Invoice_History_Array $value 
+	 * @param Invoice_History_Array $value
+	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setHistoryAttr(Invoice_History_Array $value = null) {
+	protected function setHistoryAttr(Invoice_History_Array $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->history = $value;
+			$this->setDirtyState($isDirty, 'history');
 		}
 	}
 	
@@ -184,6 +193,7 @@ class Invoice
 		$this->details = new Invoice_Detail_Array();
 		$this->history = new Invoice_History_Array();
 		$this->payments = new Invoice_Payment_Array();
+		return parent::_initVars();
 	}
 	
 	/**
@@ -261,24 +271,27 @@ class Invoice
 	 *
 	 * @access public
 	 * @param Contact $contact
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 * @return self
 	 */
-	public function setContact(Contact $contact) {
+	public function setContact(Contact $contact, $isDirty = true) {
 		$this->contactId = $contact->id;
+		$this->setDirtyState($isDirty, 'contactId');
 		$properties = array(
-			'address1', 
-			'address2', 
-			'attention', 
-			'city', 
-			'companyName', 
-			'country', 
-			'customerId', 
-			'firstname', 
-			'lastname', 
+			'address1',
+			'address2',
+			'attention',
+			'city',
+			'companyName',
+			'country',
+			'customerId',
+			'firstname',
+			'lastname',
 			'zipcode',
 		);
 		foreach ($properties as $property) {
 			$this->$property = $contact->$property;
+			$this->setDirtyState($isDirty, $property);
 		}
 		return $this;
 	}

@@ -99,6 +99,12 @@ class ApiConnector {
 			'invoice_id',
 		),
 	);
+
+	/**
+	 * Indicates if the login credentials where tested
+	 * @var bool
+	 */
+	protected $loginTested = false;
 	
 	/**
 	 * Show debug information
@@ -150,9 +156,8 @@ class ApiConnector {
 	 * @access protected
 	 */
 	protected function testLogin() {
-		static $loginTested = false;
-		if (!$loginTested) {
-			$loginTested = true;
+		if (!$this->loginTested) {
+			$this->loginTested = true;
 			try {
 				$this->getCurrentSession();
 			} catch (NotFoundException $e) {

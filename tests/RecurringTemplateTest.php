@@ -118,12 +118,9 @@ class RecurringTemplateTest extends \PHPUnit_Framework_TestCase {
 		self::$templateId = $template->id;
 		$this->assertNotNull(self::$templateId);
 		$this->assertGreaterThan(0, self::$templateId);
-		
-		$template->details[0]->setDeleted();
-		$template->save($this->service);
-		$this->assertEquals(1, count($template->details));
+		$this->assertEquals(2, count($template->details));
 	}
-	
+
 	/**
 	 * @covers Moneybird\RecurringTemplate_Service::getById
 	 */
@@ -131,6 +128,28 @@ class RecurringTemplateTest extends \PHPUnit_Framework_TestCase {
 		$template = $this->service->getById(self::$templateId);
 		$this->assertInstanceOf('Moneybird\RecurringTemplate', $template);
 		$this->assertEquals(self::$templateId, $template->id);
+	}
+
+	/**
+	 * @covers Moneybird\RecurringTemplate::save
+	 */
+	public function testDeleteLine() {
+		$template = $this->service->getById(self::$templateId);
+		$template->details[0]->setDeleted();
+		$template->save($this->service);
+		$this->assertEquals(1, count($template->details));
+	}
+
+	/**
+	 * @covers Moneybird\RecurringTemplate::save
+	 */
+	public function testUpdateNextDate() {
+		$template = $this->service->getById(self::$templateId);
+		$template->setData(array(
+			'nextDate' => new \DateTime('tomorrow'))
+		);
+		$template->save($this->service);
+		$this->assertEquals(new \DateTime('tomorrow'), $template->nextDate);
 	}
 
 	/**

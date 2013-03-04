@@ -79,12 +79,14 @@ class Estimate
 	 *
 	 * @param array $data
 	 * @param Contact $contact
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 */
-	public function __construct(array $data = array(), Contact $contact = null) {
-		if (!is_null($contact)) {
-			$this->setContact($contact);
+	public function __construct(array $data = array(), Contact $contact = null, $isDirty = true) {
+		parent::__construct();
+		if ($contact !== null) {
+			$this->setContact($contact, $isDirty);
 		}
-		parent::__construct($data);
+		$this->setData($data, $isDirty);
 	}
 	
 	/**
@@ -102,7 +104,7 @@ class Estimate
 	
 	/**
 	 * Set url
-	 * @param string $value 
+	 * @param string $value
 	 */
 	protected function setUrlAttr($value = null) {
 		if (!is_null($value)) {
@@ -113,21 +115,25 @@ class Estimate
 	
 	/**
 	 * Set details
-	 * @param Estimate_Detail_Array $value 
+	 * @param Estimate_Detail_Array $value
+	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setDetailsAttr(Estimate_Detail_Array $value = null) {
+	protected function setDetailsAttr(Estimate_Detail_Array $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->details = $value;
+			$this->setDirtyState($isDirty, 'details');
 		}
 	}
 	
 	/**
 	 * Set history
-	 * @param Estimate_History_Array $value 
+	 * @param Estimate_History_Array $value
+	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setHistoryAttr(Estimate_History_Array $value = null) {
+	protected function setHistoryAttr(Estimate_History_Array $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->history = $value;
+			$this->setDirtyState($isDirty, 'history');
 		}
 	}
 	
@@ -138,6 +144,7 @@ class Estimate
 		$this->details = new Estimate_Detail_Array();
 		$this->history = new Estimate_History_Array();
 		$this->estimateDate = new \DateTime();
+		return parent::_initVars();
 	}
 	
 	/**
@@ -181,24 +188,27 @@ class Estimate
 	 *
 	 * @access public
 	 * @param Contact $contact
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 * @return self
 	 */
-	public function setContact(Contact $contact) {
+	public function setContact(Contact $contact, $isDirty = true) {
 		$this->contactId = $contact->id;
+		$this->setDirtyState($isDirty, 'contactId');
 		$properties = array(
-			'address1', 
-			'address2', 
-			'attention', 
-			'city', 
-			'companyName', 
-			'country', 
-			'customerId', 
-			'firstname', 
-			'lastname', 
+			'address1',
+			'address2',
+			'attention',
+			'city',
+			'companyName',
+			'country',
+			'customerId',
+			'firstname',
+			'lastname',
 			'zipcode',
 		);
 		foreach ($properties as $property) {
 			$this->$property = $contact->$property;
+			$this->setDirtyState($isDirty, $property);
 		}
 		return $this;
 	}
