@@ -52,6 +52,7 @@ class Invoice
 	protected $originalInvoiceId;
 	protected $payUrl;
 	protected $poNumber;
+    protected $pricesAreInclTax;
 	protected $recurringTemplateId;
 	protected $revision; 
 	protected $sendMethod; 

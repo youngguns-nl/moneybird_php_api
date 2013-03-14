@@ -22,30 +22,40 @@ class Estimate
 	protected $address2; 
 	protected $attention; 
 	protected $city; 
-	protected $companyName; 
+	protected $companyName;
+    protected $conceptId;
 	protected $contactId;
 	protected $country; 
 	protected $createdAt;
 	protected $currency;
-	protected $customerId; 
+	protected $customerId;
+    protected $daysOpen;
 	protected $discount;
 	protected $dueDateInterval;
 	protected $estimateDate;
 	protected $estimateHash;
 	protected $estimateId;
+    protected $exchangeRate;
 	protected $firstname; 
 	protected $id; 
 	protected $invoiceProfileId;
 	protected $invoiceProfileVersionId;
 	protected $language;
-	protected $lastname; 
-	protected $preText; 
-	protected $postText; 
+	protected $lastname;
+    protected $poNumber;
+	protected $postText;
+    protected $preText;
+    protected $pricesAreInclTax;
+    protected $revision;
 	protected $sendMethod; 
 	protected $showCustomerId;
 	protected $showTax;
 	protected $signOnline;
 	protected $state;
+    protected $totalPriceExclTax;
+    protected $totalPriceExclTaxBase;
+	protected $totalPriceInclTax;
+    protected $totalPriceInclTaxBase;
 	protected $updatedAt; 
 	protected $url;
 	protected $zipcode;
@@ -55,13 +65,20 @@ class Estimate
 	protected $pdfUrl;
 	
 	protected $_readonlyAttr = array(
+        'conceptId',
 		'createdAt',
+        'daysOpen',
 		'estimateHash',
 		'id', 
 		'invoiceProfileVersionId',
+        'revision',
 		'sendMethod', 
 		'signOnline',
 		'state',
+        'totalPriceExclTax',
+        'totalPriceExclTaxBase',
+        'totalPriceInclTax',
+        'totalPriceInclTaxBase',
 		'updatedAt', 
 		'url',
 		'history',
