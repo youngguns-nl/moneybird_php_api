@@ -36,6 +36,7 @@ class Invoice
 	protected $discount;
 	protected $dueDateInterval;
 	protected $email; 
+	protected $exchangeRate;
 	protected $firstname; 
 	protected $id; 
 	protected $invoiceDate;
@@ -52,7 +53,7 @@ class Invoice
 	protected $originalInvoiceId;
 	protected $payUrl;
 	protected $poNumber;
-    protected $pricesAreInclTax;
+	protected $pricesAreInclTax;
 	protected $recurringTemplateId;
 	protected $revision; 
 	protected $sendMethod; 
@@ -81,6 +82,7 @@ class Invoice
 		'createdAt',
 		'daysOpen',
 		'email', 
+		'exchangeRate',
 		'id', 
 		'invoiceEmail',
 		'invoiceEmailReminder',
