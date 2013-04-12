@@ -41,7 +41,7 @@ abstract class Payment_Abstract extends Domainmodel_Abstract implements Mapper_M
 		'ideal',
 		'paypal',
 		'pin',
-        'reversal',
+		'reversal',
 	);
 	
 	/**
