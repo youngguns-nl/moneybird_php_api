@@ -41,6 +41,7 @@ abstract class Payment_Abstract extends Domainmodel_Abstract implements Mapper_M
 		'ideal',
 		'paypal',
 		'pin',
+        'reversal',
 	);
 	
 	/**
@@ -49,7 +50,7 @@ abstract class Payment_Abstract extends Domainmodel_Abstract implements Mapper_M
 	 * @throws Payment_InvalidMethodException
 	 */
 	protected function setPaymentMethodAttr($value) {
-		if ($value !== null && !in_array($value, $this->_paymentMethods)) {
+		if ($value !== null && $value !== '' && !in_array($value, $this->_paymentMethods)) {
 			throw new Payment_InvalidMethodException('Invalid payment method: ' . $value);
 		}
 
