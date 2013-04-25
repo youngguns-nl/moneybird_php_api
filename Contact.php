@@ -56,7 +56,6 @@ class Contact
 	
 	protected $_requiredAttr = array(
 		//'customerId',
-		'email',
 		array('companyName', 'firstname', 'lastname',),
 	);
 	
