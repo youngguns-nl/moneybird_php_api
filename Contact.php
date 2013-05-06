@@ -95,6 +95,16 @@ class Contact
 			$service->save($this)
 		);
 	}
+
+	/**
+	 * Copy the contact
+	 * @return self
+	 */
+	public function copy() {
+		return parent::copy(array(
+			'customerId',
+		));
+	}
 	
 	/**
 	 * Create an invoice for this contact
