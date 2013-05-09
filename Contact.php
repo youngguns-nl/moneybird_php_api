@@ -112,7 +112,7 @@ class Contact
 	 * @return Invoice
 	 */
 	public function createInvoice(array $data = array()) {
-		return new Invoice($data, $this);
+		return new Invoice($data, $this, true);
 	}
 	
 	/**
@@ -133,7 +133,7 @@ class Contact
 	 * @return RecurringTemplate
 	 */
 	public function createRecurringTemplate(array $data = array()) {
-		return new RecurringTemplate($data, $this);
+		return new RecurringTemplate($data, $this, true);
 	}
 	
 	/**
@@ -154,7 +154,7 @@ class Contact
 	 * @return Estimate
 	 */
 	public function createEstimate(array $data = array()) {
-		return new Estimate($data, $this);
+		return new Estimate($data, $this, true);
 	}
 	
 	/**
@@ -175,7 +175,7 @@ class Contact
 	 * @return IncomingInvoice
 	 */
 	public function createIncomingInvoice(array $data = array()) {
-		return new IncomingInvoice($data, $this);
+		return new IncomingInvoice($data, $this, true);
 	}
 	
 	/**

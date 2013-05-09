@@ -160,7 +160,7 @@ class XmlMapper implements Mapper {
 						$objectData[$key] = $this->fromXml($xmlChild);
 					}
 				}
-				$return = new $classname($objectData);
+				$return->setData($objectData, false);
 			}
 		} else {
 			$return = $this->castValue($xmlElement);
@@ -342,6 +342,15 @@ class XmlMapper implements Mapper {
 	 * @return SimpleXMLElement
 	 */
 	public function toXML(Mapper_Mapable $subject) {
+		if ($subject instanceOf DirtyAware) {
+			$values = $subject->getDirtyAttributes();
+			if ($subject->getId() !== null) {
+				$values['id'] = $subject->getId();
+			}
+		} else {
+			$values = $subject->toArray();
+		}
+
 		$xmlRoot = new SimpleXMLElement('<' . $this->mapObjectToElementName($subject) . ' />');
 		if ($subject instanceof ArrayObject && !($subject instanceof SyncArray)) {
 			$xmlRoot->addAttribute('type', 'array');
@@ -350,7 +359,7 @@ class XmlMapper implements Mapper {
 			$xmlRoot->addChild('_destroy', '1');
 		}
 		
-		foreach ($subject->toArray() as $property => $value) {
+		foreach ($values as $property => $value) {
 			$key = $this->propertyToXmlkey($property);			
 			if (is_null($value)) {
 				$xmlRoot->addChild($key)->addAttribute('nil', 'true');

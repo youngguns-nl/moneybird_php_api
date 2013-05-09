@@ -103,12 +103,14 @@ class RecurringTemplate
 	 *
 	 * @param array $data
 	 * @param Contact $contact
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 */
-	public function __construct(array $data = array(), Contact $contact = null) {
-		if (!is_null($contact)) {
-			$this->setContact($contact);
+	public function __construct(array $data = array(), Contact $contact = null, $isDirty = true) {
+		parent::__construct();
+		if ($contact !== null) {
+			$this->setContact($contact, $isDirty);
 		}
-		parent::__construct($data);
+		$this->setData($data, $isDirty);
 	}
 	
 	/**
@@ -127,24 +129,28 @@ class RecurringTemplate
 	/**
 	 * Set frecuency type
 	 * @param int $value
+	 * @param bool $isDirty new value is dirty, defaults to true
 	 * @throws Exception 
 	 */
-	protected function setFrequencyTypeAttr($value = null) {
+	protected function setFrequencyTypeAttr($value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			if (!in_array($value, self::$frequencyTypes)) {
 				throw new Exception('Invalid frequencyType');
 			}
 			$this->frequencyType = $value;
+			$this->setDirtyState($isDirty, 'frequencyType');
 		}
 	}
 	
 	/**
 	 * Set details
-	 * @param RecurringTemplate_Detail_Array $value 
+	 * @param RecurringTemplate_Detail_Array $value
+	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setDetailsAttr(RecurringTemplate_Detail_Array $value = null) {
+	protected function setDetailsAttr(RecurringTemplate_Detail_Array $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->details = $value;
+			$this->setDirtyState($isDirty, 'details');
 		}
 	}
 	
@@ -152,8 +158,10 @@ class RecurringTemplate
 	 * Initialize vars 
 	 */
 	protected function _initVars() {
+		reset(self::$frequencyTypes);
 		$this->details = new RecurringTemplate_Detail_Array();
 		$this->frequencyType = current(self::$frequencyTypes);
+		return parent::_initVars();
 	}
 	
 	/**
@@ -161,13 +169,16 @@ class RecurringTemplate
 	 *
 	 * @access public
 	 * @param Contact $contact
+	 * @param bool $isDirty new data is dirty, defaults to true
 	 * @return self
 	 */
-	public function setContact(Contact $contact) {
+	public function setContact(Contact $contact, $isDirty = true) {
 		$this->contactId = $contact->id;
+		$this->setDirtyState($isDirty, 'contactId');
 		$properties = array();
 		foreach ($properties as $property) {
 			$this->$property = $contact->$property;
+			$this->setDirtyState($isDirty, $property);
 		}
 		return $this;
 	}
@@ -201,7 +212,7 @@ class RecurringTemplate
 	 * @return Invoice
 	 */
 	public function createInvoice() {
-		return new Invoice(array(), $this);
+		return new Invoice(array(), $this, true);
 	}
 	
 	/**

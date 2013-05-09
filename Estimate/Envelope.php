@@ -18,7 +18,7 @@ class Estimate_Envelope extends Envelope_Abstract {
 	 *
 	 * @access protected
 	 */
-	protected function initDiscloseNotEmpty() {
+	protected function _initDiscloseNotEmpty() {
 		$this->_discloseNotEmpty[] = 'estimateEmail';
 	}
 
