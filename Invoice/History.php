@@ -30,7 +30,7 @@ class Invoice_History extends Domainmodel_Abstract implements Mapper_Mapable, St
     /**
 	 * Inserts history note
 	 * @param Service $service
-     * @param Invoice $service
+     * @param Invoice $invoice
 	 * @return self
 	 * @throws NotValidException
      * @todo throw more specific exception on invalid parent
@@ -41,7 +41,7 @@ class Invoice_History extends Domainmodel_Abstract implements Mapper_Mapable, St
 		}
 
         if ($invoice === null) {
-            throw new Exception('$parent must be instance of Invoice');
+            throw new Exception('$invoice must be instance of Invoice');
         }
 
 		return $this->reload(
