@@ -309,6 +309,36 @@ class Invoice
 			$service->save($this)
 		);
 	}
+
+	/**
+	 * Copy the invoice
+	 * @return self
+	 */
+	public function copy() {
+		return parent::copy(array(
+			'invoiceDate',
+			'invoiceId',
+		));
+	}
+
+	/**
+	 * Copy the invoice to a credit
+	 * @return self
+	 */
+	public function createCredit() {
+		$copy = $this->copy();
+		$detailsCopy = new $this->details;
+		foreach ($copy->details as $detail) {
+			$detail->setData(array(
+				'amount' => $detail->amount * -1
+			));
+			$detailsCopy->append($detail);
+		}
+		$copy->setData(array(
+			'details' => $detailsCopy
+		));
+		return $copy;
+	}
 	
 	/**
 	 * Validate object

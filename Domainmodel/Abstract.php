@@ -214,8 +214,41 @@ abstract class Domainmodel_Abstract {
 	 */
 	protected function reload(Domainmodel_Abstract $self) {
 		$this->_initVars();
-		$this->extract($self->toArray());
+		$this->extract($self->selfToArray());
 		return $this;
+	}
+
+	/**
+	 * Copy the object
+	 * @param Array $filter Attributes not to copy
+	 * @return self
+	 */
+	protected function copy(Array $filter = array()) {
+		$filter = array_flip(array_merge($filter, $this->_readonlyAttr));
+
+		$copy = new $this();
+		$attributes = $this->selfToArray();
+		foreach ($attributes as $key => &$value) {
+			if (array_key_exists($key, $filter)) {
+				unset($attributes[$key]);
+			}
+			elseif ($value instanceof ArrayObject) {
+				try {
+					$newElements = $value->copy($filter);
+					$value = new $value;
+					foreach ($newElements as $elmCopy) {
+						$value->append($elmCopy);
+					}
+				} catch (ArrayObject_UndefinedMethodException $e) {
+					// pass
+				}
+			}
+			elseif ($value instanceof Domainmodel_Abstract) {
+				$value = $value->copy($filter);
+			}
+		}
+		$copy->setData($attributes);
+		return $copy;
 	}
 
 	/**
