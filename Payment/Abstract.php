@@ -50,7 +50,6 @@ abstract class Payment_Abstract extends Domainmodel_Abstract implements Mapper_M
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 * @throws Payment_InvalidMethodException
 	 */
-
 	protected function setPaymentMethodAttr($value, $isDirty = true) {
 		if ($value !== null && $value !== '' && !in_array($value, $this->_paymentMethods)) {
 			throw new Payment_InvalidMethodException('Invalid payment method: ' . $value);
