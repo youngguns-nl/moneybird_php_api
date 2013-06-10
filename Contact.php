@@ -98,9 +98,10 @@ class Contact
 
 	/**
 	 * Copy the contact
+	 * @param array $filter 
 	 * @return self
 	 */
-	public function copy() {
+	public function copy(array $filter = array()) {
 		return parent::copy(array(
 			'customerId',
 		));

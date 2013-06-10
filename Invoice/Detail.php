@@ -15,12 +15,14 @@ class Invoice_Detail extends Detail_Abstract {
 
 	/**
 	 * Copy the invoice detail
-	 * @return self
-	 */
-	public function copy() {
-		return parent::copy(array(
-			'invoiceId',
-		));
-	}
+         * @param array $filter
+         * @return self
+         */
+        public function copy(array $filter = array()) {
+                return parent::copy(array(
+                        'invoiceId',
+                ));
+        }
+
 	
 }

@@ -324,15 +324,17 @@ class Invoice
 	}
 
 	/**
-	 * Copy the invoice
-	 * @return self
-	 */
-	public function copy() {
-		return parent::copy(array(
+         * Copy the invoice
+         * @param array $filter
+         * @return self
+         */
+        public function copy(array $filter = array()) {
+                return parent::copy(array(
 			'invoiceDate',
 			'invoiceId',
-		));
-	}
+                ));
+        }
+
 
 	/**
 	 * Copy the invoice to a credit
