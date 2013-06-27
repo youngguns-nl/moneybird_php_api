@@ -4,12 +4,15 @@
  * Error array file
  */
 
-namespace Moneybird;
+namespace Moneybird\Error;
+
+use Moneybird\ArrayObject as ParentArrayObject;
+use Moneybird\Mapper\Mapable;
 
 /**
  * Error array
  */
-class Error_Array extends ArrayObject implements Mapper_Mapable {
+class ArrayObject extends ParentArrayObject implements Mapable {
 	
 	/**
 	 * String representation of object

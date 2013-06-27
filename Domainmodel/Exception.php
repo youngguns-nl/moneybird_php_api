@@ -4,10 +4,12 @@
  * Domainmodel Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\Domainmodel;
+
+use Moneybird\Exception as ParentException;
 
 /**
  * General exception
  */
-class Domainmodel_Exception extends Exception {
+class Exception extends ParentException {
 }

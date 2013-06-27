@@ -4,12 +4,17 @@
  * Contact service class
  */
 
-namespace Moneybird;
+namespace Moneybird\Contact;
+
+use Moneybird\Service as ServiceInterface;
+use Moneybird\ApiConnector;
+use Moneybird\Contact\ArrayObject as ContactArray;
+use Moneybird\Contact;
 
 /**
  * Contact service
  */
-class Contact_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -27,7 +32,7 @@ class Contact_Service implements Service {
 	
 	/**
 	 * Get contacts sync status
-	 * @return Contact_Array
+	 * @return ContactArray
 	 */
 	public function getSyncList() {
 		return $this->connector->getSyncList('Contact');
@@ -45,7 +50,7 @@ class Contact_Service implements Service {
 	/**
 	 * Get contacts by id (max 100)
 	 * @param Array $ids
-	 * @return Contact_Array
+	 * @return ContactArray
 	 */
 	public function getByIds($ids) {
 		return $this->connector->getByIds('Contact', $ids);
@@ -54,7 +59,7 @@ class Contact_Service implements Service {
 	/**
 	 * Get all contacts
 	 * 
-	 * @return Contact_Array
+	 * @return ContactArray
 	 */
 	public function getAll() {
 		return $this->connector->getAll('Contact');
