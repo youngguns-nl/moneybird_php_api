@@ -4,12 +4,17 @@
  * RecurringTemplate service class
  */
 
-namespace Moneybird;
+namespace Moneybird\RecurringTemplate;
+
+use Moneybird\Service as ServiceInterface;
+use Moneybird\ApiConnector;
+use Moneybird\RecurringTemplate;
+use Moneybird\InvalidFilterException;
 
 /**
  * RecurringTemplate service
  */
-class RecurringTemplate_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -31,19 +36,19 @@ class RecurringTemplate_Service implements Service {
 	 * @return RecurringTemplate
 	 */
 	public function getById($id) {
-		return $this->connector->getById('RecurringTemplate', $id);
+		return $this->connector->getById(__NAMESPACE__, $id);
 	}
 	
 	/**
 	 * Get all templates
 	 * 
 	 * @param string $filter
-	 * @param RecurringTemplate_Subject $parent
-	 * @return RecurringTemplate_Array
+	 * @param Subject $parent
+	 * @return ArrayObject
 	 * @throws InvalidFilterException 
 	 */
-	public function getAll($filter = null, RecurringTemplate_Subject $parent = null) {
-		return $this->connector->getAll('RecurringTemplate', $filter, $parent);
+	public function getAll($filter = null, Subject $parent = null) {
+		return $this->connector->getAll(__NAMESPACE__, $filter, $parent);
 	}
 	
 	/**

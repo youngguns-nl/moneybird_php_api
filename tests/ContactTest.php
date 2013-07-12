@@ -155,14 +155,14 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\Contact::createInvoice
 	 */
 	public function testCreateInvoice() {
-		$details = new Invoice_Detail_Array();
-		$details->append(new Invoice_Detail(array(
+		$details = new Invoice\Detail\ArrayObject();
+		$details->append(new Invoice\Detail(array(
 			'amount' => 5, 
 			'description' => 'My invoice line',
 			'price' => 20,
 			'tax' => 0.19,
 		)));
-		$details->append(new Invoice_Detail(array(
+		$details->append(new Invoice\Detail(array(
 			'amount' => 1, 
 			'description' => 'My second invoice line',
 			'price' => 12,
@@ -191,14 +191,14 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\Contact::createRecurringTemplate
 	 */
 	public function testCreateRecurringTemplate() {
-		$details = new RecurringTemplate_Detail_Array();
-		$details->append(new RecurringTemplate_Detail(array(
+		$details = new RecurringTemplate\Detail\ArrayObject();
+		$details->append(new RecurringTemplate\Detail(array(
 			'amount' => 5, 
 			'description' => 'My invoice line',
 			'price' => 20,
 			'tax' => 0.19,
 		)));
-		$details->append(new RecurringTemplate_Detail(array(
+		$details->append(new RecurringTemplate\Detail(array(
 			'amount' => 1, 
 			'description' => 'My second invoice line',
 			'price' => 12,
@@ -228,14 +228,14 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\Contact::createEstimate
 	 */
 	public function testCreateEstimate() {
-		$details = new Estimate_Detail_Array();
-		$details->append(new Estimate_Detail(array(
+		$details = new Estimate\Detail\ArrayObject();
+		$details->append(new Estimate\Detail(array(
 			'amount' => 5, 
 			'description' => 'My invoice line',
 			'price' => 20,
 			'tax' => 0.19,
 		)));
-		$details->append(new Estimate_Detail(array(
+		$details->append(new Estimate\Detail(array(
 			'amount' => 1, 
 			'description' => 'My second invoice line',
 			'price' => 12,
@@ -264,14 +264,14 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\Contact::createIncomingInvoice
 	 */
 	public function testCreateIncomingInvoice() {
-		$details = new IncomingInvoice_Detail_Array();
-		$details->append(new IncomingInvoice_Detail(array(
+		$details = new IncomingInvoice\Detail\ArrayObject();
+		$details->append(new IncomingInvoice\Detail(array(
 			'amount' => 5, 
 			'description' => 'My invoice line',
 			'price' => 20,
 			'tax' => 0.19,
 		)));
-		$details->append(new IncomingInvoice_Detail(array(
+		$details->append(new IncomingInvoice\Detail(array(
 			'amount' => 1, 
 			'description' => 'My second invoice line',
 			'price' => 12,

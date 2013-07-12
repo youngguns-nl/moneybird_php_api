@@ -18,6 +18,12 @@ use Moneybird\ArrayObject\UndefinedMethodException;
 abstract class ArrayObject extends ParentArrayObject {
 
 	/**
+	 * Classnames of allowed childs
+	 * @var string
+	 */
+	protected $childname = null;
+
+	/**
 	 * Append an object to the array
 	 * The object must match the type the array is meant for
 	 *
@@ -82,7 +88,12 @@ abstract class ArrayObject extends ParentArrayObject {
 	 * @return string
 	 */
 	protected function getChildName() {
-		return substr(get_class($this), 0, -12); // 12 = strlen(\ArrayObject)
+		if ($this->childname === null) {
+			$classname = get_class($this);
+			$pos = max(strrpos($classname, '_Array'), strrpos($classname, '\ArrayObject'));
+			$this->childname = substr($classname, 0, $pos);
+		}
+		return $this->childname;
 	}
 
 	/**

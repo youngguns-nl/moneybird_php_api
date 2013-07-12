@@ -4,12 +4,15 @@
  * Estimate_History class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Estimate;
+
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
 
 /**
  * Estimate_History
  */
-class Estimate_History extends Domainmodel_Abstract implements Mapper_Mapable {
+class History extends AbstractModel implements Mapable {
 	
 	protected $action; 
 	protected $createdAt;

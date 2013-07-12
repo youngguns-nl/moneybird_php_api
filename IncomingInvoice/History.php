@@ -4,12 +4,15 @@
  * IncomingInvoice_History class file
  */
 
-namespace Moneybird;
+namespace Moneybird\IncomingInvoice;
+
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
 
 /**
  * IncomingInvoice_History
  */
-class IncomingInvoice_History extends Domainmodel_Abstract implements Mapper_Mapable {
+class History extends AbstractModel implements Mapable {
 	
 	protected $action; 
 	protected $createdAt;

@@ -6,14 +6,21 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+use Moneybird\IncomingInvoice\Detail\ArrayObject as DetailArray;
+use Moneybird\IncomingInvoice\Payment\ArrayObject as PaymentArray;
+use Moneybird\IncomingInvoice\History\ArrayObject as HistoryArray;
+use Moneybird\Payment\AbstractPayment;
+
 /**
  * IncomingInvoice
  */
 class IncomingInvoice 
 	extends 
-		Domainmodel_Abstract 
+		AbstractModel
 	implements 
-		Mapper_Mapable, 
+		Mapable, 
 		Storable, 
 		Payable {
 	
@@ -83,10 +90,10 @@ class IncomingInvoice
 		
 	/**
 	 * Set details
-	 * @param IncomingInvoice_Detail_Array $value
+	 * @param DetailArray $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setDetailsAttr(IncomingInvoice_Detail_Array $value = null, $isDirty = true) {
+	protected function setDetailsAttr(DetailArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->details = $value;
 			$this->setDirtyState($isDirty, 'details');
@@ -95,10 +102,10 @@ class IncomingInvoice
 	
 	/**
 	 * Set payments
-	 * @param IncomingInvoice_Payment_Array $value
+	 * @param PaymentArray $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setPaymentsAttr(IncomingInvoice_Payment_Array $value = null, $isDirty = true) {
+	protected function setPaymentsAttr(PaymentArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->payments = $value;
 			$this->setDirtyState($isDirty, 'payments');
@@ -107,10 +114,10 @@ class IncomingInvoice
 	
 	/**
 	 * Set history
-	 * @param IncomingInvoice_History_Array $value
+	 * @param HistoryArray $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setHistoryAttr(IncomingInvoice_History_Array $value = null, $isDirty = true) {
+	protected function setHistoryAttr(HistoryArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->history = $value;
 			$this->setDirtyState($isDirty, 'history');
@@ -121,19 +128,19 @@ class IncomingInvoice
 	 * Initialize vars 
 	 */
 	protected function _initVars() {
-		$this->details = new IncomingInvoice_Detail_Array();
-		$this->history = new IncomingInvoice_History_Array();
-		$this->payments = new IncomingInvoice_Payment_Array();
+		$this->details = new DetailArray();
+		$this->history = new HistoryArray();
+		$this->payments = new PaymentArray();
 		return parent::_initVars();
 	}
 	
 	/**
 	 * Register a payment for the invoice
 	 * @param Service $service
-	 * @param Payment_Abstract $payment
+	 * @param AbstractPayment $payment
 	 * @return self
 	 */
-	public function registerPayment(Service $service, Payment_Abstract $payment) {
+	public function registerPayment(Service $service, AbstractPayment $payment) {
 		return $this->reload(
 			$service->registerPayment($this, $payment)
 		);		

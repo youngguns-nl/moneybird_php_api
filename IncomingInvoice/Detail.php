@@ -4,11 +4,13 @@
  * IncomingInvoice_Detail class file
  */
 
-namespace Moneybird;
+namespace Moneybird\IncomingInvoice;
+
+use Moneybird\Detail\AbstractDetail;
 
 /**
  * IncomingInvoice_Detail
  */
-class IncomingInvoice_Detail extends Detail_Abstract {
+class Detail extends AbstractDetail {
 	
 }

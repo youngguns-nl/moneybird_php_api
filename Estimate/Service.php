@@ -4,12 +4,17 @@
  * Estimate service class
  */
 
-namespace Moneybird;
+namespace Moneybird\Estimate;
+
+use Moneybird\Service as ServiceInterface;
+use Moneybird\ApiConnector;
+use Moneybird\InvalidFilterException;
+use Moneybird\Estimate;
 
 /**
  * Estimate service
  */
-class Estimate_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -31,19 +36,19 @@ class Estimate_Service implements Service {
 	 * @return Estimate
 	 */
 	public function getById($id) {
-		return $this->connector->getById('Estimate', $id);
+		return $this->connector->getById(__NAMESPACE__, $id);
 	}
 		
 	/**
 	 * Get all estimates
 	 * 
 	 * @param string|integer $filter Filter name or id (advanced filters)
-	 * @param Estimate_Subject $parent
-	 * @return Estimate_Array
+	 * @param Subject $parent
+	 * @return ArrayObject
 	 * @throws InvalidFilterException 
 	 */
-	public function getAll($filter = null, Estimate_Subject $parent = null) {
-		return $this->connector->getAll('Estimate', $filter, $parent);
+	public function getAll($filter = null, Subject $parent = null) {
+		return $this->connector->getAll(__NAMESPACE__, $filter, $parent);
 	}	
 
 	/**
@@ -82,11 +87,11 @@ class Estimate_Service implements Service {
 	 * @param string $method Send method (email|hand|post); default: email
 	 * @param type $email Address to send to; default: contact e-mail
 	 * @param type $message
-	 * @return Estimate_Envelope
+	 * @return Envelope
 	 * @access protected
 	 */
 	protected function buildEnvelope($method = 'email', $email = null, $message = null) {
-		return new Estimate_Envelope(
+		return new Envelope(
 			array(
 				'sendMethod' => $method,
 				'email' => $email,

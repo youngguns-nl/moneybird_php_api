@@ -35,8 +35,8 @@ class XmlMapper implements Mapper {
 
 			'estimates'                => __NAMESPACE__.'\Estimate\ArrayObject',
 			'estimate'                 => __NAMESPACE__.'\Estimate',
-			'estimate/details'         => __NAMESPACE__.'\Estimate_Detail\ArrayObject',
-			'estimate/details/detail'  => __NAMESPACE__.'\Estimate_Detail',
+			'estimate/details'         => __NAMESPACE__.'\Estimate\Detail\ArrayObject',
+			'estimate/details/detail'  => __NAMESPACE__.'\Estimate\Detail',
 			'estimate/history'         => __NAMESPACE__.'\Estimate\History\ArrayObject',
 			'estimate/history/history' => __NAMESPACE__.'\Estimate\History',
 			
@@ -51,13 +51,13 @@ class XmlMapper implements Mapper {
 			
 			'invoices'                 => __NAMESPACE__.'\Invoice\ArrayObject',
 			'invoice'                  => __NAMESPACE__.'\Invoice',
-			'invoice/details'          => __NAMESPACE__.'\Invoice_Detail\ArrayObject',
-			'invoice/details/detail'   => __NAMESPACE__.'\Invoice_Detail',
-			'invoice/payments'         => __NAMESPACE__.'\Invoice_Payment\ArrayObject',
-			'invoice/payments/payment' => __NAMESPACE__.'\Invoice_Payment',
-			'invoice/history'          => __NAMESPACE__.'\Invoice_History\ArrayObject',
-			'invoice/history/history'  => __NAMESPACE__.'\Invoice_History',
-            'history'                  => __NAMESPACE__.'\Invoice_History',
+			'invoice/details'          => __NAMESPACE__.'\Invoice\Detail\ArrayObject',
+			'invoice/details/detail'   => __NAMESPACE__.'\Invoice\Detail',
+			'invoice/payments'         => __NAMESPACE__.'\Invoice\Payment\ArrayObject',
+			'invoice/payments/payment' => __NAMESPACE__.'\Invoice\Payment',
+			'invoice/history'          => __NAMESPACE__.'\Invoice\History\ArrayObject',
+			'invoice/history/history'  => __NAMESPACE__.'\Invoice\History',
+            'history'                  => __NAMESPACE__.'\Invoice\History',
 			
 			'invoice-profiles' => __NAMESPACE__.'\InvoiceProfile\ArrayObject',
 			'invoice-profile'  => __NAMESPACE__.'\InvoiceProfile',
@@ -296,13 +296,13 @@ class XmlMapper implements Mapper {
 		// Map the name to a proper XML key
 		$name = $this->propertyToXmlkey($name);
 
-		// Get rid of the unnecessary type specs (i.e. invoice_detail => detail)
-		/*$simplified = array(
+		// Get rid of the unnecessary type specs (i.e. invoice\detail => detail)
+		$simplified = array(
 			'payment', 'history', 'detail',
 		);
 		foreach ($simplified as $simplify) {
 			$name = preg_replace('/^[a-z\-\/]+[_\/]('.preg_quote($simplify).')/', '\\1', $name);
-		}*/
+		}
 
 		if ($subject instanceof SyncObject) {
 			$name = 'ids';

@@ -10,6 +10,8 @@ use Moneybird\Domainmodel\AbstractModel;
 use Moneybird\Mapper\Mapable;
 use Moneybird\Invoice\Subject as InvoiceSubject;
 use Moneybird\RecurringTemplate\Detail\ArrayObject as DetailArray;
+use Moneybird\Invoice\Service as InvoiceService;
+use Moneybird\Invoice\ArrayObject as InvoiceArray;
 
 /**
  * RecurringTemplate
@@ -223,12 +225,12 @@ class RecurringTemplate
 	/**
 	 * Get all invoices of this template
 	 *
-	 * @return Invoice_Array
-	 * @param Invoice_Service $service
+	 * @return InvoiceArray
+	 * @param InvoiceService $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getInvoices(Invoice_Service $service, $filter = null) {
+	public function getInvoices(InvoiceService $service, $filter = null) {
 		return $service->getAll($filter, $this);
 	}
 	

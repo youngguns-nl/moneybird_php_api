@@ -4,12 +4,17 @@
  * Invoice sync class
  */
 
-namespace Moneybird;
+namespace Moneybird\Invoice;
+
+use Moneybird\InvalidIdException;
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+use Moneybird\SyncObject;
 
 /**
  * Invoice sync
  */
-class Invoice_Sync extends Domainmodel_Abstract implements Mapper_Mapable, SyncObject {
+class Sync extends AbstractModel implements Mapable, SyncObject {
 	
 	protected $id = array();
 	

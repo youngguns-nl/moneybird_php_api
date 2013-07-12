@@ -9,6 +9,8 @@ namespace Moneybird\Invoice;
 use Moneybird\Invoice;
 use Moneybird\ApiConnector;
 use Moneybird\Service as ServiceInterface;
+use Moneybird\InvalidRequestException;
+use Moneybird\InvalidFilterException;
 
 /**
  * Invoice service
@@ -59,11 +61,11 @@ class Service implements ServiceInterface {
 	 * Get all invoices
 	 * 
 	 * @param string|integer $filter Filter name or id (advanced filters)
-	 * @param Invoice_Subject $parent
-	 * @return Invoice_Array
+	 * @param Subject $parent
+	 * @return ArrayObject
 	 * @throws InvalidFilterException 
 	 */
-	public function getAll($filter = null, Invoice_Subject $parent = null) {
+	public function getAll($filter = null, Subject $parent = null) {
 		return $this->connector->getAll(__NAMESPACE__, $filter, $parent);
 	}	
 
@@ -124,11 +126,11 @@ class Service implements ServiceInterface {
 	 * @param string $method Send method (email|hand|post); default: email
 	 * @param type $email Address to send to; default: contact e-mail
 	 * @param type $message
-	 * @return Invoice_Envelope
+	 * @return Envelope
 	 * @access protected
 	 */
 	protected function buildEnvelope($method = 'email', $email = null, $message = null) {
-		return new Invoice_Envelope(
+		return new Envelope(
 			array(
 				'sendMethod' => $method,
 				'email' => $email,
@@ -140,10 +142,10 @@ class Service implements ServiceInterface {
 	/**
 	 * Register a payment for the invoice
 	 * @param Invoice $invoice
-	 * @param Invoice_Payment $payment
+	 * @param Payment $payment
 	 * @return Invoice
 	 */
-	public function registerPayment(Invoice &$invoice, Invoice_Payment $payment) {
+	public function registerPayment(Invoice &$invoice, Payment $payment) {
 		return $this->connector->registerPayment($invoice, $payment);
 	}
 	
@@ -175,11 +177,11 @@ class Service implements ServiceInterface {
 
     /**
 	 * Inserts history note
-     * @param Invoice_History $history
+     * @param History $history
 	 * @param Invoice $invoice
-	 * @return Invoice_History
+	 * @return History
 	 */
-	public function saveHistory(Invoice_History $history, Invoice $invoice) {
+	public function saveHistory(History $history, Invoice $invoice) {
 		return $this->connector->save($history, $invoice);
 	}
 }

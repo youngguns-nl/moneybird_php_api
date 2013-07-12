@@ -4,12 +4,14 @@
  * IncomingInvoice_Payment class file
  */
 
-namespace Moneybird;
+namespace Moneybird\IncomingInvoice;
+
+use Moneybird\Payment\AbstractPayment;
 
 /**
  * Payment
  */
-class IncomingInvoice_Payment extends Payment_Abstract {
+class Payment extends AbstractPayment {
 	
 	protected $incomingInvoiceId;
 	protected $sendEmail;

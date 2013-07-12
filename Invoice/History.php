@@ -1,15 +1,23 @@
 <?php
 
 /*
- * Invoice_History class file
+ * History class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Invoice;
+
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+use Moneybird\Storable;
+use Moneybird\Service as ServiceInterface;
+use Moneybird\Invoice;
+use Moneybird\Exception;
+use Moneybird\NotValidException;
 
 /**
- * Invoice_History
+ * History
  */
-class Invoice_History extends Domainmodel_Abstract implements Mapper_Mapable, Storable {
+class History extends AbstractModel implements Mapable, Storable {
 	
 	protected $action; 
 	protected $createdAt;
@@ -29,13 +37,13 @@ class Invoice_History extends Domainmodel_Abstract implements Mapper_Mapable, St
 
     /**
 	 * Inserts history note
-	 * @param Service $service
+	 * @param ServiceInterface $service
      * @param Invoice $invoice
 	 * @return self
 	 * @throws NotValidException
      * @todo throw more specific exception on invalid parent
 	 */
-	public function save(Service $service, Invoice $invoice = null) {
+	public function save(ServiceInterface $service, Invoice $invoice = null) {
 		if (!$this->validate()){
 			throw new NotValidException('Unable to validate invoice history');
 		}
@@ -49,7 +57,7 @@ class Invoice_History extends Domainmodel_Abstract implements Mapper_Mapable, St
 		);
 	}
 
-    public function delete(Service $service)
+    public function delete(ServiceInterface $service)
     {
         throw new Exception('Not implemented');
     }
