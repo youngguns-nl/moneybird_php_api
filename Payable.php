@@ -6,6 +6,8 @@
 
 namespace Moneybird;
 
+use Moneybird\Payment\AbstractPayment;
+
 /**
  * Payable
  */
@@ -13,8 +15,8 @@ interface Payable {
 	/**
 	 * Register a payment for the invoice
 	 * @param Service $service
-	 * @param Payment_Abstract $payment
+	 * @param AbstractPayment $payment
 	 * @return self
 	 */
-	public function registerPayment(Service $service, Payment_Abstract $payment);
+	public function registerPayment(Service $service, AbstractPayment $payment);
 }

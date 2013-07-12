@@ -6,6 +6,11 @@
 
 namespace Moneybird;
 
+use Moneybird\HttpClient\Exception as GeneralException;
+use Moneybird\HttpClient\ConnectionErrorException;
+use Moneybird\HttpClient\HttpStatusException;
+use Moneybird\HttpClient\UnknownHttpStatusException;
+
 /**
  * Wrapper for curl to create http requests
  */
@@ -120,14 +125,14 @@ class HttpClient implements Transport {
 	 *
 	 * @access protected
 	 * @return HttpClient
-	 * @throws HttpClient_ConnectionErrorException
+	 * @throws ConnectionErrorException
 	 */
 	protected function openConnection() {
 		$this->response = null;
 		$this->httpStatus = null;
 		
 		if (!$this->connection = curl_init()) {
-			throw new HttpClient_ConnectionErrorException('Unable to open connection');
+			throw new ConnectionErrorException('Unable to open connection');
 		} 
 		
 		$this->setConnectionOptions($this->connectionOptions);
@@ -138,16 +143,16 @@ class HttpClient implements Transport {
 	 * Set connection options
 	 * 
 	 * @param array $options 
-	 * @throws HttpClient_ConnectionErrorException
+	 * @throws ConnectionErrorException
 	 * @access protected
 	 * @return HttpClient
 	 */
 	protected function setConnectionOptions(Array $options) {
 		if (!is_resource($this->connection)) {
-			throw new HttpClient_ConnectionErrorException('cURL connection has not been set up yet!');
+			throw new ConnectionErrorException('cURL connection has not been set up yet!');
 		}
 		if (!curl_setopt_array($this->connection, $options)) {
-			throw new HttpClient_ConnectionErrorException('Unable to set cURL options' . PHP_EOL . curl_error($this->connection));
+			throw new ConnectionErrorException('Unable to set cURL options' . PHP_EOL . curl_error($this->connection));
 		}
 		return $this;
 	}
@@ -244,16 +249,16 @@ class HttpClient implements Transport {
 	 * @param string $data Data in string format
 	 * @param array $headers
 	 * @return string 
-	 * @throws HttpClient_Exception
-	 * @throws HttpClient_HttpStatusException
-	 * @throws HttpClient_UnknownHttpStatusException
-	 * @throws HttpClient_ConnectionErrorException
+	 * @throws GeneralException
+	 * @throws HttpStatusException
+	 * @throws UnknownHttpStatusException
+	 * @throws ConnectionErrorException
 	 * @access public
 	 */
 	public function send($url, $requestMethod, $data = null, Array $headers = null) {
 		$method = 'pre'.$requestMethod.'request';
 		if (!method_exists($this, $method)) {
-			throw new HttpClient_Exception('Request method not allowed');
+			throw new GeneralException('Request method not allowed');
 		}
 		
 		$this
@@ -280,8 +285,8 @@ class HttpClient implements Transport {
 	
 	/**
 	 * Throws exceptions if httpStatus contains error status
-	 * @throws HttpClient_HttpStatusException
-	 * @throws HttpClient_UnknownHttpStatusException
+	 * @throws HttpStatusException
+	 * @throws UnknownHttpStatusException
 	 * @access protected
 	 */
 	protected function handleError() {
@@ -299,10 +304,10 @@ class HttpClient implements Transport {
 		);
 		
 		if (isset($messages[$this->httpStatus])) {
-			throw new HttpClient_HttpStatusException($messages[$this->httpStatus], $this->httpStatus);
+			throw new HttpStatusException($messages[$this->httpStatus], $this->httpStatus);
 		}
 		if (!in_array($this->httpStatus, $okStatus)) {
-			throw new HttpClient_UnknownHttpStatusException('Unknown http status: ' . $this->httpStatus);
+			throw new UnknownHttpStatusException('Unknown http status: ' . $this->httpStatus);
 		}
 	}
 	
@@ -313,9 +318,9 @@ class HttpClient implements Transport {
 	 *
 	 * @access protected
 	 * @return HttpClient
-	 * @throws HttpClient_HttpStatusException
-	 * @throws HttpClient_UnknownHttpStatusException
-	 * @throws HttpClient_ConnectionErrorException
+	 * @throws HttpStatusException
+	 * @throws UnknownHttpStatusException
+	 * @throws ConnectionErrorException
 	 */
 	protected function exec() {
 		static $loops = 0;
@@ -323,7 +328,7 @@ class HttpClient implements Transport {
 
 		if ($loops++ >= $maxLoops) {
 			$loops = 0;
-			throw new HttpClient_ConnectionErrorException('Too many redirects in request');
+			throw new ConnectionErrorException('Too many redirects in request');
 		}
 
 		$response = explode("\r\n\r\n", curl_exec($this->connection), 2);
@@ -349,7 +354,7 @@ class HttpClient implements Transport {
 			if (!$url) {
 				//couldn't process the url to redirect to
 				$loops = 0;
-				throw new HttpClient_ConnectionErrorException('Invalid redirect');
+				throw new ConnectionErrorException('Invalid redirect');
 			}
 
 			$this->setConnectionOptions(array(
@@ -384,6 +389,7 @@ class HttpClient implements Transport {
 	 */
 	public function getHeaders() {
 		$headers = array();
+		$matches = array();
 		if (preg_match_all('/([\w-]+): (.*)/', $this->lastHeader, $matches)) {
 			for ($i = count($matches[0]) - 1; $i >= 0; $i--) {
 				$headers[$matches[1][$i]] = $matches[2][$i];

@@ -6,25 +6,29 @@
 
 namespace Moneybird;
 
+use \ArrayObject as ParentArrayObject;
+use Moneybird\ArrayObject\TypeMismatchException;
+use Moneybird\ArrayObject\UndefinedMethodException;
+
 /**
  * Abstract class for array objects
  *
  * @abstract
  */
-abstract class ArrayObject extends \ArrayObject {
+abstract class ArrayObject extends ParentArrayObject {
 
 	/**
 	 * Append an object to the array
 	 * The object must match the type the array is meant for
 	 *
 	 * @param mixed $value
-	 * @throws ArrayObject_TypeMismatchException
+	 * @throws TypeMismatchException
 	 * @return ArrayObject
 	 */
 	public function append($value) {
 		$arrayType = $this->getChildName();
 		if (!($value instanceof $arrayType)) {
-			throw new ArrayObject_TypeMismatchException('Passed argument is not an instance of ' . $arrayType);
+			throw new TypeMismatchException('Passed argument is not an instance of ' . $arrayType);
 		} else {
 			parent::append($value);
 		}
@@ -35,12 +39,12 @@ abstract class ArrayObject extends \ArrayObject {
 	 * Merge another array of the same type into this array
 	 *
 	 * @param ArrayObject $array
-	 * @throws ArrayObject_TypeMismatchException
+	 * @throws TypeMismatchException
 	 * @return ArrayObject
 	 */
 	public function merge(ArrayObject $array) {
 		if (!($array instanceof $this)) {
-			throw new ArrayObject_TypeMismatchException('Passed argument is not an instance of ' . get_class($this));
+			throw new TypeMismatchException('Passed argument is not an instance of ' . get_class($this));
 		} else {
 			foreach ($array as $object) {
 				$this->append($object);
@@ -55,13 +59,13 @@ abstract class ArrayObject extends \ArrayObject {
 	 *
 	 * @param string $method
 	 * @param array $arguments
-	 * @throws ArrayObject_UndefinedMethodException
+	 * @throws UndefinedMethodException
 	 * @return Array
 	 */
 	public function __call($method, Array $arguments) {
 		$arrayType = $this->getChildName();
 		if (!method_exists($arrayType, $method)) {
-			throw new ArrayObject_UndefinedMethodException('Fatal error: Call to undefined method ' . $arrayType . '::' . $method . '()');
+			throw new UndefinedMethodException('Fatal error: Call to undefined method ' . $arrayType . '::' . $method . '()');
 		}
 
 		$return = array();
@@ -78,7 +82,7 @@ abstract class ArrayObject extends \ArrayObject {
 	 * @return string
 	 */
 	protected function getChildName() {
-		return substr(get_class($this), 0, -6); // 6 = strlen(_Array)
+		return substr(get_class($this), 0, -12); // 12 = strlen(\ArrayObject)
 	}
 
 	/**

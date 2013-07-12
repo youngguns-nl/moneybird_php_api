@@ -35,7 +35,7 @@ class Service implements ServiceInterface {
 	 * @return ContactArray
 	 */
 	public function getSyncList() {
-		return $this->connector->getSyncList('Contact');
+		return $this->connector->getSyncList(__NAMESPACE__);
 	}
 	
 	/**
@@ -44,7 +44,7 @@ class Service implements ServiceInterface {
 	 * @return Contact
 	 */
 	public function getById($id) {
-		return $this->connector->getById('Contact', $id);
+		return $this->connector->getById(__NAMESPACE__, $id);
 	}
 	
 	/**
@@ -53,7 +53,7 @@ class Service implements ServiceInterface {
 	 * @return ContactArray
 	 */
 	public function getByIds($ids) {
-		return $this->connector->getByIds('Contact', $ids);
+		return $this->connector->getByIds(__NAMESPACE__, $ids);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ class Service implements ServiceInterface {
 	 * @return ContactArray
 	 */
 	public function getAll() {
-		return $this->connector->getAll('Contact');
+		return $this->connector->getAll(__NAMESPACE__);
 	}	
 	
 	/**
@@ -71,7 +71,7 @@ class Service implements ServiceInterface {
 	 * @return Contact
 	 */
 	public function getByCustomerId($customerId) {
-		return $this->connector->getByNamedId('Contact', 'customer_id', $customerId);
+		return $this->connector->getByNamedId(__NAMESPACE__, 'customer_id', $customerId);
 	}
 	
 	/**

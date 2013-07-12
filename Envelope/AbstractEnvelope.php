@@ -10,10 +10,10 @@ use Moneybird\Domainmodel\AbstractModel;
 use Moneybird\Mapper\Mapable;
 
 /**
- * Envelope
+ * AbstractEnvelope
  * @abstract
  */
-abstract class EnvelopeAbstract extends AbstractModel implements Mapable {
+abstract class AbstractEnvelope extends AbstractModel implements Mapable {
 	
 	protected $email;
 	protected $sendMethod;

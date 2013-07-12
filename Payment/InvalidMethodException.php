@@ -4,10 +4,12 @@
  * Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\Payment;
+
+use Moneybird\Exception as ParentException;
 
 /**
  * Exception for invalid send methods
  */
-class Payment_InvalidMethodException extends Exception {
+class InvalidMethodException extends ParentException {
 }

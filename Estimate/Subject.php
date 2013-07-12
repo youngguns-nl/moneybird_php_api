@@ -4,12 +4,14 @@
  * Estimate subject interface
  */
 
-namespace Moneybird;
+namespace Moneybird\Estimate;
+
+use Moneybird\Estimate;
 
 /**
  * Estimate subject is an object that has invoices (contact or estimate)
  */
-interface Estimate_Subject {
+interface Subject {
 	
 	/**
 	 * Create an invoice
@@ -22,12 +24,12 @@ interface Estimate_Subject {
 	/**
 	 * Get all invoices of subject
 	 *
-	 * @return Estimate_Array
-	 * @param Estimate_Service $service
+	 * @return ArrayObject
+	 * @param Service $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getEstimates(Estimate_Service $service, $filter = null);
+	public function getEstimates(Service $service, $filter = null);
 }
 
 ?>

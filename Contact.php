@@ -6,19 +6,34 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+use Moneybird\Invoice\Subject as InvoiceSubject;
+use Moneybird\Invoice\Service as InvoiceService;
+use Moneybird\Invoice\ArrayObject as InvoiceArray;
+use Moneybird\Estimate\Subject as EstimateSubject;
+use Moneybird\Estimate\Service as EstimateService;
+use Moneybird\Estimate\ArrayObject as EstimateArray;
+use Moneybird\IncomingInvoice\Subject as IncomingInvoiceSubject;
+use Moneybird\IncomingInvoice\Service as IncomingInvoiceService;
+use Moneybird\IncomingInvoice\ArrayObject as IncomingInvoiceArray;
+use Moneybird\RecurringTemplate\Subject as RecurringTemplateSubject;
+use Moneybird\RecurringTemplate\Service as RecurringTemplateService;
+use Moneybird\RecurringTemplate\ArrayObject as RecurringTemplateArray;
+
 /**
  * Contact
  */
 class Contact 
 	extends 
-		Domainmodel_Abstract 
+		AbstractModel
 	implements 
-		Mapper_Mapable, 
+		Mapable, 
 		Storable, 
-		Invoice_Subject,
-		RecurringTemplate_Subject,
-		Estimate_Subject,
-		IncomingInvoice_Subject {
+		InvoiceSubject,
+		RecurringTemplateSubject,
+		EstimateSubject,
+		IncomingInvoiceSubject {
 		
 	protected $address1; 
 	protected $address2; 
@@ -119,12 +134,12 @@ class Contact
 	/**
 	 * Get all invoices of this contact
 	 *
-	 * @return Invoice_Array
-	 * @param Invoice_Service $service
+	 * @return InvoiceArray
+	 * @param InvoiceService $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getInvoices(Invoice_Service $service, $filter = null) {
+	public function getInvoices(InvoiceService $service, $filter = null) {
 		return $service->getAll($filter, $this);
 	}
 	
@@ -140,12 +155,12 @@ class Contact
 	/**
 	 * Get all recurring templates of this contact
 	 *
-	 * @return RecurringTemplate_Array
-	 * @param RecurringTemplate_Service $service
+	 * @return RecurringTemplateArray
+	 * @param RecurringTemplateService $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getRecurringTemplates(RecurringTemplate_Service $service, $filter = null) {
+	public function getRecurringTemplates(RecurringTemplateService $service, $filter = null) {
 		return $service->getAll($filter, $this);
 	}
 	
@@ -161,12 +176,12 @@ class Contact
 	/**
 	 * Get all estimates of this contact
 	 *
-	 * @return Estimate_Array
-	 * @param Estimate_Service $service
+	 * @return EstimateArray
+	 * @param EstimateService $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getEstimates(Estimate_Service $service, $filter = null) {
+	public function getEstimates(EstimateService $service, $filter = null) {
 		return $service->getAll($filter, $this);
 	}
 	
@@ -182,12 +197,12 @@ class Contact
 	/**
 	 * Get all invoices of this contact
 	 *
-	 * @return IncomingInvoice_Array
-	 * @param IncomingInvoice_Service $service
+	 * @return IncomingInvoiceArray
+	 * @param IncomingInvoiceService $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getIncomingInvoices(IncomingInvoice_Service $service, $filter = null) {
+	public function getIncomingInvoices(IncomingInvoiceService $service, $filter = null) {
 		return $service->getAll($filter, $this);
 	}
 }

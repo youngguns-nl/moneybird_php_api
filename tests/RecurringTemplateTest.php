@@ -93,14 +93,14 @@ class RecurringTemplateTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\RecurringTemplate::save
 	 */
 	public function testSave() {
-		$details = new RecurringTemplate_Detail_Array();
-		$details->append(new RecurringTemplate_Detail(array(
+		$details = new RecurringTemplate\Detail\ArrayObject();
+		$details->append(new RecurringTemplate\Detail(array(
 			'amount' => 5, 
 			'description' => 'My template line',
 			'price' => 20,
 			'taxRateId' => self::$taxRateId,
 		)));
-		$details->append(new RecurringTemplate_Detail(array(
+		$details->append(new RecurringTemplate\Detail(array(
 			'amount' => 1, 
 			'description' => 'My second template line',
 			'price' => 12,
@@ -157,7 +157,7 @@ class RecurringTemplateTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetAll() {
 		$templates = $this->service->getAll();
-		$this->assertInstanceOf('Moneybird\RecurringTemplate_Array', $templates);
+		$this->assertInstanceOf('Moneybird\RecurringTemplate\ArrayObject', $templates);
 		$this->assertGreaterThan(0, count($templates), 'No templates found');
 		
 		$templates = self::$contact->getRecurringTemplates($this->service);

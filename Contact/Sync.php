@@ -8,13 +8,13 @@ namespace Moneybird\Contact;
 
 use Moneybird\Mapper\Mapable;
 use Moneybird\SyncObject;
-use Moneybird\Domainmodel\AbstractModel as DomainmodelAbstract;
+use Moneybird\Domainmodel\AbstractModel;
 use Moneybird\InvalidIdException;
 
 /**
  * Contact
  */
-class Sync extends DomainmodelAbstract implements Mapable, SyncObject {
+class Sync extends AbstractModel implements Mapable, SyncObject {
 	
 	protected $id = array();
 	

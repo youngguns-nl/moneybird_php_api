@@ -4,12 +4,14 @@
  * Invoice_Envelope class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Invoice;
+
+use Moneybird\Envelope\AbstractEnvelope;
 
 /**
  * Invoice_Envelope
  */
-class Invoice_Envelope extends Envelope_Abstract {
+class Envelope extends AbstractEnvelope {
 	
 	protected $invoiceEmail;
 	

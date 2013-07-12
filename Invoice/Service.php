@@ -4,12 +4,16 @@
  * Invoice service class
  */
 
-namespace Moneybird;
+namespace Moneybird\Invoice;
+
+use Moneybird\Invoice;
+use Moneybird\ApiConnector;
+use Moneybird\Service as ServiceInterface;
 
 /**
  * Invoice service
  */
-class Invoice_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -30,7 +34,7 @@ class Invoice_Service implements Service {
 	 * @return Invoice_Array
 	 */
 	public function getSyncList() {
-		return $this->connector->getSyncList('Invoice');
+		return $this->connector->getSyncList(__NAMESPACE__);
 	}
 	
 	/**
@@ -39,7 +43,7 @@ class Invoice_Service implements Service {
 	 * @return Invoice
 	 */
 	public function getById($id) {
-		return $this->connector->getById('Invoice', $id);
+		return $this->connector->getById(__NAMESPACE__, $id);
 	}
 	
 	/**
@@ -48,7 +52,7 @@ class Invoice_Service implements Service {
 	 * @return Invoice_Array
 	 */
 	public function getByIds(Array $ids) {
-		return $this->connector->getByIds('Invoice', $ids);
+		return $this->connector->getByIds(__NAMESPACE__, $ids);
 	}
 	
 	/**
@@ -60,7 +64,7 @@ class Invoice_Service implements Service {
 	 * @throws InvalidFilterException 
 	 */
 	public function getAll($filter = null, Invoice_Subject $parent = null) {
-		return $this->connector->getAll('Invoice', $filter, $parent);
+		return $this->connector->getAll(__NAMESPACE__, $filter, $parent);
 	}	
 
 	/**
@@ -69,7 +73,7 @@ class Invoice_Service implements Service {
 	 * @return Invoice
 	 */
 	public function getByInvoiceId($invoiceId) {
-		return $this->connector->getByNamedId('Invoice', 'invoice_id', $invoiceId);
+		return $this->connector->getByNamedId(__NAMESPACE__, 'invoice_id', $invoiceId);
 	}
 	
 	/**

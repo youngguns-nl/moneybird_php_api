@@ -6,6 +6,8 @@
 
 namespace Moneybird;
 
+use Moneybird\Mapper\Mapable;
+
 /**
  * Mapper interface
  */
@@ -14,7 +16,7 @@ interface Mapper {
 	/**
 	 * Create object from string
 	 * @param string $string 
-	 * @return Mapper_Mapable
+	 * @return Mapable
 	 * @access public
 	 */
 	public function mapFromStorage($string);
@@ -22,10 +24,10 @@ interface Mapper {
 	/**
 	 * Map object
 	 * @access public
-	 * @param Mapper_Mapable $subject Object to map
+	 * @param Mapable $subject Object to map
 	 * @return string
 	 */
-	public function mapToStorage(Mapper_Mapable $subject);
+	public function mapToStorage(Mapable $subject);
 	
 	/**
 	 * Returns the content type of mapped objects

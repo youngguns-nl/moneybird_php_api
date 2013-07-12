@@ -326,10 +326,10 @@ abstract class AbstractModel implements DirtyAware {
 		
 	/**
 	 * Adopt the data from $self
-	 * @param DomainmodelAbstract $self
+	 * @param AbstractModel $self
 	 * @return self
 	 */
-	protected function reload(DomainmodelAbstract $self) {
+	protected function reload(AbstractModel $self) {
 		$this->_initVars();
 		$this->extract($self->selfToArray(), false);
 		return $this;
@@ -360,7 +360,7 @@ abstract class AbstractModel implements DirtyAware {
 					// pass
 				}
 			}
-			elseif ($value instanceof DomainmodelAbstract) {
+			elseif ($value instanceof AbstractModel) {
 				$value = $value->copy($filter);
 			}
 		}

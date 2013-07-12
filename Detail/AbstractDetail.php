@@ -1,7 +1,7 @@
 <?php
 
 /*
- * DetailAbstract class file
+ * AbstractDetail class file
  */
 
 namespace Moneybird\Detail;
@@ -14,7 +14,7 @@ use Moneybird\DeleteBySaving;
  * DetailAbstract
  * @abstract
  */
-abstract class DetailAbstract 
+abstract class AbstractDetail
 	extends 
 		AbstractModel
 	implements 

@@ -99,14 +99,14 @@ class EstimateTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\Estimate::save
 	 */
 	public function testSave() {
-		$details = new Estimate_Detail_Array();
-		$details->append(new Estimate_Detail(array(
+		$details = new Estimate\Detail\ArrayObject();
+		$details->append(new Estimate\Detail(array(
 			'amount' => 5, 
 			'description' => 'My estimate line',
 			'price' => 20,
 			'taxRateId' => self::$taxRateId,
 		)));
-		$details->append(new Estimate_Detail(array(
+		$details->append(new Estimate\Detail(array(
 			'amount' => 1, 
 			'description' => 'My second estimate line',
 			'price' => 12,
@@ -144,7 +144,7 @@ class EstimateTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetAll() {
 		$estimates = $this->service->getAll('draft');
-		$this->assertInstanceOf('Moneybird\Estimate_Array', $estimates);
+		$this->assertInstanceOf('Moneybird\Estimate\ArrayObject', $estimates);
 		$this->assertGreaterThan(0, count($estimates), 'No estimates found');
 		
 		$estimates = self::$contact->getEstimates($this->service);

@@ -4,10 +4,12 @@
  * HttpClient Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\HttpClient;
+
+use Moneybird\Exception as ParentException;
 
 /**
  * General exception
  */
-class HttpClient_Exception extends Exception {
+class Exception extends ParentException {
 }

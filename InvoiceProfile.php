@@ -6,10 +6,13 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+
 /**
  * InvoiceProfile
  */
-class InvoiceProfile extends Domainmodel_Abstract implements Mapper_Mapable {
+class InvoiceProfile extends AbstractModel implements Mapable {
 	
 	protected $id;
 	protected $name;

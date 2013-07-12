@@ -20,7 +20,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	protected $object;
 	
 	/**
-	 * @var Contact_Service
+	 * @var Contact\Service
 	 */
 	protected $service;
 	
@@ -91,7 +91,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers Moneybird\Contact_Service::getById
+	 * @covers Moneybird\Contact\Service::getById
 	 */
 	public function testGetById() {
 		$this->object = $this->service->getById(self::$contactId);
@@ -100,7 +100,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers Moneybird\Contact_Service::getSyncList
+	 * @covers Moneybird\Contact\Service::getSyncList
 	 */
 	public function testGetSyncList() {
 		$revision = $this->object->revision;
@@ -114,7 +114,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 		
 		$newRevision = null;
 		$syncList = $this->service->getSyncList();
-		$this->assertInstanceOf('Moneybird\Contact_Array', $syncList);
+		$this->assertInstanceOf('Moneybird\Contact\ArrayObject', $syncList);
 		foreach ($syncList as $sync) {
 			if ($sync->id == self::$contactId) {
 				$newRevision = $sync->revision;
@@ -125,25 +125,25 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers Moneybird\Contact_Service::getByIds
+	 * @covers Moneybird\Contact\Service::getByIds
 	 */
 	public function testGetByIds() {
 		$contacts = $this->service->getByIds(array(self::$contactId, $this->testContactId));
-		$this->assertInstanceOf('Moneybird\Contact_Array', $contacts);
+		$this->assertInstanceOf('Moneybird\Contact\ArrayObject', $contacts);
 		$this->assertCount(2, $contacts);
 	}
 
 	/**
-	 * @covers Moneybird\Contact_Service::getAll
+	 * @covers Moneybird\Contact\Service::getAll
 	 */
 	public function testGetAll() {
 		$contacts = $this->service->getAll();
-		$this->assertInstanceOf('Moneybird\Contact_Array', $contacts);
+		$this->assertInstanceOf('Moneybird\Contact\ArrayObject', $contacts);
 		$this->assertGreaterThan(0, count($contacts), 'No contacts found');
 	}
 
 	/**
-	 * @covers Moneybird\Contact_Service::getByCustomerId
+	 * @covers Moneybird\Contact\Service::getByCustomerId
 	 */
 	public function testGetByCustomerId() {
 		$contact = $this->service->getByCustomerId(self::$customerId);

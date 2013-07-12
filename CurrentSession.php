@@ -6,14 +6,13 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+
 /**
  * CurrentSession
  */
-class CurrentSession 
-	extends 
-		Domainmodel_Abstract 
-	implements 
-		Mapper_Mapable {
+class CurrentSession extends AbstractModel implements Mapable {
 	
 	protected $email; 
 	protected $language; 

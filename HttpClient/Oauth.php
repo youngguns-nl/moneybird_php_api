@@ -4,14 +4,19 @@
  * HttpClient_Oauth class for making requests over http with oauth
  */
 
-namespace Moneybird;
+namespace Moneybird\HttpClient;
+
+use Moneybird\HttpClient;
+use Moneybird\Lib\OAuthConsumer as OAuthConsumer;
+use Moneybird\Lib\OAuthRequest as OAuthRequest;
+use Moneybird\Lib\OAuthSignatureMethod_HMAC_SHA1 as OAuthSignatureMethod;
 
 include_once (__DIR__.'/../Lib/Oauth.php');
 
 /**
  * Wrapper for curl to create http requests
  */
-class HttpClient_Oauth extends HttpClient {
+class Oauth extends HttpClient {
 	
 	protected $consumer;
 	protected $token;
@@ -35,7 +40,7 @@ class HttpClient_Oauth extends HttpClient {
 	 * @param Lib\OAuthConsumer $token
 	 * @return HttpClient_Oauth 
 	 */
-	public function setConsumerAndToken(Lib\OAuthConsumer $consumer, Lib\OAuthConsumer $token) {
+	public function setConsumerAndToken(OAuthConsumer $consumer, OAuthConsumer $token) {
 		$this->consumer = $consumer;
 		$this->token = $token;
 		return $this;
@@ -49,10 +54,10 @@ class HttpClient_Oauth extends HttpClient {
 	 * @param string $data Data in string format
 	 * @param array $headers
 	 * @return string 
-	 * @throws HttpClient_Exception
-	 * @throws HttpClient_HttpStatusException
-	 * @throws HttpClient_UnknownHttpStatusException
-	 * @throws HttpClient_ConnectionErrorException
+	 * @throws Exception
+	 * @throws HttpStatusException
+	 * @throws UnknownHttpStatusException
+	 * @throws ConnectionErrorException
 	 * @access public
 	 */
 	public function send($url, $requestMethod, $data = null, Array $headers = null) {
@@ -64,8 +69,8 @@ class HttpClient_Oauth extends HttpClient {
 				$params[$pairSplit[0]] = isset($pairSplit[1]) ? $pairSplit[1] : null;
 			}
 		}
-		$request = Lib\OAuthRequest::from_consumer_and_token($this->consumer, $this->token, $requestMethod, $url, $params);
-		$request->sign_request(new Lib\OAuthSignatureMethod_HMAC_SHA1(), $this->consumer, $this->token);
+		$request = OAuthRequest::from_consumer_and_token($this->consumer, $this->token, $requestMethod, $url, $params);
+		$request->sign_request(new OAuthSignatureMethod(), $this->consumer, $this->token);
 	
 		if (is_null($headers)) {
 			$headers = array();
