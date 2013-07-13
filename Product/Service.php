@@ -4,12 +4,15 @@
  * Product service class
  */
 
-namespace Moneybird;
+namespace Moneybird\Product;
+
+use Moneybird\Service as ServiceInterface;
+use Moneybird\ApiConnector;
 
 /**
  * Product service
  */
-class Product_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -22,6 +25,6 @@ class Product_Service implements Service {
 	}
 		
 	public function getAll() {
-		return $this->connector->getAll('Product');
+		return $this->connector->getAll(__NAMESPACE__);
 	}	
 }

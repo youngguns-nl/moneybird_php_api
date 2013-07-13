@@ -6,10 +6,13 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+
 /**
  * Error
  */
-class Error extends Domainmodel_Abstract implements Mapper_Mapable {
+class Error extends AbstractModel implements Mapable {
 	
 	protected $attribute;
 	protected $message;

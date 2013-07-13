@@ -1,15 +1,15 @@
 <?php
 
 /*
- * Mapper Mapable
+ * Mapable
  */
 
-namespace Moneybird;
+namespace Moneybird\Mapper;
 
 /**
- * Mapper Mapables can be mapped
+ * Mapables can be mapped
  */
-interface Mapper_Mapable {
+interface Mapable {
 	
 	/**
 	 * Get array representation of Subject

@@ -4,12 +4,14 @@
  * IncomingInvoice subject interface
  */
 
-namespace Moneybird;
+namespace Moneybird\IncomingInvoice;
+
+use Moneybird\IncomingInvoice;
 
 /**
  * IncomingInvoice subject is an object that has invoices (contact or estimate)
  */
-interface IncomingInvoice_Subject {
+interface Subject {
 	
 	/**
 	 * Create an invoice
@@ -22,12 +24,12 @@ interface IncomingInvoice_Subject {
 	/**
 	 * Get all invoices of subject
 	 *
-	 * @return IncomingInvoice_Array
-	 * @param IncomingInvoice_Service $service
+	 * @return ArrayObject
+	 * @param Service $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getIncomingInvoices(IncomingInvoice_Service $service, $filter = null);
+	public function getIncomingInvoices(Service $service, $filter = null);
 }
 
 ?>

@@ -6,14 +6,22 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+use Moneybird\Invoice\Detail\ArrayObject as DetailArray;
+use Moneybird\Invoice\Payment\ArrayObject as PaymentArray;
+use Moneybird\Invoice\History\ArrayObject as HistoryArray;
+use Moneybird\Payment\AbstractPayment;
+use Moneybird\Invoice\Service as InvoiceService;
+
 /**
  * Invoice
  */
 class Invoice 
 	extends 
-		Domainmodel_Abstract 
+		AbstractModel
 	implements 
-		Mapper_Mapable, 
+		Mapable, 
 		Storable, 
 		Sendable, 
 		PdfDocument, 
@@ -154,23 +162,22 @@ class Invoice
 	
 	/**
 	 * Set details
-	 * @param Invoice_Detail_Array $value
+	 * @param DetailArray $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setDetailsAttr(Invoice_Detail_Array $value = null, $isDirty = true) {
+	protected function setDetailsAttr(DetailArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->details = $value;
 			$this->setDirtyState($isDirty, 'details');
-
 		}
 	}
 	
 	/**
 	 * Set payments
-	 * @param Invoice_Payment_Array $value
+	 * @param PaymentArray $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setPaymentsAttr(Invoice_Payment_Array $value = null, $isDirty = true) {
+	protected function setPaymentsAttr(PaymentArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->payments = $value;
 			$this->setDirtyState($isDirty, 'payments');
@@ -179,10 +186,10 @@ class Invoice
 	
 	/**
 	 * Set history
-	 * @param Invoice_History_Array $value
+	 * @param HistoryArray $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setHistoryAttr(Invoice_History_Array $value = null, $isDirty = true) {
+	protected function setHistoryAttr(HistoryArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->history = $value;
 			$this->setDirtyState($isDirty, 'history');
@@ -193,9 +200,9 @@ class Invoice
 	 * Initialize vars 
 	 */
 	protected function _initVars() {
-		$this->details = new Invoice_Detail_Array();
-		$this->history = new Invoice_History_Array();
-		$this->payments = new Invoice_Payment_Array();
+		$this->details = new DetailArray();
+		$this->history = new HistoryArray();
+		$this->payments = new PaymentArray();
 		return parent::_initVars();
 	}
 	
@@ -215,23 +222,23 @@ class Invoice
 	
 	/**
 	 * Mark the invoice as sent
-	 * @param Invoice_Service $service
+	 * @param InvoiceService $service
 	 * @return self 
 	 */
-	public function markAsSent(Invoice_Service $service) {
+	public function markAsSent(InvoiceService $service) {
 		return $this->send($service, 'hand');
 	}
 	
 	/**
 	 * Send a reminder for the invoice
-	 * @param Invoice_Service $service
+	 * @param InvoiceService $service
 	 * @param string $method Send method (email|hand|post); default: email
 	 * @param type $email Address to send to; default: contact e-mail
 	 * @param type $message
 	 * @return self 
 	 * @throws InvalidStateException
 	 */
-	public function remind(Invoice_Service $service, $method='email', $email=null, $message=null) {
+	public function remind(InvoiceService $service, $method='email', $email=null, $message=null) {
 		if ($this->state == 'draft') {
 			throw new InvalidStateException('Send invoice before reminding');
 		}
@@ -243,11 +250,11 @@ class Invoice
 	/**
 	 * Register a payment for the invoice
 	 * @param Service $service
-	 * @param Payment_Abstract $payment	 
+	 * @param AbstractPayment $payment
 	 * @return self
 	 * @throws InvalidStateException
 	 */
-	public function registerPayment(Service $service, Payment_Abstract $payment) {
+	public function registerPayment(Service $service, AbstractPayment $payment) {
 		if ($this->state == 'draft') {
 			throw new InvalidStateException('Send invoice before register payments');
 		}

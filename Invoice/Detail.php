@@ -1,15 +1,17 @@
 <?php
 
 /*
- * Invoice_Detail class file
+ * Detail class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Invoice;
+
+use Moneybird\Detail\AbstractDetail;
 
 /**
- * Invoice_Detail
+ * Detail
  */
-class Invoice_Detail extends Detail_Abstract {
+class Detail extends AbstractDetail {
 	
 	protected $invoiceId;
 

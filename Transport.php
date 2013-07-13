@@ -19,10 +19,10 @@ interface Transport {
 	 * @param string $data Data in string format
 	 * @param array $headers
 	 * @return string 
-	 * @throws HttpRequest_Exception
-	 * @throws HttpRequest_HttpStatusException
-	 * @throws HttpRequest_UnknownHttpStatusException
-	 * @throws HttpRequest_ConnectionErrorException
+	 * @throws HttpRequest\Exception
+	 * @throws HttpRequest\HttpStatusException
+	 * @throws HttpRequest\UnknownHttpStatusException
+	 * @throws HttpRequest\ConnectionErrorException
 	 * @access public
 	 */
 	public function send($url, $requestMethod, $data = null, Array $headers = null);

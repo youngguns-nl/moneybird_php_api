@@ -36,12 +36,12 @@ class ApiConnectorTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testAutoload() {
 		include ('./config.php');
-		if (class_exists('Moneybird\Contact_Array', false)) {
-			$this->fail('Class Moneybird\Contact_Array already loaded');
+		if (class_exists('Moneybird\Contact\ArrayObject', false)) {
+			$this->fail('Class Moneybird\Contact\ArrayObject already loaded');
 		}
-		ApiConnector::autoload('Moneybird\Contact_Array');
-		if (!class_exists('Moneybird\Contact_Array', false)) {
-			$this->fail('Class Moneybird\Contact_Array failed to load');
+		ApiConnector::autoload('Moneybird\Contact\ArrayObject');
+		if (!class_exists('Moneybird\Contact\ArrayObject', false)) {
+			$this->fail('Class Moneybird\Contact\ArrayObject failed to load');
 		}
 	}
 	

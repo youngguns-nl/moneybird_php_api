@@ -1,20 +1,24 @@
 <?php
 
 /*
- * Detail_Abstract class file
+ * AbstractDetail class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Detail;
+
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+use Moneybird\DeleteBySaving;
 
 /**
- * Detail_Abstract
+ * DetailAbstract
  * @abstract
  */
-abstract class Detail_Abstract 
+abstract class AbstractDetail
 	extends 
-		Domainmodel_Abstract 
+		AbstractModel
 	implements 
-		Mapper_Mapable, 
+		Mapable, 
 		DeleteBySaving {
 	
 	protected $amount; 

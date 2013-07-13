@@ -6,6 +6,11 @@
 
 namespace Moneybird;
 
+use Moneybird\Mapper\Mapable as Mapable;
+use Moneybird\Mapper\Exception as MapperException;
+use Moneybird\XmlMapper\InvalidXmlException;
+use \DateTime;
+
 /**
  * Translates XML into objects and objects into XML
  */
@@ -23,53 +28,53 @@ class XmlMapper implements Mapper {
 	 */
 	public function __construct() {
 		$this->objectMapper = array(
-			'contacts' => __NAMESPACE__.'\\Contact_Array',
-			'contact'  => __NAMESPACE__.'\\Contact',
+			'contacts' => __NAMESPACE__.'\Contact\ArrayObject',
+			'contact'  => __NAMESPACE__.'\Contact',
 			
-			'user' => __NAMESPACE__.'\\CurrentSession',
+			'user' => __NAMESPACE__.'\CurrentSession',
 
-			'estimates'                => __NAMESPACE__.'\\Estimate_Array',
-			'estimate'                 => __NAMESPACE__.'\\Estimate',
-			'estimate/details'         => __NAMESPACE__.'\\Estimate_Detail_Array',
-			'estimate/details/detail'  => __NAMESPACE__.'\\Estimate_Detail',
-			'estimate/history'         => __NAMESPACE__.'\\Estimate_History_Array',
-			'estimate/history/history' => __NAMESPACE__.'\\Estimate_History',
+			'estimates'                => __NAMESPACE__.'\Estimate\ArrayObject',
+			'estimate'                 => __NAMESPACE__.'\Estimate',
+			'estimate/details'         => __NAMESPACE__.'\Estimate\Detail\ArrayObject',
+			'estimate/details/detail'  => __NAMESPACE__.'\Estimate\Detail',
+			'estimate/history'         => __NAMESPACE__.'\Estimate\History\ArrayObject',
+			'estimate/history/history' => __NAMESPACE__.'\Estimate\History',
 			
-			'incoming-invoices'                 => __NAMESPACE__.'\\IncomingInvoice_Array',
-			'incoming-invoice'                  => __NAMESPACE__.'\\IncomingInvoice',
-			'incoming-invoice/details'          => __NAMESPACE__.'\\IncomingInvoice_Detail_Array',
-			'incoming-invoice/details/detail'   => __NAMESPACE__.'\\IncomingInvoice_Detail',
-			'incoming-invoice/payments'         => __NAMESPACE__.'\\IncomingInvoice_Payment_Array',
-			'incoming-invoice/payments/payment' => __NAMESPACE__.'\\IncomingInvoice_Payment',
-			'incoming-invoice/history'          => __NAMESPACE__.'\\IncomingInvoice_History_Array',
-			'incoming-invoice/history/history'  => __NAMESPACE__.'\\IncomingInvoice_History',
+			'incoming-invoices'                 => __NAMESPACE__.'\IncomingInvoice\ArrayObject',
+			'incoming-invoice'                  => __NAMESPACE__.'\IncomingInvoice',
+			'incoming-invoice/details'          => __NAMESPACE__.'\IncomingInvoice\Detail\ArrayObject',
+			'incoming-invoice/details/detail'   => __NAMESPACE__.'\IncomingInvoice\Detail',
+			'incoming-invoice/payments'         => __NAMESPACE__.'\IncomingInvoice\Payment\ArrayObject',
+			'incoming-invoice/payments/payment' => __NAMESPACE__.'\IncomingInvoice\Payment',
+			'incoming-invoice/history'          => __NAMESPACE__.'\IncomingInvoice\History\ArrayObject',
+			'incoming-invoice/history/history'  => __NAMESPACE__.'\IncomingInvoice\History',
 			
-			'invoices'                 => __NAMESPACE__.'\\Invoice_Array',
-			'invoice'                  => __NAMESPACE__.'\\Invoice',
-			'invoice/details'          => __NAMESPACE__.'\\Invoice_Detail_Array',
-			'invoice/details/detail'   => __NAMESPACE__.'\\Invoice_Detail',
-			'invoice/payments'         => __NAMESPACE__.'\\Invoice_Payment_Array',
-			'invoice/payments/payment' => __NAMESPACE__.'\\Invoice_Payment',
-			'invoice/history'          => __NAMESPACE__.'\\Invoice_History_Array',
-			'invoice/history/history'  => __NAMESPACE__.'\\Invoice_History',
-            'history'                  => __NAMESPACE__.'\\Invoice_History',
+			'invoices'                 => __NAMESPACE__.'\Invoice\ArrayObject',
+			'invoice'                  => __NAMESPACE__.'\Invoice',
+			'invoice/details'          => __NAMESPACE__.'\Invoice\Detail\ArrayObject',
+			'invoice/details/detail'   => __NAMESPACE__.'\Invoice\Detail',
+			'invoice/payments'         => __NAMESPACE__.'\Invoice\Payment\ArrayObject',
+			'invoice/payments/payment' => __NAMESPACE__.'\Invoice\Payment',
+			'invoice/history'          => __NAMESPACE__.'\Invoice\History\ArrayObject',
+			'invoice/history/history'  => __NAMESPACE__.'\Invoice\History',
+            'history'                  => __NAMESPACE__.'\Invoice\History',
 			
-			'invoice-profiles' => __NAMESPACE__.'\\InvoiceProfile_Array',
-			'invoice-profile'  => __NAMESPACE__.'\\InvoiceProfile',
+			'invoice-profiles' => __NAMESPACE__.'\InvoiceProfile\ArrayObject',
+			'invoice-profile'  => __NAMESPACE__.'\InvoiceProfile',
 			
-			'products' => __NAMESPACE__.'\\Product_Array',
-			'product'  => __NAMESPACE__.'\\Product',
+			'products' => __NAMESPACE__.'\Product\ArrayObject',
+			'product'  => __NAMESPACE__.'\Product',
 			
-			'recurring-templates'               => __NAMESPACE__.'\\RecurringTemplate_Array',
-			'recurring-template'                => __NAMESPACE__.'\\RecurringTemplate',
-			'recurring-template/details'        => __NAMESPACE__.'\\RecurringTemplate_Detail_Array',
-			'recurring-template/details/detail' => __NAMESPACE__.'\\RecurringTemplate_Detail',
+			'recurring-templates'               => __NAMESPACE__.'\RecurringTemplate\ArrayObject',
+			'recurring-template'                => __NAMESPACE__.'\RecurringTemplate',
+			'recurring-template/details'        => __NAMESPACE__.'\RecurringTemplate\Detail\ArrayObject',
+			'recurring-template/details/detail' => __NAMESPACE__.'\RecurringTemplate\Detail',
 			
-			'tax-rates' => __NAMESPACE__.'\\TaxRate_Array',
-			'tax-rate'  => __NAMESPACE__.'\\TaxRate',
+			'tax-rates' => __NAMESPACE__.'\TaxRate\ArrayObject',
+			'tax-rate'  => __NAMESPACE__.'\TaxRate',
 			
-			'errors' => __NAMESPACE__.'\\Error_Array',
-			'error'  => __NAMESPACE__.'\\Error',
+			'errors' => __NAMESPACE__.'\Error\ArrayObject',
+			'error'  => __NAMESPACE__.'\Error',
 		);
 		uksort($this->objectMapper, array($this, 'sortKeyLength'));
 	}
@@ -110,17 +115,17 @@ class XmlMapper implements Mapper {
 	/**
 	 * Map object
 	 * @access public
-	 * @param Mapper_Mapable $subject Object to map
+	 * @param Mapable $subject Object to map
 	 * @return string
 	 */
-	public function mapToStorage(Mapper_Mapable $subject) {
+	public function mapToStorage(Mapable $subject) {
 		return $this->toXMLString($subject);
 	}
 	
 	/**
 	 * Create object from xml string
 	 * @param string $xmlstring 
-	 * @throws XmlMapper_InvalidXmlException
+	 * @throws InvalidXmlException
 	 * @access public
 	 */
 	public function fromXmlString($xmlstring) {
@@ -128,7 +133,7 @@ class XmlMapper implements Mapper {
 			libxml_use_internal_errors(true);
 			$xmlDoc = new SimpleXMLElement($xmlstring);
 		} catch (\Exception $e) {
-			throw new XmlMapper_InvalidXmlException('XML string could not be parsed');
+			throw new InvalidXmlException('XML string could not be parsed');
 		}
 		
 		return $this->fromXml($xmlDoc);
@@ -213,7 +218,7 @@ class XmlMapper implements Mapper {
 					break;
 				case 'datetime':
 				case 'date':
-					$value = new \DateTime(strval($xmlElement));
+					$value = new DateTime(strval($xmlElement));
 					break;
 				case 'string':
 				default:
@@ -267,12 +272,18 @@ class XmlMapper implements Mapper {
 	/**
 	 * Maps object to XML element-name
 	 * @access protected
-	 * @param Mapper_Mapable $subject Object to map to XML
+	 * @param Mapable $subject Object to map to XML
 	 * @return string
 	 */
-	protected function mapObjectToElementName(Mapper_Mapable $subject) {
+	protected function mapObjectToElementName(Mapable $subject) {
 		// Pick a default value based on the subject class
 		$name = substr(get_class($subject), strlen(__NAMESPACE__) + 1);
+		if ($subject instanceof ArrayObject) {
+			$name = substr($name, 0, strrpos($name, '\\'));
+			if (substr($name, -1) != 's') {
+				$name .= 's';
+			}
+		}
 
 		// See if the objectMapper array contains the (super)class
 		foreach ($this->objectMapper as $key => $class) {
@@ -285,7 +296,7 @@ class XmlMapper implements Mapper {
 		// Map the name to a proper XML key
 		$name = $this->propertyToXmlkey($name);
 
-		// Get rid of the unnecessary type specs (i.e. invoice_detail => detail)
+		// Get rid of the unnecessary type specs (i.e. invoice\detail => detail)
 		$simplified = array(
 			'payment', 'history', 'detail',
 		);
@@ -297,7 +308,7 @@ class XmlMapper implements Mapper {
 			$name = 'ids';
 		}
 		
-		$pos = ($subject instanceof SyncArray) ? strpos($name, '_') : strrpos($name, '_');
+		$pos = ($subject instanceof SyncArray) ? strpos($name, '\\') : strrpos($name, '\\');
 		if ($pos !== false) {
 			$name = substr($name, 0, $pos);
 		}
@@ -338,10 +349,10 @@ class XmlMapper implements Mapper {
 	 * Convert to XML
 	 *
 	 * @access public
-	 * @param Mapper_Mapable $subject Object to map to XML
+	 * @param Mapable $subject Object to map to XML
 	 * @return SimpleXMLElement
 	 */
-	public function toXML(Mapper_Mapable $subject) {
+	public function toXML(Mapable $subject) {
 		if ($subject instanceOf DirtyAware) {
 			$values = $subject->getDirtyAttributes();
 			if ($subject->getId() !== null) {
@@ -371,12 +382,12 @@ class XmlMapper implements Mapper {
 				}
 			} elseif (!is_object($value) && !is_array($value)) {
 				$xmlRoot->addChild($key, $value);
-			} elseif (is_object($value) && $value instanceof Mapper_Mapable) {
+			} elseif (is_object($value) && $value instanceof Mapable) {
 				$xmlRoot->appendXML($this->toXml($value));
-			} elseif (is_object($value) && $value instanceof \DateTime) {
+			} elseif (is_object($value) && $value instanceof DateTime) {
 				$xmlRoot->addChild($key, $value->format('c'));
 			} else {
-				throw new Mapper_Exception('Invalid value for key '.$key);
+				throw new MapperException('Invalid value for key '.$key);
 			}
 		}
 
@@ -387,10 +398,10 @@ class XmlMapper implements Mapper {
 	 * Convert to XML string
 	 *
 	 * @access public
-	 * @param Mapper_Mapable $subject Object to map to XML
+	 * @param Mapable $subject Object to map to XML
 	 * @return string
 	 */
-	public function toXMLString(Mapper_Mapable $subject) {
+	public function toXMLString(Mapable $subject) {
 		return $this->toXML($subject)->asXml();
 	}
 }

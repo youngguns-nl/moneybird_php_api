@@ -4,12 +4,17 @@
  * TaxRate service class
  */
 
-namespace Moneybird;
+namespace Moneybird\TaxRate;
+
+use Moneybird\Service as ServiceInterface;
+use Moneybird\ApiConnector;
+use Moneybird\InvalidFilterException;
+use Moneybird\TaxRate;
 
 /**
  * TaxRate service
  */
-class TaxRate_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -25,7 +30,7 @@ class TaxRate_Service implements Service {
 	 * Get all tax rates
 	 * 
 	 * @param string $filter Filter name (all, sales, purchase, inactive)
-	 * @return TaxRate_Array
+	 * @return ArrayObject
 	 * @throws InvalidFilterException 
 	 */
 	public function getAll($filter = null) {
@@ -36,8 +41,8 @@ class TaxRate_Service implements Service {
 			throw new InvalidFilterException($message);
 		}
 
-		$rates = new TaxRate_Array;
-		foreach ($this->connector->getAll('TaxRate') as $rate) {
+		$rates = new ArrayObject;
+		foreach ($this->connector->getAll(__NAMESPACE__) as $rate) {
 			if (($filter == 'inactive' && $rate->active) || ($filter != 'inactive' && !$rate->active)) {
 				continue;
 			}

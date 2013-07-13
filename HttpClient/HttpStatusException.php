@@ -4,10 +4,10 @@
  * HttpClient Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\HttpClient;
 
 /**
  * Exception http status errors, $code contains the http status code
  */
-class HttpClient_HttpStatusException extends HttpClient_Exception {
+class HttpStatusException extends Exception {
 }

@@ -6,10 +6,13 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+
 /**
  * Product
  */
-class Product extends Domainmodel_Abstract implements Mapper_Mapable {
+class Product extends AbstractModel implements Mapable {
 	
 	protected $createdAt;
 	protected $description;

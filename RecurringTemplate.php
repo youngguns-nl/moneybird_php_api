@@ -6,16 +6,23 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+use Moneybird\Invoice\Subject as InvoiceSubject;
+use Moneybird\RecurringTemplate\Detail\ArrayObject as DetailArray;
+use Moneybird\Invoice\Service as InvoiceService;
+use Moneybird\Invoice\ArrayObject as InvoiceArray;
+
 /**
  * RecurringTemplate
  */
 class RecurringTemplate 
 	extends 
-		Domainmodel_Abstract 
+		AbstractModel
 	implements 
-		Mapper_Mapable, 
+		Mapable, 
 		Storable,
-		Invoice_Subject {
+		InvoiceSubject {
 	
 	/**
 	 * Send frequency
@@ -147,7 +154,7 @@ class RecurringTemplate
 	 * @param RecurringTemplate_Detail_Array $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setDetailsAttr(RecurringTemplate_Detail_Array $value = null, $isDirty = true) {
+	protected function setDetailsAttr(DetailArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->details = $value;
 			$this->setDirtyState($isDirty, 'details');
@@ -159,7 +166,7 @@ class RecurringTemplate
 	 */
 	protected function _initVars() {
 		reset(self::$frequencyTypes);
-		$this->details = new RecurringTemplate_Detail_Array();
+		$this->details = new DetailArray();
 		$this->frequencyType = current(self::$frequencyTypes);
 		return parent::_initVars();
 	}
@@ -218,12 +225,12 @@ class RecurringTemplate
 	/**
 	 * Get all invoices of this template
 	 *
-	 * @return Invoice_Array
-	 * @param Invoice_Service $service
+	 * @return InvoiceArray
+	 * @param InvoiceService $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getInvoices(Invoice_Service $service, $filter = null) {
+	public function getInvoices(InvoiceService $service, $filter = null) {
 		return $service->getAll($filter, $this);
 	}
 	

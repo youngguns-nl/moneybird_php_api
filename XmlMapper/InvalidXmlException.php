@@ -4,10 +4,10 @@
  * XmlMapper Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\XmlMapper;
 
 /**
  * Exception for invalid xml
  */
-class XmlMapper_InvalidXmlException extends XmlMapper_Exception {
+class InvalidXmlException extends Exception {
 }

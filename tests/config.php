@@ -27,7 +27,7 @@ if (file_exists(dirname(__FILE__).'/my-config.php')) {
 if (!function_exists('getTransport')) {
 	function getTransport($config) {
 		if ($config['authType'] == 'oauth') {
-			$transport = new Moneybird\HttpClient_Oauth();
+			$transport = new Moneybird\HttpClient\Oauth();
 			$consumer = new Moneybird\Lib\OAuthConsumer($config['oauth']['consumerKey'], $config['oauth']['consumerSecret'], NULL);
 			$token = new Moneybird\Lib\OAuthConsumer($config['oauth']['token'], $config['oauth']['tokenSecret']);
 			$transport->setConsumerAndToken($consumer, $token);	

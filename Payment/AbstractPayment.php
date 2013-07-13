@@ -1,16 +1,19 @@
 <?php
 
 /*
- * Payment_Abstract class file
+ * AbstractPayment class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Payment;
+
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
 
 /**
- * Payment_Abstract
+ * AbstractPayment
  * @abstract
  */
-abstract class Payment_Abstract extends Domainmodel_Abstract implements Mapper_Mapable {
+abstract class AbstractPayment extends AbstractModel implements Mapable {
 	
 	protected $createdAt;
 	protected $id; 
@@ -48,11 +51,11 @@ abstract class Payment_Abstract extends Domainmodel_Abstract implements Mapper_M
 	 * Set payment method
 	 * @param string $value
 	 * @param bool $isDirty new value is dirty, defaults to true
-	 * @throws Payment_InvalidMethodException
+	 * @throws InvalidMethodException
 	 */
 	protected function setPaymentMethodAttr($value, $isDirty = true) {
 		if ($value !== null && $value !== '' && !in_array($value, $this->_paymentMethods)) {
-			throw new Payment_InvalidMethodException('Invalid payment method: ' . $value);
+			throw new InvalidMethodException('Invalid payment method: ' . $value);
 		}
 
 		$this->paymentMethod = $value;

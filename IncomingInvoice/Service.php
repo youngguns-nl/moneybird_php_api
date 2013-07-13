@@ -4,12 +4,17 @@
  * IncomingInvoice service class
  */
 
-namespace Moneybird;
+namespace Moneybird\IncomingInvoice;
+
+use Moneybird\Service as ServiceInterface;
+use Moneybird\ApiConnector;
+use Moneybird\InvalidFilterException;
+use Moneybird\IncomingInvoice;
 
 /**
  * IncomingInvoice service
  */
-class IncomingInvoice_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -30,7 +35,7 @@ class IncomingInvoice_Service implements Service {
 	 * @return IncomingInvoice_Array
 	 */
 	public function getSyncList() {
-		return $this->connector->getSyncList('IncomingInvoice');
+		return $this->connector->getSyncList(__NAMESPACE__);
 	}
 	
 	/**
@@ -39,28 +44,28 @@ class IncomingInvoice_Service implements Service {
 	 * @return IncomingInvoice
 	 */
 	public function getById($id) {
-		return $this->connector->getById('IncomingInvoice', $id);
+		return $this->connector->getById(__NAMESPACE__, $id);
 	}
 	
 	/**
 	 * Get invoices by id (max 100)
 	 * @param Array $ids
-	 * @return IncomingInvoice_Array
+	 * @return ArrayObject
 	 */
 	public function getByIds(Array $ids) {
-		return $this->connector->getByIds('IncomingInvoice', $ids);
+		return $this->connector->getByIds(__NAMESPACE__, $ids);
 	}
 	
 	/**
 	 * Get all invoices
 	 * 
 	 * @param string|integer $filter Filter name or id (advanced filters)
-	 * @param IncomingInvoice_Subject $parent
-	 * @return IncomingInvoice_Array
+	 * @param Subject $parent
+	 * @return ArrayObject
 	 * @throws InvalidFilterException 
 	 */
-	public function getAll($filter = null, IncomingInvoice_Subject $parent = null) {
-		return $this->connector->getAll('IncomingInvoice', $filter, $parent);
+	public function getAll($filter = null, Subject $parent = null) {
+		return $this->connector->getAll(__NAMESPACE__, $filter, $parent);
 	}	
 
 	/**
@@ -85,10 +90,10 @@ class IncomingInvoice_Service implements Service {
 	/**
 	 * Register a payment for the invoice
 	 * @param IncomingInvoice $invoice
-	 * @param IncomingInvoice_Payment $payment
+	 * @param Payment $payment
 	 * @return IncomingInvoice
 	 */
-	public function registerPayment(IncomingInvoice &$invoice, IncomingInvoice_Payment $payment) {
+	public function registerPayment(IncomingInvoice &$invoice, Payment $payment) {
 		return $this->connector->registerPayment($invoice, $payment);
 	}
 }

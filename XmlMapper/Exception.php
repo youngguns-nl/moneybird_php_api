@@ -4,10 +4,12 @@
  * XmlMapper Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\XmlMapper;
+
+use Moneybird\Exception as ParentException;
 
 /**
  * General exception
  */
-class XmlMapper_Exception extends Exception {
+class Exception extends ParentException {
 }

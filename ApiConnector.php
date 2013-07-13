@@ -10,6 +10,13 @@
 
 namespace Moneybird;
 
+use Moneybird\HttpClient\HttpStatusException;
+use Moneybird\Error\ArrayObject as ErrorArray;
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Envelope\AbstractEnvelope;
+use Moneybird\Payment\AbstractPayment;
+use Moneybird\Invoice\Envelope as InvoiceEnvelope;
+
 /**
  * Service for connecting with Moneybird
  */
@@ -66,39 +73,13 @@ class ApiConnector {
 	 * Array of available filters
 	 * @var Array
 	 */
-	protected $filters = array(
-		'Invoice' => array(
-			'all', 'this_month', 'last_month', 'this_quarter', 'last_quarter',
-			'this_year', 'last_year', 'draft', 'sent', 'open', 'late', 'paid'
-		),
-		'Estimate' => array(
-			'all', 'active', 'draft', 'sent', 'open', 'late', 'accepted', 
-			'rejected', 'billed', 'archived',
-			'this_month', 'last_month', 'this_quarter', 'last_quarter',
-			'this_year', 'last_year',
-		),
-		'IncomingInvoice' => array(
-			'all', 'this_month', 'last_month', 'this_quarter', 'last_quarter',
-			'this_year', 'draft', 'sent', 'open', 'late', 'paid'
-		),
-		'RecurringTemplate' => array(
-			'all', 'inactive', 'weekly', 'monthly', 'quarterly', 'half_yearly', 
-			'yearly', 'upcoming',
-		),
-	);
+	protected $filters = array();
 	
 	/**
 	 * Array for mapping named id's to objects
 	 * @var Array
 	 */
-	protected $namedId = array(
-		'Contact' => array(
-			'customer_id',
-		),
-		'Invoice' => array(
-			'invoice_id',
-		),
-	);
+	protected $namedId = array();
 
 	/**
 	 * Indicates if the login credentials where tested
@@ -121,8 +102,8 @@ class ApiConnector {
 	static public function autoload($classname) {
 		if (strpos($classname, __NAMESPACE__) === 0) {
 			$classname = substr($classname, strlen(__NAMESPACE__) + 1);
-			if (file_exists(__DIR__.'/'.str_replace('_', '/', $classname).'.php')) {
-				require_once __DIR__.'/'.str_replace('_', '/', $classname).'.php';
+			if (file_exists(__DIR__.'/'.str_replace('\\', '/', $classname).'.php')) {
+				require_once __DIR__.'/'.str_replace('\\', '/', $classname).'.php';
 			}			
 		}
 	}
@@ -140,13 +121,43 @@ class ApiConnector {
 	public function __construct($clientName, Transport $transport, Mapper $mapper) {
 		$this->transport = $transport;
 		$this->mapper = $mapper;
-		$this->transport->setUserAgent('MoneybirdPhpApi/2.1');
+		$this->transport->setUserAgent('MoneybirdPhpApi/2.3');
 		
 		if (!preg_match('/^[a-z0-9_\-]+$/', $clientName)) {
 			throw new InvalidConfigException('Invalid companyname/clientname');
 		}
 		
 		$this->baseUri = 'https://' . $clientName . '.moneybird.nl/api/v'.self::API_VERSION;
+
+		$this->namedId = array(
+			__NAMESPACE__.'\Contact' => array(
+				'customer_id',
+			),
+			__NAMESPACE__.'\Invoice' => array(
+				'invoice_id',
+			),
+		);
+
+		$this->filters = array(
+			__NAMESPACE__.'\Invoice' => array(
+				'all', 'this_month', 'last_month', 'this_quarter', 'last_quarter',
+				'this_year', 'last_year', 'draft', 'sent', 'open', 'late', 'paid'
+			),
+			__NAMESPACE__.'\Estimate' => array(
+				'all', 'active', 'draft', 'sent', 'open', 'late', 'accepted',
+				'rejected', 'billed', 'archived',
+				'this_month', 'last_month', 'this_quarter', 'last_quarter',
+				'this_year', 'last_year',
+			),
+			__NAMESPACE__.'\IncomingInvoice' => array(
+				'all', 'this_month', 'last_month', 'this_quarter', 'last_quarter',
+				'this_year', 'draft', 'sent', 'open', 'late', 'paid'
+			),
+			__NAMESPACE__.'\RecurringTemplate' => array(
+				'all', 'inactive', 'weekly', 'monthly', 'quarterly', 'half_yearly',
+				'yearly', 'upcoming',
+			),
+		);
 	}
 	
 	/**
@@ -196,11 +207,11 @@ class ApiConnector {
 					'Content-Type: '.$this->mapper->getContentType(),
 				)				
 			);
-		} catch (HttpClient_HttpStatusException $e) {
+		} catch (HttpStatusException $e) {
 			$message = $e->getMessage();
 			if ($e->getCode() == 403 || $e->getCode() == 422) {
 				$this->errors = $this->mapper->mapFromStorage($this->transport->getLastResponse());
-				if ($this->errors instanceof Error_Array && count($this->errors) > 0) {
+				if ($this->errors instanceof ErrorArray && count($this->errors) > 0) {
 					$message .= PHP_EOL . 'Errors:' . PHP_EOL . $this->errors;
 				}
 			}
@@ -245,10 +256,10 @@ class ApiConnector {
 	 * Save object
 	 * 
 	 * @param Storable $model
-     * @param Domainmodel_Abstract $parent
+     * @param AbstractModel $parent
 	 * @return Storable
 	 */
-	public function save(Storable $model, Domainmodel_Abstract $parent = null) {
+	public function save(Storable $model, AbstractModel $parent = null) {
 		$response = $this->request(
 			$this->buildUrl($model, $parent),
 			$model->getId() > 0 ? 'PUT' : 'POST',
@@ -267,10 +278,10 @@ class ApiConnector {
 	public function delete(Storable $model) {
 		$types = array('Invoice', 'Estimate', 'RecurringTemplate', 'IncomingInvoice');
 		foreach ($types as $type) {
-			$interface = $type . '_Subject';
+			$interface = $type . '\Subject';
 			$method = 'get' . $type . 's';
 			if (($model instanceof $interface) && count($model->$method($this->getService($type))) > 0) {
-				throw new ForbiddenException('Unable to delete ' . $type . '_Subject with ' . strtolower($type) . 's');
+				throw new ForbiddenException('Unable to delete ' . $type . 'Subject with ' . strtolower($type) . 's');
 			}
 		}
 		$this->request(
@@ -285,10 +296,10 @@ class ApiConnector {
 	 * Send invoice or estimate
 	 * 
 	 * @param Sendable $model
-	 * @param Envelope_Abstract $envelope
+	 * @param AbstractEnvelope $envelope
 	 * @return Sendable
 	 */
-	public function send(Sendable $model, Envelope_Abstract $envelope) {
+	public function send(Sendable $model, AbstractEnvelope $envelope) {
 		$classname = $this->getType($model);
 
 		if (intval($model->getId()) == 0) {
@@ -309,10 +320,10 @@ class ApiConnector {
 	 *
 	 * @access public
 	 * @param Payable $invoice invoice to register payment for
-	 * @param Payment_Abstract $payment payment to register
+	 * @param AbstractPayment $payment payment to register
 	 * @return Payable
 	 */
-	public function registerPayment(Payable $invoice, Payment_Abstract $payment) {
+	public function registerPayment(Payable $invoice, AbstractPayment $payment) {
 		$classname = $this->getType($invoice);
 		
 		if (intval($invoice->getId()) == 0) {
@@ -336,10 +347,10 @@ class ApiConnector {
 	 * Send reminder
 	 * 
 	 * @param Invoice $invoice
-	 * @param Invoice_Envelope $envelope
+	 * @param InvoiceEnvelope $envelope
 	 * @return ApiConnector 
 	 */
-	public function remind(Invoice $invoice, Invoice_Envelope $envelope) {
+	public function remind(Invoice $invoice, InvoiceEnvelope $envelope) {
 		$envelope->setData(array(
 			'invoiceId' => $invoice->getId()
 		));
@@ -358,22 +369,22 @@ class ApiConnector {
 	 * 
 	 * @return string
 	 * @param PdfDocument $model
-	 * @param Domainmodel_Abstract $parent
+	 * @param AbstractModel $parent
 	 */
-	public function getPdf(PdfDocument $model, Domainmodel_Abstract $parent = null) {
+	public function getPdf(PdfDocument $model, AbstractModel $parent = null) {
 		return $this->request($this->buildUrl($model, $parent, null, 'pdf'), 'GET');
 	}
 	
 	/**
 	 * Build the url for the request
 	 * 
-	 * @param Domainmodel_Abstract $subject
-	 * @param Domainmodel_Abstract $parent
+	 * @param AbstractModel $subject
+	 * @param AbstractModel $parent
 	 * @param string $appendUrl Filter url
 	 * @param string $docType (pdf|xml|json)
 	 * @return string
 	 */
-	protected function buildUrl(Domainmodel_Abstract $subject, Domainmodel_Abstract $parent = null, $appendUrl = null, $docType = null) {
+	protected function buildUrl(AbstractModel $subject, AbstractModel $parent = null, $appendUrl = null, $docType = null) {
 		if (is_null($docType)) {
 			$docType = substr($this->mapper->getContentType(), strpos($this->mapper->getContentType(), '/') + 1);
 		}
@@ -396,11 +407,11 @@ class ApiConnector {
 	 * Return the last errors
 	 *
 	 * @access public
-	 * @return Error_Array
+	 * @return ErrorArray
 	 */
 	public function getErrors() {
 		$errors = $this->errors;
-		$this->errors = new Error_Array;
+		$this->errors = new ErrorArray;
 		return $errors;
 	}
 	
@@ -408,19 +419,21 @@ class ApiConnector {
 	 * Maps object to an url-part
 	 *
 	 * @access protected
-	 * @param Domainmodel_Abstract $model
+	 * @param AbstractModel $model
 	 * @return string
 	 */
-	protected function mapTypeName(Domainmodel_Abstract $model) {
+	protected function mapTypeName(AbstractModel $model) {
 		if ($model instanceof CurrentSession) {
 			$mapped = 'current_session';
 		} else {
 			$classname = $this->getType($model);
             $mapped = str_replace(
                 array(
+					'\\',
                     'invoice_History',
                 ),
                 array(
+					'_',
                     'historie',
                 ),
                 lcfirst($classname)
@@ -471,7 +484,7 @@ class ApiConnector {
 	 * @return ArrayObject
 	 */
 	public function getSyncList($classname) {
-		$classname = __NAMESPACE__.'\\'.$classname.'_Sync';
+		$classname = $classname.'\Sync';
 		$response = $this->request($this->buildUrl(new $classname(), null, '/sync_list_ids'), 'GET');
 		return $this->mapper->mapFromStorage($response);
 	}
@@ -484,8 +497,8 @@ class ApiConnector {
 	 * @return ArrayObject 
 	 */
 	public function getByIds($classname, Array $ids) {
-		$classname = __NAMESPACE__.'\\'.$classname.'_Sync';
-		$classnameArray = $classname.'_Array';
+		$classname = $classname.'\Sync';
+		$classnameArray = $classname.'\ArrayObject';
 		$objects = new $classnameArray();
 		$objects->append(new $classname(array('id' => $ids)));
 
@@ -502,13 +515,12 @@ class ApiConnector {
 	 * 
 	 * @param string $classname
 	 * @param int $id
-	 * @return Domainmodel_Abstract 
+	 * @return AbstractModel
 	 */
 	public function getById($classname, $id) {
 		if (!preg_match('/^[0-9]+$/D', $id)) {
 			throw new InvalidIdException('Invalid id: ' . $id);
 		}
-		$classname = __NAMESPACE__.'\\'.$classname;
 		$response = $this->request($this->buildUrl(new $classname(array('id' => $id))), 'GET');
 		return $this->mapper->mapFromStorage($response);
 	}
@@ -518,11 +530,11 @@ class ApiConnector {
 	 * 
 	 * @param string $classname
 	 * @param string|integer $filter Filter name or id (advanced filters)
-	 * @param Domainmodel_Abstract $parent
+	 * @param AbstractModel $parent
 	 * @return ArrayObject
 	 * @throws InvalidFilterException 
 	 */
-	public function getAll($classname, $filter = null, Domainmodel_Abstract $parent = null) {
+	public function getAll($classname, $filter = null, AbstractModel $parent = null) {
 		$filterUrl = '';
 		if (!is_null($filter)) {
 			if (
@@ -544,7 +556,6 @@ class ApiConnector {
 			}
 		}
 		
-		$classname = __NAMESPACE__.'\\'.$classname;
 		$response = $this->request($this->buildUrl(new $classname(), $parent, $filterUrl), 'GET');
 		return $this->mapper->mapFromStorage($response);
 	}
@@ -555,7 +566,7 @@ class ApiConnector {
 	 * @param string $classname
 	 * @param string $name
 	 * @param string $id
-	 * @return Domainmodel_Abstract
+	 * @return AbstractModel
 	 * @throws InvalidNamedIdExeption
 	 * @throws InvalidIdException 
 	 */
@@ -566,7 +577,6 @@ class ApiConnector {
 		if (!preg_match('/^[a-zA-Z0-9\- _]+$/D', $id)) {
 			throw new InvalidIdException('Invalid id: ' . $id);
 		}
-		$classname = __NAMESPACE__.'\\'.$classname;
 		$response = $this->request($this->buildUrl(new $classname(), null, '/'.$name.'/'.$id), 'GET');
 		return $this->mapper->mapFromStorage($response);
 	}
@@ -581,7 +591,7 @@ class ApiConnector {
 			if (!file_exists(__DIR__.'/'.$type.'/Service.php')) {
 				throw new InvalidServiceTypeException('No service for type '.$type);
 			}
-			$classname = __NAMESPACE__.'\\'.$type.'_Service';
+			$classname = __NAMESPACE__.'\\'.$type.'\Service';
 			$this->services[$type] = new $classname($this);
 		}
 		return $this->services[$type];
@@ -589,10 +599,10 @@ class ApiConnector {
 	
 	/**
 	 * Determine the type of $model
-	 * @param Domainmodel_Abstract $model
+	 * @param AbstractModel $model
 	 * @return string
 	 */
-	protected function getType(Domainmodel_Abstract $model) {
+	protected function getType(AbstractModel $model) {
 		$types = array(
 			'Contact',
 			'Invoice',
@@ -602,7 +612,8 @@ class ApiConnector {
 			'CurrentSession',
 			'TaxRate',
 			'Product',
-            'Invoice_History',
+			'Contact\Sync',
+            'Invoice\History',
 		);
 		foreach ($types as $type) {
 			$classname = __NAMESPACE__ . '\\' . $type;

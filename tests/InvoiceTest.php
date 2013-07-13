@@ -99,14 +99,14 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\Invoice::save
 	 */
 	public function testSave() {
-		$details = new Invoice_Detail_Array();
-		$details->append(new Invoice_Detail(array(
+		$details = new Invoice\Detail\ArrayObject();
+		$details->append(new Invoice\Detail(array(
 			'amount' => 5, 
 			'description' => 'My invoice line',
 			'price' => 20,
 			'taxRateId' => self::$taxRateId,
 		)));
-		$details->append(new Invoice_Detail(array(
+		$details->append(new Invoice\Detail(array(
 			'amount' => 1, 
 			'description' => 'My second invoice line',
 			'price' => 12,
@@ -153,7 +153,7 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 		
 		$newRevision = null;
 		$syncList = $this->service->getSyncList();
-		$this->assertInstanceOf('Moneybird\Invoice_Array', $syncList);
+		$this->assertInstanceOf('Moneybird\Invoice\ArrayObject', $syncList);
 		foreach ($syncList as $sync) {
 			if ($sync->id == self::$invoiceId) {
 				$newRevision = $sync->revision;
@@ -168,7 +168,7 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetByIds() {
 		$invoices = $this->service->getByIds(array(self::$invoiceId));
-		$this->assertInstanceOf('Moneybird\Invoice_Array', $invoices);
+		$this->assertInstanceOf('Moneybird\Invoice\ArrayObject', $invoices);
 		$this->assertCount(1, $invoices);
 	}
 
@@ -177,7 +177,7 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetAll() {
 		$invoices = $this->service->getAll('draft');
-		$this->assertInstanceOf('Moneybird\Invoice_Array', $invoices);
+		$this->assertInstanceOf('Moneybird\Invoice\ArrayObject', $invoices);
 		$this->assertGreaterThan(0, count($invoices), 'No invoices found');
 		
 		$invoices = self::$contact->getInvoices($this->service);
@@ -246,7 +246,7 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testRegisterPayment() {		
 		$amount = 10.12;
-		$payment = new Invoice_Payment(array(
+		$payment = new Invoice\Payment(array(
 			'paymentDate' => new \DateTime(),
 			'paymentMethod' => 'bank_transfer',
 			'price' => $amount,

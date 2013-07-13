@@ -4,12 +4,14 @@
  * Estimate_Detail class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Estimate;
+
+use Moneybird\Detail\AbstractDetail;
 
 /**
  * Estimate_Detail
  */
-class Estimate_Detail extends Detail_Abstract {
+class Detail extends AbstractDetail {
 	
 	protected $estimateId;
 	

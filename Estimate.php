@@ -6,14 +6,20 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+use Moneybird\Estimate\Detail\ArrayObject as DetailArray;
+use Moneybird\Estimate\History\ArrayObject as HistoryArray;
+use Moneybird\Estimate\Service as EstimateService;
+
 /**
  * Estimate
  */
 class Estimate 
 	extends 
-		Domainmodel_Abstract 
+		AbstractModel
 	implements 
-		Mapper_Mapable, 
+		Mapable, 
 		Storable, 
 		Sendable, 
 		PdfDocument {
@@ -132,10 +138,10 @@ class Estimate
 	
 	/**
 	 * Set details
-	 * @param Estimate_Detail_Array $value
+	 * @param DetailArray $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setDetailsAttr(Estimate_Detail_Array $value = null, $isDirty = true) {
+	protected function setDetailsAttr(DetailArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->details = $value;
 			$this->setDirtyState($isDirty, 'details');
@@ -144,10 +150,10 @@ class Estimate
 	
 	/**
 	 * Set history
-	 * @param Estimate_History_Array $value
+	 * @param HistoryArray $value
 	 * @param bool $isDirty new value is dirty, defaults to true
 	 */
-	protected function setHistoryAttr(Estimate_History_Array $value = null, $isDirty = true) {
+	protected function setHistoryAttr(HistoryArray $value = null, $isDirty = true) {
 		if (!is_null($value)) {
 			$this->history = $value;
 			$this->setDirtyState($isDirty, 'history');
@@ -158,8 +164,8 @@ class Estimate
 	 * Initialize vars 
 	 */
 	protected function _initVars() {
-		$this->details = new Estimate_Detail_Array();
-		$this->history = new Estimate_History_Array();
+		$this->details = new DetailArray();
+		$this->history = new HistoryArray();
 		$this->estimateDate = new \DateTime();
 		return parent::_initVars();
 	}
@@ -180,10 +186,10 @@ class Estimate
 	
 	/**
 	 * Mark the estimate as sent
-	 * @param Estimate_Service $service
+	 * @param EstimateService $service
 	 * @return self 
 	 */
-	public function markAsSent(Estimate_Service $service) {
+	public function markAsSent(EstimateService $service) {
 		return $this->send($service, 'hand');
 	}
 	

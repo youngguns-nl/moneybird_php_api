@@ -4,10 +4,12 @@
  * Domainmodel Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\ArrayObject;
+
+use Moneybird\Exception;
 
 /**
  * Object does not fit into ArrayObject
  */
-class ArrayObject_TypeMismatchException extends Exception {
+class TypeMismatchException extends Exception {
 }

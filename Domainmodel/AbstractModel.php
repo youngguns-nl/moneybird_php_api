@@ -1,17 +1,23 @@
 <?php
 
 /*
- * Domainmodel_Abstract class file
+ * Domainmodel\Abstract class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Domainmodel;
+
+use Moneybird\DirtyAware;
+use Moneybird\Disclosure;
+use Moneybird\Domainmodel\Exception as DomainmodelException;
+use Moneybird\DeleteBySaving;
+use Moneybird\ArrayObject;
 
 /**
  * Base class for domain models
  *
  * @abstract
  */
-abstract class Domainmodel_Abstract implements DirtyAware {
+abstract class AbstractModel implements DirtyAware {
 
 	/**
 	 * Disclosure
@@ -144,10 +150,10 @@ abstract class Domainmodel_Abstract implements DirtyAware {
 	 *
 	 * @param string $name
 	 * @param mixed $value
-	 * @throws Domainmodel_Exception
+	 * @throws DomainmodelException
 	 */
 	public function __set($name, $value) {
-		throw new Domainmodel_Exception('Don\'t set ('.$name.'), use setData');
+		throw new DomainmodelException('Don\'t set ('.$name.'), use setData');
 	}
 	
 	/**
@@ -320,10 +326,10 @@ abstract class Domainmodel_Abstract implements DirtyAware {
 		
 	/**
 	 * Adopt the data from $self
-	 * @param Domainmodel_Abstract $self
+	 * @param AbstractModel $self
 	 * @return self
 	 */
-	protected function reload(Domainmodel_Abstract $self) {
+	protected function reload(AbstractModel $self) {
 		$this->_initVars();
 		$this->extract($self->selfToArray(), false);
 		return $this;
@@ -350,11 +356,11 @@ abstract class Domainmodel_Abstract implements DirtyAware {
 					foreach ($newElements as $elmCopy) {
 						$value->append($elmCopy);
 					}
-				} catch (ArrayObject_UndefinedMethodException $e) {
+				} catch (ArrayObject\UndefinedMethodException $e) {
 					// pass
 				}
 			}
-			elseif ($value instanceof Domainmodel_Abstract) {
+			elseif ($value instanceof AbstractModel) {
 				$value = $value->copy($filter);
 			}
 		}

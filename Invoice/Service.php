@@ -4,12 +4,18 @@
  * Invoice service class
  */
 
-namespace Moneybird;
+namespace Moneybird\Invoice;
+
+use Moneybird\Invoice;
+use Moneybird\ApiConnector;
+use Moneybird\Service as ServiceInterface;
+use Moneybird\InvalidRequestException;
+use Moneybird\InvalidFilterException;
 
 /**
  * Invoice service
  */
-class Invoice_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -30,7 +36,7 @@ class Invoice_Service implements Service {
 	 * @return Invoice_Array
 	 */
 	public function getSyncList() {
-		return $this->connector->getSyncList('Invoice');
+		return $this->connector->getSyncList(__NAMESPACE__);
 	}
 	
 	/**
@@ -39,7 +45,7 @@ class Invoice_Service implements Service {
 	 * @return Invoice
 	 */
 	public function getById($id) {
-		return $this->connector->getById('Invoice', $id);
+		return $this->connector->getById(__NAMESPACE__, $id);
 	}
 	
 	/**
@@ -48,19 +54,19 @@ class Invoice_Service implements Service {
 	 * @return Invoice_Array
 	 */
 	public function getByIds(Array $ids) {
-		return $this->connector->getByIds('Invoice', $ids);
+		return $this->connector->getByIds(__NAMESPACE__, $ids);
 	}
 	
 	/**
 	 * Get all invoices
 	 * 
 	 * @param string|integer $filter Filter name or id (advanced filters)
-	 * @param Invoice_Subject $parent
-	 * @return Invoice_Array
+	 * @param Subject $parent
+	 * @return ArrayObject
 	 * @throws InvalidFilterException 
 	 */
-	public function getAll($filter = null, Invoice_Subject $parent = null) {
-		return $this->connector->getAll('Invoice', $filter, $parent);
+	public function getAll($filter = null, Subject $parent = null) {
+		return $this->connector->getAll(__NAMESPACE__, $filter, $parent);
 	}	
 
 	/**
@@ -69,7 +75,7 @@ class Invoice_Service implements Service {
 	 * @return Invoice
 	 */
 	public function getByInvoiceId($invoiceId) {
-		return $this->connector->getByNamedId('Invoice', 'invoice_id', $invoiceId);
+		return $this->connector->getByNamedId(__NAMESPACE__, 'invoice_id', $invoiceId);
 	}
 	
 	/**
@@ -120,11 +126,11 @@ class Invoice_Service implements Service {
 	 * @param string $method Send method (email|hand|post); default: email
 	 * @param type $email Address to send to; default: contact e-mail
 	 * @param type $message
-	 * @return Invoice_Envelope
+	 * @return Envelope
 	 * @access protected
 	 */
 	protected function buildEnvelope($method = 'email', $email = null, $message = null) {
-		return new Invoice_Envelope(
+		return new Envelope(
 			array(
 				'sendMethod' => $method,
 				'email' => $email,
@@ -136,10 +142,10 @@ class Invoice_Service implements Service {
 	/**
 	 * Register a payment for the invoice
 	 * @param Invoice $invoice
-	 * @param Invoice_Payment $payment
+	 * @param Payment $payment
 	 * @return Invoice
 	 */
-	public function registerPayment(Invoice &$invoice, Invoice_Payment $payment) {
+	public function registerPayment(Invoice &$invoice, Payment $payment) {
 		return $this->connector->registerPayment($invoice, $payment);
 	}
 	
@@ -171,11 +177,11 @@ class Invoice_Service implements Service {
 
     /**
 	 * Inserts history note
-     * @param Invoice_History $history
+     * @param History $history
 	 * @param Invoice $invoice
-	 * @return Invoice_History
+	 * @return History
 	 */
-	public function saveHistory(Invoice_History $history, Invoice $invoice) {
+	public function saveHistory(History $history, Invoice $invoice) {
 		return $this->connector->save($history, $invoice);
 	}
 }

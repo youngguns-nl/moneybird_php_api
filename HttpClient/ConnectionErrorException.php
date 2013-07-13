@@ -4,10 +4,10 @@
  * HttpClient Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\HttpClient;
 
 /**
  * Exception for connection errors
  */
-class HttpClient_ConnectionErrorException extends HttpClient_Exception {
+class ConnectionErrorException extends Exception {
 }

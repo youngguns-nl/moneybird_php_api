@@ -9,7 +9,7 @@ Visit this project on github: https://github.com/bluetools/moneybird_php_api
 
 Contact the author: Sjors van der Pluijm <sjors@youngguns.nl>; @sjorsvdp
 
-For technical documentation: see the docs folder
+For technical documentation: please see the docs folder
 
 For examples and usage: [see github](https://github.com/bluetools/moneybird_php_api/wiki/Examples)
 

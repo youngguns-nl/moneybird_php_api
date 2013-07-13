@@ -99,14 +99,14 @@ class IncomingInvoiceTest extends \PHPUnit_Framework_TestCase {
 	 * @covers Moneybird\IncomingInvoice::save
 	 */
 	public function testSave() {
-		$details = new IncomingInvoice_Detail_Array();
-		$details->append(new IncomingInvoice_Detail(array(
+		$details = new IncomingInvoice\Detail\ArrayObject();
+		$details->append(new IncomingInvoice\Detail(array(
 			'amount' => 5, 
 			'description' => 'My invoice line',
 			'price' => 20,
 			'taxRateId' => self::$taxRateId,
 		)));
-		$details->append(new IncomingInvoice_Detail(array(
+		$details->append(new IncomingInvoice\Detail(array(
 			'amount' => 1, 
 			'description' => 'My second invoice line',
 			'price' => 12,
@@ -145,7 +145,7 @@ class IncomingInvoiceTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetAll() {
 		$invoices = $this->service->getAll();
-		$this->assertInstanceOf('Moneybird\IncomingInvoice_Array', $invoices);
+		$this->assertInstanceOf('Moneybird\IncomingInvoice\ArrayObject', $invoices);
 		$this->assertGreaterThan(0, count($invoices), 'No invoices found');
 		
 		$invoices = self::$contact->getIncomingInvoices($this->service);
@@ -160,7 +160,7 @@ class IncomingInvoiceTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testRegisterPayment() {		
 		$amount = 10.12;
-		$payment = new IncomingInvoice_Payment(array(
+		$payment = new IncomingInvoice\Payment(array(
 			'paymentDate' => new \DateTime(),
 			'paymentMethod' => 'bank_transfer',
 			'price' => $amount,

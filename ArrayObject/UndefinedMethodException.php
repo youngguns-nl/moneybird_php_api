@@ -4,10 +4,12 @@
  * Domainmodel Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\ArrayObject;
+
+use Moneybird\Exception;
 
 /**
  * Undefined method
  */
-class ArrayObject_UndefinedMethodException extends Exception {
+class UndefinedMethodException extends Exception {
 }

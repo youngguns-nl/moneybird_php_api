@@ -4,15 +4,17 @@
  * RecurringTemplate subject interface
  */
 
-namespace Moneybird;
+namespace Moneybird\RecurringTemplate;
+
+use Moneybird\RecurringTemplate;
 
 /**
  * RecurringTemplate subject is an object that has invoices (contact or estimate)
  */
-interface RecurringTemplate_Subject {
+interface Subject {
 	
 	/**
-	 * Create an invoice
+	 * Create a recurring template
 	 *
 	 * @return RecurringTemplate
 	 * @access public
@@ -20,14 +22,14 @@ interface RecurringTemplate_Subject {
 	public function createRecurringTemplate();
 
 	/**
-	 * Get all invoices of subject
+	 * Get all recurring templates of subject
 	 *
-	 * @return RecurringTemplate_Array
-	 * @param RecurringTemplate_Service $service
+	 * @return ArrayObject
+	 * @param Service $service
 	 * @param string $filter
 	 * @access public
 	 */
-	public function getRecurringTemplates(RecurringTemplate_Service $service, $filter = null);
+	public function getRecurringTemplates(Service $service, $filter = null);
 }
 
 ?>

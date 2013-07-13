@@ -4,10 +4,12 @@
  * Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\Envelope;
+
+use Moneybird\Exception as ParentException;
 
 /**
  * Exception for invalid send methods
  */
-class Envelope_InvalidMethodException extends Exception {
+class InvalidMethodException extends ParentException {
 }

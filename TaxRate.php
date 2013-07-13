@@ -6,10 +6,13 @@
 
 namespace Moneybird;
 
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
+
 /**
  * TaxRate
  */
-class TaxRate extends Domainmodel_Abstract implements Mapper_Mapable {
+class TaxRate extends AbstractModel implements Mapable {
 	
 	/**
 	 * Rate type

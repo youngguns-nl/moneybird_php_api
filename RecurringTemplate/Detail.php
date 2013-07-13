@@ -4,11 +4,12 @@
  * RecurringTemplate_Detail class file
  */
 
-namespace Moneybird;
+namespace Moneybird\RecurringTemplate;
+
+use Moneybird\Detail\AbstractDetail;
 
 /**
  * RecurringTemplate_Detail
  */
-class RecurringTemplate_Detail extends Detail_Abstract {
-	
+class Detail extends AbstractDetail {
 }

@@ -6,8 +6,10 @@
 
 namespace Moneybird;
 
+use \Exception as ParentException;
+
 /**
  * General exception
  */
-class Exception extends \Exception {
+class Exception extends ParentException {
 }

@@ -4,13 +4,16 @@
  * Abstract for envelopes (send info)
  */
 
-namespace Moneybird;
+namespace Moneybird\Envelope;
+
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\Mapper\Mapable;
 
 /**
- * Envelope
+ * AbstractEnvelope
  * @abstract
  */
-abstract class Envelope_Abstract extends Domainmodel_Abstract implements Mapper_Mapable {
+abstract class AbstractEnvelope extends AbstractModel implements Mapable {
 	
 	protected $email;
 	protected $sendMethod;
@@ -42,11 +45,11 @@ abstract class Envelope_Abstract extends Domainmodel_Abstract implements Mapper_
 	 * Set send method
 	 * @param string $value
 	 * @param bool $isDirty new value is dirty, defaults to true
-	 * @throws Envelope_InvalidMethodException
+	 * @throws InvalidMethodException
 	 */
 	protected function setSendMethodAttr($value, $isDirty = true) {
 		if (!in_array($value, array('hand', 'email', 'post'))) {
-			throw new Envelope_InvalidMethodException('Invalid send method: ' . $value);
+			throw new InvalidMethodException('Invalid send method: ' . $value);
 		}
 
 		$this->sendMethod = $value;

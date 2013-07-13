@@ -4,12 +4,15 @@
  * InvoiceProfile service class
  */
 
-namespace Moneybird;
+namespace Moneybird\InvoiceProfile;
+
+use Moneybird\Service as ServiceInterface;
+use Moneybird\ApiConnector;
 
 /**
  * InvoiceProfile service
  */
-class InvoiceProfile_Service implements Service {
+class Service implements ServiceInterface {
 	
 	/**
 	 * ApiConnector object
@@ -22,6 +25,6 @@ class InvoiceProfile_Service implements Service {
 	}
 		
 	public function getAll() {
-		return $this->connector->getAll('InvoiceProfile');
+		return $this->connector->getAll(__NAMESPACE__);
 	}	
 }

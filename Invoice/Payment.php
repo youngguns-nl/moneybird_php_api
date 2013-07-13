@@ -1,15 +1,17 @@
 <?php
 
 /*
- * Invoice_Payment class file
+ * Payment class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Invoice;
+
+use Moneybird\Payment\AbstractPayment;
 
 /**
  * Payment
  */
-class Invoice_Payment extends Payment_Abstract {
+class Payment extends AbstractPayment {
 	
 	protected $creditInvoiceId;
 	protected $invoiceId;

@@ -4,12 +4,17 @@
  * Contact class
  */
 
-namespace Moneybird;
+namespace Moneybird\Contact;
+
+use Moneybird\Mapper\Mapable;
+use Moneybird\SyncObject;
+use Moneybird\Domainmodel\AbstractModel;
+use Moneybird\InvalidIdException;
 
 /**
  * Contact
  */
-class Contact_Sync extends Domainmodel_Abstract implements Mapper_Mapable, SyncObject {
+class Sync extends AbstractModel implements Mapable, SyncObject {
 	
 	protected $id = array();
 	

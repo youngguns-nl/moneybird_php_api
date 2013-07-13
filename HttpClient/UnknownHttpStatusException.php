@@ -4,10 +4,10 @@
  * HttpClient Exception
  */
 
-namespace Moneybird;
+namespace Moneybird\HttpClient;
 
 /**
  * Exception for unknown http status
  */
-class HttpClient_UnknownHttpStatusException extends HttpClient_Exception {
+class UnknownHttpStatusException extends Exception {
 }

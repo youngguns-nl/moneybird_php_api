@@ -4,12 +4,14 @@
  * Estimate_Envelope class file
  */
 
-namespace Moneybird;
+namespace Moneybird\Estimate;
+
+use Moneybird\Envelope\AbstractEnvelope;
 
 /**
  * Estimate_Envelope
  */
-class Estimate_Envelope extends Envelope_Abstract {
+class Envelope extends AbstractEnvelope {
 	
 	protected $estimateEmail;
 	
