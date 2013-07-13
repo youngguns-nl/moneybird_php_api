@@ -32,9 +32,11 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">599</span></a></li>
+                <span class="label label-info">622</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
 </ul>
@@ -108,7 +110,7 @@ or open basedir is active</span><pre>exec()</pre></a></li>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
 <h2>Creates connector object</h2>
-<pre>__construct() </pre>
+<pre>__construct(array $connectionOptions) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -116,6 +118,11 @@ or open basedir is active</span><pre>exec()</pre></a></li>
 <th>access</th>
 <td>public</td>
 </tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$connectionOptions</h4>
+<code></code>
+</div>
 </div></div>
 </div>
 <a name="__destruct" id="__destruct"></a><div class="element clickable method public __destruct" data-toggle="collapse" data-target=".__destruct .collapse">
@@ -196,19 +203,19 @@ or open basedir is active</span><pre>exec()</pre></a></li>
 <h3>Exceptions</h3>
 <table class="table table-bordered">
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_Exception.html">\Moneybird\HttpClient_Exception</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.Exception.html">\Moneybird\HttpClient\Exception</a></code></th>
 <td></td>
 </tr>
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_HttpStatusException.html">\Moneybird\HttpClient_HttpStatusException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.HttpStatusException.html">\Moneybird\HttpClient\HttpStatusException</a></code></th>
 <td></td>
 </tr>
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_UnknownHttpStatusException.html">\Moneybird\HttpClient_UnknownHttpStatusException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.UnknownHttpStatusException.html">\Moneybird\HttpClient\UnknownHttpStatusException</a></code></th>
 <td></td>
 </tr>
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_ConnectionErrorException.html">\Moneybird\HttpClient_ConnectionErrorException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.ConnectionErrorException.html">\Moneybird\HttpClient\ConnectionErrorException</a></code></th>
 <td></td>
 </tr>
 </table>
@@ -285,15 +292,15 @@ or open basedir is active</h2>
 <h3>Exceptions</h3>
 <table class="table table-bordered">
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_HttpStatusException.html">\Moneybird\HttpClient_HttpStatusException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.HttpStatusException.html">\Moneybird\HttpClient\HttpStatusException</a></code></th>
 <td></td>
 </tr>
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_UnknownHttpStatusException.html">\Moneybird\HttpClient_UnknownHttpStatusException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.UnknownHttpStatusException.html">\Moneybird\HttpClient\UnknownHttpStatusException</a></code></th>
 <td></td>
 </tr>
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_ConnectionErrorException.html">\Moneybird\HttpClient_ConnectionErrorException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.ConnectionErrorException.html">\Moneybird\HttpClient\ConnectionErrorException</a></code></th>
 <td></td>
 </tr>
 </table>
@@ -314,11 +321,11 @@ or open basedir is active</h2>
 <h3>Exceptions</h3>
 <table class="table table-bordered">
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_HttpStatusException.html">\Moneybird\HttpClient_HttpStatusException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.HttpStatusException.html">\Moneybird\HttpClient\HttpStatusException</a></code></th>
 <td></td>
 </tr>
 <tr>
-<th><code><a href="../classes/Moneybird.HttpClient_UnknownHttpStatusException.html">\Moneybird\HttpClient_UnknownHttpStatusException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.UnknownHttpStatusException.html">\Moneybird\HttpClient\UnknownHttpStatusException</a></code></th>
 <td></td>
 </tr>
 </table>
@@ -336,7 +343,7 @@ or open basedir is active</h2>
 </tr></table>
 <h3>Exceptions</h3>
 <table class="table table-bordered"><tr>
-<th><code><a href="../classes/Moneybird.HttpClient_ConnectionErrorException.html">\Moneybird\HttpClient_ConnectionErrorException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.ConnectionErrorException.html">\Moneybird\HttpClient\ConnectionErrorException</a></code></th>
 <td></td>
 </tr></table>
 <h3>Returns</h3>
@@ -426,7 +433,7 @@ or open basedir is active</h2>
 </div>
 <h3>Exceptions</h3>
 <table class="table table-bordered"><tr>
-<th><code><a href="../classes/Moneybird.HttpClient_ConnectionErrorException.html">\Moneybird\HttpClient_ConnectionErrorException</a></code></th>
+<th><code><a href="../classes/Moneybird.HttpClient.ConnectionErrorException.html">\Moneybird\HttpClient\ConnectionErrorException</a></code></th>
 <td></td>
 </tr></table>
 <h3>Returns</h3>
@@ -532,7 +539,7 @@ or open basedir is active</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2012-10-14T10:48:42+02:00.<br></footer></div>
+            generated on 2013-07-12T22:19:09+02:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -1,0 +1,905 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Moneybird\Invoice\Detail</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Moneybird.html"><i class="icon-th"></i> Moneybird</a></li>
+<li><a href="../namespaces/global.html"><i class="icon-th"></i> global</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">622</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public inherited"><a href="#__construct" title="__construct :: Construct a new object and extract data"><span class="description">Construct a new object and extract data</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#__get" title="__get :: Proxy to disclose method"><span class="description">Proxy to disclose method</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#__set" title="__set :: Magic set method
+Do not allow set"><span class="description">Magic set method
+Do not allow set</span><pre>__set()</pre></a></li>
+<li class="method public "><a href="#copy" title="copy :: Copy the invoice detail"><span class="description">Copy the invoice detail</span><pre>copy()</pre></a></li>
+<li class="method public inherited"><a href="#disclose" title="disclose :: Discloses all values of the object that should be visible in the view layer."><span class="description">Discloses all values of the object that should be visible in the view layer.</span><pre>disclose()</pre></a></li>
+<li class="method public inherited"><a href="#getDirtyAttributes" title="getDirtyAttributes :: Returns an array representation of this object's dirty attributes"><span class="description">Returns an array representation of this object's dirty attributes</span><pre>getDirtyAttributes()</pre></a></li>
+<li class="method public inherited"><a href="#getId" title="getId :: Return the objects id or null"><span class="description">Return the objects id or null</span><pre>getId()</pre></a></li>
+<li class="method public inherited"><a href="#isDeleted" title="isDeleted :: Get delete status"><span class="description">Get delete status</span><pre>isDeleted()</pre></a></li>
+<li class="method public inherited"><a href="#isDirty" title="isDirty :: Returns true if the object contains any dirty attributes"><span class="description">Returns true if the object contains any dirty attributes</span><pre>isDirty()</pre></a></li>
+<li class="method public inherited"><a href="#setData" title="setData :: Sets data"><span class="description">Sets data</span><pre>setData()</pre></a></li>
+<li class="method public inherited"><a href="#setDeleted" title="setDeleted :: Mark deleted"><span class="description">Mark deleted</span><pre>setDeleted()</pre></a></li>
+<li class="method public inherited"><a href="#toArray" title="toArray :: Get array representation of Subject"><span class="description">Get array representation of Subject</span><pre>toArray()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected inherited"><a href="#_initDisclosedAttributes" title="_initDisclosedAttributes :: Create disclosedAttributes array"><span class="description">Create disclosedAttributes array</span><pre>_initDisclosedAttributes()</pre></a></li>
+<li class="method protected inherited"><a href="#_initVars" title="_initVars :: Initialize vars"><span class="description">Initialize vars</span><pre>_initVars()</pre></a></li>
+<li class="method protected inherited"><a href="#extract" title="extract :: Extract will take an array and try to automatically map the array values
+to properties in this object"><span class="description">Extract will take an array and try to automatically map the array values
+to properties in this object</span><pre>extract()</pre></a></li>
+<li class="method protected inherited"><a href="#init" title="init :: Initialize"><span class="description">Initialize</span><pre>init()</pre></a></li>
+<li class="method protected inherited"><a href="#reload" title="reload :: Adopt the data from $self"><span class="description">Adopt the data from $self</span><pre>reload()</pre></a></li>
+<li class="method protected inherited"><a href="#selfToArray" title="selfToArray :: Returns an array representation of this object"><span class="description">Returns an array representation of this object</span><pre>selfToArray()</pre></a></li>
+<li class="method protected inherited"><a href="#setClean" title="setClean :: Set dirty state to clean"><span class="description">Set dirty state to clean</span><pre>setClean()</pre></a></li>
+<li class="method protected inherited"><a href="#setDirty" title="setDirty :: Set dirty state to dirty"><span class="description">Set dirty state to dirty</span><pre>setDirty()</pre></a></li>
+<li class="method protected inherited"><a href="#setDirtyState" title="setDirtyState :: Set dirty state based on bool"><span class="description">Set dirty state based on bool</span><pre>setDirtyState()</pre></a></li>
+<li class="method protected inherited"><a href="#validate" title="validate :: Validate object"><span class="description">Validate object</span><pre>validate()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24_deleted" title="$_deleted :: "><span class="description">$_deleted</span><pre>$_deleted</pre></a></li>
+<li class="property protected inherited"><a href="#%24_dirtyAttr" title="$_dirtyAttr :: Array of attributes that are dirty"><span class="description">Array of attributes that are dirty</span><pre>$_dirtyAttr</pre></a></li>
+<li class="property protected inherited"><a href="#%24_discloseAttr" title="$_discloseAttr :: Array containing attributes to disclose"><span class="description">Array containing attributes to disclose</span><pre>$_discloseAttr</pre></a></li>
+<li class="property protected inherited"><a href="#%24_disclosure" title="$_disclosure :: Disclosure"><span class="description">Disclosure</span><pre>$_disclosure</pre></a></li>
+<li class="property protected inherited"><a href="#%24_readonlyAttr" title="$_readonlyAttr :: Array of attributes that can't be modified"><span class="description">Array of attributes that can't be modified</span><pre>$_readonlyAttr</pre></a></li>
+<li class="property protected inherited"><a href="#%24_requiredAttr" title="$_requiredAttr :: Array of attributes that are required"><span class="description">Array of attributes that are required</span><pre>$_requiredAttr</pre></a></li>
+<li class="property protected inherited"><a href="#%24amount" title="$amount :: "><span class="description">$amount</span><pre>$amount</pre></a></li>
+<li class="property protected inherited"><a href="#%24createdAt" title="$createdAt :: "><span class="description">$createdAt</span><pre>$createdAt</pre></a></li>
+<li class="property protected inherited"><a href="#%24description" title="$description :: "><span class="description">$description</span><pre>$description</pre></a></li>
+<li class="property protected inherited"><a href="#%24id" title="$id :: "><span class="description">$id</span><pre>$id</pre></a></li>
+<li class="property protected "><a href="#%24invoiceId" title="$invoiceId :: "><span class="description">$invoiceId</span><pre>$invoiceId</pre></a></li>
+<li class="property protected inherited"><a href="#%24ledgerAccountId" title="$ledgerAccountId :: "><span class="description">$ledgerAccountId</span><pre>$ledgerAccountId</pre></a></li>
+<li class="property protected inherited"><a href="#%24price" title="$price :: "><span class="description">$price</span><pre>$price</pre></a></li>
+<li class="property protected inherited"><a href="#%24rowOrder" title="$rowOrder :: "><span class="description">$rowOrder</span><pre>$rowOrder</pre></a></li>
+<li class="property protected inherited"><a href="#%24tax" title="$tax :: "><span class="description">$tax</span><pre>$tax</pre></a></li>
+<li class="property protected inherited"><a href="#%24taxRateId" title="$taxRateId :: "><span class="description">$taxRateId</span><pre>$taxRateId</pre></a></li>
+<li class="property protected inherited"><a href="#%24totalPriceExclTax" title="$totalPriceExclTax :: "><span class="description">$totalPriceExclTax</span><pre>$totalPriceExclTax</pre></a></li>
+<li class="property protected inherited"><a href="#%24totalPriceInclTax" title="$totalPriceInclTax :: "><span class="description">$totalPriceInclTax</span><pre>$totalPriceInclTax</pre></a></li>
+<li class="property protected inherited"><a href="#%24updatedAt" title="$updatedAt :: "><span class="description">$updatedAt</span><pre>$updatedAt</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CMoneybird%5CInvoice%5CDetail" id="\Moneybird\Invoice\Detail"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Moneybird.html">Moneybird</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Moneybird.Invoice.html">Invoice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Moneybird.Invoice.Detail.html">Detail</a>
+</li>
+</ul>
+<div href="../classes/Moneybird.Invoice.Detail.html" class="element class">
+<p class="short_description">Detail</p>
+<div class="details">
+<p class="long_description"></p>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Construct a new object and extract data</h2>
+<pre>__construct(array $data, bool $isDirty) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::__construct()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::__construct()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code>
+</div>
+<div class="subelement argument">
+<h4>$isDirty</h4>
+<code>bool</code><p>new data is dirty, defaults to true</p></div>
+</div></div>
+</div>
+<a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
+<h2>Proxy to disclose method</h2>
+<pre>__get(String $key) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::__get()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::__get()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>String</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="__set" id="__set"></a><div class="element clickable method public __set" data-toggle="collapse" data-target=".__set .collapse">
+<h2>Magic set method
+Do not allow set</h2>
+<pre>__set(string $name, mixed $value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::__set()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::__set()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Moneybird.Domainmodel.Exception.html">\Moneybird\Domainmodel\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a name="copy" id="copy"></a><div class="element clickable method public copy" data-toggle="collapse" data-target=".copy .collapse">
+<h2>Copy the invoice detail</h2>
+<pre>copy(array $filter) : \Moneybird\Invoice\self</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Invoice\self</code></div>
+</div></div>
+</div>
+<a name="disclose" id="disclose"></a><div class="element clickable method public disclose" data-toggle="collapse" data-target=".disclose .collapse">
+<h2>Discloses all values of the object that should be visible in the view layer.</h2>
+<pre>disclose(mixed $key) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::disclose()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::disclose()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>mixed</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="getDirtyAttributes" id="getDirtyAttributes"></a><div class="element clickable method public getDirtyAttributes" data-toggle="collapse" data-target=".getDirtyAttributes .collapse">
+<h2>Returns an array representation of this object's dirty attributes</h2>
+<pre>getDirtyAttributes() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::getDirtyAttributes()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::getDirtyAttributes()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
+<h2>Return the objects id or null</h2>
+<pre>getId() : int</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::getId()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::getId()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a name="isDeleted" id="isDeleted"></a><div class="element clickable method public isDeleted" data-toggle="collapse" data-target=".isDeleted .collapse">
+<h2>Get delete status</h2>
+<pre>isDeleted() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::isDeleted()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isDirty" id="isDirty"></a><div class="element clickable method public isDirty" data-toggle="collapse" data-target=".isDirty .collapse">
+<h2>Returns true if the object contains any dirty attributes</h2>
+<pre>isDirty() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::isDirty()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::isDirty()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="setData" id="setData"></a><div class="element clickable method public setData" data-toggle="collapse" data-target=".setData .collapse">
+<h2>Sets data</h2>
+<pre>setData(array $data, bool $isDirty) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::setData()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::setData()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code>
+</div>
+<div class="subelement argument">
+<h4>$isDirty</h4>
+<code>bool</code><p>new data is dirty, defaults to true</p></div>
+</div></div>
+</div>
+<a name="setDeleted" id="setDeleted"></a><div class="element clickable method public setDeleted" data-toggle="collapse" data-target=".setDeleted .collapse">
+<h2>Mark deleted</h2>
+<pre>setDeleted() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::setDeleted()</td>
+</tr></table>
+</div></div>
+</div>
+<a name="toArray" id="toArray"></a><div class="element clickable method public toArray" data-toggle="collapse" data-target=".toArray .collapse">
+<h2>Get array representation of Subject</h2>
+<pre>toArray() : Array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Mapper\Mapable::toArray()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::toArray()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>Array</code></div>
+</div></div>
+</div>
+<a name="_initDisclosedAttributes" id="_initDisclosedAttributes"></a><div class="element clickable method protected _initDisclosedAttributes" data-toggle="collapse" data-target="._initDisclosedAttributes .collapse">
+<h2>Create disclosedAttributes array</h2>
+<pre>_initDisclosedAttributes() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::_initDisclosedAttributes()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::_initDisclosedAttributes()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="_initVars" id="_initVars"></a><div class="element clickable method protected _initVars" data-toggle="collapse" data-target="._initVars .collapse">
+<h2>Initialize vars</h2>
+<pre>_initVars() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::_initVars()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::_initVars()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="extract" id="extract"></a><div class="element clickable method protected extract" data-toggle="collapse" data-target=".extract .collapse">
+<h2>Extract will take an array and try to automatically map the array values
+to properties in this object</h2>
+<pre>extract(array $values, Array $filter, bool $isDirty) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>protected</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::extract()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::extract()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$values</h4>
+<code>Array</code>
+</div>
+<div class="subelement argument">
+<h4>$filter</h4>
+<code>Array</code>
+</div>
+<div class="subelement argument">
+<h4>$isDirty</h4>
+<code>bool</code><p>new data is dirty, defaults to true</p></div>
+</div></div>
+</div>
+<a name="init" id="init"></a><div class="element clickable method protected init" data-toggle="collapse" data-target=".init .collapse">
+<h2>Initialize</h2>
+<pre>init() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::init()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::init()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="reload" id="reload"></a><div class="element clickable method protected reload" data-toggle="collapse" data-target=".reload .collapse">
+<h2>Adopt the data from $self</h2>
+<pre>reload(\Moneybird\Domainmodel\AbstractModel $self) : \Moneybird\Domainmodel\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::reload()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::reload()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$self</h4>
+<code><a href="../classes/Moneybird.Domainmodel.AbstractModel.html">\Moneybird\Domainmodel\AbstractModel</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
+</div></div>
+</div>
+<a name="selfToArray" id="selfToArray"></a><div class="element clickable method protected selfToArray" data-toggle="collapse" data-target=".selfToArray .collapse">
+<h2>Returns an array representation of this object</h2>
+<pre>selfToArray(array $filter) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>protected</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::selfToArray()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::selfToArray()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter</h4>
+<code></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a name="setClean" id="setClean"></a><div class="element clickable method protected setClean" data-toggle="collapse" data-target=".setClean .collapse">
+<h2>Set dirty state to clean</h2>
+<pre>setClean(string $attr) : \Moneybird\Domainmodel\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::setClean()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::setClean()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attr</h4>
+<code>string</code><p>Name of attribute, if null (default) set all attribures clean</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
+</div></div>
+</div>
+<a name="setDirty" id="setDirty"></a><div class="element clickable method protected setDirty" data-toggle="collapse" data-target=".setDirty .collapse">
+<h2>Set dirty state to dirty</h2>
+<pre>setDirty(string $attr) : \Moneybird\Domainmodel\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::setDirty()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::setDirty()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attr</h4>
+<code>string</code><p>Name of attribute, if null (default) set all attribures dirty</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
+</div></div>
+</div>
+<a name="setDirtyState" id="setDirtyState"></a><div class="element clickable method protected setDirtyState" data-toggle="collapse" data-target=".setDirtyState .collapse">
+<h2>Set dirty state based on bool</h2>
+<pre>setDirtyState(bool $isDirty, string $attr) : \Moneybird\Domainmodel\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::setDirtyState()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::setDirtyState()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$isDirty</h4>
+<code>bool</code>
+</div>
+<div class="subelement argument">
+<h4>$attr</h4>
+<code>string</code><p>Name of attribute, if null (default) change state of all attribures</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
+</div></div>
+</div>
+<a name="validate" id="validate"></a><div class="element clickable method protected validate" data-toggle="collapse" data-target=".validate .collapse">
+<h2>Validate object</h2>
+<pre>validate() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::validate()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::validate()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24_deleted" id="$_deleted"> </a><div class="element clickable property protected $_deleted" data-toggle="collapse" data-target=".$_deleted .collapse">
+<h2>$_deleted</h2>
+<pre>$_deleted </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$_deleted</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24_dirtyAttr" id="$_dirtyAttr"> </a><div class="element clickable property protected $_dirtyAttr" data-toggle="collapse" data-target=".$_dirtyAttr .collapse">
+<h2>Array of attributes that are dirty</h2>
+<pre>$_dirtyAttr : Array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::$$_dirtyAttr</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$_dirtyAttr</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_discloseAttr" id="$_discloseAttr"> </a><div class="element clickable property protected $_discloseAttr" data-toggle="collapse" data-target=".$_discloseAttr .collapse">
+<h2>Array containing attributes to disclose</h2>
+<pre>$_discloseAttr : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>protected</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::$$_discloseAttr</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$_discloseAttr</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_disclosure" id="$_disclosure"> </a><div class="element clickable property protected $_disclosure" data-toggle="collapse" data-target=".$_disclosure .collapse">
+<h2>Disclosure</h2>
+<pre>$_disclosure : <a href="../classes/Moneybird.Disclosure.html">\Moneybird\Disclosure</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>protected</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::$$_disclosure</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$_disclosure</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_readonlyAttr" id="$_readonlyAttr"> </a><div class="element clickable property protected $_readonlyAttr" data-toggle="collapse" data-target=".$_readonlyAttr .collapse">
+<h2>Array of attributes that can't be modified</h2>
+<pre>$_readonlyAttr : Array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$_readonlyAttr</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24_requiredAttr" id="$_requiredAttr"> </a><div class="element clickable property protected $_requiredAttr" data-toggle="collapse" data-target=".$_requiredAttr .collapse">
+<h2>Array of attributes that are required</h2>
+<pre>$_requiredAttr : Array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::$$_requiredAttr</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$_requiredAttr</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24amount" id="$amount"> </a><div class="element clickable property protected $amount" data-toggle="collapse" data-target=".$amount .collapse">
+<h2>$amount</h2>
+<pre>$amount </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$amount</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24createdAt" id="$createdAt"> </a><div class="element clickable property protected $createdAt" data-toggle="collapse" data-target=".$createdAt .collapse">
+<h2>$createdAt</h2>
+<pre>$createdAt </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$createdAt</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24description" id="$description"> </a><div class="element clickable property protected $description" data-toggle="collapse" data-target=".$description .collapse">
+<h2>$description</h2>
+<pre>$description </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$description</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24id" id="$id"> </a><div class="element clickable property protected $id" data-toggle="collapse" data-target=".$id .collapse">
+<h2>$id</h2>
+<pre>$id </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$id</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24invoiceId" id="$invoiceId"> </a><div class="element clickable property protected $invoiceId" data-toggle="collapse" data-target=".$invoiceId .collapse">
+<h2>$invoiceId</h2>
+<pre>$invoiceId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24ledgerAccountId" id="$ledgerAccountId"> </a><div class="element clickable property protected $ledgerAccountId" data-toggle="collapse" data-target=".$ledgerAccountId .collapse">
+<h2>$ledgerAccountId</h2>
+<pre>$ledgerAccountId </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$ledgerAccountId</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24price" id="$price"> </a><div class="element clickable property protected $price" data-toggle="collapse" data-target=".$price .collapse">
+<h2>$price</h2>
+<pre>$price </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$price</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24rowOrder" id="$rowOrder"> </a><div class="element clickable property protected $rowOrder" data-toggle="collapse" data-target=".$rowOrder .collapse">
+<h2>$rowOrder</h2>
+<pre>$rowOrder </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$rowOrder</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24tax" id="$tax"> </a><div class="element clickable property protected $tax" data-toggle="collapse" data-target=".$tax .collapse">
+<h2>$tax</h2>
+<pre>$tax </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$tax</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24taxRateId" id="$taxRateId"> </a><div class="element clickable property protected $taxRateId" data-toggle="collapse" data-target=".$taxRateId .collapse">
+<h2>$taxRateId</h2>
+<pre>$taxRateId </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$taxRateId</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24totalPriceExclTax" id="$totalPriceExclTax"> </a><div class="element clickable property protected $totalPriceExclTax" data-toggle="collapse" data-target=".$totalPriceExclTax .collapse">
+<h2>$totalPriceExclTax</h2>
+<pre>$totalPriceExclTax </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$totalPriceExclTax</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24totalPriceInclTax" id="$totalPriceInclTax"> </a><div class="element clickable property protected $totalPriceInclTax" data-toggle="collapse" data-target=".$totalPriceInclTax .collapse">
+<h2>$totalPriceInclTax</h2>
+<pre>$totalPriceInclTax </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$totalPriceInclTax</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24updatedAt" id="$updatedAt"> </a><div class="element clickable property protected $updatedAt" data-toggle="collapse" data-target=".$updatedAt .collapse">
+<h2>$updatedAt</h2>
+<pre>$updatedAt </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$updatedAt</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2013-07-12T22:19:09+02:00.<br></footer></div>
+</div>
+</body>
+</html>

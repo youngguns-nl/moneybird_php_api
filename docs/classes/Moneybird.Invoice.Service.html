@@ -1,0 +1,394 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Moneybird\Invoice\Service</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Moneybird.html"><i class="icon-th"></i> Moneybird</a></li>
+<li><a href="../namespaces/global.html"><i class="icon-th"></i> global</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">622</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructor"><span class="description">Constructor</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#delete" title="delete :: Deletes an invoice"><span class="description">Deletes an invoice</span><pre>delete()</pre></a></li>
+<li class="method public "><a href="#getAll" title="getAll :: Get all invoices"><span class="description">Get all invoices</span><pre>getAll()</pre></a></li>
+<li class="method public "><a href="#getById" title="getById :: Get invoice by id"><span class="description">Get invoice by id</span><pre>getById()</pre></a></li>
+<li class="method public "><a href="#getByIds" title="getByIds :: Get invoices by id (max 100)"><span class="description">Get invoices by id (max 100)</span><pre>getByIds()</pre></a></li>
+<li class="method public "><a href="#getByInvoiceId" title="getByInvoiceId :: Get invoice by invoice number"><span class="description">Get invoice by invoice number</span><pre>getByInvoiceId()</pre></a></li>
+<li class="method public "><a href="#getByPushMessage" title="getByPushMessage :: Get the invoice of which a state change notification has been received"><span class="description">Get the invoice of which a state change notification has been received</span><pre>getByPushMessage()</pre></a></li>
+<li class="method public "><a href="#getPdf" title="getPdf :: Get the raw PDF content"><span class="description">Get the raw PDF content</span><pre>getPdf()</pre></a></li>
+<li class="method public "><a href="#getSyncList" title="getSyncList :: Get invoices sync status"><span class="description">Get invoices sync status</span><pre>getSyncList()</pre></a></li>
+<li class="method public "><a href="#registerPayment" title="registerPayment :: Register a payment for the invoice"><span class="description">Register a payment for the invoice</span><pre>registerPayment()</pre></a></li>
+<li class="method public "><a href="#remind" title="remind :: Send a reminder."><span class="description">Send a reminder.</span><pre>remind()</pre></a></li>
+<li class="method public "><a href="#save" title="save :: Updates or inserts an invoice"><span class="description">Updates or inserts an invoice</span><pre>save()</pre></a></li>
+<li class="method public "><a href="#saveHistory" title="saveHistory :: Inserts history note"><span class="description">Inserts history note</span><pre>saveHistory()</pre></a></li>
+<li class="method public "><a href="#send" title="send :: Send the invoice."><span class="description">Send the invoice.</span><pre>send()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#buildEnvelope" title="buildEnvelope :: Build an envelope to send the invoice or reminder with"><span class="description">Build an envelope to send the invoice or reminder with</span><pre>buildEnvelope()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24connector" title="$connector :: ApiConnector object"><span class="description">ApiConnector object</span><pre>$connector</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CMoneybird%5CInvoice%5CService" id="\Moneybird\Invoice\Service"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Moneybird.html">Moneybird</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Moneybird.Invoice.html">Invoice</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Moneybird.Invoice.Service.html">Service</a>
+</li>
+</ul>
+<div href="../classes/Moneybird.Invoice.Service.html" class="element class">
+<p class="short_description">Invoice service</p>
+<div class="details">
+<p class="long_description"></p>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructor</h2>
+<pre>__construct(\Moneybird\ApiConnector $connector) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$connector</h4>
+<code><a href="../classes/Moneybird.ApiConnector.html">\Moneybird\ApiConnector</a></code>
+</div>
+</div></div>
+</div>
+<a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>Deletes an invoice</h2>
+<pre>delete(\Moneybird\Invoice $invoice) : \Moneybird\Invoice\self</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$invoice</h4>
+<code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Invoice\self</code></div>
+</div></div>
+</div>
+<a name="getAll" id="getAll"></a><div class="element clickable method public getAll" data-toggle="collapse" data-target=".getAll .collapse">
+<h2>Get all invoices</h2>
+<pre>getAll(string | integer $filter, \Moneybird\Invoice\Subject $parent) : <a href="../classes/Moneybird.Invoice.ArrayObject.html">\Moneybird\Invoice\ArrayObject</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter</h4>
+<code>stringinteger</code><p>Filter name or id (advanced filters)</p>
+</div>
+<div class="subelement argument">
+<h4>$parent</h4>
+<code><a href="../classes/Moneybird.Invoice.Subject.html">\Moneybird\Invoice\Subject</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Moneybird.InvalidFilterException.html">\Moneybird\InvalidFilterException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.ArrayObject.html">\Moneybird\Invoice\ArrayObject</a></code></div>
+</div></div>
+</div>
+<a name="getById" id="getById"></a><div class="element clickable method public getById" data-toggle="collapse" data-target=".getById .collapse">
+<h2>Get invoice by id</h2>
+<pre>getById(int $id) : <a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>int</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code></div>
+</div></div>
+</div>
+<a name="getByIds" id="getByIds"></a><div class="element clickable method public getByIds" data-toggle="collapse" data-target=".getByIds .collapse">
+<h2>Get invoices by id (max 100)</h2>
+<pre>getByIds(array $ids) : \Moneybird\Invoice\Invoice_Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ids</h4>
+<code>Array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Invoice\Invoice_Array</code></div>
+</div></div>
+</div>
+<a name="getByInvoiceId" id="getByInvoiceId"></a><div class="element clickable method public getByInvoiceId" data-toggle="collapse" data-target=".getByInvoiceId .collapse">
+<h2>Get invoice by invoice number</h2>
+<pre>getByInvoiceId(string $invoiceId) : <a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$invoiceId</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code></div>
+</div></div>
+</div>
+<a name="getByPushMessage" id="getByPushMessage"></a><div class="element clickable method public getByPushMessage" data-toggle="collapse" data-target=".getByPushMessage .collapse">
+<h2>Get the invoice of which a state change notification has been received</h2>
+<pre>getByPushMessage() : <a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>When the invoice state changes in Moneybird, your application can be notified
+Use this method to validate the request and retreive the invoice</p></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/Moneybird.InvalidRequestException.html">\Moneybird\InvalidRequestException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code></div>
+</div></div>
+</div>
+<a name="getPdf" id="getPdf"></a><div class="element clickable method public getPdf" data-toggle="collapse" data-target=".getPdf .collapse">
+<h2>Get the raw PDF content</h2>
+<pre>getPdf(\Moneybird\Invoice $invoice) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$invoice</h4>
+<code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="getSyncList" id="getSyncList"></a><div class="element clickable method public getSyncList" data-toggle="collapse" data-target=".getSyncList .collapse">
+<h2>Get invoices sync status</h2>
+<pre>getSyncList() : \Moneybird\Invoice\Invoice_Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Invoice\Invoice_Array</code></div>
+</div></div>
+</div>
+<a name="registerPayment" id="registerPayment"></a><div class="element clickable method public registerPayment" data-toggle="collapse" data-target=".registerPayment .collapse">
+<h2>Register a payment for the invoice</h2>
+<pre>registerPayment(\Moneybird\Invoice $invoice, \Moneybird\Invoice\Payment $payment) : <a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$invoice</h4>
+<code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code>
+</div>
+<div class="subelement argument">
+<h4>$payment</h4>
+<code><a href="../classes/Moneybird.Invoice.Payment.html">\Moneybird\Invoice\Payment</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code></div>
+</div></div>
+</div>
+<a name="remind" id="remind"></a><div class="element clickable method public remind" data-toggle="collapse" data-target=".remind .collapse">
+<h2>Send a reminder.</h2>
+<pre>remind(\Moneybird\Invoice $invoice, string $method, \Moneybird\Invoice\type $email, \Moneybird\Invoice\type $message) : <a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Returns the updated invoice</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$invoice</h4>
+<code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code>
+</div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>Send method (email|hand|post); default: email</p>
+</div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\Moneybird\Invoice\type</code><p>Address to send to; default: contact e-mail</p>
+</div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>\Moneybird\Invoice\type</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code></div>
+</div></div>
+</div>
+<a name="save" id="save"></a><div class="element clickable method public save" data-toggle="collapse" data-target=".save .collapse">
+<h2>Updates or inserts an invoice</h2>
+<pre>save(\Moneybird\Invoice $invoice) : <a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$invoice</h4>
+<code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code></div>
+</div></div>
+</div>
+<a name="saveHistory" id="saveHistory"></a><div class="element clickable method public saveHistory" data-toggle="collapse" data-target=".saveHistory .collapse">
+<h2>Inserts history note</h2>
+<pre>saveHistory(\Moneybird\Invoice\History $history, \Moneybird\Invoice $invoice) : <a href="../classes/Moneybird.Invoice.History.html">\Moneybird\Invoice\History</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$history</h4>
+<code><a href="../classes/Moneybird.Invoice.History.html">\Moneybird\Invoice\History</a></code>
+</div>
+<div class="subelement argument">
+<h4>$invoice</h4>
+<code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.History.html">\Moneybird\Invoice\History</a></code></div>
+</div></div>
+</div>
+<a name="send" id="send"></a><div class="element clickable method public send" data-toggle="collapse" data-target=".send .collapse">
+<h2>Send the invoice.</h2>
+<pre>send(\Moneybird\Invoice $invoice, string $method, \Moneybird\Invoice\type $email, \Moneybird\Invoice\type $message) : <a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Returns the updated invoice</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$invoice</h4>
+<code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code>
+</div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>Send method (email|hand|post); default: email</p>
+</div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\Moneybird\Invoice\type</code><p>Address to send to; default: contact e-mail</p>
+</div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>\Moneybird\Invoice\type</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.html">\Moneybird\Invoice</a></code></div>
+</div></div>
+</div>
+<a name="buildEnvelope" id="buildEnvelope"></a><div class="element clickable method protected buildEnvelope" data-toggle="collapse" data-target=".buildEnvelope .collapse">
+<h2>Build an envelope to send the invoice or reminder with</h2>
+<pre>buildEnvelope(string $method, \Moneybird\Invoice\type $email, \Moneybird\Invoice\type $message) : <a href="../classes/Moneybird.Invoice.Envelope.html">\Moneybird\Invoice\Envelope</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>protected</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>Send method (email|hand|post); default: email</p>
+</div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\Moneybird\Invoice\type</code><p>Address to send to; default: contact e-mail</p>
+</div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>\Moneybird\Invoice\type</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/Moneybird.Invoice.Envelope.html">\Moneybird\Invoice\Envelope</a></code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24connector" id="$connector"> </a><div class="element clickable property protected $connector" data-toggle="collapse" data-target=".$connector .collapse">
+<h2>ApiConnector object</h2>
+<pre>$connector : <a href="../classes/Moneybird.ApiConnector.html">\Moneybird\ApiConnector</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2013-07-12T22:19:09+02:00.<br></footer></div>
+</div>
+</body>
+</html>

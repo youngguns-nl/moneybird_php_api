@@ -32,9 +32,11 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">599</span></a></li>
+                <span class="label label-info">622</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
 </ul>
@@ -62,25 +64,32 @@
 Do not allow set"><span class="description">Magic set method
 Do not allow set</span><pre>__set()</pre></a></li>
 <li class="method public inherited"><a href="#disclose" title="disclose :: Discloses all values of the object that should be visible in the view layer."><span class="description">Discloses all values of the object that should be visible in the view layer.</span><pre>disclose()</pre></a></li>
+<li class="method public inherited"><a href="#getDirtyAttributes" title="getDirtyAttributes :: Returns an array representation of this object's dirty attributes"><span class="description">Returns an array representation of this object's dirty attributes</span><pre>getDirtyAttributes()</pre></a></li>
 <li class="method public inherited"><a href="#getId" title="getId :: Return the objects id or null"><span class="description">Return the objects id or null</span><pre>getId()</pre></a></li>
 <li class="method public inherited"><a href="#isDeleted" title="isDeleted :: Get delete status"><span class="description">Get delete status</span><pre>isDeleted()</pre></a></li>
+<li class="method public inherited"><a href="#isDirty" title="isDirty :: Returns true if the object contains any dirty attributes"><span class="description">Returns true if the object contains any dirty attributes</span><pre>isDirty()</pre></a></li>
 <li class="method public inherited"><a href="#setData" title="setData :: Sets data"><span class="description">Sets data</span><pre>setData()</pre></a></li>
 <li class="method public inherited"><a href="#setDeleted" title="setDeleted :: Mark deleted"><span class="description">Mark deleted</span><pre>setDeleted()</pre></a></li>
 <li class="method public inherited"><a href="#toArray" title="toArray :: Get array representation of Subject"><span class="description">Get array representation of Subject</span><pre>toArray()</pre></a></li>
 <li class="nav-header protected">» Protected</li>
 <li class="method protected inherited"><a href="#_initDisclosedAttributes" title="_initDisclosedAttributes :: Create disclosedAttributes array"><span class="description">Create disclosedAttributes array</span><pre>_initDisclosedAttributes()</pre></a></li>
 <li class="method protected inherited"><a href="#_initVars" title="_initVars :: Initialize vars"><span class="description">Initialize vars</span><pre>_initVars()</pre></a></li>
+<li class="method protected inherited"><a href="#copy" title="copy :: Copy the object"><span class="description">Copy the object</span><pre>copy()</pre></a></li>
 <li class="method protected inherited"><a href="#extract" title="extract :: Extract will take an array and try to automatically map the array values
 to properties in this object"><span class="description">Extract will take an array and try to automatically map the array values
 to properties in this object</span><pre>extract()</pre></a></li>
 <li class="method protected inherited"><a href="#init" title="init :: Initialize"><span class="description">Initialize</span><pre>init()</pre></a></li>
 <li class="method protected inherited"><a href="#reload" title="reload :: Adopt the data from $self"><span class="description">Adopt the data from $self</span><pre>reload()</pre></a></li>
 <li class="method protected inherited"><a href="#selfToArray" title="selfToArray :: Returns an array representation of this object"><span class="description">Returns an array representation of this object</span><pre>selfToArray()</pre></a></li>
+<li class="method protected inherited"><a href="#setClean" title="setClean :: Set dirty state to clean"><span class="description">Set dirty state to clean</span><pre>setClean()</pre></a></li>
+<li class="method protected inherited"><a href="#setDirty" title="setDirty :: Set dirty state to dirty"><span class="description">Set dirty state to dirty</span><pre>setDirty()</pre></a></li>
+<li class="method protected inherited"><a href="#setDirtyState" title="setDirtyState :: Set dirty state based on bool"><span class="description">Set dirty state based on bool</span><pre>setDirtyState()</pre></a></li>
 <li class="method protected inherited"><a href="#validate" title="validate :: Validate object"><span class="description">Validate object</span><pre>validate()</pre></a></li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties</li>
 <li class="nav-header protected">» Protected</li>
 <li class="property protected inherited"><a href="#%24_deleted" title="$_deleted :: "><span class="description">$_deleted</span><pre>$_deleted</pre></a></li>
+<li class="property protected inherited"><a href="#%24_dirtyAttr" title="$_dirtyAttr :: Array of attributes that are dirty"><span class="description">Array of attributes that are dirty</span><pre>$_dirtyAttr</pre></a></li>
 <li class="property protected inherited"><a href="#%24_discloseAttr" title="$_discloseAttr :: Array containing attributes to disclose"><span class="description">Array containing attributes to disclose</span><pre>$_discloseAttr</pre></a></li>
 <li class="property protected inherited"><a href="#%24_disclosure" title="$_disclosure :: Disclosure"><span class="description">Disclosure</span><pre>$_disclosure</pre></a></li>
 <li class="property protected inherited"><a href="#%24_readonlyAttr" title="$_readonlyAttr :: Array of attributes that can't be modified"><span class="description">Array of attributes that can't be modified</span><pre>$_readonlyAttr</pre></a></li>
@@ -117,22 +126,22 @@ to properties in this object</span><pre>extract()</pre></a></li>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
 <h2>Construct a new object and extract data</h2>
-<pre>__construct(array $data) </pre>
+<pre>__construct(array $data, bool $isDirty) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::__construct()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::__construct()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::__construct()</td>
+<td>\Moneybird\Detail\AbstractDetail::__construct()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::__construct()</td>
+<td>\Moneybird\IncomingInvoice\Detail::__construct()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
@@ -140,6 +149,9 @@ to properties in this object</span><pre>extract()</pre></a></li>
 <h4>$data</h4>
 <code>array</code>
 </div>
+<div class="subelement argument">
+<h4>$isDirty</h4>
+<code>bool</code><p>new data is dirty, defaults to true</p></div>
 </div></div>
 </div>
 <a name="__get" id="__get"></a><div class="element clickable method public __get" data-toggle="collapse" data-target=".__get .collapse">
@@ -151,15 +163,15 @@ to properties in this object</span><pre>extract()</pre></a></li>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::__get()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::__get()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::__get()</td>
+<td>\Moneybird\Detail\AbstractDetail::__get()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::__get()</td>
+<td>\Moneybird\IncomingInvoice\Detail::__get()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
@@ -181,15 +193,15 @@ Do not allow set</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::__set()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::__set()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::__set()</td>
+<td>\Moneybird\Detail\AbstractDetail::__set()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::__set()</td>
+<td>\Moneybird\IncomingInvoice\Detail::__set()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
@@ -203,7 +215,7 @@ Do not allow set</h2>
 </div>
 <h3>Exceptions</h3>
 <table class="table table-bordered"><tr>
-<th><code><a href="../classes/Moneybird.Domainmodel_Exception.html">\Moneybird\Domainmodel_Exception</a></code></th>
+<th><code><a href="../classes/Moneybird.Domainmodel.Exception.html">\Moneybird\Domainmodel\Exception</a></code></th>
 <td></td>
 </tr></table>
 </div></div>
@@ -221,15 +233,15 @@ Do not allow set</h2>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::disclose()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::disclose()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::disclose()</td>
+<td>\Moneybird\Detail\AbstractDetail::disclose()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::disclose()</td>
+<td>\Moneybird\IncomingInvoice\Detail::disclose()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
@@ -241,6 +253,34 @@ Do not allow set</h2>
 <div class="subelement response"><code>mixed</code></div>
 </div></div>
 </div>
+<a name="getDirtyAttributes" id="getDirtyAttributes"></a><div class="element clickable method public getDirtyAttributes" data-toggle="collapse" data-target=".getDirtyAttributes .collapse">
+<h2>Returns an array representation of this object's dirty attributes</h2>
+<pre>getDirtyAttributes() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::getDirtyAttributes()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::getDirtyAttributes()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\IncomingInvoice\Detail::getDirtyAttributes()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
 <a name="getId" id="getId"></a><div class="element clickable method public getId" data-toggle="collapse" data-target=".getId .collapse">
 <h2>Return the objects id or null</h2>
 <pre>getId() : int</pre>
@@ -250,15 +290,15 @@ Do not allow set</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::getId()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::getId()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::getId()</td>
+<td>\Moneybird\Detail\AbstractDetail::getId()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::getId()</td>
+<td>\Moneybird\IncomingInvoice\Detail::getId()</td>
 </tr>
 </table>
 <h3>Returns</h3>
@@ -274,11 +314,39 @@ Do not allow set</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::isDeleted()</td>
+<td>\Moneybird\Detail\AbstractDetail::isDeleted()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::isDeleted()</td>
+<td>\Moneybird\IncomingInvoice\Detail::isDeleted()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="isDirty" id="isDirty"></a><div class="element clickable method public isDirty" data-toggle="collapse" data-target=".isDirty .collapse">
+<h2>Returns true if the object contains any dirty attributes</h2>
+<pre>isDirty() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::isDirty()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::isDirty()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\IncomingInvoice\Detail::isDirty()</td>
 </tr>
 </table>
 <h3>Returns</h3>
@@ -287,22 +355,22 @@ Do not allow set</h2>
 </div>
 <a name="setData" id="setData"></a><div class="element clickable method public setData" data-toggle="collapse" data-target=".setData .collapse">
 <h2>Sets data</h2>
-<pre>setData(array $data) </pre>
+<pre>setData(array $data, bool $isDirty) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::setData()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::setData()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::setData()</td>
+<td>\Moneybird\Detail\AbstractDetail::setData()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::setData()</td>
+<td>\Moneybird\IncomingInvoice\Detail::setData()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
@@ -310,6 +378,9 @@ Do not allow set</h2>
 <h4>$data</h4>
 <code>array</code>
 </div>
+<div class="subelement argument">
+<h4>$isDirty</h4>
+<code>bool</code><p>new data is dirty, defaults to true</p></div>
 </div></div>
 </div>
 <a name="setDeleted" id="setDeleted"></a><div class="element clickable method public setDeleted" data-toggle="collapse" data-target=".setDeleted .collapse">
@@ -321,11 +392,11 @@ Do not allow set</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::setDeleted()</td>
+<td>\Moneybird\Detail\AbstractDetail::setDeleted()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::setDeleted()</td>
+<td>\Moneybird\IncomingInvoice\Detail::setDeleted()</td>
 </tr>
 </table>
 </div></div>
@@ -339,15 +410,15 @@ Do not allow set</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Mapper_Mapable::toArray()</td>
+<td>\Moneybird\Mapper\Mapable::toArray()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::toArray()</td>
+<td>\Moneybird\Detail\AbstractDetail::toArray()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::toArray()</td>
+<td>\Moneybird\IncomingInvoice\Detail::toArray()</td>
 </tr>
 </table>
 <h3>Returns</h3>
@@ -363,15 +434,15 @@ Do not allow set</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::_initDisclosedAttributes()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::_initDisclosedAttributes()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::_initDisclosedAttributes()</td>
+<td>\Moneybird\Detail\AbstractDetail::_initDisclosedAttributes()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::_initDisclosedAttributes()</td>
+<td>\Moneybird\IncomingInvoice\Detail::_initDisclosedAttributes()</td>
 </tr>
 </table>
 </div></div>
@@ -385,23 +456,51 @@ Do not allow set</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::_initVars()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::_initVars()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::_initVars()</td>
+<td>\Moneybird\Detail\AbstractDetail::_initVars()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::_initVars()</td>
+<td>\Moneybird\IncomingInvoice\Detail::_initVars()</td>
 </tr>
 </table>
+</div></div>
+</div>
+<a name="copy" id="copy"></a><div class="element clickable method protected copy" data-toggle="collapse" data-target=".copy .collapse">
+<h2>Copy the object</h2>
+<pre>copy(array $filter) : \Moneybird\Domainmodel\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::copy()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::copy()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\IncomingInvoice\Detail::copy()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filter</h4>
+<code>Array</code><p>Attributes not to copy</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
 </div></div>
 </div>
 <a name="extract" id="extract"></a><div class="element clickable method protected extract" data-toggle="collapse" data-target=".extract .collapse">
 <h2>Extract will take an array and try to automatically map the array values
 to properties in this object</h2>
-<pre>extract(array $values, Array $filter) </pre>
+<pre>extract(array $values, Array $filter, bool $isDirty) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -412,15 +511,15 @@ to properties in this object</h2>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::extract()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::extract()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::extract()</td>
+<td>\Moneybird\Detail\AbstractDetail::extract()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::extract()</td>
+<td>\Moneybird\IncomingInvoice\Detail::extract()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
@@ -432,6 +531,9 @@ to properties in this object</h2>
 <h4>$filter</h4>
 <code>Array</code>
 </div>
+<div class="subelement argument">
+<h4>$isDirty</h4>
+<code>bool</code><p>new data is dirty, defaults to true</p></div>
 </div></div>
 </div>
 <a name="init" id="init"></a><div class="element clickable method protected init" data-toggle="collapse" data-target=".init .collapse">
@@ -443,46 +545,46 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::init()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::init()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::init()</td>
+<td>\Moneybird\Detail\AbstractDetail::init()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::init()</td>
+<td>\Moneybird\IncomingInvoice\Detail::init()</td>
 </tr>
 </table>
 </div></div>
 </div>
 <a name="reload" id="reload"></a><div class="element clickable method protected reload" data-toggle="collapse" data-target=".reload .collapse">
 <h2>Adopt the data from $self</h2>
-<pre>reload(\Moneybird\Domainmodel_Abstract $self) : \Moneybird\self</pre>
+<pre>reload(\Moneybird\Domainmodel\AbstractModel $self) : \Moneybird\Domainmodel\self</pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::reload()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::reload()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::reload()</td>
+<td>\Moneybird\Detail\AbstractDetail::reload()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::reload()</td>
+<td>\Moneybird\IncomingInvoice\Detail::reload()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$self</h4>
-<code><a href="../classes/Moneybird.Domainmodel_Abstract.html">\Moneybird\Domainmodel_Abstract</a></code>
+<code><a href="../classes/Moneybird.Domainmodel.AbstractModel.html">\Moneybird\Domainmodel\AbstractModel</a></code>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\Moneybird\self</code></div>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
 </div></div>
 </div>
 <a name="selfToArray" id="selfToArray"></a><div class="element clickable method protected selfToArray" data-toggle="collapse" data-target=".selfToArray .collapse">
@@ -498,15 +600,15 @@ to properties in this object</h2>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::selfToArray()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::selfToArray()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::selfToArray()</td>
+<td>\Moneybird\Detail\AbstractDetail::selfToArray()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::selfToArray()</td>
+<td>\Moneybird\IncomingInvoice\Detail::selfToArray()</td>
 </tr>
 </table>
 <h3>Parameters</h3>
@@ -518,6 +620,97 @@ to properties in this object</h2>
 <div class="subelement response"><code>array</code></div>
 </div></div>
 </div>
+<a name="setClean" id="setClean"></a><div class="element clickable method protected setClean" data-toggle="collapse" data-target=".setClean .collapse">
+<h2>Set dirty state to clean</h2>
+<pre>setClean(string $attr) : \Moneybird\Domainmodel\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::setClean()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::setClean()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\IncomingInvoice\Detail::setClean()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attr</h4>
+<code>string</code><p>Name of attribute, if null (default) set all attribures clean</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
+</div></div>
+</div>
+<a name="setDirty" id="setDirty"></a><div class="element clickable method protected setDirty" data-toggle="collapse" data-target=".setDirty .collapse">
+<h2>Set dirty state to dirty</h2>
+<pre>setDirty(string $attr) : \Moneybird\Domainmodel\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::setDirty()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::setDirty()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\IncomingInvoice\Detail::setDirty()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attr</h4>
+<code>string</code><p>Name of attribute, if null (default) set all attribures dirty</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
+</div></div>
+</div>
+<a name="setDirtyState" id="setDirtyState"></a><div class="element clickable method protected setDirtyState" data-toggle="collapse" data-target=".setDirtyState .collapse">
+<h2>Set dirty state based on bool</h2>
+<pre>setDirtyState(bool $isDirty, string $attr) : \Moneybird\Domainmodel\self</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::setDirtyState()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::setDirtyState()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\IncomingInvoice\Detail::setDirtyState()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$isDirty</h4>
+<code>bool</code>
+</div>
+<div class="subelement argument">
+<h4>$attr</h4>
+<code>string</code><p>Name of attribute, if null (default) change state of all attribures</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Moneybird\Domainmodel\self</code></div>
+</div></div>
+</div>
 <a name="validate" id="validate"></a><div class="element clickable method protected validate" data-toggle="collapse" data-target=".validate .collapse">
 <h2>Validate object</h2>
 <pre>validate() : bool</pre>
@@ -527,15 +720,15 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::validate()</td>
+<td>\Moneybird\Domainmodel\AbstractModel::validate()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::validate()</td>
+<td>\Moneybird\Detail\AbstractDetail::validate()</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::validate()</td>
+<td>\Moneybird\IncomingInvoice\Detail::validate()</td>
 </tr>
 </table>
 <h3>Returns</h3>
@@ -553,11 +746,33 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$_deleted</td>
+<td>\Moneybird\Detail\AbstractDetail::$$_deleted</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$_deleted</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$_deleted</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a name="%24_dirtyAttr" id="$_dirtyAttr"> </a><div class="element clickable property protected $_dirtyAttr" data-toggle="collapse" data-target=".$_dirtyAttr .collapse">
+<h2>Array of attributes that are dirty</h2>
+<pre>$_dirtyAttr : Array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Domainmodel\AbstractModel::$$_dirtyAttr</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\Detail\AbstractDetail::$$_dirtyAttr</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\Moneybird\IncomingInvoice\Detail::$$_dirtyAttr</td>
 </tr>
 </table>
 </div></div>
@@ -575,15 +790,15 @@ to properties in this object</h2>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::$$_discloseAttr</td>
+<td>\Moneybird\Domainmodel\AbstractModel::$$_discloseAttr</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$_discloseAttr</td>
+<td>\Moneybird\Detail\AbstractDetail::$$_discloseAttr</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$_discloseAttr</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$_discloseAttr</td>
 </tr>
 </table>
 </div></div>
@@ -601,15 +816,15 @@ to properties in this object</h2>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::$$_disclosure</td>
+<td>\Moneybird\Domainmodel\AbstractModel::$$_disclosure</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$_disclosure</td>
+<td>\Moneybird\Detail\AbstractDetail::$$_disclosure</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$_disclosure</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$_disclosure</td>
 </tr>
 </table>
 </div></div>
@@ -623,11 +838,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$_readonlyAttr</td>
+<td>\Moneybird\Detail\AbstractDetail::$$_readonlyAttr</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$_readonlyAttr</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$_readonlyAttr</td>
 </tr>
 </table>
 </div></div>
@@ -641,15 +856,15 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Domainmodel_Abstract::$$_requiredAttr</td>
+<td>\Moneybird\Domainmodel\AbstractModel::$$_requiredAttr</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$_requiredAttr</td>
+<td>\Moneybird\Detail\AbstractDetail::$$_requiredAttr</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$_requiredAttr</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$_requiredAttr</td>
 </tr>
 </table>
 </div></div>
@@ -663,11 +878,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$amount</td>
+<td>\Moneybird\Detail\AbstractDetail::$$amount</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$amount</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$amount</td>
 </tr>
 </table>
 </div></div>
@@ -681,11 +896,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$createdAt</td>
+<td>\Moneybird\Detail\AbstractDetail::$$createdAt</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$createdAt</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$createdAt</td>
 </tr>
 </table>
 </div></div>
@@ -699,11 +914,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$description</td>
+<td>\Moneybird\Detail\AbstractDetail::$$description</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$description</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$description</td>
 </tr>
 </table>
 </div></div>
@@ -717,11 +932,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$id</td>
+<td>\Moneybird\Detail\AbstractDetail::$$id</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$id</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$id</td>
 </tr>
 </table>
 </div></div>
@@ -735,11 +950,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$ledgerAccountId</td>
+<td>\Moneybird\Detail\AbstractDetail::$$ledgerAccountId</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$ledgerAccountId</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$ledgerAccountId</td>
 </tr>
 </table>
 </div></div>
@@ -753,11 +968,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$price</td>
+<td>\Moneybird\Detail\AbstractDetail::$$price</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$price</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$price</td>
 </tr>
 </table>
 </div></div>
@@ -771,11 +986,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$rowOrder</td>
+<td>\Moneybird\Detail\AbstractDetail::$$rowOrder</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$rowOrder</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$rowOrder</td>
 </tr>
 </table>
 </div></div>
@@ -789,11 +1004,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$tax</td>
+<td>\Moneybird\Detail\AbstractDetail::$$tax</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$tax</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$tax</td>
 </tr>
 </table>
 </div></div>
@@ -807,11 +1022,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$taxRateId</td>
+<td>\Moneybird\Detail\AbstractDetail::$$taxRateId</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$taxRateId</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$taxRateId</td>
 </tr>
 </table>
 </div></div>
@@ -825,11 +1040,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$totalPriceExclTax</td>
+<td>\Moneybird\Detail\AbstractDetail::$$totalPriceExclTax</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$totalPriceExclTax</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$totalPriceExclTax</td>
 </tr>
 </table>
 </div></div>
@@ -843,11 +1058,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$totalPriceInclTax</td>
+<td>\Moneybird\Detail\AbstractDetail::$$totalPriceInclTax</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$totalPriceInclTax</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$totalPriceInclTax</td>
 </tr>
 </table>
 </div></div>
@@ -861,11 +1076,11 @@ to properties in this object</h2>
 <table class="table table-bordered">
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\Detail_Abstract::$$updatedAt</td>
+<td>\Moneybird\Detail\AbstractDetail::$$updatedAt</td>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\Moneybird\IncomingInvoice_Detail::$$updatedAt</td>
+<td>\Moneybird\IncomingInvoice\Detail::$$updatedAt</td>
 </tr>
 </table>
 </div></div>
@@ -877,7 +1092,7 @@ to properties in this object</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2012-10-14T10:48:43+02:00.<br></footer></div>
+            generated on 2013-07-12T22:19:10+02:00.<br></footer></div>
 </div>
 </body>
 </html>
