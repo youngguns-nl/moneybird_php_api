@@ -3,7 +3,6 @@
 /*
  * Detail class file
  */
-
 namespace Moneybird\Invoice;
 
 use Moneybird\Detail\AbstractDetail;
@@ -11,20 +10,20 @@ use Moneybird\Detail\AbstractDetail;
 /**
  * Detail
  */
-class Detail extends AbstractDetail {
-	
-	protected $invoiceId;
+class Detail extends AbstractDetail
+{
 
-	/**
-	 * Copy the invoice detail
-         * @param array $filter
-         * @return self
-         */
-        public function copy(array $filter = array()) {
-                return parent::copy(array(
-                        'invoiceId',
-                ));
-        }
+    protected $invoiceId;
 
-	
+    /**
+     * Copy the invoice detail
+     * @param array $filter
+     * @return self
+     */
+    public function copy(array $filter = array())
+    {
+        return parent::copy(array(
+                'invoiceId',
+            ));
+    }
 }

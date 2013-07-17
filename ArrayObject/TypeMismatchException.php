@@ -3,7 +3,6 @@
 /*
  * Domainmodel Exception
  */
-
 namespace Moneybird\ArrayObject;
 
 use Moneybird\Exception;
@@ -11,5 +10,7 @@ use Moneybird\Exception;
 /**
  * Object does not fit into ArrayObject
  */
-class TypeMismatchException extends Exception {
+class TypeMismatchException extends Exception
+{
+
 }

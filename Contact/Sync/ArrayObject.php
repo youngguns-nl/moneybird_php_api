@@ -3,7 +3,6 @@
 /*
  * Contact array file
  */
-
 namespace Moneybird\Contact\Sync;
 
 use Moneybird\ArrayObject as ParentArrayObject;
@@ -13,5 +12,7 @@ use Moneybird\SyncArray;
 /**
  * Contact array
  */
-class ArrayObject extends ParentArrayObject implements Mapable, SyncArray {
+class ArrayObject extends ParentArrayObject implements Mapable, SyncArray
+{
+
 }

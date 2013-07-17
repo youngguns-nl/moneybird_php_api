@@ -3,11 +3,12 @@
 /*
  * Exception
  */
-
 namespace Moneybird;
 
 /**
  * NotValidException exception
  */
-class NotValidException extends Exception {
+class NotValidException extends Exception
+{
+
 }
