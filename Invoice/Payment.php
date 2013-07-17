@@ -3,7 +3,6 @@
 /*
  * Payment class file
  */
-
 namespace Moneybird\Invoice;
 
 use Moneybird\Payment\AbstractPayment;
@@ -11,10 +10,10 @@ use Moneybird\Payment\AbstractPayment;
 /**
  * Payment
  */
-class Payment extends AbstractPayment {
-	
-	protected $creditInvoiceId;
-	protected $invoiceId;
-	protected $sendEmail;
-	
+class Payment extends AbstractPayment
+{
+
+    protected $creditInvoiceId;
+    protected $invoiceId;
+    protected $sendEmail;
 }

@@ -3,7 +3,6 @@
 /*
  * Domainmodel Exception
  */
-
 namespace Moneybird\ArrayObject;
 
 use Moneybird\Exception;
@@ -11,5 +10,7 @@ use Moneybird\Exception;
 /**
  * Undefined method
  */
-class UndefinedMethodException extends Exception {
+class UndefinedMethodException extends Exception
+{
+
 }

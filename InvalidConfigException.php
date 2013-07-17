@@ -3,11 +3,12 @@
 /**
  * Exception
  */
-
 namespace Moneybird;
 
 /**
  * Exception for invalid config
  */
-class InvalidConfigException extends Exception {
+class InvalidConfigException extends Exception
+{
+
 }
