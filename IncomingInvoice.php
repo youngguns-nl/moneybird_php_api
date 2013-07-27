@@ -194,6 +194,19 @@ Mapable, Storable, Payable
     }
 
     /**
+     * Settle the payments
+     *
+     * @param Service $service
+     * @param Payable $invoice
+     * @throws InvalidStateException
+     * @throws UnableToSettleException
+     */
+    public function settle(Service $service, Payable $invoice)
+    {
+        return $service->settle($this, $invoice);
+    }
+
+    /**
      * Validate object
      * @return bool
      */

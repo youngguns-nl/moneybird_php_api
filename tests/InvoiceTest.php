@@ -258,6 +258,35 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 		);
 		$this->assertEquals($amount, $this->object->totalPaid);		
 	}
+
+    /**
+	 * @covers Moneybird\Invoice::settle
+	 */
+	public function testSettle() {
+        $this->assertEquals(4.16, $this->object->totalUnpaid);
+
+        $details = new Invoice\Detail\ArrayObject();
+		$details->append(new Invoice\Detail(array(
+			'amount' => -1,
+			'description' => 'My credit line',
+			'price' => 2.5,
+			'taxRateId' => self::$taxRateId,
+		)));
+
+		$invoice = new Invoice(array(
+			'poNumber' => 'PO Number',
+			'details' => $details,
+            'pricesAreInclTax' => true,
+		), self::$contact);
+
+		$invoice->save($this->service);
+		$invoice->markAsSent($this->service);
+
+        $this->object->settle($this->service, $invoice);
+        $this->assertEquals(1.66, $this->object->totalUnpaid);
+        $this->assertEquals(0, $invoice->totalUnpaid);
+        $invoice->delete($this->service);
+	}
 	
 	/**
 	 * @covers Moneybird\Invoice::delete

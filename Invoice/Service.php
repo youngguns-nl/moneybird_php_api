@@ -10,6 +10,8 @@ use Moneybird\ApiConnector;
 use Moneybird\Service as ServiceInterface;
 use Moneybird\InvalidRequestException;
 use Moneybird\InvalidFilterException;
+use Moneybird\InvalidStateException;
+use Moneybird\UnableToSettleException;
 
 /**
  * Invoice service
@@ -198,5 +200,19 @@ class Service implements ServiceInterface
     public function saveHistory(History $history, Invoice $invoice)
     {
         return $this->connector->save($history, $invoice);
+    }
+
+    /**
+     * Settle the payments
+     *
+     * @param Invoice $invoiceA
+     * @param Invoice $invoiceB
+     * @param bool $sendEmail
+     * @throws InvalidStateException
+     * @throws UnableToSettleException
+     */
+    public function settle(Invoice $invoiceA, Invoice $invoiceB, $sendEmail = false)
+    {
+        return $this->connector->settle($invoiceA, $invoiceB, $sendEmail);
     }
 }

@@ -9,6 +9,7 @@
  */
 namespace Moneybird;
 
+use \DateTime;
 use Moneybird\HttpClient\HttpStatusException;
 use Moneybird\Error\ArrayObject as ErrorArray;
 use Moneybird\Domainmodel\AbstractModel;
@@ -577,6 +578,57 @@ class ApiConnector
         }
         $response = $this->request($this->buildUrl(new $classname(), null, '/' . $name . '/' . $id), 'GET');
         return $this->mapper->mapFromStorage($response);
+    }
+
+    /**
+     * Settle the payments
+     * 
+     * @param Payable $invoiceA
+     * @param Payable $invoiceB
+     * @param bool $sendEmail
+     * @throws InvalidStateException
+     * @throws UnableToSettleException
+     */
+    public function settle(Payable $invoiceA, Payable $invoiceB, $sendEmail = false)
+    {
+        if ($invoiceA->state != 'open' && $invoiceA->state != 'late') {
+            throw new InvalidStateException('Invalid state for invoice '.$invoiceA->id);
+        }
+        if ($invoiceB->state != 'open' && $invoiceB->state != 'late') {
+            throw new InvalidStateException('Invalid state for invoice '.$invoiceB->id);
+        }
+
+        $typeA = $this->getType($invoiceA);
+        $typeB = $this->getType($invoiceB);
+        if ($typeA != $typeB) {
+            throw new UnableToSettleException('Unable to settle invoices, types are not equal');
+        }
+        if (
+            ($invoiceA->totalUnpaid > 0 && $invoiceB->totalUnpaid > 0) ||
+            ($invoiceA->totalUnpaid < 0 && $invoiceB->totalUnpaid < 0)
+        ) {
+            throw new UnableToSettleException('Unable to settle invoices, signs are equal');
+        }
+
+        $price = min(abs($invoiceA->totalUnpaid), abs($invoiceB->totalUnpaid));
+
+        $paymentClassA = __NAMESPACE__.'\\'.$typeA.'\\Payment';
+        $paymentClassB = __NAMESPACE__.'\\'.$typeB.'\\Payment';
+        $paymentA = new $paymentClassA(array(
+            'paymentDate' => new DateTime(),
+            'paymentMethod' => 'credit_invoice',
+            'price' => ($invoiceA->totalUnpaid > 0 ? 1 : -1) * $price,
+            'sendEmail' => $sendEmail,
+        ));
+        $paymentB = new $paymentClassB(array(
+            'paymentDate' => new DateTime(),
+            'paymentMethod' => 'credit_invoice',
+            'price' => ($invoiceB->totalUnpaid > 0 ? 1 : -1) * $price,
+            'sendEmail' => $sendEmail,
+        ));
+
+        $invoiceA->registerPayment($this->getService($typeA), $paymentA);
+        $invoiceB->registerPayment($this->getService($typeB), $paymentB);
     }
 
     /**

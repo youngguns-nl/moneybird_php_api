@@ -9,6 +9,8 @@ use Moneybird\Service as ServiceInterface;
 use Moneybird\ApiConnector;
 use Moneybird\InvalidFilterException;
 use Moneybird\IncomingInvoice;
+use Moneybird\InvalidStateException;
+use Moneybird\UnableToSettleException;
 
 /**
  * IncomingInvoice service
@@ -103,5 +105,18 @@ class Service implements ServiceInterface
     public function registerPayment(IncomingInvoice &$invoice, Payment $payment)
     {
         return $this->connector->registerPayment($invoice, $payment);
+    }
+
+    /**
+     * Settle the payments
+     *
+     * @param IncomingInvoice $invoiceA
+     * @param IncomingInvoice $invoiceB
+     * @throws InvalidStateException
+     * @throws UnableToSettleException
+     */
+    public function settle(IncomingInvoice $invoiceA, IncomingInvoice $invoiceB)
+    {
+        return $this->connector->settle($invoiceA, $invoiceB);
     }
 }
