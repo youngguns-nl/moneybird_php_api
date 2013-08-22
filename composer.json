@@ -2,7 +2,7 @@
     "name": "bluetools/moneybird-php-api",
     "description" : "A PHP Library for the MoneyBird API",
     "keywords": ["moneybird"],
-    "homepage": "http://github.com/bluetools/moneybird_php_api",
+    "homepage": "http://github.com/moneybird/moneybird_php_api",
     "authors": [
         {
             "name": "Sjors van der Pluijm",
