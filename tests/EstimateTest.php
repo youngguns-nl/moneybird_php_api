@@ -140,6 +140,39 @@ class EstimateTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @covers Moneybird\Estimate_Service::getSyncList
+	 */
+	public function testGetSyncList() {
+		$revision = $this->object->revision;
+		$this->assertNotNull($revision, 'Estimate '.self::$estimateId.' not in synclist');
+		$this->object->setData(array(
+			'firstname' => 'Test'.time()
+		));
+		$this->object->save($this->service);
+		sleep(1);
+
+		$newRevision = null;
+		$syncList = $this->service->getSyncList();
+		$this->assertInstanceOf('Moneybird\Estimate\ArrayObject', $syncList);
+		foreach ($syncList as $sync) {
+			if ($sync->id == self::$estimateId) {
+				$newRevision = $sync->revision;
+			}
+		}
+		$this->assertNotNull($newRevision, 'Estimate '.self::$estimateId.' not in synclist');
+		$this->assertGreaterThan($revision, $newRevision);
+	}
+
+	/**
+	 * @covers Moneybird\Estimate_Service::getByIds
+	 */
+	public function testGetByIds() {
+		$estimates = $this->service->getByIds(array(self::$estimateId));
+		$this->assertInstanceOf('Moneybird\Estimate\ArrayObject', $estimates);
+		$this->assertCount(1, $estimates);
+	}
+
+	/**
 	 * @covers Moneybird\Estimate_Service::getAll
 	 */
 	public function testGetAll() {

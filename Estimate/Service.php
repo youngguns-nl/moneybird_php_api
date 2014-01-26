@@ -31,6 +31,15 @@ class Service implements ServiceInterface
         $this->connector = $connector;
     }
 
+	/**
+     * Get estimates sync status
+     * @return Estimate_Array
+     */
+    public function getSyncList()
+    {
+        return $this->connector->getSyncList(__NAMESPACE__);
+    }
+
     /**
      * Get estimate by id
      * @param int $id
@@ -39,6 +48,16 @@ class Service implements ServiceInterface
     public function getById($id)
     {
         return $this->connector->getById(__NAMESPACE__, $id);
+    }
+
+	/**
+     * Get estimates by id (max 100)
+     * @param Array $ids
+     * @return Estimate_Array
+     */
+    public function getByIds(Array $ids)
+    {
+        return $this->connector->getByIds(__NAMESPACE__, $ids);
     }
 
     /**
