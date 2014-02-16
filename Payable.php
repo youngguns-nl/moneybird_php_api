@@ -26,9 +26,8 @@ interface Payable
      *
      * @param Service $service
      * @param Payable $invoice
-     * @param bool $sendEmail
      * @throws InvalidStateException
      * @throws UnableToSettleException
      */
-    public function settle(Service $service, Payable $invoice, $sendEmail = false);
+    public function settle(Service $service, Payable $invoice);
 }
