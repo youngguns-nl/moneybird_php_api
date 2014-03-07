@@ -7,6 +7,7 @@ namespace Moneybird;
 
 use Moneybird\Domainmodel\AbstractModel;
 use Moneybird\Mapper\Mapable;
+use Moneybird\Contact\Note\ArrayObject as NoteArray;
 use Moneybird\Invoice\Subject as InvoiceSubject;
 use Moneybird\Invoice\Service as InvoiceService;
 use Moneybird\Invoice\ArrayObject as InvoiceArray;
@@ -51,6 +52,7 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
     protected $taxNumber;
     protected $updatedAt;
     protected $zipcode;
+    protected $notes;
     protected $_readonlyAttr = array(
         'contactHash',
         'contactName',
@@ -77,6 +79,28 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
         }
 
         $this->id = $value;
+    }
+
+    /**
+     * Set notes
+     * @param NoteArray $value
+     * @param bool $isDirty new value is dirty, defaults to true
+     */
+    protected function setNotesAttr(NoteArray $value = null, $isDirty = true)
+    {
+        if (!is_null($value)) {
+            $this->notes = $value;
+            $this->setDirtyState($isDirty, 'notes');
+        }
+    }
+
+    /**
+     * Initialize vars
+     */
+    protected function _initVars()
+    {
+        $this->notes = new NoteArray();
+        return parent::_initVars();
     }
 
     /**

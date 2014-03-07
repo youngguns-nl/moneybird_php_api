@@ -100,4 +100,27 @@ class Service implements ServiceInterface
         $this->connector->delete($contact);
         return $this;
     }
+
+    /**
+     * Inserts contact note
+     * @param Note $note
+     * @param Contact $contact
+     * @return Note
+     */
+    public function saveNote(Note $note, Contact $contact)
+    {
+        return $this->connector->save($note, $contact);
+    }
+
+    /**
+     * Delete contact note
+     * @param Note $note
+     * @param Contact $contact
+     * @return self
+     */
+    public function deleteNote(Note $note, Contact $contact)
+    {
+        $this->connector->delete($note, $contact);
+        return $this;
+    }
 }

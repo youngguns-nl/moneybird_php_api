@@ -30,6 +30,8 @@ class XmlMapper implements Mapper
         $this->objectMapper = array(
             'contacts' => __NAMESPACE__ . '\Contact\ArrayObject',
             'contact' => __NAMESPACE__ . '\Contact',
+            'contact/notes' => __NAMESPACE__ . '\Contact\Note\ArrayObject',
+            'contact/notes/note' => __NAMESPACE__ . '\Contact\Note',
             'user' => __NAMESPACE__ . '\CurrentSession',
             'estimates' => __NAMESPACE__ . '\Estimate\ArrayObject',
             'estimate' => __NAMESPACE__ . '\Estimate',
@@ -302,7 +304,7 @@ class XmlMapper implements Mapper
 
         // Get rid of the unnecessary type specs (i.e. invoice\detail => detail)
         $simplified = array(
-            'payment', 'history', 'detail',
+            'payment', 'history', 'detail', 'note',
         );
         foreach ($simplified as $simplify) {
             $name = preg_replace('/^[a-z\-\/]+[_\/](' . preg_quote($simplify) . ')/', '\\1', $name);
@@ -323,10 +325,12 @@ class XmlMapper implements Mapper
         // Exceptions
         $name = str_replace(
             array(
+            'note',
             'historys',
             'details',
             'incoming-invoice',
             ), array(
+            'contact-note',
             'history',
             'details_attributes',
             'incoming_invoice',

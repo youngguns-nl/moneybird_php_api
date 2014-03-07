@@ -12,6 +12,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	
 	protected static $customerId;
 	protected static $contactId;
+	protected static $note;
 	protected $testContactId;
 
 	/**
@@ -31,7 +32,8 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	
 	public static function setUpBeforeClass() {
         self::$customerId = 'Cust-'.time();
-		self::$contactId = null;
+		self::$contactId = 659434;
+		self::$note = null;
     }
 
 	/**
@@ -149,6 +151,31 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 		$contact = $this->service->getByCustomerId(self::$customerId);
 		$this->assertInstanceOf('Moneybird\Contact', $contact);
 		$this->assertEquals($contact->id, self::$contactId);
+	}
+
+	/**
+	 * @covers Moneybird\Contact\Note::save
+	 */
+	public function testSaveNote() {
+		$numNotes = count($this->object->notes);
+		$note = new Contact\Note(array(
+			'note' => 'Note '.time(),
+		));
+		$note->save($this->service, $this->object);
+		self::$note = $note;
+		$this->assertNotNull($note->id);
+		$this->assertNotEquals($note->id, $this->object->id);
+		$this->assertNotEquals($numNotes, count($this->object->notes));
+	}
+
+	/**
+	 * @covers Moneybird\Contact\Note::delete
+	 */
+	public function testDeleteNote() {
+		$contactBefore = $this->service->getById(self::$contactId);
+		self::$note->delete($this->service, $this->object);
+		$contactAfter = $this->service->getById(self::$contactId);
+		$this->assertNotEquals(count($contactBefore->notes), count($contactAfter->notes));
 	}
 
 	/**
