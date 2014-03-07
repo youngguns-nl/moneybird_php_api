@@ -32,7 +32,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase {
 	
 	public static function setUpBeforeClass() {
         self::$customerId = 'Cust-'.time();
-		self::$contactId = 659434;
+		self::$contactId = null;
 		self::$note = null;
     }
 
