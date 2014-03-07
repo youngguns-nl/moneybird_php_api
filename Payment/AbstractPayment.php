@@ -35,6 +35,7 @@ abstract class AbstractPayment extends AbstractModel implements Mapable
      * @var Array
      */
     protected $_paymentMethods = array(
+		'',
         'bank_transfer',
         'cash',
         'creditcard',
