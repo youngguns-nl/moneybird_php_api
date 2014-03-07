@@ -49,6 +49,11 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
     protected $phone;
     protected $revision;
     protected $sendMethod;
+    protected $sepaActive;
+    protected $sepaIban;
+    protected $sepaBic;
+    protected $sepaMandateId;
+    protected $sepaMandateDate;
     protected $taxNumber;
     protected $updatedAt;
     protected $zipcode;
