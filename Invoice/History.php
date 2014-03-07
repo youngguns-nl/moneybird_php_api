@@ -52,8 +52,10 @@ class History extends AbstractModel implements Mapable, Storable
             throw new Exception('$invoice must be instance of Invoice');
         }
 
+        $newInvoice = $service->saveHistory($this, $invoice);
+        $invoice->setData($newInvoice->toArray(), false);
         return $this->reload(
-                $service->saveHistory($this, $invoice)
+            end($invoice->history)
         );
     }
 
