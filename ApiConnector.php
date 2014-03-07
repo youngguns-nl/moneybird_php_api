@@ -649,6 +649,21 @@ class ApiConnector
     }
 
     /**
+     * Checks if service name is a valid service
+     * @param string $type
+     * @return boolean
+     */
+    public function hasService($type) {
+        if (!isset($this->services[$type])) {
+            if (!file_exists(__DIR__.'/'.$type.'/Service.php')) {
+				return false;
+			}
+        }
+
+        return true;
+    }
+
+    /**
      * Determine the type of $model
      * @param AbstractModel $model
      * @return string
