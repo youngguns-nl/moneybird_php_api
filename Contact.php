@@ -54,6 +54,7 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
     protected $sepaBic;
     protected $sepaMandateId;
     protected $sepaMandateDate;
+	protected $sepaSequenceType;
     protected $taxNumber;
     protected $updatedAt;
     protected $zipcode;
@@ -70,6 +71,17 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
     protected $_requiredAttr = array(
         //'customerId',
         array('companyName', 'firstname', 'lastname',),
+    );
+
+	/**
+     * Allowed sequence types
+     * @var Array
+     */
+    protected $_sepaSequenceTypes = array(
+		'FRST',
+		'RCUR',
+		'FNAL',
+		'OOFF',
     );
 
     /**
@@ -99,6 +111,22 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
         }
     }
 
+	/**
+     * Set sepa sequence type
+     * @param string $value
+     * @param bool $isDirty new value is dirty, defaults to true
+     */
+    protected function setSepaSequenceTypeAttr($value = null, $isDirty = true)
+    {
+		$value = strtoupper($value);
+        if ($value !== null && $value !== '' && !in_array($value, $this->_sepaSequenceTypes)) {
+            throw new InvalidSequenceTypeException('Invalid sequence type: ' . $value);
+        }
+
+        $this->sepaSequenceType = $value;
+        $this->setDirtyState($isDirty, 'sepaSequenceType');
+    }
+
     /**
      * Initialize vars
      */
@@ -125,7 +153,19 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
      */
     public function save(Service $service)
     {
-        if (!$this->validate()) {
+		if (!$this->sepaActive) {
+			$valid = $this->validate();
+		} else {
+			$oldRequired = $this->_requiredAttr;
+			$this->_requiredAttr[] = 'sepaIban';
+			$this->_requiredAttr[] = 'sepaBic';
+			$this->_requiredAttr[] = 'sepaMandateId';
+			$this->_requiredAttr[] = 'sepaMandateDate';
+			$this->_requiredAttr[] = 'sepaSequenceType';
+			$valid = $this->validate();
+			$this->_requiredAttr = $oldRequired;
+		}
+        if (!$valid) {
             throw new NotValidException('Unable to validate contact');
         }
 
