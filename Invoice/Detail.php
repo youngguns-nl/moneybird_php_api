@@ -26,4 +26,28 @@ class Detail extends AbstractDetail
                 'invoiceId',
             ));
     }
+
+    /**
+     * Extract will take an array and try to automatically map the array values
+     * to properties in this object
+     *
+     * @param Array $values
+     * @param Array $filter
+     * @param bool $isDirty new data is dirty, defaults to true
+     * @access protected
+     */
+    protected function extract(Array $values, $filter = array(), $isDirty = true)
+    {
+        $product = &$values['product'];
+        if (isset($product) && $product instanceof Product) {
+            $filter[] = 'product';            
+            $values = array_merge($values, array(
+                'description' => $product->description,
+                'ledgerAccountId' => $product->ledgerAccountId,
+                'price' => $product->price,
+                'taxRateId' => $product->taxRateId,
+            ));
+        }
+        return parent::extract($values, $filter, $isDirty);
+    }
 }
