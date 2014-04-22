@@ -6,6 +6,7 @@
 namespace Moneybird\Invoice;
 
 use Moneybird\Detail\AbstractDetail;
+use Moneybird\Product;
 
 /**
  * Detail
