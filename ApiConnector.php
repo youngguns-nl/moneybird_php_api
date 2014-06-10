@@ -267,10 +267,11 @@ class ApiConnector
     /**
      * Delete object
      * @param Storable $model
+     * @param AbstractModel $parent
      * @return self
      * @throws ForbiddenException
      */
-    public function delete(Storable $model)
+    public function delete(Storable $model, AbstractModel $parent = null)
     {
         $types = array('Invoice', 'Estimate', 'RecurringTemplate', 'IncomingInvoice');
         foreach ($types as $type) {
@@ -281,7 +282,7 @@ class ApiConnector
             }
         }
         $this->request(
-            $this->buildUrl($model), 'DELETE'
+            $this->buildUrl($model, $parent), 'DELETE'
         );
 
         return $this;
@@ -427,9 +428,11 @@ class ApiConnector
                 array(
                 '\\',
                 'invoice_History',
+                'contact_Note',
                 ), array(
                 '_',
                 'historie',
+                'note',
                 ), lcfirst($classname)
             );
             if (false !== ($pos = strpos($mapped, '_'))) {
@@ -649,6 +652,21 @@ class ApiConnector
     }
 
     /**
+     * Checks if service name is a valid service
+     * @param string $type
+     * @return boolean
+     */
+    public function hasService($type) {
+        if (!isset($this->services[$type])) {
+            if (!file_exists(__DIR__.'/'.$type.'/Service.php')) {
+				return false;
+			}
+        }
+
+        return true;
+    }
+
+    /**
      * Determine the type of $model
      * @param AbstractModel $model
      * @return string
@@ -665,6 +683,7 @@ class ApiConnector
             'TaxRate',
             'Product',
             'Contact\Sync',
+            'Contact\Note',
             'Invoice\History',
         );
         foreach ($types as $type) {

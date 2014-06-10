@@ -59,6 +59,7 @@ Mapable, Storable, Sendable, PdfDocument, Payable
     protected $recurringTemplateId;
     protected $revision;
     protected $sendMethod;
+    protected $sepaActive;
     protected $showCustomerId;
     protected $showTax;
     protected $showTaxNumber;

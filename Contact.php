@@ -7,6 +7,7 @@ namespace Moneybird;
 
 use Moneybird\Domainmodel\AbstractModel;
 use Moneybird\Mapper\Mapable;
+use Moneybird\Contact\Note\ArrayObject as NoteArray;
 use Moneybird\Invoice\Subject as InvoiceSubject;
 use Moneybird\Invoice\Service as InvoiceService;
 use Moneybird\Invoice\ArrayObject as InvoiceArray;
@@ -48,9 +49,16 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
     protected $phone;
     protected $revision;
     protected $sendMethod;
+    protected $sepaActive;
+    protected $sepaIban;
+    protected $sepaBic;
+    protected $sepaMandateId;
+    protected $sepaMandateDate;
+	protected $sepaSequenceType;
     protected $taxNumber;
     protected $updatedAt;
     protected $zipcode;
+    protected $notes;
     protected $_readonlyAttr = array(
         'contactHash',
         'contactName',
@@ -65,6 +73,17 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
         array('companyName', 'firstname', 'lastname',),
     );
 
+	/**
+     * Allowed sequence types
+     * @var Array
+     */
+    protected $_sepaSequenceTypes = array(
+		'FRST',
+		'RCUR',
+		'FNAL',
+		'OOFF',
+    );
+
     /**
      * Set Id
      * @param int $value
@@ -77,6 +96,44 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
         }
 
         $this->id = $value;
+    }
+
+    /**
+     * Set notes
+     * @param NoteArray $value
+     * @param bool $isDirty new value is dirty, defaults to true
+     */
+    protected function setNotesAttr(NoteArray $value = null, $isDirty = true)
+    {
+        if (!is_null($value)) {
+            $this->notes = $value;
+            $this->setDirtyState($isDirty, 'notes');
+        }
+    }
+
+	/**
+     * Set sepa sequence type
+     * @param string $value
+     * @param bool $isDirty new value is dirty, defaults to true
+     */
+    protected function setSepaSequenceTypeAttr($value = null, $isDirty = true)
+    {
+		$value = strtoupper($value);
+        if ($value !== null && $value !== '' && !in_array($value, $this->_sepaSequenceTypes)) {
+            throw new InvalidSequenceTypeException('Invalid sequence type: ' . $value);
+        }
+
+        $this->sepaSequenceType = $value;
+        $this->setDirtyState($isDirty, 'sepaSequenceType');
+    }
+
+    /**
+     * Initialize vars
+     */
+    protected function _initVars()
+    {
+        $this->notes = new NoteArray();
+        return parent::_initVars();
     }
 
     /**
@@ -96,7 +153,19 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
      */
     public function save(Service $service)
     {
-        if (!$this->validate()) {
+		if (!$this->sepaActive) {
+			$valid = $this->validate();
+		} else {
+			$oldRequired = $this->_requiredAttr;
+			$this->_requiredAttr[] = 'sepaIban';
+			$this->_requiredAttr[] = 'sepaBic';
+			$this->_requiredAttr[] = 'sepaMandateId';
+			$this->_requiredAttr[] = 'sepaMandateDate';
+			$this->_requiredAttr[] = 'sepaSequenceType';
+			$valid = $this->validate();
+			$this->_requiredAttr = $oldRequired;
+		}
+        if (!$valid) {
             throw new NotValidException('Unable to validate contact');
         }
 

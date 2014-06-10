@@ -29,4 +29,13 @@ class Service implements ServiceInterface
     {
         return $this->connector->getAll(__NAMESPACE__);
     }
+
+    public function getById($id)
+    {
+        foreach ($this->getAll() as $product) {
+            if ($product->id == $id) {
+                return $product;
+            }
+        }
+    }
 }

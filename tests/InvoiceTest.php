@@ -217,10 +217,22 @@ class InvoiceTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @covers Moneybird\Invoice\History::save
+	 */
+	public function testSaveNote() {
+		$note = 'Note '.time();
+		$note = new Invoice\History(array(
+			'description' => $note,
+		));
+		$note->save($this->service, $this->object);
+		$this->assertNotNull($note->id);
+	}
+
+	/**
 	 * @covers Moneybird\Invoice::send
 	 *
 	public function testSend() {
-		$this->object->send($this->service, 'email', 'sjors@desjors.nl');
+		$this->object->send($this->service, 'email', 'fake@fake.fake');
 	}	
 	
 	/**
