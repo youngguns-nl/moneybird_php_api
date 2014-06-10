@@ -51,6 +51,7 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
     protected $sendMethod;
     protected $sepaActive;
     protected $sepaIban;
+    protected $sepaIbanAccountName;
     protected $sepaBic;
     protected $sepaMandateId;
     protected $sepaMandateDate;
@@ -158,6 +159,7 @@ Mapable, Storable, InvoiceSubject, RecurringTemplateSubject, EstimateSubject, In
 		} else {
 			$oldRequired = $this->_requiredAttr;
 			$this->_requiredAttr[] = 'sepaIban';
+			$this->_requiredAttr[] = 'sepaIbanAccountName';
 			$this->_requiredAttr[] = 'sepaBic';
 			$this->_requiredAttr[] = 'sepaMandateId';
 			$this->_requiredAttr[] = 'sepaMandateDate';
