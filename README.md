@@ -16,3 +16,7 @@ For examples and usage: [see github](https://github.com/youngguns-nl/moneybird_p
 License
 -------
 This project is subject to the MIT license. A copy of the license is included.
+
+Moneybird V2
+-------
+The current version of this library will not work with the new Moneybird version. Not yet.
