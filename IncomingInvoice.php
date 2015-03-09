@@ -201,7 +201,7 @@ Mapable, Storable, Payable
      * @throws InvalidStateException
      * @throws UnableToSettleException
      */
-    public function settle(Service $service, Payable $invoice)
+    public function settle(Service $service, Payable $invoice, $sendEmail = false)
     {
         return $service->settle($this, $invoice);
     }
