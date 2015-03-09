@@ -28,6 +28,7 @@ Mapable, Storable, Payable
     protected $id;
     protected $invoiceDate;
     protected $invoiceId;
+    protected $pricesAreInclTax;
     protected $revision;
     protected $state;
     protected $totalPaid;
