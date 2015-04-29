@@ -250,7 +250,7 @@ class HttpClient implements Transport
             // No requests made yet
             return null;
         }
-        return $headers['X-RateLimit-Remaining'];
+        return $headers['x-ratelimit-remaining'];
     }
 
     /**
@@ -409,7 +409,7 @@ class HttpClient implements Transport
         $matches = array();
         if (preg_match_all('/([\w-]+): (.*)/', $this->lastHeader, $matches)) {
             for ($i = count($matches[0]) - 1; $i >= 0; $i--) {
-                $headers[$matches[1][$i]] = $matches[2][$i];
+                $headers[strtolower($matches[1][$i])] = $matches[2][$i];
             }
         }
         return $headers;
