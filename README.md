@@ -1,9 +1,9 @@
 MoneyBird API PHP Library
 =========================
 
-This is a public repository for the PHP library for the MoneyBird API. 
+This is a public repository for the PHP library for the MoneyBird API.
 
-For more information about the MoneyBird API, please visit [http://www.moneybird.nl/help/api]()
+For more information about the MoneyBird API, please visit http://www.moneybird.nl/help/api
 
 Visit this project on github: https://github.com/youngguns-nl/moneybird_php_api
 
