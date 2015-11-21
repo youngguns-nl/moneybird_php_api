@@ -1,6 +1,13 @@
 MoneyBird API PHP Library
 =========================
 
+V2
+-------
+This library is for the v1 MoneyBird API, it will not work on v2. 
+[v2 API](https://github.com/EmileBons/moneybird-com-php-api)
+
+V1
+-------
 This is a public repository for the PHP library for the MoneyBird API.
 
 For more information about the MoneyBird API, please visit http://www.moneybird.nl/help/api
@@ -17,6 +24,3 @@ License
 -------
 This project is subject to the MIT license. A copy of the license is included.
 
-Moneybird V2
--------
-The current version of this library will not work with the new Moneybird version. Not yet.
