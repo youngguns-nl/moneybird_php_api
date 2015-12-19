@@ -9,6 +9,7 @@ use Moneybird\HttpClient\Exception as GeneralException;
 use Moneybird\HttpClient\ConnectionErrorException;
 use Moneybird\HttpClient\HttpStatusException;
 use Moneybird\HttpClient\UnknownHttpStatusException;
+use Moneybird\HttpClient\CurlErrorException;
 
 /**
  * Wrapper for curl to create http requests
@@ -346,7 +347,12 @@ class HttpClient implements Transport
             throw new ConnectionErrorException('Too many redirects in request');
         }
 
-        $response = explode("\r\n\r\n", curl_exec($this->connection), 2);
+        $curl_return = curl_exec($this->connection);
+        if ($curl_return === false) {
+            throw new CurlErrorException(curl_error($this->connection));
+        }
+
+        $response = explode("\r\n\r\n", $curl_return, 2);
         $this->httpStatus = curl_getinfo($this->connection, CURLINFO_HTTP_CODE);
 
         $header = isset($response[0]) ? $response[0] : '';
