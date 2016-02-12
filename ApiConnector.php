@@ -637,7 +637,7 @@ class ApiConnector
     /**
      * Build a service object for contacts, invoices, etc
      * @param string $type
-     * @return Object
+     * @return Service
      */
     public function getService($type)
     {
