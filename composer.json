@@ -13,8 +13,14 @@
     "require": {
         "php": ">=5.3.0"
     },
+    "suggest": {
+        "psr/log": "Log request and responses made to MoneyBird."
+    },
     "autoload": {
         "psr-0": { "Moneybird": "" }
     },
-    "target-dir": "Moneybird"
+    "target-dir": "Moneybird",
+    "require-dev": {
+        "psr/log": "^1.0"
+    }
 }
