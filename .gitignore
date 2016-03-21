@@ -1,1 +1,3 @@
 tests/my-config.php
+composer.lock
+vendor/
