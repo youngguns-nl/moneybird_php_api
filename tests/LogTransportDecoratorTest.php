@@ -77,36 +77,36 @@ class LogTransportDecoratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testLogFailedRequest()
     {
-            $url = 'http://test.nl';
-            $method = 'POST';
-            $params = ['foo' => 'bar'];
-            $headers = ['cache-control' => 'public'];
-            $exception = new \Moneybird\HttpClient\Exception('test');
+        $url = 'http://test.nl';
+        $method = 'POST';
+        $params = ['foo' => 'bar'];
+        $headers = ['cache-control' => 'public'];
+        $exception = new \Moneybird\HttpClient\Exception('test');
 
-            $this->decorated->expects($this->any())
-                ->method('requestsLeft')
-                ->will($this->returnValue(4));
+        $this->decorated->expects($this->any())
+            ->method('requestsLeft')
+            ->will($this->returnValue(4));
 
-            $this->decorated->expects($this->once())
-                ->method('send')
-                ->will($this->throwException($exception));
+        $this->decorated->expects($this->once())
+            ->method('send')
+            ->will($this->throwException($exception));
 
-            $this->log->expects($this->at(0))
-                ->method('info')
-                ->with('MoneyBird Request', [
-                    'url' => $url,
-                    'requestMethod' => $method,
-                    'data' => $params,
-                    'headers' => $headers
-                ]);
+        $this->log->expects($this->at(0))
+            ->method('info')
+            ->with('MoneyBird Request', [
+                'url' => $url,
+                'requestMethod' => $method,
+                'data' => $params,
+                'headers' => $headers
+            ]);
 
-            $this->log->expects($this->at(1))
-                ->method('error')
-                ->with('Response failed', [
-                    'exception' => $exception,
-                    'requestsLeft' => 4
-                ]);
+        $this->log->expects($this->at(1))
+            ->method('error')
+            ->with('Response failed', [
+                'exception' => $exception,
+                'requestsLeft' => 4
+            ]);
 
-            $this->decorator->send($url, $method, $params, $headers);
+        $this->decorator->send($url, $method, $params, $headers);
     }
 }
