@@ -1,6 +1,6 @@
 <?php
 
-namespace MoneyBird;
+namespace Moneybird;
 
 use Psr\Log\LoggerInterface;
 
