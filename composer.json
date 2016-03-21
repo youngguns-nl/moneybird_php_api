@@ -19,5 +19,8 @@
     "autoload": {
         "psr-0": { "Moneybird": "" }
     },
-    "target-dir": "Moneybird"
+    "target-dir": "Moneybird",
+    "require-dev": {
+        "psr/log": "^1.0"
+    }
 }
