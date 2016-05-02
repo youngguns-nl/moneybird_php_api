@@ -43,7 +43,7 @@ class ApiConnector
     /**
      * Mapper object
      *
-     * @access proteced
+     * @access protected
      * @var Mapper
      */
     protected $mapper;
