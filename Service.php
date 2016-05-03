@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Inteface for service classes that store Domeinmodels
+ * Interface for service classes that store Domainmodels
  */
 namespace Moneybird;
 
